@@ -11,7 +11,6 @@ suppressMessages (library(quantreg))
 
 
 
-
 stat_sum_df <- function(fun, geom="point", ...) {
   stat_summary(fun.data=fun,  geom=geom,  ...)
 }
