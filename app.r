@@ -1092,22 +1092,7 @@ server <-  function(input, output, session) {
   
   
   
-  output$roundvar <- renderUI({
-    df <- filterdata6()
-    if (is.null(df)) return(NULL)
-    items=names(df)
-    names(items)=items
-    MODEDF <- sapply(df, function(x) is.numeric(x))
-    NAMESTOKEEP2<- names(df)  [MODEDF]
-    selectizeInput(  "roundvarin", "Round the Values to the Specified N Digits:", choices = NAMESTOKEEP2,multiple=TRUE,
-                     options = list(
-                       placeholder = 'Please select some variables',
-                       onInitialize = I('function() { this.setValue(""); }')
-                     )
-    )
-    
-  }) 
-  outputOptions(output, "roundvar", suspendWhenHidden=FALSE)
+
   
   stackdata <- reactive({
     
