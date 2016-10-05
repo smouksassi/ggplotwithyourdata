@@ -26,7 +26,7 @@ give.n <- function(x){
   return(c(y = min(x)*1,  label = length(x))) 
 }
 
-options(shiny.maxRequestSize=100*1024^2) 
+options(shiny.maxRequestSize=250*1024^2) 
 #options(shiny.reactlog=TRUE) 
 tableau10 <- c("#1F77B4","#FF7F0E","#2CA02C","#D62728","#9467BD",
                "#8C564B","#E377C2","#7F7F7F","#BCBD22","#17BECF")
@@ -89,7 +89,10 @@ ui  <-  fluidPage(
                                                      checkboxInput('reverseorder', 'Reverse Order ?', value = FALSE) ),
                                     
                                     uiOutput("reordervar2"),
-                                    uiOutput("reordervar2values")
+                                    uiOutput("reordervar2values"),
+                                    uiOutput("catvar5"),
+                                    textOutput("labeltext5"),
+                                    uiOutput("nlabels5")
                            )
                ),
                hr()
@@ -283,7 +286,7 @@ ui  <-  fluidPage(
                           ),
                           checkboxInput('boxplotaddition', 'Add a Boxplot ? (makes sense if x variable is categorical and
                                         you Group By a sensible choice. By default the x variable is used for grouping)'),
-                          checkboxInput('boxplotignoregroup', 'Ignore Mapped Group ? (can me helpful to superpose a loess or median on top of the boxplot)')
+                          checkboxInput('boxplotignoregroup', 'Ignore Mapped Group ? (can me helpful to superpose a loess or median on top of the boxplot)',value = TRUE)
                           
                    ),
                    column (12, h6("Points and Lines Size will apply only if Size By: in the Color Group Split Size Fill Mappings are set to None"))
@@ -298,7 +301,7 @@ ui  <-  fluidPage(
                    column(3, uiOutput("facet_col"),uiOutput("facet_row")),
                    column (3, uiOutput("facet_col_extra"),uiOutput("facet_row_extra")),
                    column (3, uiOutput("pointsize"),uiOutput("fill")),
-                   column (12, h6("Make sure not to choose a variable that is in the y variable(s) list otherwise you will get an error Variable not found. These variables are stacked and become yvars and yvalues." ))
+                   column (12, h6("Make sure not to choose a variable that is in the y variable(s) list otherwise you will get an error Variable not found. These variables are stacked and become yvars and yvalues.This ensures that colour/group/etc. are kept intact when you apply a new filter or recode a variable." ))
                    
                  )
                ),
@@ -789,7 +792,7 @@ server <-  function(input, output, session) {
     }
     
   })
-  
+  outputOptions(output, "labeltext", suspendWhenHidden=FALSE) 
   outputOptions(output, "catvar4", suspendWhenHidden=FALSE)
   outputOptions(output, "nlabels", suspendWhenHidden=FALSE)
   
@@ -800,12 +803,12 @@ server <-  function(input, output, session) {
     if(input$catvar4in!="") {
       varname<- input$catvar4in
       xlabels <- input$customvarlabels 
-     # xlabels <- c("a","b")
+     
       nxxlabels <- length(as.numeric(unlist (strsplit(xlabels, ",")) )) -1
       df[,varname] <- as.factor(df[,varname])
       levels(df[,varname])  <-  unlist (strsplit(xlabels, ",") )
     }
-    #print(head(df))
+    
     df
   })
   
@@ -1144,6 +1147,23 @@ server <-  function(input, output, session) {
     tidydata
   })
   
+  
+  output$roundvar <- renderUI({
+    df <- stackdata()
+    if (is.null(df)) return(NULL)
+    items=names(df)
+    names(items)=items
+    MODEDF <- sapply(df, function(x) is.numeric(x))
+    NAMESTOKEEP2<- names(df)  [MODEDF]
+    selectizeInput(  "roundvarin", "Round the Values to the Specified N Digits:", choices = NAMESTOKEEP2,multiple=TRUE,
+                     options = list(
+                       placeholder = 'Please select some variables',
+                       onInitialize = I('function() { this.setValue(""); }')
+                     )
+    )
+    
+  }) 
+  
   rounddata <- reactive({
     if (is.null(df)) return(NULL)
     df <- stackdata()
@@ -1184,13 +1204,13 @@ server <-  function(input, output, session) {
       names(items)=items
       MODEDF <- sapply(df, function(x) is.numeric(x))
       NAMESTOKEEP2<- names(df)  [ MODEDF ]
-      selectInput('varreorderin',label = 'Of this Variable:', choices=NAMESTOKEEP2,multiple=FALSE)
+      selectInput('varreorderin',label = 'Of this Variable:', choices=NAMESTOKEEP2,multiple=FALSE,selected="yvalues")
     }
   })
   
   
 
-  
+  outputOptions(output, "roundvar", suspendWhenHidden=FALSE)
   outputOptions(output, "reordervar", suspendWhenHidden=FALSE)
   outputOptions(output, "variabletoorderby", suspendWhenHidden=FALSE)
   
@@ -1288,15 +1308,72 @@ df [,input$reordervar2in] <- factor(df [,input$reordervar2in],
     
   })
   outputOptions(output, "xaxiszoom", suspendWhenHidden=FALSE)
+  output$catvar5 <- renderUI({
+    df <-reorderdata2()
+    if (is.null(df)) return(NULL)
+    items=names(df)
+    names(items)=items
+    MODEDF <- sapply(df, function(x) is.numeric(x))
+    NAMESTOKEEP2<- names(df)  [! MODEDF ]
+    
+    selectizeInput(  "catvar5in", 'Change labels of this variable:',
+                     choices =NAMESTOKEEP2 ,multiple=FALSE,
+                     options = list(    placeholder = 'Please select a variable',
+                                        onInitialize = I('function() { this.setValue(""); }')
+                     )
+    )
+  })
   
+  output$labeltext5 <- renderText({
+    df <- reorderdata2()
+    if (is.null(df)) return(NULL)
+    labeltext5out <- ""
+    if(input$catvar5in!="") {
+      varname<- input$catvar5in
+      labeltext5out <- c("Old labels",levels(as.factor(df[,varname]) ))
+    }
+    labeltext5out   
+  })   
+  
+  output$nlabels5 <- renderUI({
+    df <-reorderdata2()
+    if (length(input$catvar5in ) <1)  return(NULL)
+    if ( input$catvar5in!=""){
+      nlevels <- length( unique( levels(as.factor( df[,input$catvar5in] ))))
+      levelsvalues <- levels(as.factor( df[,input$catvar5in] ))
+      textInput("customvarlabels5", label =  paste(input$catvar5in,"requires",nlevels,"new labels,
+                                                   type in a comma separated list below"),
+                value =   paste(as.character(1:nlevels),collapse=", ",sep="")
+      )
+    }
+    
+  })
+  
+  outputOptions(output, "catvar5", suspendWhenHidden=FALSE)
+  outputOptions(output, "nlabels5", suspendWhenHidden=FALSE)
+  outputOptions(output, "labeltext5", suspendWhenHidden=FALSE)
+  
+  recodedata5  <- reactive({
+    df <- reorderdata2()
+    if (is.null(df)) return(NULL)
+    if(input$catvar5in!="") {
+      varname<- input$catvar5in
+      xlabels <- input$customvarlabels5 
+      nxxlabels <- length(as.numeric(unlist (strsplit(xlabels, ",")) )) -1
+      df[,varname] <- as.factor(df[,varname])
+      levels(df[,varname])  <-  unlist (strsplit(xlabels, ",") )
+    }
+    df
+  })
   
   output$colour <- renderUI({
     df <-filedata()
     if (is.null(df)) return(NULL)
     items=names(df)
     names(items)=items
-    items= items #[!is.element(items,input$y)]
-    selectInput("colorin", "Colour By:",c("None",items,"yvars", "yvalues","combinedvariable") )
+    items= items
+    items= c("None",items, "yvars","yvalues","combinedvariable") 
+    selectInput("colorin", "Colour By:",items) 
     
   })
   
@@ -1307,13 +1384,7 @@ df [,input$reordervar2in] <- factor(df [,input$reordervar2in],
     items=names(df)
     names(items)=items
     items= items 
-    
-    if (input$boxplotaddition ){
-      items= c(input$x,"None",items[items!=input$x], "yvars","yvalues","combinedvariable")    
-    }
-    if (!input$boxplotaddition ){
-      items= c("None",input$x,items[items!=input$x],"yvars", "yvalues","combinedvariable")    
-    }
+    items= c("None",items, "yvars","yvalues","combinedvariable")
     selectInput("groupin", "Group By:",items)
   })
   
@@ -1323,7 +1394,7 @@ df [,input$reordervar2in] <- factor(df [,input$reordervar2in],
     if (is.null(df)) return(NULL)
     items=names(df)
     names(items)=items
-    items= items #[!is.element(items,input$y)]
+    items= items 
     selectInput("facetcolin", "Column Split:",c(None='.',items,"yvars", "yvalues","combinedvariable"))
   })
   output$facet_row <- renderUI({
@@ -1331,7 +1402,7 @@ df [,input$reordervar2in] <- factor(df [,input$reordervar2in],
     if (is.null(df)) return(NULL)
     items=names(df)
     names(items)=items
-    items= items #[!is.element(items,input$y)]
+    items= items 
     selectInput("facetrowin", "Row Split:",    c(None=".",items,"yvars", "yvalues","combinedvariable"))
   })
   
@@ -1340,7 +1411,7 @@ df [,input$reordervar2in] <- factor(df [,input$reordervar2in],
     if (is.null(df)) return(NULL)
     items=names(df)
     names(items)=items
-    items= items #[!is.element(items,input$y)]
+    items= items 
     selectInput("facetcolextrain", "Extra Column Split:",c(None='.',items,"yvars", "yvalues","combinedvariable"))
   })
   output$facet_row_extra <- renderUI({
@@ -1357,8 +1428,7 @@ df [,input$reordervar2in] <- factor(df [,input$reordervar2in],
     }
     selectInput("facetrowextrain", "Extra Row Split:",items)
   })
-  
-  
+
   output$facetscales <- renderUI({
     if (length(input$y) > 1 ){
       items= c("free_y","fixed","free_x","free")    
@@ -1368,16 +1438,19 @@ df [,input$reordervar2in] <- factor(df [,input$reordervar2in],
     }
     selectInput('facetscalesin','Facet Scales:',items)
   })
+
+  outputOptions(output, "facet_row_extra", suspendWhenHidden=FALSE)
+  outputOptions(output, "facet_col_extra", suspendWhenHidden=FALSE)
+  outputOptions(output, "facet_row", suspendWhenHidden=FALSE)
+  outputOptions(output, "facet_col", suspendWhenHidden=FALSE)
   outputOptions(output, "facetscales", suspendWhenHidden=FALSE)
-  
-  
   
   output$pointsize <- renderUI({
     df <-filedata()
     if (is.null(df)) return(NULL)
     items=names(df)
     names(items)=items
-    items= items #[!is.element(items,input$y)]
+    items= items 
     selectInput("pointsizein", "Size By:",c("None",items,"yvars", "yvalues","combinedvariable") )
     
   })
@@ -1387,7 +1460,7 @@ df [,input$reordervar2in] <- factor(df [,input$reordervar2in],
     if (is.null(df)) return(NULL)
     items=names(df)
     names(items)=items
-    items= items #[!is.element(items,input$y)]
+    items= items 
     selectInput("fillin", "Fill By:"    ,c("None",items,"yvars", "yvalues","combinedvariable") )
   })
   
@@ -1396,14 +1469,14 @@ df [,input$reordervar2in] <- factor(df [,input$reordervar2in],
     if (is.null(df)) return(NULL)
     items=names(df)
     names(items)=items
-    items= items #[!is.element(items,input$y)]
+    items= items 
     selectInput("weightin", "Weight By:",c("None",items,"yvars", "yvalues","combinedvariable") )
   })
   outputOptions(output, "weight", suspendWhenHidden=FALSE)
   
   
   output$mytablex = renderDataTable({
-    datatable( recodedata4() , # reorderdata2
+    datatable( recodedata5() , # reorderdata2
                extensions = c('ColReorder','Buttons','FixedColumns'),
                options = list(dom = 'Bfrtip',
                               searchHighlight = TRUE,
@@ -1430,10 +1503,10 @@ df [,input$reordervar2in] <- factor(df [,input$reordervar2in],
   
   plotObject <- reactive({
     validate(
-      need(!is.null(reorderdata2()), "Please select a data set") 
+      need(!is.null(recodedata5()), "Please select a data set") 
     )
     
-    plotdata <- reorderdata2()
+    plotdata <- recodedata5()
     
     
     if(!is.null(plotdata)) {
@@ -2210,7 +2283,7 @@ df [,input$reordervar2in] <- factor(df [,input$reordervar2in],
         if (input$groupin != 'None' & !is.factor(plotdata[,input$x]))
           p <- p + aes_string(group=input$groupin)
       }
-      
+      p <- p + xlab(input$x)
       if (input$KM=="KM/CI") {
         p <- p +
           geom_kmband(alpha=input$KMCItransparency,conf.int = input$KMCI,trans=input$KMtrans)                 }
@@ -2279,11 +2352,11 @@ df [,input$reordervar2in] <- factor(df [,input$reordervar2in],
       
       
       
-      if (input$scientificy )
+      if (input$scientificy & is.numeric(plotdata[,"yvalues"]) )
         p <- p  + 
         scale_y_continuous(labels=comma )
       
-      if (input$scientificx )
+      if (input$scientificx  &  is.numeric(plotdata[,input$x]) )
         p <- p  + 
         scale_x_continuous(labels=comma) 
       
@@ -2407,7 +2480,7 @@ df [,input$reordervar2in] <- factor(df [,input$reordervar2in],
   })
   
   output$plotinfo <- renderPrint({
-    df<- reorderdata2()  
+    df<- recodedata5()  
     if (is.null(df)) return(NULL)
     nearPoints( reorderdata2(), input$plot_click, threshold = 5, maxpoints = 5,
                 addDist = TRUE) #,xvar=input$x, yvar=input$y
@@ -2415,13 +2488,13 @@ df [,input$reordervar2in] <- factor(df [,input$reordervar2in],
   
   
   output$clickheader <-  renderUI({
-    df <-reorderdata2()
+    df <-recodedata5()
     if (is.null(df)) return(NULL)
     h4("Clicked points")
   })
   
   output$brushheader <-  renderUI({
-    df <- reorderdata2()
+    df <- recodedata5()
     if (is.null(df)) return(NULL)
     h4("Brushed points")
     
@@ -2430,18 +2503,18 @@ df [,input$reordervar2in] <- factor(df [,input$reordervar2in],
   output$plot_clickedpoints <- renderTable({
     # For base graphics, we need to specify columns, though for ggplot2,
     # it's usually not necessary.
-    df<- reorderdata2()  
+    df<- recodedata5()  
     if (is.null(df)) return(NULL)
     
-    res <- nearPoints(reorderdata2(), input$plot_click, input$x, "yvalues")
+    res <- nearPoints(recodedata5(), input$plot_click, input$x, "yvalues")
     if (nrow(res) == 0|is.null(res))
       return(NULL)
     res
   })
   output$plot_brushedpoints <- renderTable({
-    df<- reorderdata2()  
+    df<- recodedata5()  
     if (is.null(df)) return(NULL)
-    res <- brushedPoints(reorderdata2(), input$plot_brush, input$x,"yvalues")
+    res <- brushedPoints(recodedata5(), input$plot_brush, input$x,"yvalues")
     if (nrow(res) == 0|is.null(res))
       return(NULL)
     res
@@ -2510,4 +2583,4 @@ df [,input$reordervar2in] <- factor(df [,input$reordervar2in],
   
 }
 
-shinyApp(ui = ui, server = server,  options = list(height = 1000))
+shinyApp(ui = ui, server = server,  options = list(height = 3000))
