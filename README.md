@@ -1,2 +1,2 @@
 # ggplotwithyourdata
-R Shiny app as an inteface to ggplot2
+R Shiny app as an inteface to ggplot2 to quickly explore your data. You can do scatter plots, dotplots and boxplots. Many summary functions are supported including, smoothers, logistic, linear, Kaplan-Meier and quantile regressions. Several data manipulations are possible e.g. chaging data to categorical, cutting a countinous variable into a number of bins or using specified cut values, filtering, renaming and reordering of the levels of a categorical variable.
