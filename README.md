@@ -1,2 +1,36 @@
-# ggplotwithyourdata
-R Shiny app as an inteface to ggplot2 to quickly explore your data. You can do scatter plots, dotplots and boxplots. Many summary functions are supported including, smoothers, logistic, linear, Kaplan-Meier and quantile regressions. Several data manipulations are possible e.g. chaging data to categorical, cutting a countinous variable into a number of bins or using specified cut values, filtering, renaming and reordering of the levels of a categorical variable.
+ggplotwithyourdata
+========
+R Shiny app as a handy inteface to ggplot2. It enables you to quickly explore your data to detect trends on the fly. You can do scatter plots, dotplots and boxplots.
+
+### CSV Data Input 
+* [read.csv("youruploadeddata.csv",na.strings = c("NA","."))]
+
+### Data Manipulations 
+* Change continuous variable to be treated as categorical 
+* Change continuous variable to categories with a specified number of bins or by supplying values for the bins start/end
+* Up to six sequential filters for categorical and continuous variables
+* Renaming and reordering of the levels of a categorical variable
+* Combining two categorical variables into one
+* Rounding a numerical variable to a specified number of digits
+
+### Summary/Regression functions 
+* Quantile Regression 
+* Smooth/Linear/Logistic Regressions
+* Mean Confidence Intervals
+* Median Prediction Intervals
+* Kaplan-Meier
+
+### `ggplot2` built-in functionality
+* `facet_grid` and `facet_wrap`
+* Group, color, size, fill mappings
+* Controlling y and x axis labels, legends and other commonly used theme options.
+
+### Running Information
+```
+shiny::runGitHub('ggplotwithyourdata', 'smouksassi')
+```
+
+![Example use case 1 with the included sample_df.csv.](./snapshot.png)
+
+![Example use case 2 with the included sample_df.csv.](./snapshot2.png)
+
