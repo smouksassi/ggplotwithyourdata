@@ -158,7 +158,7 @@ ui  <-  fluidPage(
                                                        options = list(  maxItems = 1 ,
                                                                         placeholder = 'Please select an option',
                                                                         onInitialize = I('function() { this.setValue(""); }')  )  ),
-                                      checkboxInput('facetmargin', 'Show Facet(s) Margin(s) ?'),
+                                      checkboxInput('facetmargin', 'Show a facet with all data (margins)?'),
                                       
                                       selectInput('facetlabeller' ,'Facet Label:',c(
                                         "Variable(s) Name(s) and Value(s)" ="label_both",
