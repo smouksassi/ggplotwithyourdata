@@ -128,9 +128,10 @@ ui  <-  fluidPage(
                            ),
                            tabPanel(  "Graph Size/Zoom",
                                       sliderInput("height", "Plot Height", min=1080/4, max=1080, value=480, animate = FALSE),
-                                      h6("X Axis Zoom only works if facet x scales are not set to be free."),
-                                      uiOutput("xaxiszoom")
-                                      
+                                      h6("X Axis Zoom only works if facet x scales are not set to be free. The slider has limits between your x variable min/max otherwise select manual x values zoom to input your own."),
+                                      uiOutput("xaxiszoom"),
+                                      checkboxInput('userxzoom', 'Manual x values zoom', value = FALSE),
+                                      conditionalPanel(condition = "input.userxzoom" ,uiOutput("lowerx"),uiOutput("upperx"))
                            ),
                            
                            tabPanel(  "Background Color and Legend Position",
@@ -1338,6 +1339,32 @@ df [,input$reordervar2in] <- factor(df [,input$reordervar2in],
     
   })
   outputOptions(output, "xaxiszoom", suspendWhenHidden=FALSE)
+  
+  output$lowerx <- renderUI({
+    df <-reorderdata2()
+    if (is.null(df)| !is.numeric(df[,input$x] ) ) return(NULL)
+    if (is.numeric(df[,input$x]) &
+        input$facetscalesin!="free_x"&
+        input$facetscalesin!="free"){
+      xvalues <- df[,input$x][!is.na( df[,input$x])]
+      xmin <- min(xvalues)
+      numericInput("lowerxin",label = "Lower Limit",value = xmin,min=NA,max=NA,width='50%')
+    }
+  })
+  output$upperx <- renderUI({
+    df <-reorderdata2()
+    if (is.null(df)| !is.numeric(df[,input$x] ) ) return(NULL)
+    if (is.numeric(df[,input$x]) &
+        input$facetscalesin!="free_x"&
+        input$facetscalesin!="free"){
+      xvalues <- df[,input$x][!is.na( df[,input$x])]
+      xmax <- max(xvalues)
+      numericInput("upperxin",label = "Lower Limit",value = xmax,min=NA,max=NA,width='50%')
+    }
+  }) 
+  outputOptions(output, "lowerx", suspendWhenHidden=FALSE)
+  outputOptions(output, "upperx", suspendWhenHidden=FALSE)
+  
   output$catvar5 <- renderUI({
     df <-reorderdata2()
     if (is.null(df)) return(NULL)
@@ -2490,6 +2517,15 @@ df [,input$reordervar2in] <- factor(df [,input$reordervar2in],
       ){
         p <- p +
           coord_cartesian(xlim= c(input$xaxiszoomin[1],input$xaxiszoomin[2])  )
+      }
+      
+      if (input$userxzoom&
+          is.numeric(plotdata[,input$x] )&
+          input$facetscalesin!="free_x"&
+          input$facetscalesin!="free"
+      ){
+        p <- p +
+          coord_cartesian(xlim= c(input$lowerxin,input$upperxin)  )
       }
       
       #p <- ggplotly(p)
