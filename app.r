@@ -1359,7 +1359,7 @@ df [,input$reordervar2in] <- factor(df [,input$reordervar2in],
         input$facetscalesin!="free"){
       xvalues <- df[,input$x][!is.na( df[,input$x])]
       xmax <- max(xvalues)
-      numericInput("upperxin",label = "Lower Limit",value = xmax,min=NA,max=NA,width='50%')
+      numericInput("upperxin",label = "Upper Limit",value = xmax,min=NA,max=NA,width='50%')
     }
   }) 
   outputOptions(output, "lowerx", suspendWhenHidden=FALSE)
