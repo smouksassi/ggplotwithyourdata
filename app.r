@@ -158,20 +158,22 @@ ui  <-  fluidPage(
                                       uiOutput("facetscales"),
                                       selectInput('facetspace' ,'Facet Spaces:',c("fixed","free_x","free_y","free")),
                                       
+                                        
+                                      conditionalPanel(condition = "!input.facetwrap" ,
                                       selectizeInput(  "facetswitch", "Facet Switch to Near Axis:",
-                                                       choices = c("x","y","both"),
-                                                       options = list(  maxItems = 1 ,
-                                                                        placeholder = 'Please select an option',
-                                                                        onInitialize = I('function() { this.setValue(""); }')  )  ),
+                                       choices = c("x","y","both"),
+                                               options = list(  maxItems = 1 ,
+                                            placeholder = 'Please select an option',
+                                                         onInitialize = I('function() { this.setValue(""); }')  )  ),
                                       checkboxInput('facetmargin', 'Show a facet with all data (margins)?'),
-                                      
                                       selectInput('facetlabeller' ,'Facet Label:',c(
                                         "Variable(s) Name(s) and Value(s)" ="label_both",
                                         "Value(s)"="label_value",
                                         "Parsed Expression" ="label_parsed"),
-                                        selected="label_both"),
-                                      
+                                        selected="label_both")),
                                       checkboxInput('facetwrap', 'Use facet_wrap?'),
+                                      conditionalPanel(condition = "input.facetwrap" ,
+                                      checkboxInput('facetwrapmultiline', 'facet_wrap strip labels on multiple lines?',value=FALSE) ),
                                       conditionalPanel(condition = "input.facetwrap" ,
                                                        checkboxInput('customncolnrow', 'Control N columns an N rows?')),
                                       conditionalPanel(condition = "input.customncolnrow" ,
@@ -225,9 +227,9 @@ ui  <-  fluidPage(
                h5("8. Inputs, Categorize/Rename, Custom cuts: You can cut a numeric variable to factor using specified cutoffs, by default a text input is created and comma separated min, median, max are used. You can override with any values of your liking.
                   An optional Treat as Numeric checkbox can be selected to recode the created custom cuts variable to numeric values that start with 0. This can be useful to overlay a logistic smooth or to use a Kaplan-Meier curve. Numeric Codes/values correspondence are shown in text below the checkbox."),
                h5("9. Inputs, Categorize/Rename, Change labels of this variable: this field allow you to select a factor/character variable in order 
-                  to input in a comma separated list of new labels. By default 1,2,...n of unique values will be populated in the field.
-                  Make sure to type in the correct number of new labels otherwise the plot will not be generated as the recoding will fail.
-                  You can combine levels by repeating a value e.g. 1,1,2."),
+                  to input in a comma separated list of new labels. By default, value1, value2,...valuen will be populated in the field.
+                  Make sure to edit/type keeping the correct number of new labels otherwise the plot will not be generated as the recoding will fail.
+                  You can combine levels by repeating a value with special attention to spaces e.g. 1,1,2."),
                
                h5("10.Inputs, Categorize, Combine Variables: This allows to paste together two variables other than those used for y axis (e.g. Sex with values: Male and Female and Treatment with values: TRT1, TRT2 and TRT3) to construct a new one called combinedvariable with values: Male TRT1, Male TRT2, Male TRT3, Female TRT1, Female TRT2, Female TRT3.
                   The combinedvariable is available to color, group and any other mappings and by default a dummy placeholder is made available."),
@@ -820,9 +822,7 @@ server <-  function(input, output, session) {
       textInput("customvarlabels", label =  paste(input$catvar4in,"requires",nlevels,"new labels,
                                                   type in a comma separated list below"),
                 value =
-                  # paste("\"",as.character(levelsvalues),"\"",collapse=", ",sep="")
-                  #paste("'",as.character(1:nlevels),"'",collapse=", ",sep="")
-                  paste(as.character(1:nlevels),collapse=", ",sep="")
+                  paste(as.character(levelsvalues),collapse=", ",sep="")
       )
     }
     
@@ -838,7 +838,6 @@ server <-  function(input, output, session) {
     if(input$catvar4in!="") {
       varname<- input$catvar4in
       xlabels <- input$customvarlabels 
-     
       nxxlabels <- length(as.numeric(unlist (strsplit(xlabels, ",")) )) -1
       df[,varname] <- as.factor(df[,varname])
       levels(df[,varname])  <-  unlist (strsplit(xlabels, ",") )
@@ -1156,20 +1155,20 @@ server <-  function(input, output, session) {
           need(!is.null(input$y) , 
                "Please select a at least one y variable"))
       
-      print(input$y)
+      #print(input$y)
       if(       all( sapply(df[,as.vector(input$y)], is.numeric)) )
       {
         tidydata <- df %>%
-          gather_( "yvars", "yvalues", gather_cols=as.vector(input$y) ) %>%
-          mutate(combinedvariable="Choose two variables to combine first")
+          gather_( "yvars", "yvalues", gather_cols=as.vector(input$y) ) #%>%
+         # mutate(combinedvariable="Choose two variables to combine first")
       }
       if(       any( sapply(df[,as.vector(input$y)], is.factor)) |
                 any( sapply(df[,as.vector(input$y)], is.character)))
       {
         tidydata <- df %>%
           gather_( "yvars", "yvalues", gather_cols=as.vector(input$y) ) %>%
-          mutate(yvalues=as.factor(as.factor(as.character(yvalues)) ))%>%
-          mutate(combinedvariable="Choose two variables to combine first")
+          mutate(yvalues=as.factor(as.character(yvalues) ))#%>%
+         # mutate(combinedvariable="Choose two variables to combine first")
       } 
       
       if(       all( sapply(df[,as.vector(input$y)], is.factor)) |
@@ -1177,8 +1176,8 @@ server <-  function(input, output, session) {
       {
         tidydata <- df %>%
           gather_( "yvars", "yvalues", gather_cols=as.vector(input$y) ) %>%
-          mutate(yvalues=as.factor(as.character(yvalues) ))%>%
-          mutate(combinedvariable="Choose two variables to combine first")
+          mutate(yvalues=as.factor(as.character(yvalues) ))#%>%
+         # mutate(combinedvariable="Choose two variables to combine first")
       }    
       
       
@@ -1187,8 +1186,10 @@ server <-  function(input, output, session) {
     if( !is.null(input$pastevarin)   ) {
       if (length(input$pastevarin) > 1) {
         tidydata <- tidydata %>%
-          unite_("combinedvariable" , c(input$pastevarin[1], input$pastevarin[2] ),
-                 remove=FALSE)
+        #unite_("combinedvariable" , c(input$pastevarin[1], input$pastevarin[2] ),remove=FALSE)
+        unite_(paste(as.character(input$pastevarin),collapse="_",sep="") ,
+               c(input$pastevarin[1], input$pastevarin[2] ),remove=FALSE)
+        
       }
     }
     
@@ -1463,7 +1464,7 @@ df [,input$reordervar2in] <- factor(df [,input$reordervar2in],
       levelsvalues <- levels(as.factor( df[,input$catvar5in] ))
       textInput("customvarlabels5", label =  paste(input$catvar5in,"requires",nlevels,"new labels,
                                                    type in a comma separated list below"),
-                value =   paste(as.character(1:nlevels),collapse=", ",sep="")
+                value =   paste(as.character(levelsvalues),collapse=", ",sep="")
       )
     }
     
@@ -1492,7 +1493,11 @@ df [,input$reordervar2in] <- factor(df [,input$reordervar2in],
     items=names(df)
     names(items)=items
     items= items
-    items= c("None",items, "yvars","yvalues","combinedvariable") 
+    items= c("None",items, "yvars","yvalues") 
+    if (length(input$pastevarin) >1 ){
+      nameofcombinedvariables<- paste(as.character(input$pastevarin),collapse="_",sep="") 
+      items= c(items,nameofcombinedvariables)
+          }
     selectInput("colorin", "Colour By:",items) 
     
   })
@@ -1504,7 +1509,11 @@ df [,input$reordervar2in] <- factor(df [,input$reordervar2in],
     items=names(df)
     names(items)=items
     items= items 
-    items= c("None",items, "yvars","yvalues","combinedvariable")
+    items= c("None",items, "yvars","yvalues") 
+    if (length(input$pastevarin) >1 ){
+      nameofcombinedvariables<- paste(as.character(input$pastevarin),collapse="_",sep="") 
+      items= c(items,nameofcombinedvariables)
+    }
     selectInput("groupin", "Group By:",items)
   })
   
@@ -1515,7 +1524,12 @@ df [,input$reordervar2in] <- factor(df [,input$reordervar2in],
     items=names(df)
     names(items)=items
     items= items 
-    selectInput("facetcolin", "Column Split:",c(None='.',items,"yvars", "yvalues","combinedvariable"))
+    items =c(None='.',items,"yvars", "yvalues")
+    if (length(input$pastevarin) >1 ){
+      nameofcombinedvariables<- paste(as.character(input$pastevarin),collapse="_",sep="") 
+      items= c(items,nameofcombinedvariables)
+    }
+    selectInput("facetcolin", "Column Split:",items)
   })
   output$facet_row <- renderUI({
     df <-filedata()
@@ -1523,7 +1537,12 @@ df [,input$reordervar2in] <- factor(df [,input$reordervar2in],
     items=names(df)
     names(items)=items
     items= items 
-    selectInput("facetrowin", "Row Split:",    c(None=".",items,"yvars", "yvalues","combinedvariable"))
+    items =c(None='.',items,"yvars", "yvalues")
+    if (length(input$pastevarin) >1 ){
+      nameofcombinedvariables<- paste(as.character(input$pastevarin),collapse="_",sep="") 
+      items= c(items,nameofcombinedvariables)
+    }
+    selectInput("facetrowin", "Row Split:", items)
   })
   
   output$facet_col_extra <- renderUI({
@@ -1531,21 +1550,35 @@ df [,input$reordervar2in] <- factor(df [,input$reordervar2in],
     if (is.null(df)) return(NULL)
     items=names(df)
     names(items)=items
-    items= items 
-    selectInput("facetcolextrain", "Extra Column Split:",c(None='.',items,"yvars", "yvalues","combinedvariable"))
+    items= items
+    items =c(None='.',items,"yvars", "yvalues")
+        if (length(input$pastevarin) >1 ){
+      nameofcombinedvariables<- paste(as.character(input$pastevarin),collapse="_",sep="") 
+      items= c(items,nameofcombinedvariables)
+    }
+    selectInput("facetcolextrain", "Extra Column Split:",items)
   })
   output$facet_row_extra <- renderUI({
     df <-filedata()
     if (is.null(df)) return(NULL)
     items=names(df)
     names(items)=items
-    items= items #[!is.element(items,input$y)]
-    if (length(input$y) > 1 ){
-      items= c("yvars",None=".",items, "yvalues","combinedvariable")    
-    }
+    items= items
+    
     if (length(input$y) < 2 ){
-      items= c(None=".",items,"yvars", "yvalues","combinedvariable")    
+      items= c(None=".",items,"yvars", "yvalues")    
+            if (length(input$pastevarin) >1 ){
+        nameofcombinedvariables<- paste(as.character(input$pastevarin),collapse="_",sep="") 
+        items= c(items,nameofcombinedvariables)    
+      }
     }
+    if (length(input$y) > 1 ){
+      items= c("yvars",None=".",items, "yvalues")    
+      if (length(input$pastevarin) >1 ){
+        items= c(items,nameofcombinedvariables)    
+      }
+    }
+    
     selectInput("facetrowextrain", "Extra Row Split:",items)
   })
 
@@ -1571,7 +1604,12 @@ df [,input$reordervar2in] <- factor(df [,input$reordervar2in],
     items=names(df)
     names(items)=items
     items= items 
-    selectInput("pointsizein", "Size By:",c("None",items,"yvars", "yvalues","combinedvariable") )
+    items= c("None",items, "yvars","yvalues") 
+    if (length(input$pastevarin) >1 ){
+      nameofcombinedvariables<- paste(as.character(input$pastevarin),collapse="_",sep="") 
+      items= c(items,nameofcombinedvariables)
+    }
+    selectInput("pointsizein", "Size By:",items )
     
   })
   
@@ -1580,8 +1618,13 @@ df [,input$reordervar2in] <- factor(df [,input$reordervar2in],
     if (is.null(df)) return(NULL)
     items=names(df)
     names(items)=items
-    items= items 
-    selectInput("fillin", "Fill By:"    ,c("None",items,"yvars", "yvalues","combinedvariable") )
+    items= items
+    items= c("None",items, "yvars","yvalues") 
+    if (length(input$pastevarin) >1 ){
+      nameofcombinedvariables<- paste(as.character(input$pastevarin),collapse="_",sep="") 
+      items= c(items,nameofcombinedvariables)
+    }
+    selectInput("fillin", "Fill By:"    ,items )
   })
   
   output$weight <- renderUI({
@@ -1589,8 +1632,12 @@ df [,input$reordervar2in] <- factor(df [,input$reordervar2in],
     if (is.null(df)) return(NULL)
     items=names(df)
     names(items)=items
-    items= items 
-    selectInput("weightin", "Weight By:",c("None",items,"yvars", "yvalues","combinedvariable") )
+    items= items
+    if (length(input$pastevarin) >1 ){
+      nameofcombinedvariables<- paste(as.character(input$pastevarin),collapse="_",sep="") 
+      items= c(items,nameofcombinedvariables)
+    }
+    selectInput("weightin", "Weight By:",items )
   })
   outputOptions(output, "weight", suspendWhenHidden=FALSE)
   
@@ -2448,14 +2495,19 @@ df [,input$reordervar2in] <- factor(df [,input$reordervar2in],
                             margins=input$facetmargin )
       
       if (facets != '. ~ .'&input$facetwrap) {
+        multiline <-  input$facetwrapmultiline
+        
         p <- p + facet_wrap(    c(input$facetrowextrain ,input$facetrowin,input$facetcolin,input$facetcolextrain ) [
           c(input$facetrowextrain ,input$facetrowin,input$facetcolin,input$facetcolextrain )!="."]
-          ,scales=input$facetscalesin)
+          ,scales=input$facetscalesin,
+            labeller=label_wrap_gen(width = 25, multi_line = multiline))
         
         if (input$facetwrap&input$customncolnrow) {
+          multiline <-  input$facetwrapmultiline
           p <- p + facet_wrap(    c(input$facetrowextrain ,input$facetrowin,input$facetcolin,input$facetcolextrain ) [
             c(input$facetrowextrain ,input$facetrowin,input$facetcolin,input$facetcolextrain )!="."]
-            ,scales=input$facetscalesin,ncol=input$wrapncol,nrow=input$wrapnrow)
+            ,scales=input$facetscalesin,ncol=input$wrapncol,nrow=input$wrapnrow,
+            labeller=label_wrap_gen(width = 25, multi_line = multiline ))
         }
       }
       
