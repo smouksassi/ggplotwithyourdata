@@ -360,7 +360,7 @@ ui  <-  fluidPage(
                           sliderInput("Tau", label = "Dynamic Quantile Value:",
                                       min = 0, max = 1, value = 0.5, step = 0.01)  ,
                           sliderInput("Penalty", label = "Spline sensitivity adjustment:",
-                                      min = 0, max = 10, value = 1, step = 0.1)  ,
+                                      min = 0, max = 100, value = 1, step = 0.1)  ,
                           selectInput("Constraints", label = "Spline constraints:",
                                       choices = c("N","I","D","V","C","VI","VD","CI","CD"), selected = "N")
                    ),
@@ -368,8 +368,10 @@ ui  <-  fluidPage(
                           checkboxInput('ignorecolqr', 'Ignore Mapped Color'),
                           checkboxInput('ignoregroupqr', 'Ignore Mapped Group',value = TRUE),
                           checkboxInput('hidedynamic', 'Hide Dynamic Quantile'),
-                          selectInput('colqr', label ='QR Color', choices=colors(),multiple=FALSE, selectize=TRUE,selected="black")
-                   )
+                          conditionalPanel(
+                            condition = "input.ignorecolqr" ,
+                            selectInput('colqr', label ='QR Color', choices=colors(),multiple=FALSE, selectize=TRUE,selected="black")
+                   ))
                    
                  )#fluidrow
                ),
