@@ -350,11 +350,13 @@ ui  <-  fluidPage(
                    column(3,
                           checkboxInput('Tauvalue', 'Dynamic and Preset Quantiles', value = FALSE),
                           h5("Preset Quantiles"),
+                          checkboxInput('ninetyseventh', '97%'),
                           checkboxInput('up', '95%'),
                           checkboxInput('ninetieth', '90%'),
                           checkboxInput('mid', '50%', value = FALSE),
                           checkboxInput('tenth', '10%'),
-                          checkboxInput('low', '5%')
+                          checkboxInput('low', '5%'),
+                          checkboxInput('third', '3%')
                    ),
                    column(5,
                           sliderInput("Tau", label = "Dynamic Quantile Value:",
@@ -362,7 +364,12 @@ ui  <-  fluidPage(
                           sliderInput("Penalty", label = "Spline sensitivity adjustment:",
                                       min = 0, max = 100, value = 1, step = 0.1)  ,
                           selectInput("Constraints", label = "Spline constraints:",
-                                      choices = c("N","I","D","V","C","VI","VD","CI","CD"), selected = "N")
+                                      choices = c("None"="N","Increasing"="I","Decreasing"="D","Convex"="V","Concave"="C",
+                                                  "Convex and Increasing"="VI", "Convex and Decreasing"= "VD",
+                                                  "Concave and Increasing"="CI","Concave and Decreasing"= "CD"),
+                                      selected = "N")
+                          
+
                    ),
                    column(3,
                           checkboxInput('ignorecolqr', 'Ignore Mapped Color'),
@@ -813,7 +820,7 @@ server <-  function(input, output, session) {
   })   
   
   
-  
+
   
   output$nlabels <- renderUI({
     df <-recodedata3()
@@ -822,9 +829,9 @@ server <-  function(input, output, session) {
       nlevels <- length( unique( levels(as.factor( df[,input$catvar4in] ))))
       levelsvalues <- levels(as.factor( df[,input$catvar4in] ))
       textInput("customvarlabels", label =  paste(input$catvar4in,"requires",nlevels,"new labels,
-                                                  type in a comma separated list below"),
-                value =
-                  paste(as.character(levelsvalues),collapse=", ",sep="")
+                                                 type in a comma separated list below"),
+           value = paste(as.character(levelsvalues),collapse=", ",sep="")
+                         
       )
     }
     
@@ -840,6 +847,7 @@ server <-  function(input, output, session) {
     if(input$catvar4in!="") {
       varname<- input$catvar4in
       xlabels <- input$customvarlabels 
+      xlabels <- gsub("\\\\n", "\\\n", xlabels)
       nxxlabels <- length(as.numeric(unlist (strsplit(xlabels, ",")) )) -1
       df[,varname] <- as.factor(df[,varname])
       levels(df[,varname])  <-  unlist (strsplit(xlabels, ",") )
@@ -1482,6 +1490,7 @@ df [,input$reordervar2in] <- factor(df [,input$reordervar2in],
     if(input$catvar5in!="") {
       varname<- input$catvar5in
       xlabels <- input$customvarlabels5 
+      xlabels <- gsub("\\\\n", "\\\n", xlabels)
       nxxlabels <- length(as.numeric(unlist (strsplit(xlabels, ",")) )) -1
       df[,varname] <- as.factor(df[,varname])
       levels(df[,varname])  <-  unlist (strsplit(xlabels, ",") )
@@ -2306,6 +2315,18 @@ df [,input$reordervar2in] <- factor(df [,input$reordervar2in],
                                       formula=y ~ qss(x, constraint= input$Constraints,
                                                       lambda=input$Penalty))
             
+            if (input$ninetyseventh)
+              p <- p +  stat_quantile(method = "rqss",quantiles = 0.97,size=1,
+                                      linetype="dashed",
+                                      formula=y ~ qss(x, constraint= input$Constraints,
+                                                      lambda=input$Penalty))
+            
+            if (input$third) 
+              p <- p +  stat_quantile(method = "rqss",quantiles = 0.03,size=1,
+                                      linetype="dashed",
+                                      formula=y ~ qss(x, constraint= input$Constraints,
+                                                      lambda=input$Penalty))
+             
             
             
           }
@@ -2349,8 +2370,17 @@ df [,input$reordervar2in] <- factor(df [,input$reordervar2in],
                                       formula=y ~ qss(x, constraint= input$Constraints,
                                                       lambda=input$Penalty))
             
+            if (input$ninetyseventh)
+              p <- p +  stat_quantile(method = "rqss",quantiles = 0.97,size=1,
+                                      linetype="dashed", col=colqr,
+                                      formula=y ~ qss(x, constraint= input$Constraints,
+                                                      lambda=input$Penalty))
             
-            
+            if (input$third) 
+              p <- p +  stat_quantile(method = "rqss",quantiles = 0.03,size=1,
+                                      linetype="dashed", col=colqr,
+                                      formula=y ~ qss(x, constraint= input$Constraints,
+                                                      lambda=input$Penalty))
           }
         }
       }
@@ -2393,6 +2423,16 @@ df [,input$reordervar2in] <- factor(df [,input$reordervar2in],
                                       linetype="dashed", 
                                       formula=y ~ qss(x, constraint= input$Constraints,
                                                       lambda=input$Penalty))
+            if (input$ninetyseventh)
+              p <- p +  stat_quantile(aes(group=NULL),method = "rqss",quantiles = 0.97,size=1,
+                                      linetype="dashed", 
+                                      formula=y ~ qss(x, constraint= input$Constraints,
+                                                      lambda=input$Penalty))
+            if (input$third)
+              p <- p +  stat_quantile(aes(group=NULL),method = "rqss",quantiles = 0.03,size=1,
+                                      linetype="dashed", 
+                                      formula=y ~ qss(x, constraint= input$Constraints,
+                                                      lambda=input$Penalty))     
           }
         }
         if (input$ignorecolqr) {
@@ -2433,7 +2473,17 @@ df [,input$reordervar2in] <- factor(df [,input$reordervar2in],
                                       linetype="dashed", col=colqr,
                                       formula=y ~ qss(x, constraint= input$Constraints,
                                                       lambda=input$Penalty))
+            if (input$ninetyseventh)
+              p <- p +  stat_quantile(aes(group=NULL),method = "rqss",quantiles = 0.97,size=1,
+                                      linetype="dashed", col=colqr,
+                                      formula=y ~ qss(x, constraint= input$Constraints,
+                                                      lambda=input$Penalty))
             
+            if (input$third) 
+              p <- p +  stat_quantile(aes(group=NULL),method = "rqss",quantiles = 0.03,size=1,
+                                      linetype="dashed", col=colqr,
+                                      formula=y ~ qss(x, constraint= input$Constraints,
+                                                      lambda=input$Penalty))
           }
         }
       }
