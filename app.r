@@ -1669,14 +1669,14 @@ df [,input$reordervar2in] <- factor(df [,input$reordervar2in],
     names(items)=items
     items= items
     
-    if (!is.null(input$y) &length(input$y) < 2 ){
+    if (length(input$y) < 2 ){
       items= c(None=".",items,"yvars", "yvalues")    
             if (!is.null(input$pastevarin)&length(input$pastevarin) >1 ){
         nameofcombinedvariables<- paste(as.character(input$pastevarin),collapse="_",sep="") 
         items= c(items,nameofcombinedvariables)    
       }
     }
-    if (!is.null(input$y) &length(input$y) > 1 ){
+    if (length(input$y) > 1 ){
       items= c("yvars",None=".",items, "yvalues")    
       if (!is.null(input$pastevarin)&length(input$pastevarin) >1 ){
         items= c(items,nameofcombinedvariables)    
