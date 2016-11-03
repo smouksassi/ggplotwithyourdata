@@ -146,7 +146,7 @@ ui  <-  fluidPage(
                                       
                            ),
                            
-                           tabPanel(  "Background Color and Legend Position",
+                           tabPanel(  "Background Color and Legend(s)",
                                       selectInput('backgroundcol', label ='Background Color',
                                                   choices=c("Gray" ="gray97","White"="white","Dark Gray"="grey90"),
                                                   multiple=FALSE, selectize=TRUE,selected="white"),
@@ -158,14 +158,45 @@ ui  <-  fluidPage(
                                                   multiple=FALSE, selectize=TRUE,selected="horizontal"),
                                       selectInput('legendbox', label ='Arrangement of Multiple Legends ',
                                                   choices=c("horizontal", "vertical"),
-                                                  multiple=FALSE, selectize=TRUE,selected="vertical")
+                                                  multiple=FALSE, selectize=TRUE,selected="vertical"),
+                                      checkboxInput('sepguides', 'Separate Legend Items for Median/PI ?',value = TRUE),       
+                                      checkboxInput('labelguides', 'Hide the Names of the Legend Items ?',value = FALSE),
+                                      checkboxInput('customlegendtitle', 'Customization of Legend Titles, number of columns of items and reversing the legend items ?',value = FALSE),
+                                      conditionalPanel(condition = "input.customlegendtitle",
+                                                       textInput("customcolourtitle", label ="Colour Legend Title",value="colour"),
+                                                       numericInput("legendncolcol",label = "Colour Legend N columns",value =1,min=1,max =10) ,
+                                                       checkboxInput('legendrevcol', 'Reverse Colour Legend ?',value = FALSE),
+                                                       checkboxInput('legendalphacol', 'Override Colour Transparency ?',value = TRUE),
+                                                       textInput("customfilltitle", label ="Fill Legend Title",value="fill"),
+                                                       numericInput("legendncolfill",label = "Fill Legend N columns",value =1,min=1,max =10) ,
+                                                       checkboxInput('legendrevfill', 'Reverse Fill Legend?',value = FALSE),
+                                                       checkboxInput('legendalphafill', 'Override Fill Transparency ?',value = FALSE),
+                                                       textInput("customsizetitle", label ="Size Legend Title",value="size"),
+                                                       numericInput("legendncolsize",label = "Size Legend N columns",value =1,min=1,max =10) ,
+                                                       checkboxInput('legendrevsize','Reverse Size Legend ?',value = FALSE),
+                                                       
+                                                       selectizeInput('legendordering',
+                                                                      label = paste("Drag/Drop to reorder","Colour, Fill, Size Legends"),
+                                                                      choices = c("colour","fill","size"),
+                                                                      selected = c("colour","fill","size"),
+                                                                      multiple=TRUE,  options = list(
+                                                                        plugins = list('drag_drop')
+                                                                      )
+                                                       ) 
+                                      )
                            ),
                            tabPanel(  "Facets Options",
                                       
                                       uiOutput("facetscales"),
                                       selectInput('facetspace' ,'Facet Spaces:',c("fixed","free_x","free_y","free")),
+                              
                                       
-                                        
+                                      selectInput('facetordering' ,'Facet Ordering:',c(
+                                        "Top to Bottom, Left to Right Ordering like a Table" ="table",
+                                         "Bottom to Top, Left to Right Ordering like a Plot" ="plot"),
+                                        selected="table"),
+                           
+                                      
                                       conditionalPanel(condition = "!input.facetwrap" ,
                                       selectizeInput(  "facetswitch", "Facet Switch to Near Axis:",
                                        choices = c("x","y","both"),
@@ -214,9 +245,7 @@ ui  <-  fluidPage(
                                       checkboxInput('themeaspect', 'Use custom aspect ratio ?')   ,  
                                       conditionalPanel(condition = "input.themeaspect" , 
                                                        numericInput("aspectratio",label = "Y/X ratio",
-                                                                    value = 1,min=0.1,max=10,step=0.01)),
-                                      checkboxInput('sepguides', 'Separate Legend Guides for Median/PI ?',value = TRUE),       
-                                      checkboxInput('labelguides', 'Hide the Names of the Guides ?',value = FALSE)  
+                                                                    value = 1,min=0.1,max=10,step=0.01)) 
                            ) #tabpanel
                )#tabsetpanel
       ), # tabpanel
@@ -377,7 +406,7 @@ selectInput('boxcolline', label ='Box Outlines Color', choices=colors(),multiple
                                            will be produced when no y variable(s) are selected.This is still very limited. Options are to be added as per users requests.")),
                             
                             column (3,
-                                    checkboxInput('histogramaddition', 'Add a histogram ?',value = FALSE),
+                                    checkboxInput('histogramaddition', 'Add a Histogram ?',value = FALSE),
                                     checkboxInput('densityaddition', 'Add a Density Curve ?',value = TRUE)
                             )
                             )
@@ -637,32 +666,7 @@ server <-  function(input, output, session) {
     if (is.null(df)) return(NULL)
   })
   
-  # output$optionsmenu <-  renderUI({
-  #   df <-filedata()
-  #   if (is.null(df)) return(NULL)
-  #   
-  #   fluidRow(
-  #     column (12, h6("Select the checkbox(es) for the options to be showed")),
-  #     hr(),
-  #     column(4,checkboxInput('showplottypes',
-  #                            'Plot types, Points, Lines (?)',
-  #                            value = TRUE)),
-  #     column(4,checkboxInput('showfacets',
-  #                            'Color/Group/Split/Size/Fill Mappings (?)',
-  #                            value = TRUE) ),
-  #     column(4,checkboxInput('showrqss',
-  #                            'Quantile Regression (?)',
-  #                            value = TRUE)),
-  #     column(4,checkboxInput('showSmooth',
-  #                            'Smooth/Linear/Logistic Regressions (?)',
-  #                            value = TRUE)),
-  #     column(4,checkboxInput('showMean' , 'Mean CI (?)', value = FALSE)),
-  #     column(4,checkboxInput('showMedian','Median PIs (?)', value = FALSE)),
-  #     column(3,checkboxInput('showKM','Kaplan-Meier (?)', value = FALSE))
-  #     
-  #   )
-  # })
-  
+
   output$ycol <- renderUI({
     df <-filedata()
     if (is.null(df)) return(NULL)
@@ -2726,16 +2730,18 @@ df [,input$reordervar2in] <- factor(df [,input$reordervar2in],
       if (input$facetcolextrain !="."){
         facets <- paste( facets, "+",input$facetcolextrain)
       }  
+      ASTABLE <- ifelse( input$facetordering=="table",TRUE,FALSE)
+      
       if (facets != '. ~ .')
         p <- p + facet_grid(facets,scales=input$facetscalesin,space=input$facetspace
-                            ,labeller=input$facetlabeller,margins=input$facetmargin )
+                            ,labeller=input$facetlabeller,margins=input$facetmargin,as.table=ASTABLE )
       
       if (facets != '. ~ .' & input$facetswitch!="" )
         
         p <- p + facet_grid(facets,scales=input$facetscalesin,space=input$facetspace,
                             switch=input$facetswitch
                             , labeller=input$facetlabeller,
-                            margins=input$facetmargin )
+                            margins=input$facetmargin ,as.table=ASTABLE)
       
       if (facets != '. ~ .'&input$facetwrap) {
         multiline <-  input$facetwrapmultiline
@@ -2743,14 +2749,14 @@ df [,input$reordervar2in] <- factor(df [,input$reordervar2in],
         p <- p + facet_wrap(    c(input$facetrowextrain ,input$facetrowin,input$facetcolin,input$facetcolextrain ) [
           c(input$facetrowextrain ,input$facetrowin,input$facetcolin,input$facetcolextrain )!="."]
           ,scales=input$facetscalesin,
-            labeller=label_wrap_gen(width = 25, multi_line = multiline))
+            labeller=label_wrap_gen(width = 25, multi_line = multiline),as.table=ASTABLE)
         
         if (input$facetwrap&input$customncolnrow) {
           multiline <-  input$facetwrapmultiline
           p <- p + facet_wrap(    c(input$facetrowextrain ,input$facetrowin,input$facetcolin,input$facetcolextrain ) [
             c(input$facetrowextrain ,input$facetrowin,input$facetcolin,input$facetcolextrain )!="."]
             ,scales=input$facetscalesin,ncol=input$wrapncol,nrow=input$wrapnrow,
-            labeller=label_wrap_gen(width = 25, multi_line = multiline ))
+            labeller=label_wrap_gen(width = 25, multi_line = multiline ),as.table=ASTABLE)
         }
       }
       
@@ -2808,6 +2814,59 @@ df [,input$reordervar2in] <- factor(df [,input$reordervar2in],
       
       if (input$identityline)
         p <-    p+ geom_abline(intercept = 0, slope = 1)
+      
+      
+      
+      if (input$customlegendtitle){
+        colourpos<-  which( input$legendordering=="colour")
+        fillpos  <-  which( input$legendordering=="fill")
+        sizepos  <-  which( input$legendordering=="size")
+        collegend <-  gsub("\\\\n", "\\\n", input$customcolourtitle)
+        filllegend <- gsub("\\\\n", "\\\n", input$customfilltitle)
+        sizelegend <- gsub("\\\\n", "\\\n", input$customsizetitle)
+        # to do list by row by row etc.
+
+        if (input$legendalphacol){
+          gcol  <- guide_legend(collegend,ncol=input$legendncolcol,reverse=input$legendrevcol,
+                                override.aes = list(alpha = 1))
+          if( length(colourpos)!=0) {
+            gcol  <- guide_legend(collegend,ncol=input$legendncolcol,reverse=input$legendrevcol,
+                                  order= colourpos,override.aes = list(alpha = 1))
+          }
+        }
+        if (!input$legendalphacol){
+          gcol  <- guide_legend(collegend,ncol=input$legendncolcol,reverse=input$legendrevcol)
+          if( length(colourpos)!=0) {
+            gcol  <- guide_legend(collegend,ncol=input$legendncolcol,reverse=input$legendrevcol,
+                                  order= colourpos)
+          }
+        }
+        if (input$legendalphafill){
+          gfill <- guide_legend(filllegend,ncol=input$legendncolfill,reverse=input$legendrevfill,override.aes = list(alpha = 1))
+          if( length(fillpos)!=0) {
+            gfill <- guide_legend(filllegend,ncol=input$legendncolfill,reverse=input$legendrevfill,
+                                  order = fillpos,override.aes = list(alpha = 1))
+          } 
+        }
+        
+        if (!input$legendalphafill){
+          gfill <- guide_legend(filllegend,ncol=input$legendncolfill,reverse=input$legendrevfill)
+          if( length(fillpos)!=0) {
+            gfill <- guide_legend(filllegend,ncol=input$legendncolfill,reverse=input$legendrevfill,
+                                  order = fillpos)
+          } 
+        }
+  
+        gsize <- guide_legend(sizelegend,ncol=input$legendncolsize,reverse=input$legendrevsize)
+        if( length(sizepos)!=0) {
+          gsize <- guide_legend(sizelegend,ncol=input$legendncolsize,reverse=input$legendrevsize,
+                                order = sizepos)
+        }
+        
+        p <-  p + guides(colour = gcol, size = gsize, fill = gfill)
+        
+      }
+      
       
       if (input$themebw) {
         p <-    p+
