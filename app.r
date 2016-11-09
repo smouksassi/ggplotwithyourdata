@@ -2790,11 +2790,15 @@ df [,input$reordervar2in] <- factor(df [,input$reordervar2in],
       if (!is.null(input$y) & length(input$y) < 2 & input$ylab=="" ){
         p <- p + ylab(input$y)
       }
+      xlablinebreak <- gsub("\\\\n", "\\\n", input$xlab)
+      ylablinebreak <- gsub("\\\\n", "\\\n", input$ylab)
+      
+      
       
       if (input$xlab!="")
-        p <- p + xlab(input$xlab)
+        p <- p + xlab(xlablinebreak)
       if (input$ylab!="")
-        p <- p + ylab(input$ylab)
+        p <- p + ylab(ylablinebreak)
       
       
       if (input$horizontalzero)
