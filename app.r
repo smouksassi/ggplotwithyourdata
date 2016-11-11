@@ -1741,6 +1741,7 @@ df [,input$reordervar2in] <- factor(df [,input$reordervar2in],
     items=names(df)
     names(items)=items
     items= items
+    items= c("None",items, "yvars","yvalues") 
     if (!is.null(input$pastevarin)&length(input$pastevarin) >1 ){
       nameofcombinedvariables<- paste(as.character(input$pastevarin),collapse="_",sep="") 
       items= c(items,nameofcombinedvariables)
