@@ -1,15 +1,20 @@
-suppressMessages (library(shiny))
-suppressMessages (library(ggplot2))
-suppressMessages (library(ggrepel))
-suppressMessages (library(scales))
-suppressMessages (library(DT))
-suppressMessages (library(tidyr))
-suppressMessages (library(dplyr))
-suppressMessages (library(ggkm))
-suppressMessages (library(Hmisc))
-suppressMessages (library(quantreg))
-#suppressMessages (library(lazyeval))
+suppressMessages ({
+  library(shiny)
+  library(ggplot2)
+  library(ggrepel)
+  library(scales)
+  library(DT)
+  library(tidyr)
+  library(dplyr)
+  library(ggkm)
+  library(Hmisc)
+  library(quantreg)
+  #library(lazyeval)
+})
 
+
+options(shiny.maxRequestSize=250*1024^2) 
+#options(shiny.reactlog=TRUE) 
 
 stat_sum_df <- function(fun, geom="point", ...) {
   stat_summary(fun.data=fun,  geom=geom,  ...)
@@ -27,9 +32,6 @@ give.n <- function(x){
 }
 
 
-
-options(shiny.maxRequestSize=250*1024^2) 
-#options(shiny.reactlog=TRUE) 
 tableau10 <- c("#1F77B4","#FF7F0E","#2CA02C","#D62728","#9467BD",
                "#8C564B","#E377C2","#7F7F7F","#BCBD22","#17BECF")
 
