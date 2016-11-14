@@ -27,7 +27,7 @@ R Shiny app as a handy inteface to ggplot2. It enables you to quickly explore yo
 
 ### Running Information
 ```
-shiny::runGitHub('ggplotwithyourdata/shinyapp', 'smouksassi')
+shiny::runGitHub('ggplotwithyourdata', 'smouksassi', subdir = 'shinyapp')
 ```
 
 ![Example use case 1 with the included sample_df.csv.](img/snapshot.png)
