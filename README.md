@@ -27,14 +27,14 @@ R Shiny app as a handy inteface to ggplot2. It enables you to quickly explore yo
 
 ### Running Information
 ```
-shiny::runGitHub('ggplotwithyourdata', 'smouksassi')
+shiny::runGitHub('ggplotwithyourdata/shinyapp', 'smouksassi')
 ```
 
-![Example use case 1 with the included sample_df.csv.](./snapshot.png)
+![Example use case 1 with the included sample_df.csv.](img/snapshot.png)
 
-![Example use case 2 with the included sample_df.csv.](./snapshot2.png)
+![Example use case 2 with the included sample_df.csv.](img/snapshot2.png)
 
-![Example use case 3 with the included sample_df.csv.](./snapshot3.png)
+![Example use case 3 with the included sample_df.csv.](img/snapshot3.png)
 
-![Example use case 4 with the included sample_df.csv.](./snapshot4.png)
+![Example use case 4 with the included sample_df.csv.](img/snapshot4.png)
 
