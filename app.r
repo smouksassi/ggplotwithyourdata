@@ -3017,14 +3017,7 @@ df [,input$reordervar2in] <- factor(df [,input$reordervar2in],
                brush = brushOpts(id = "plot_brush"))
   })
   
-  output$plotinfo <- renderPrint({
-    df<- recodedata5()  
-    if (is.null(df)) return(NULL)
-    nearPoints( reorderdata2(), input$plot_click, threshold = 5, maxpoints = 5,
-                addDist = TRUE) #,xvar=input$x, yvar=input$y
-  })
-  
-  
+
   output$clickheader <-  renderUI({
     df <-recodedata5()
     if (is.null(df)) return(NULL)
@@ -3039,11 +3032,8 @@ df [,input$reordervar2in] <- factor(df [,input$reordervar2in],
   })
   
   output$plot_clickedpoints <- renderTable({
-    # For base graphics, we need to specify columns, though for ggplot2,
-    # it's usually not necessary.
     df<- recodedata5()  
     if (is.null(df)) return(NULL)
-    
     res <- nearPoints(recodedata5(), input$plot_click, input$x, "yvalues")
     if (nrow(res) == 0|is.null(res))
       return(NULL)
