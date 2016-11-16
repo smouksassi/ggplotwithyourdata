@@ -20,23 +20,24 @@ ui <- fluidPage(
 
 server <- function(input, output, session) {
   
+  values <- reactiveValues(data = mtcars)
+  
   plotcode <- reactive({
     fontsize <- 30
-    p <- sourceable()
-    p <- p + ggplot(mtcars, aes(mpg, wt)) + geom_point(size = input$num)
+    p <- sourceable(ggplot(values$data, aes(mpg, wt)))
+    p <- p + geom_point(size = input$num)
     p <- p + geom_line(col = input$col)
     p <- p + theme_bw(fontsize)
-    p <- p + ggtitle(input$title)
     p <- add_source_dep(p, c("fontsize"))
     
     p
   })
   
   output$code <- renderText({
-    decorate_source(plotcode())
+    get_sourcecode(plotcode())
   })
   output$plot <- renderPlot({
-    run_source(plotcode())
+    plotcode()
   })
 }
 

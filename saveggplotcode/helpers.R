@@ -1,52 +1,61 @@
-sourceable <- function() {
-  structure(
-    c(),
-    class = "sourceable",
-    deps = list()
-  )
+# Define a ggplot2 object as "sourceable", which means that it knows
+# how to keep track of its source code (parameter must be a ggplot2 object)
+sourceable <- function(x) {
+  stopifnot(methods::is(x, "ggplot"))
+  attr(x, "sourcecode") <- deparse(substitute(x))
+  attr(x, "deps") <- list()
+  class(x) <- c("sourceable", class(x))
+  x
 }
+
+
+# Overwrite the plus operator so that if a "sourceable" object is used,
+# the source code is kept
 `+` <- function(e1, e2) {
   if (methods::is(e1, "sourceable")) {
-    class(e1) <- NULL
-    if (length(e1) == 0) {
-      structure(
-        append(e1, substitute(e2)),
-        class = "sourceable",
-        deps = attr(e1, "deps")
-      )
-    } else {
-      structure(
-        append(e1, substitute(+ e2)),
-        class = "sourceable",
-        deps = attr(e1, "deps")
-      )
-    }
-  } else {
+    res <- base::`+`(e1, e2)
+    attr(res, "sourcecode") <- paste(attr(res, "sourcecode"),
+                                     deparse(substitute(+e2)))
+    res
+  }
+  # If we're not dealing with a "sourceable" object, carry on with regular +
+  else {
     base::`+`(e1, e2)
   }
 }
+
+
+
+
+bb <- 40
+p <- sourceable(ggplot(mtcars, aes(mpg,wt)))
+p <- p + geom_point()
+p <- p + geom_line()
+p <- p + theme_bw(bb)
+p <- add_source_dep(p, c("bb"))
+
+
 add_source_dep <- function(x, deps) {
   stopifnot(methods::is(x, "sourceable"))
   if (length(deps) == 0) {
     return(x)
   }
   
+  parentFrame <- parent.frame(1)
   
-  attr(x, "deps") <- append(attr(x, "deps"), setNames(lapply(deps, get, envir = parent.frame()), deps))
+  
+  attr(x, "deps") <- append(attr(x, "deps"), setNames(
+    lapply(deps, function(dep) {
+      eval(parse(text = dep), envir = parentFrame)
+    }), make.names(deps)))
   x
 }
 
 
-
-
-get_source <- function(x) {
-  stopifnot(methods::is(x, "sourceable"))
-  paste(unlist(lapply(x, deparse)), collapse = " ")
-}
-decorate_source <- function(x) {
+get_sourcecode <- function(x) {
   stopifnot(methods::is(x, "sourceable"))
   
-  result <- get_source(x)
+  result <- attr(x, "sourcecode")
   result <- gsub("\\+[[:space:]]*", "\\+\n  ", result)
   
   source_vars <- attr(x, "deps")
@@ -70,20 +79,5 @@ decorate_source <- function(x) {
   
   result
 }
-print.sourceable <- function(x, ...) {
-  cat(decorate_source(x))
-}
-as.character.sourceable <- function(x, ...) {
-  get_source(x)
-}
-run_source <- function(x) {
-  stopifnot(methods::is(x, "sourceable"))
-  
-  env_list <- attr(x, "deps")
-  if (exists("input", envir = parent.frame())) {
-    env_list$input <- reactiveValuesToList(get("input", envir = parent.frame()))
-  } 
-  
-  
-  eval(parse(text = get_source(x)), envir = list2env(env_list))
-}
+
+
