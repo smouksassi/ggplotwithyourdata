@@ -65,6 +65,7 @@ get_source_code <- function(x) {
       for (input_var in input_vars) {
         input_var_value <- capture.output(
           dput(get(input_var, envir = as.environment(input_list))))
+        input_var_value <- paste(trimws(input_var_value), collapse = "")
         input_code <- paste0(input_code,
                              "input$", input_var, " <- ", input_var_value, "\n") 
       }
@@ -78,6 +79,7 @@ get_source_code <- function(x) {
   if (length(dep_vars) > 0) {
     for (dep_var in names(dep_vars)) {
       dep_var_value <- capture.output(dput(dep_vars[[dep_var]]))
+      dep_var_value <- paste(trimws(dep_var_value), collapse = "")
       dep_code <- paste0(dep_code,
                          dep_var, " <- ", dep_var_value, "\n")
     }
