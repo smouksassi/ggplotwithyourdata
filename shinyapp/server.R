@@ -2146,10 +2146,14 @@ function(input, output, session) {
       
       
       
-      if (input$xlab!="")
+      if (input$xlab!="") {
         p <- p + xlab(xlablinebreak)
-      if (input$ylab!="")
+        p <- attach_source_dep(p, "xlablinebreak")
+      }
+      if (input$ylab!="") {
         p <- p + ylab(ylablinebreak)
+        p <- attach_source_dep(p, "ylablinebreak")
+      }
       
       
       if (input$horizontalzero)
@@ -2349,6 +2353,11 @@ function(input, output, session) {
       
       
       #p <- ggplotly(p)
+      
+      # You should attach any variables (dependencies) that are used in the
+      # source code
+      # p <- attach_source_dep(p, c("var1", "var2", "var3"))
+
       p
     }
   })
@@ -2456,7 +2465,7 @@ function(input, output, session) {
   )
 
   output$plotcode <- renderText({
-    get_sourcecode(plotObject())
+    get_source_code(plotObject())
   })  
   
 }

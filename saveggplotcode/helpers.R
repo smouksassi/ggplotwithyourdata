@@ -2,20 +2,20 @@
 # how to keep track of its source code (parameter must be a ggplot2 object)
 sourceable <- function(x) {
   stopifnot(methods::is(x, "ggplot"))
-  attr(x, "sourcecode") <- deparse(substitute(x))
-  attr(x, "deps") <- list()
+  attr(x, "source_code") <- deparse(substitute(x))
+  attr(x, "source_deps") <- list()
   class(x) <- c("sourceable", class(x))
   x
 }
-
 
 # Overwrite the plus operator so that if a "sourceable" object is used,
 # the source code is kept
 `+` <- function(e1, e2) {
   if (methods::is(e1, "sourceable")) {
     res <- base::`+`(e1, e2)
-    attr(res, "sourcecode") <- paste(attr(res, "sourcecode"),
-                                     deparse(substitute(+e2)))
+    new_code <- trimws(deparse(substitute(+e2)))
+    new_code <- paste(new_code, collapse = "")
+    attr(res, "source_code") <- paste(attr(res, "source_code"), new_code)
     res
   }
   # If we're not dealing with a "sourceable" object, carry on with regular +
@@ -24,60 +24,67 @@ sourceable <- function(x) {
   }
 }
 
-
-
-
-bb <- 40
-p <- sourceable(ggplot(mtcars, aes(mpg,wt)))
-p <- p + geom_point()
-p <- p + geom_line()
-p <- p + theme_bw(bb)
-p <- add_source_dep(p, c("bb"))
-
-
-add_source_dep <- function(x, deps) {
+# Attach dependecies to the source code (any input variables are automatically
+# attached)
+attach_source_dep <- function(x, deps) {
   stopifnot(methods::is(x, "sourceable"))
   if (length(deps) == 0) {
     return(x)
   }
   
+  # Keep a reference to the parent frame, where the dependency objet should be
+  # evaluated
   parentFrame <- parent.frame(1)
   
+  # Create a list of all the dependencies and their values
+  new_deps <- lapply(deps, function(dep) {
+    eval(parse(text = dep), envir = parentFrame)
+  })
+  new_deps <- setNames(new_deps, deps)
   
-  attr(x, "deps") <- append(attr(x, "deps"), setNames(
-    lapply(deps, function(dep) {
-      eval(parse(text = dep), envir = parentFrame)
-    }), make.names(deps)))
+  attr(x, "source_deps") <- append(attr(x, "source_deps"), new_deps)
   x
 }
 
-
-get_sourcecode <- function(x) {
+# Retrieve the source code of a "sourceable" ggplot2
+get_source_code <- function(x) {
   stopifnot(methods::is(x, "sourceable"))
   
-  result <- attr(x, "sourcecode")
-  result <- gsub("\\+[[:space:]]*", "\\+\n  ", result)
+  # Get the plot code and add a line break after every + sign
+  plot_code <- attr(x, "source_code")
+  plot_code <- gsub("\\+[[:space:]]*", "\\+\n  ", plot_code)
   
-  source_vars <- attr(x, "deps")
-  for (source_var in names(source_vars)) {
-    result <- paste0(source_var, " <- ", capture.output(dput(source_vars[[source_var]])), "\n", result)
-  }
-  
+  # Get the code for any input variables used in the plot
+  input_code <- ""
   if (exists("input", envir = parent.frame())) {
-    input_vars <- stringr::str_extract_all(result, "input\\$[[:alnum:]]*")[[1]]
+    input_vars <- stringr::str_extract_all(plot_code, "input\\$[[:alnum:]]*")[[1]]
     input_vars <- sub("input\\$", "", input_vars)
     input_list <- reactiveValuesToList(get("input", envir = parent.frame()))
     if (length(input_vars) > 0) {
-      input_vars_source <- paste0("input <- list()\n")
+      input_code <- paste0("input <- list()\n")
       for (input_var in input_vars) {
-        input_vars_source <- paste0(input_vars_source, "input$", input_var, " <- ",
-                                    capture.output(dput(get(input_var, envir = as.environment(input_list)))), "\n") 
+        input_var_value <- capture.output(
+          dput(get(input_var, envir = as.environment(input_list))))
+        input_code <- paste0(input_code,
+                             "input$", input_var, " <- ", input_var_value, "\n") 
       }
-      result <- paste0(input_vars_source, "\n", result)
+      input_code <- paste0(input_code, "\n")
     }
   }
+
+  # Get the code for the dependency variables
+  dep_code <- ""
+  dep_vars <- attr(x, "source_deps")
+  if (length(dep_vars) > 0) {
+    for (dep_var in names(dep_vars)) {
+      dep_var_value <- capture.output(dput(dep_vars[[dep_var]]))
+      dep_code <- paste0(dep_code,
+                         dep_var, " <- ", dep_var_value, "\n")
+    }
+    dep_code <- paste0(dep_code, "\n")
+  }
   
-  result
+  # Paste together the input variables, dependency variables, and plot code
+  full_code <- paste0(input_code, dep_code, plot_code)
+  full_code
 }
-
-
