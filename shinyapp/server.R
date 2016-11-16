@@ -1177,7 +1177,7 @@ function(input, output, session) {
         # } 
         # }
         
-        p <- ggplot(plotdata, aes_string(x=input$x, y="yvalues")) 
+        p <- sourceable(ggplot(plotdata, aes_string(x=input$x, y="yvalues")))
         
         if (input$colorin != 'None')
           p <- p + aes_string(color=input$colorin)
@@ -2009,7 +2009,7 @@ function(input, output, session) {
         ###### KM SECTION START
         
         if (input$KM!="None") {
-          p <- ggplot(plotdata, aes_string(time=input$x, status="yvalues")) 
+          p <- sourceable(ggplot(plotdata, aes_string(time=input$x, status="yvalues")))
           if (input$colorin != 'None')
             p <- p + aes_string(color=input$colorin)
           if (input$fillin != 'None')
@@ -2039,8 +2039,7 @@ function(input, output, session) {
         
         validate(       need(is.numeric(plotdata[,input$x]), "Please select a numeric x variable"))
         
-        
-        p <- ggplot(plotdata, aes_string(x=input$x))
+        p <- sourceable(ggplot(plotdata, aes_string(x=input$x)))
         if (input$colorin != 'None')
           p <- p + aes_string(color=input$colorin)
         if (input$fillin != 'None')
@@ -2349,8 +2348,6 @@ function(input, output, session) {
       }
       
       
-      
-      
       #p <- ggplotly(p)
       p
     }
@@ -2454,10 +2451,12 @@ function(input, output, session) {
       # returns function pdf() if downloadFileType == "pdf".
       plotFunction <- match.fun(downloadPlotType())
       plotFunction(con, width = downloadPlotWidth(), height = downloadPlotHeight())
-      print(plotObject())
       dev.off(which=dev.cur())
     }
   )
+
+  output$plotcode <- renderText({
+    get_sourcecode(plotObject())
+  })  
   
-  
-  }
+}

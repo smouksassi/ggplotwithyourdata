@@ -634,7 +634,12 @@ fluidPage(
       tabPanel(
         'Data',
         dataTableOutput("mytablex") 
-      )#tabPanel2
+      ),#tabPanel2
+      
+      tabPanel(
+        'Plot code',
+        verbatimTextOutput("plotcode")
+      )
       )#tabsetPanel
     )#mainPanel
   )#sidebarLayout
