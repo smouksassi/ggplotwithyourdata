@@ -12,6 +12,7 @@ suppressMessages ({
   #library(lazyeval)
 })
 
+source("sourceable.R")
 
 options(shiny.maxRequestSize=250*1024^2) 
 #options(shiny.reactlog=TRUE) 
