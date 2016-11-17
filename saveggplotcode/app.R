@@ -11,7 +11,7 @@ ui <- fluidPage(
     sidebarPanel(
       textInput("title", "Title", "My plot"),
       numericInput("num", "Point size", 5),
-      colourpicker::colourInput("col", "Colour", "yellow")
+      colourpicker::colourInput("col", "Colour", "yellow", showColour = "background")
     ),
     mainPanel(
       verbatimTextOutput("code"),
