@@ -31,7 +31,7 @@
 
 16. Limited boxplots support. Carefully choose grouping expecially when the x axis variable is continuous, you can change the Group By: variable in the Color/Group/Split/Size/Fill Mappings (?) to better reflect your needs. It is also possible to join the boxplots with a line connecting medians and percentiles but for this to work color and group should be both set to none or to the same variable. In addition, the ignore grouping variable in the median menu should be unchecked.
 
-17. Initial support to enable Kaplan-Meier Plots with Confidence Intervals, censoring ticks and commonly used transformations. When K-M curves are added nothing else is show on the plot.
+17. Initial support to enable Kaplan-Meier Plots with Confidence Intervals, censoring ticks and commonly used transformations. When K-M curves are added nothing else is shown on the plot.
 
 18. Download the plot using the options on the 'Download' tab. This section is based on code from Mason DeCamillis ggplotLive app.
 
