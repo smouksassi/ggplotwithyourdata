@@ -207,14 +207,7 @@ server <- function(input, output, session) {
     },
     contentType = "application/zip"
   )
-  
-observe({isolate({
-values$plots[['aaa']] <- ggplot(mtcars,aes(mpg,wt))+geom_point()
-values$plots[['bbb']] <- ggplot(mtcars,aes(mpg,wt))+geom_line()
-values$plots[['...']] <- ggplot(mtcars,aes(mpg,wt))+geom_point(col="red")
-values$plots[['3-s']] <- ggplot(mtcars,aes(mpg,wt))+geom_point(size=5)
-})
-})
+
 }
 
 shinyApp(ui = ui, server = server)
