@@ -134,6 +134,43 @@ server <- function(input, output, session) {
   output$plot_preview <- renderPlot({
     if (is.null(input$plots_select)) return()
     values$plots[[input$plots_select]]
+  },
+  width = function() { plot_preview_width() },
+  height = function() { plot_preview_height() })
+  
+  # Calculate the dimensions of the plot preview
+  plot_preview_dim <- reactive({
+    height <- input$export_file_height
+    width <- input$export_file_width
+    
+    # If it's PDF, the units are inches and default resolution is 72 px/inch
+    if (isolate(input$export_file_type) == "pdf") {
+      height <- height * 72
+      width <- width * 72
+    }
+    
+    # If the dimensions are reasonable, don't change them
+    if (height > 200 && height < 600 && width > 200 && width < 600) {
+    }
+    # Keep the aspect ratio, but make the max dimensions 600
+    else {
+      ratio <- height/width
+      if (ratio > 1) {
+        height <- 600
+        width <- height/ratio
+      } else {
+        width <- 600
+        height <- ratio*width
+      }
+    }
+
+    list(width = width, height = height)
+  })
+  plot_preview_width <- reactive({
+    plot_preview_dim()$width
+  })
+  plot_preview_height<- reactive({
+    plot_preview_dim()$height
   })
   
   # Remove the currently selected plot from the saved plots list
@@ -207,7 +244,6 @@ server <- function(input, output, session) {
     },
     contentType = "application/zip"
   )
-
 }
 
 shinyApp(ui = ui, server = server)
