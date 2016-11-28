@@ -207,7 +207,7 @@ fluidPage(
             ) ,
                              
             tabPanel(
-              "Reference Lines",
+              "Reference Lines/Target",
               checkboxInput('identityline', 'Identity Line')    ,   
               checkboxInput('horizontalzero', 'Horizontol Zero Line'),
               checkboxInput('customline1', 'Vertical Line'),
@@ -215,7 +215,23 @@ fluidPage(
                                numericInput("vline",label = "",value = 1) ),
               checkboxInput('customline2', 'Horizontal Line'),
               conditionalPanel(condition = "input.customline2" , 
-                               numericInput("hline",label = "",value = 1) )
+                               numericInput("hline",label = "",value = 1) ),
+              checkboxInput('showtarget', 'Add Target Window', value = FALSE) ,
+              conditionalPanel(condition = "input.showtarget" , 
+              numericInput("lowerytarget",label = "Lower Target Value",
+              value = 1,min=NA,max=NA,width='50%'),
+              numericInput("uppertarget",label = "Upper Target Value",
+                           value = 1,min=NA,max=NA,width='50%'),                 
+                               
+              sliderInput("targetopacity", label = "Target Opacity:",
+                          min = 0, max = 1, value = 0.7, step = 0.05)
+              ),
+              checkboxInput('showtargettext', 'Add Target Text', value = FALSE),
+              conditionalPanel(condition = "input.showtargettext" ,
+              textInput('targettext', 'Target Text', value = "Target: XX-XXX"))
+              
+              
+              
             ),
             tabPanel(
               "Additional Themes Options",
