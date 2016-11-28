@@ -1180,6 +1180,14 @@ function(input, output, session) {
         
         p <- sourceable(ggplot(plotdata, aes_string(x=input$x, y="yvalues")))
         
+        if (input$showtarget)  {
+          p <-   p   +
+            annotate("rect", xmin = -Inf, xmax = Inf, ymin = input$lowerytarget,
+                     ymax = input$uppertarget,fill="gray",
+                     alpha =input$targetopacity)
+        } 
+        
+        
         if (input$colorin != 'None')
           p <- p + aes_string(color=input$colorin)
         if (input$fillin != 'None')
@@ -2351,8 +2359,11 @@ function(input, output, session) {
                             ylim= c(input$yaxiszoomin[1],input$yaxiszoomin[2])  )
         }
       }
-      
-      
+      if (input$showtargettext){
+      p <- p +
+        annotate("text", x=input$lowerxin*1.1, y=input$lowerytarget,
+                 label=input$targettext, col="blue", hjust=0, vjust=1,size=3)
+      }
       #p <- ggplotly(p)
       
       # You should attach any variables (dependencies) that are used in the
