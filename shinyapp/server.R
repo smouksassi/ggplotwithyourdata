@@ -1042,12 +1042,13 @@ function(input, output, session) {
   })
   
   output$facetscales <- renderUI({
+    items= c("fixed","free_x","free_y","free")   
     if (!is.null(input$y)&length(input$y) > 1 ){
       items= c("free_y","fixed","free_x","free")    
     }
-    if (!is.null(input$y)&length(input$y) < 2 ){
-      items= c("fixed","free_x","free_y","free")   
-    }
+  #  if (!is.null(input$y)&length(input$y) < 2 ){
+   #   items= c("fixed","free_x","free_y","free")   
+  # }
     selectInput('facetscalesin','Facet Scales:',items)
   })
   
