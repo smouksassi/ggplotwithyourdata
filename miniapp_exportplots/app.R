@@ -55,11 +55,40 @@ ui <- fluidPage(
                "saved plots"),
             selectInput("export_file_type", "File type",
               c("PDF" = "pdf", "JPEG" = "jpeg", "PNG" = "png", "BMP" = "bmp")),
-            numericInput("export_file_height", "Height (inches)",
-                         value = 7, min = 1, max = 100),
-            numericInput("export_file_width", "Width (inches)",
-                         value = 7, min = 1, max = 100),
-            textInput("export_file_name", "File name", "plots"),
+            conditionalPanel(
+              condition = "input.export_file_type == 'pdf'",
+              selectInput("export_pdf_orientation", "Page orientation",
+                          c("Portrait (8.5\" x 11\")" = "portrait",
+                            "Landscape (11\" x 8.5\")" = "landscape",
+                            "Custom dimensions" = "custom")
+              ),
+              conditionalPanel(
+              condition = "input.export_pdf_orientation == 'custom'",
+                numericInput("export_pdf_width", "Page width (inches)",
+                           value = 8.5, min = 1, max = 50, step = 0.5),
+                numericInput("export_pdf_height", "Page height (inches)",
+                             value = 11, min = 1, max = 50, step = 0.5)
+              ),
+              checkboxInput("export_pdf_multiple", "Multiple plots per page"),
+              conditionalPanel(
+                condition = "input.export_pdf_multiple",
+                selectInput("export_pdf_arrangement", NULL,
+                            c("Arrange plots by row" = "byrow",
+                              "Arrange plots by column" = "bycol")),
+                numericInput("export_pdf_nrow", "Rows per page",
+                             value = 1, min = 1, max = 20),
+                numericInput("export_pdf_ncol", "Columns per page",
+                             value = 1, min = 1, max = 20)
+                
+              )
+            ),
+            conditionalPanel(
+              condition = "input.export_file_type != 'pdf'",
+              numericInput("export_file_width", "Image width (pixels)",
+                           value = 480, min = 100, max = 2000),
+              numericInput("export_file_height", "Image height (pixels)",
+                           value = 480, min = 100, max = 2000)
+            ),
             downloadButton("export_btn", "Download plots")
           ),
           column(
@@ -137,31 +166,47 @@ server <- function(input, output, session) {
   },
   width = function() { plot_preview_width() },
   height = function() { plot_preview_height() })
-  
+
+  # Return the dimensions of the PDF page selected in the Export tab
+  pdf_page_dim <- reactive({
+    if (input$export_pdf_orientation == "landscape") {
+      width <- 11
+      height <- 8.5
+    } else if (input$export_pdf_orientation == "portrait") {
+      width <- 8.5
+      height <- 11
+    } else {
+      width <- input$export_pdf_width
+      height <- input$export_pdf_height
+    }
+    list(width = width, height = height)
+  })
+
   # Calculate the dimensions of the plot preview
   plot_preview_dim <- reactive({
-    height <- input$export_file_height
-    width <- input$export_file_width
-    
     # If it's PDF, the units are inches and default resolution is 72 px/inch
-    if (isolate(input$export_file_type) == "pdf") {
-      height <- height * 72
-      width <- width * 72
-    }
-    
-    # If the dimensions are reasonable, don't change them
-    if (height > 200 && height < 600 && width > 200 && width < 600) {
-    }
-    # Keep the aspect ratio, but make the max dimensions 600
-    else {
-      ratio <- height/width
-      if (ratio > 1) {
-        height <- 600
-        width <- height/ratio
-      } else {
-        width <- 600
-        height <- ratio*width
+    if (input$export_file_type == "pdf") {
+      width <- pdf_page_dim()$width * 72
+      height <- pdf_page_dim()$height * 72
+      
+      # Account for multiple plots per page
+      if (input$export_pdf_multiple) {
+        width <- width / input$export_pdf_ncol
+        height <- height / input$export_pdf_nrow
       }
+    } else {
+      width <- input$export_file_width
+      height <- input$export_file_height
+    }
+
+    # Keep the aspect ratio, but make the max dimensions 500
+    ratio <- height/width
+    if (ratio > 1) {
+      height <- 500
+      width <- height/ratio
+    } else {
+      width <- 500
+      height <- ratio*width
     }
 
     list(width = width, height = height)
@@ -178,32 +223,15 @@ server <- function(input, output, session) {
     values$plots[[input$plots_select]] <- NULL
   })
 
-  # Determine the file name of the exported plots file
-  # If there's only one plot, export it in its raw format. Zip multiple plots.
+  # Determine the file name of the exported plots file.
+  # If there's only one plot or using PDF, export it in its raw format.
+  # Multiple plots in non-PDF format are zipped together.
   export_file_name <- reactive({
-    if (length(values$plots) == 1) {
-      paste0(input$export_file_name, ".", input$export_file_type)
+    if (length(values$plots) == 1 || input$export_file_type == "pdf") {
+      paste0("export-plots", ".", input$export_file_type)
     } else {
-      paste0(input$export_file_name, ".zip")
+      paste0("export-plots", ".zip")
     }
-  })
-  
-  # Update the "export dimensions" numeric inputs based on the export file type
-  observeEvent(input$export_file_type, {
-    export_unit <- if(input$export_file_type == "pdf") "inches" else "pixels"
-    export_default_size <- if(input$export_file_type == "pdf") 7 else 480
-    export_max_size <- if(input$export_file_type == "pdf") 50 else 2000
-    
-    updateNumericInput(session, "export_file_width",
-      label = sprintf("Width (%s)", export_unit),
-      value = export_default_size,
-      max = export_max_size
-    )
-    updateNumericInput(session, "export_file_height",
-      label = sprintf("Height (%s)", export_unit),
-      value = export_default_size,
-      max = export_max_size
-    )
   })
 
   # Download the saved plots
@@ -214,35 +242,69 @@ server <- function(input, output, session) {
     content = function(file) {
       tryCatch({
         file_type <- input$export_file_type
-        
-        # Create all the individual files for each plot and save the filenames
-        file_names <- lapply(names(values$plots), function(plot_name) { 
-          file_name <- paste0(plot_name, ".", file_type)
-          export_params <- list(file_name,
-                                width = input$export_file_height,
-                                height = input$export_file_width)
-          do.call(file_type, export_params)
-          print(values$plots[[plot_name]])
+
+        # If saving as PDF, there are many more options, so take special care
+        if (file_type == "pdf") {
+          width <- pdf_page_dim()$width
+          height <- pdf_page_dim()$height
+          
+          file_names <- "export_plots.pdf"
+          grDevices::pdf(file = file_names, width = width, height = height,
+                         title = file_names, onefile = TRUE)
+          
+          # Print all the images into a PDF file, one plot per page
+          if (!input$export_pdf_multiple) {
+            invisible <- lapply(values$plots, print)
+          }
+          # Print multiple plots per page
+          else {
+            plots_per_page <- input$export_pdf_nrow * input$export_pdf_ncol
+            pages <- ceiling(length(values$plots) / plots_per_page)
+            for (page in seq(pages)) {
+              idx_start <- (page - 1) * plots_per_page + 1
+              idx_end <- min(length(values$plots), page * plots_per_page)
+              plots <- values$plots[idx_start:idx_end]
+              gridExtra::grid.arrange(
+                grobs = plots,
+                nrow = input$export_pdf_nrow,
+                ncol = input$export_pdf_ncol,
+                as.table = (input$export_pdf_arrangement == "byrow")
+              )              
+            }
+          }
+
           grDevices::dev.off()
-          file_name
-        })
-        file_names <- unlist(file_names)
-        
-        # If there's a single plot, download the file. If multiple plots, zip
+        }
+        # If saving as simple images, the job is much simpler
+        else {
+          # Create all the individual files for each plot and save the filenames
+          file_names <- lapply(names(values$plots), function(plot_name) { 
+            file_name <- paste0(plot_name, ".", file_type)
+            export_params <- list(file_name,
+                                  width = input$export_file_width,
+                                  height = input$export_file_height)
+            do.call(file_type, export_params)
+            print(values$plots[[plot_name]])
+            grDevices::dev.off()
+            file_name
+          })
+          file_names <- unlist(file_names)
+        }
+
+        # If there's a single file, download the file. If multiple files, zip
         if (length(file_names) == 1) {
           file.copy(file_names, file, overwrite = TRUE)
         } else {
           zip(file, file_names)
         }
-        
+
         # Remove the generated files so that we don't run out of disk space :)
         file.remove(file_names)
       },
       error = function(err) {
         stop(err$message)
       })
-    },
-    contentType = "application/zip"
+    }
   )
 }
 
