@@ -18,7 +18,9 @@ ui <- fluidPage(
           h1("Create a plot"),
           numericInput("num", "Number of points", 50, 1, 100),
           numericInput("size", "Point size", 2, 1, 10),
-          numericInput("shape", "Point shape", 1, 0, 17)
+          numericInput("shape", "Point shape", 1, 0, 17),
+          numericInput("aspectratio",label = "Y/X ratio",
+                       value = 1,min=0.1,max=10,step=0.01)
         ),
         column(
           8,
@@ -117,7 +119,8 @@ server <- function(input, output, session) {
     df <- data.frame(x = rnorm(input$num), y = rnorm(input$num))
     ggplot(df, aes(x, y)) +
       geom_point(size = input$size, shape = input$shape) +
-      theme_bw()
+      theme_bw() +
+      theme(aspect.ratio=input$aspectratio)
   })
 
   # Display the plot
