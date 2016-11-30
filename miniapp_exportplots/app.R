@@ -130,6 +130,29 @@ server <- function(input, output, session) {
   
   # When the save button is clicked, add the plot to a list and clear the input
   observeEvent(input$save_plot_btn, {
+    plot_name <- trimws(input$save_plot_name)
+
+    if (plot_name %in% names(values$plots)) {
+      showModal(
+        modalDialog(
+          "You already have a plot saved with the same name. Saving this plot will override the existing plot.",
+          footer = tagList(
+            modalButton("Cancel"),
+            actionButton("save_plot_duplicate_confirm", "OK",
+                         class = "btn-primary")
+          ),
+          size = "m"
+        )
+      )
+    } else {
+      save_plot()
+    }
+  })
+  observeEvent(input$save_plot_duplicate_confirm, {
+    save_plot()
+    removeModal()
+  })
+  save_plot <- function() {
     shinyjs::show("save_plot_checkmark")
     values$plots[[trimws(input$save_plot_name)]] <- plot_object()
     updateTextInput(session, "save_plot_name", value = "")
@@ -137,8 +160,8 @@ server <- function(input, output, session) {
       1000,
       shinyjs::hide("save_plot_checkmark", anim = TRUE, animType = "fade")
     )
-  })
-  
+  }
+
   # Disable the "save" button if the plot name input is empty
   observe({
     shinyjs::toggleState("save_plot_btn",
