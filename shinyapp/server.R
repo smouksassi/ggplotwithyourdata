@@ -1,4 +1,8 @@
 function(input, output, session) {
+  values <- reactiveValues(
+    plots = list()
+  )
+  
   filedata <- reactive({
     infile <- input$datafile
     if (is.null(infile)) {
@@ -2417,65 +2421,55 @@ function(input, output, session) {
     res
   })
   
-  
-  
-  
-  downloadPlotType <- reactive({
-    input$downloadPlotType  
-  })
-  
-  observe({
-    plotType    <- input$downloadPlotType
-    plotTypePDF <- plotType == "pdf"
-    plotUnit    <- ifelse(plotTypePDF, "inches", "pixels")
-    plotUnitDef <- ifelse(plotTypePDF, 7, 480)
-    
-    updateNumericInput(
-      session,
-      inputId = "downloadPlotHeight",
-      label = sprintf("Height (%s)", plotUnit),
-      value = plotUnitDef)
-    
-    updateNumericInput(
-      session,
-      inputId = "downloadPlotWidth",
-      label = sprintf("Width (%s)", plotUnit),
-      value = plotUnitDef)
-    
-  })
-  
-  
-  # Get the download dimensions.
-  downloadPlotHeight <- reactive({
-    input$downloadPlotHeight
-  })
-  
-  downloadPlotWidth <- reactive({
-    input$downloadPlotWidth
-  })
-  
-  # Get the download file name.
-  downloadPlotFileName <- reactive({
-    input$downloadPlotFileName
-  })
-  
-  # Include a downloadable file of the plot in the output list.
-  output$downloadPlot <- downloadHandler(
-    filename = function() {
-      paste(downloadPlotFileName(), downloadPlotType(), sep=".")   
-    },
-    # The argument content below takes filename as a function
-    # and returns what's printed to it.
-    content = function(con) {
-      # Gets the name of the function to use from the 
-      # downloadFileType reactive element. Example:
-      # returns function pdf() if downloadFileType == "pdf".
-      plotFunction <- match.fun(downloadPlotType())
-      plotFunction(con, width = downloadPlotWidth(), height = downloadPlotHeight())
-      dev.off(which=dev.cur())
-    }
-  )
+  # ------ Save Plot button in Plot tab ------
 
+  # When the save button is clicked, add the plot to a list and clear the input
+  observeEvent(input$save_plot_btn, {
+    plot_name <- trimws(input$save_plot_name)
+    
+    if (plot_name %in% names(values$plots)) {
+      showModal(
+        modalDialog(
+          "You already have a plot saved with the same name. Saving this plot will override the existing plot.",
+          footer = tagList(
+            modalButton("Cancel"),
+            actionButton("save_plot_duplicate_confirm", "OK",
+                         class = "btn-primary")
+          ),
+          size = "m"
+        )
+      )
+    } else {
+      save_plot()
+    }
+  })
+  observeEvent(input$save_plot_duplicate_confirm, {
+    save_plot()
+    removeModal()
+  })
+  save_plot <- function() {
+    shinyjs::show("save_plot_checkmark")
+    values$plots[[trimws(input$save_plot_name)]] <- plotObject()
+    updateTextInput(session, "save_plot_name", value = "")
+    shinyjs::delay(
+      1000,
+      shinyjs::hide("save_plot_checkmark", anim = TRUE, animType = "fade")
+    )
+  }
+  
+  # Disable the "save" button if the plot name input is empty
+  observe({
+    shinyjs::toggle("save_plot_area", condition = !is.null(filedata()))
+    shinyjs::toggleState("save_plot_btn",
+                         condition = nzchar(trimws(input$save_plot_name)))
+  })
+  
+  # ----- Export Plots tab -----
+  source(file.path("server", "tab-export.R"), local = TRUE)$value
+  
+  # ----- Plot Code tab ------
+    
+  # Show the source code of the plot
   output$plotcode <- renderText({
     get_source_code(plotObject())
   })  

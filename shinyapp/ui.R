@@ -1,4 +1,10 @@
+inline_ui <- function(tag) {
+  div(style = "display: inline-block", tag)
+}
+
 fluidPage(
+  useShinyjs(),
+  includeCSS("www/app.css"),
   titlePanel("Hello GHAP HBGDki Member!"),
   sidebarLayout(
     sidebarPanel(
@@ -263,6 +269,20 @@ fluidPage(
         tabPanel(
           "X/Y Plot"  , 
           uiOutput('ui_plot'),
+          shinyjs::hidden(div(
+            id = "save_plot_area",
+            inline_ui(
+              textInput("save_plot_name", NULL, "",
+                        placeholder = "Enter plot name to save")
+            ),
+            actionButton("save_plot_btn", "Save plot", icon = icon("star")),
+            shinyjs::hidden(
+              span(
+                id = "save_plot_checkmark",
+                icon("check")
+              )
+            )
+          )),
           hr(),
           uiOutput("clickheader"),
           tableOutput("plot_clickedpoints"),
@@ -624,27 +644,65 @@ fluidPage(
           
         ),#tabPanel1
       tabPanel(
-        "Download", 
-        selectInput(
-          inputId = "downloadPlotType",
-          label   = h5("Select download file type"),
-          choices = list("PDF"  = "pdf","BMP"  = "bmp","JPEG" = "jpeg","PNG"  = "png")),
-        
-        # Allow the user to set the height and width of the plot download.
-        h5(HTML("Set download image dimensions<br>(units are inches for PDF, pixels for all other formats)")),
-        numericInput(
-          inputId = "downloadPlotHeight",label = "Height (inches)",value = 7,min = 1,max = 100),
-        numericInput(
-          inputId = "downloadPlotWidth",label = "Width (inches)",value = 7,min = 1,max = 100),
-        # Choose download filename.
-        textInput(
-          inputId = "downloadPlotFileName",
-          label = h5("Enter file name for download")),
-        
-        # File downloads when this button is clicked.
-        downloadButton(
-          outputId = "downloadPlot", 
-          label    = "Download Plot")
+        "Export Plots", 
+        conditionalPanel(
+          condition = "!output.saved_plots_exist",
+          h2("You do not have any saved plots to export")
+        ),
+        conditionalPanel(
+          condition = "output.saved_plots_exist",
+          fluidRow(
+            column(
+              4,
+              h2("Exporting", textOutput("num_plots", inline = TRUE),
+                 "saved plots"),
+              selectInput("export_file_type", "File type",
+                          c("PDF" = "pdf", "JPEG" = "jpeg", "PNG" = "png", "BMP" = "bmp")),
+              conditionalPanel(
+                condition = "input.export_file_type == 'pdf'",
+                selectInput("export_pdf_orientation", "Page orientation",
+                            c("Portrait (8.5\" x 11\")" = "portrait",
+                              "Landscape (11\" x 8.5\")" = "landscape",
+                              "Custom dimensions" = "custom")
+                ),
+                conditionalPanel(
+                  condition = "input.export_pdf_orientation == 'custom'",
+                  numericInput("export_pdf_width", "Page width (inches)",
+                               value = 8.5, min = 1, max = 50, step = 0.5),
+                  numericInput("export_pdf_height", "Page height (inches)",
+                               value = 11, min = 1, max = 50, step = 0.5)
+                ),
+                checkboxInput("export_pdf_multiple", "Multiple plots per page"),
+                conditionalPanel(
+                  condition = "input.export_pdf_multiple",
+                  selectInput("export_pdf_arrangement", NULL,
+                              c("Arrange plots by row" = "byrow",
+                                "Arrange plots by column" = "bycol")),
+                  numericInput("export_pdf_nrow", "Rows per page",
+                               value = 1, min = 1, max = 20),
+                  numericInput("export_pdf_ncol", "Columns per page",
+                               value = 1, min = 1, max = 20)
+                  
+                )
+              ),
+              conditionalPanel(
+                condition = "input.export_file_type != 'pdf'",
+                numericInput("export_file_width", "Image width (pixels)",
+                             value = 480, min = 100, max = 2000),
+                numericInput("export_file_height", "Image height (pixels)",
+                             value = 480, min = 100, max = 2000)
+              ),
+              downloadButton("export_btn", "Download plots")
+            ),
+            column(
+              8,
+              h2("Preview saved plots"),
+              uiOutput("plots_select_ui"),
+              actionButton("remove_plot", "Remove plot"),
+              plotOutput("plot_preview")
+            )
+          )
+        )
       ),
       
       tabPanel(
@@ -653,7 +711,7 @@ fluidPage(
       ),#tabPanel2
       
       tabPanel(
-        'Plot code',
+        'Plot Code',
         h5("Plot reproducibility initial support. To reproduce a plot, in the data tab save the plotdata into a csv, read back to R naming it plotdata then copy paste the code below. Some inputs might not be yet supported we will be adding those during the coming weeks."),
         verbatimTextOutput("plotcode")
       )

@@ -1,5 +1,6 @@
 suppressMessages ({
   library(shiny)
+  library(shinyjs)
   library(ggplot2)
   library(ggrepel)
   library(scales)
