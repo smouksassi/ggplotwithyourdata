@@ -19,8 +19,8 @@ ui <- fluidPage(
           numericInput("num", "Number of points", 50, 1, 100),
           numericInput("size", "Point size", 2, 1, 10),
           numericInput("shape", "Point shape", 1, 0, 17),
-          numericInput("aspectratio",label = "Y/X ratio",
-                       value = 1,min=0.1,max=10,step=0.01)
+          numericInput("aspectratio", label = "Y/X ratio",
+                       value = 1, min = 0.1, max = 10, step = 0.01)
         ),
         column(
           8,
@@ -53,52 +53,65 @@ ui <- fluidPage(
         fluidRow(
           column(
             4,
-            h2("Exporting", textOutput("num_plots", inline = TRUE),
-               "saved plots"),
-            selectInput("export_file_type", "File type",
-              c("PDF" = "pdf", "JPEG" = "jpeg", "PNG" = "png", "BMP" = "bmp")),
-            conditionalPanel(
-              condition = "input.export_file_type == 'pdf'",
-              selectInput("export_pdf_orientation", "Page orientation",
-                          c("Portrait (8.5\" x 11\")" = "portrait",
-                            "Landscape (11\" x 8.5\")" = "landscape",
-                            "Custom dimensions" = "custom")
+            h2("Exporting", textOutput("num_plots", inline = TRUE), "plots"),
+            div(
+              id = "exporting_plots_options",
+              selectInput("export_file_type", "File type",
+                c("PDF" = "pdf", "JPEG" = "jpeg", "PNG" = "png", "BMP" = "bmp")),
+              conditionalPanel(
+                condition = "input.export_file_type == 'pdf'",
+                selectInput("export_pdf_orientation", "Page orientation",
+                            c("Portrait (8.5\" x 11\")" = "portrait",
+                              "Landscape (11\" x 8.5\")" = "landscape",
+                              "Custom dimensions" = "custom")
+                ),
+                conditionalPanel(
+                condition = "input.export_pdf_orientation == 'custom'",
+                  numericInput("export_pdf_width", "Page width (inches)",
+                             value = 8.5, min = 1, max = 50, step = 0.5),
+                  numericInput("export_pdf_height", "Page height (inches)",
+                               value = 11, min = 1, max = 50, step = 0.5)
+                ),
+                checkboxInput("export_pdf_multiple", "Multiple plots per page"),
+                conditionalPanel(
+                  condition = "input.export_pdf_multiple",
+                  selectInput("export_pdf_arrangement", NULL,
+                              c("Arrange plots by row" = "byrow",
+                                "Arrange plots by column" = "bycol")),
+                  numericInput("export_pdf_nrow", "Rows per page",
+                               value = 1, min = 1, max = 20),
+                  numericInput("export_pdf_ncol", "Columns per page",
+                               value = 1, min = 1, max = 20)
+                  
+                )
               ),
               conditionalPanel(
-              condition = "input.export_pdf_orientation == 'custom'",
-                numericInput("export_pdf_width", "Page width (inches)",
-                           value = 8.5, min = 1, max = 50, step = 0.5),
-                numericInput("export_pdf_height", "Page height (inches)",
-                             value = 11, min = 1, max = 50, step = 0.5)
+                condition = "input.export_file_type != 'pdf'",
+                numericInput("export_file_width", "Image width (pixels)",
+                             value = 480, min = 100, max = 2000),
+                numericInput("export_file_height", "Image height (pixels)",
+                             value = 480, min = 100, max = 2000)
               ),
-              checkboxInput("export_pdf_multiple", "Multiple plots per page"),
-              conditionalPanel(
-                condition = "input.export_pdf_multiple",
-                selectInput("export_pdf_arrangement", NULL,
-                            c("Arrange plots by row" = "byrow",
-                              "Arrange plots by column" = "bycol")),
-                numericInput("export_pdf_nrow", "Rows per page",
-                             value = 1, min = 1, max = 20),
-                numericInput("export_pdf_ncol", "Columns per page",
-                             value = 1, min = 1, max = 20)
-                
-              )
-            ),
-            conditionalPanel(
-              condition = "input.export_file_type != 'pdf'",
-              numericInput("export_file_width", "Image width (pixels)",
-                           value = 480, min = 100, max = 2000),
-              numericInput("export_file_height", "Image height (pixels)",
-                           value = 480, min = 100, max = 2000)
-            ),
-            downloadButton("export_btn", "Download plots")
+              downloadButton("export_btn", "Download plots")
+            )
           ),
           column(
             8,
-            h2("Preview saved plots"),
-            uiOutput("plots_select_ui"),
-            actionButton("remove_plot", "Remove plot"),
-            plotOutput("plot_preview")
+            h2("Preview"),
+            strong("Remove plot"), br(),
+            inline_ui(uiOutput("plots_remove_ui")),
+            actionButton("remove_plot_btn", "Remove"),
+            uiOutput("plots_order_ui"),
+            div(
+              id = "preview_plots_options",
+              conditionalPanel("input.export_file_type == 'pdf'",
+                               uiOutput("plots_select_page_ui")
+              ),
+              conditionalPanel("input.export_file_type != 'pdf'",
+                               uiOutput("plots_select_plot_ui")
+              ),
+              plotOutput("plot_preview", height = "auto")
+            )
           )
         )
       )
@@ -109,7 +122,19 @@ ui <- fluidPage(
 server <- function(input, output, session) {
   
   values <- reactiveValues(
-    plots = list()
+    plots = list(
+      'p1' = ggplot(mtcars,aes(mpg,wt))+geom_point()+ggtitle("1"),
+      'p2' = ggplot(mtcars,aes(mpg,wt))+geom_point()+ggtitle("2"),
+      'p3' = ggplot(mtcars,aes(mpg,wt))+geom_point()+ggtitle("3"),
+      'p4' = ggplot(mtcars,aes(mpg,wt))+geom_point()+ggtitle("4"),
+      'p5' = ggplot(mtcars,aes(mpg,wt))+geom_point()+ggtitle("5"),
+      'p6' = ggplot(mtcars,aes(mpg,wt))+geom_point()+ggtitle("6"),
+      'p7' = ggplot(mtcars,aes(mpg,wt))+geom_point()+ggtitle("7"),
+      'p8' = ggplot(mtcars,aes(mpg,wt))+geom_point()+ggtitle("8"),
+      'p9' = ggplot(mtcars,aes(mpg,wt))+geom_point()+ggtitle("9"),
+      'p10' = ggplot(mtcars,aes(mpg,wt))+geom_point()+ggtitle("10"),
+      'p11' = ggplot(mtcars,aes(mpg,wt))+geom_point()+ggtitle("11")
+    )
   )
   
   # ---------- Plots tab -----------
@@ -177,18 +202,106 @@ server <- function(input, output, session) {
   outputOptions(output, 'saved_plots_exist', suspendWhenHidden = FALSE)
   
   output$num_plots <- renderText({
-    length(values$plots)
+    length(input$plots_order)
   })
 
-  # Show a dropdown to select a plot to preview/remove in the Export tab
-  output$plots_select_ui <- renderUI({
-    selectInput("plots_select", "Plot name", names(values$plots))
+  # Select the plots and the order of the plots to export
+  output$plots_order_ui <- renderUI({
+    selectizeInput("plots_order", "Plots to export (drag to reorder)",
+                   choices = names(values$plots), selected = names(values$plots),
+                   multiple = TRUE, options = list(
+                     plugins = list('drag_drop','remove_button')))
+  })
+
+  # If no plots are chosen to export, don't show all the export options
+  observe({
+    shinyjs::toggle(selector = "#exporting_plots_options, #preview_plots_options",
+                    condition = length(input$plots_order) > 0)
+  })
+
+  # Show a dropdown to select which page from the exported PDF to show
+  output$plots_select_page_ui <- renderUI({
+    num_pages <- export_num_pages()
+    
+    # Try to remain on the same page even when the dropdown changes
+    isolate({
+      if (!is.null(input$plots_select_page) &&
+          as.numeric(input$plots_select_page) <= num_pages) {
+        selected <- input$plots_select_page
+      } else {
+        selected <- 1
+      }
+    })
+    selectInput("plots_select_page", "Page to preview",
+                choices = seq(num_pages), selected = selected)
   })
   
+  # Show a dropdown to select a plot to preview
+  output$plots_select_plot_ui <- renderUI({
+    
+    # Try to stay on the same plot even when the dropdown changes
+    isolate({
+      if (!is.null(input$plots_select_plot) &&
+          input$plots_select_plot %in% input$plots_order) {
+        selected <- input$plots_select_plot
+      } else {
+        selected <- input$plots_order[1]
+      }
+    })
+    selectInput("plots_select_plot", "Plot to preview", input$plots_order,
+                selected = selected)
+  })
+  
+  # Calculate the number of PDF pages to export
+  export_num_pages <- reactive({
+    if (input$export_pdf_multiple) {
+      plots_per_page <- input$export_pdf_nrow * input$export_pdf_ncol
+      pages <- ceiling(length(input$plots_order) / plots_per_page)
+    } else {
+      pages <- length(input$plots_order)
+    }
+    pages
+  })
+  
+  # print a specific page of plots (either 1 plot/page or multiple rows/cols)
+  export_print_page <- function(page) {
+    page <- as.numeric(page)
+    if (!input$export_pdf_multiple) {
+      plot_name <- input$plots_order[page]
+      values$plots[plot_name]
+    } else {
+      plots_per_page <- input$export_pdf_nrow * input$export_pdf_ncol
+      idx_start <- (page - 1) * plots_per_page + 1
+      idx_end <- min(length(input$plots_order), page * plots_per_page)
+      if (idx_start > idx_end) {
+        return()
+      }
+      plot_names <- input$plots_order[idx_start:idx_end]
+      plots <- values$plots[plot_names]
+    
+      gridExtra::grid.arrange(
+        grobs = plots,
+        nrow = input$export_pdf_nrow,
+        ncol = input$export_pdf_ncol,
+        as.table = (input$export_pdf_arrangement == "byrow")
+      )
+    }
+  }
+  
+  # Show a dropdown to select a plot to remove in the Export tab
+  output$plots_remove_ui <- renderUI({
+    selectInput("plots_remove", NULL, names(values$plots))
+  })
+
   # Preview a plot in the Export tab
   output$plot_preview <- renderPlot({
-    if (is.null(input$plots_select)) return()
-    values$plots[[input$plots_select]]
+    if (input$export_file_type == "pdf") {
+      if (is.null(input$plots_select_page)) return()
+      export_print_page(input$plots_select_page)
+    } else {
+      if (is.null(input$plots_select_plot)) return()
+      values$plots[[input$plots_select_plot]]
+    }
   },
   width = function() { plot_preview_width() },
   height = function() { plot_preview_height() })
@@ -214,12 +327,6 @@ server <- function(input, output, session) {
     if (input$export_file_type == "pdf") {
       width <- pdf_page_dim()$width * 72
       height <- pdf_page_dim()$height * 72
-      
-      # Account for multiple plots per page
-      if (input$export_pdf_multiple) {
-        width <- width / input$export_pdf_ncol
-        height <- height / input$export_pdf_nrow
-      }
     } else {
       width <- input$export_file_width
       height <- input$export_file_height
@@ -245,15 +352,15 @@ server <- function(input, output, session) {
   })
   
   # Remove the currently selected plot from the saved plots list
-  observeEvent(input$remove_plot, {
-    values$plots[[input$plots_select]] <- NULL
+  observeEvent(input$remove_plot_btn, {
+    values$plots[[input$plots_remove]] <- NULL
   })
 
   # Determine the file name of the exported plots file.
   # If there's only one plot or using PDF, export it in its raw format.
   # Multiple plots in non-PDF format are zipped together.
   export_file_name <- reactive({
-    if (length(values$plots) == 1 || input$export_file_type == "pdf") {
+    if (length(input$plots_order) == 1 || input$export_file_type == "pdf") {
       paste0("export-plots", ".", input$export_file_type)
     } else {
       paste0("export-plots", ".zip")
@@ -280,22 +387,14 @@ server <- function(input, output, session) {
           
           # Print all the images into a PDF file, one plot per page
           if (!input$export_pdf_multiple) {
-            invisible <- lapply(values$plots, print)
+            plots <- values$plots[input$plots_order]
+            invisible <- lapply(plots, print)
           }
           # Print multiple plots per page
           else {
-            plots_per_page <- input$export_pdf_nrow * input$export_pdf_ncol
-            pages <- ceiling(length(values$plots) / plots_per_page)
-            for (page in seq(pages)) {
-              idx_start <- (page - 1) * plots_per_page + 1
-              idx_end <- min(length(values$plots), page * plots_per_page)
-              plots <- values$plots[idx_start:idx_end]
-              gridExtra::grid.arrange(
-                grobs = plots,
-                nrow = input$export_pdf_nrow,
-                ncol = input$export_pdf_ncol,
-                as.table = (input$export_pdf_arrangement == "byrow")
-              )              
+            num_pages <- export_num_pages()
+            for (page in seq(num_pages)) {
+              export_print_page(page)
             }
           }
 
@@ -304,13 +403,14 @@ server <- function(input, output, session) {
         # If saving as simple images, the job is much simpler
         else {
           # Create all the individual files for each plot and save the filenames
-          file_names <- lapply(names(values$plots), function(plot_name) { 
+          plots <- values$plots[input$plots_order]
+          file_names <- lapply(names(plots), function(plot_name) { 
             file_name <- paste0(plot_name, ".", file_type)
             export_params <- list(file_name,
                                   width = input$export_file_width,
                                   height = input$export_file_height)
             do.call(file_type, export_params)
-            print(values$plots[[plot_name]])
+            print(plots[[plot_name]])
             grDevices::dev.off()
             file_name
           })
