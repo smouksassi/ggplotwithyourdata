@@ -102,7 +102,8 @@ function(input, output, session) {
   output$ncuts2 <- renderUI({
     df <-filedata()
     validate(       need(!is.null(df), "Please select a data set"))
-    if (!is.null(input$catvar3in)&length(input$catvar3in ) <1)  return(NULL)
+    if (is.null(input$catvar3in)) return()
+    if (!is.null(input$catvar3in) && length(input$catvar3in ) <1)  return(NULL)
     if ( input$catvar3in!=""){
       textInput("xcutoffs", label =  paste(input$catvar3in,"Cuts"),
                 value = as.character(paste(
@@ -116,8 +117,8 @@ function(input, output, session) {
   output$asnumeric <- renderUI({
     df <-filedata()
     validate(       need(!is.null(df), "Please select a data set"))
-    #if (is.null(df)) return(NULL)
-    if (!is.null(input$catvar3in)&length(input$catvar3in ) <1)  return(NULL)
+    if (is.null(input$catvar3in)) return()
+    if (!is.null(input$catvar3in) && length(input$catvar3in ) <1)  return(NULL)
     if ( input$catvar3in!=""){
       column(12,
              checkboxInput('asnumericin', 'Treat as Numeric (helpful to overlay a smooth/regression line on top of a boxplot or to convert a variable into 0/1 and overlay a logistic fit', value = FALSE)
@@ -171,7 +172,7 @@ function(input, output, session) {
   recodedata3  <- reactive({
     df <- recodedata2()
     validate(       need(!is.null(df), "Please select a data set"))
-    #if (is.null(df)) return(NULL)
+    if (is.null(input$catvar3in)) return(NULL)
     if(input$catvar3in!="") {
       varname<- input$catvar3in
       xlimits <- input$xcutoffs 
@@ -222,7 +223,7 @@ function(input, output, session) {
   output$labeltext <- renderText({
     df <- recodedata3()
     validate(       need(!is.null(df), "Please select a data set"))
-    #if (is.null(df)) return(NULL)
+    if (is.null(input$catvar4in)) return(NULL)
     labeltextout <- ""
     if(input$catvar4in!="") {
       varname<- input$catvar4in
@@ -237,6 +238,7 @@ function(input, output, session) {
   output$nlabels <- renderUI({
     df <-recodedata3()
     validate(       need(!is.null(df), "Please select a data set"))
+    if (is.null(input$catvar4in)) return()
     if (!is.null(input$catvar4in)&length(input$catvar4in ) <1)  return(NULL)
     if ( input$catvar4in!=""){
       nlevels <- length( unique( levels(as.factor( df[,input$catvar4in] ))))
@@ -257,6 +259,7 @@ function(input, output, session) {
   recodedata4  <- reactive({
     df <- recodedata3()
     validate(       need(!is.null(df), "Please select a data set"))
+    if (is.null(input$catvar4in)) return()
     #if (is.null(df)) return(NULL)
     if(input$catvar4in!="") {
       varname<- input$catvar4in
@@ -367,8 +370,8 @@ function(input, output, session) {
     df <-recodedata4()
     validate(       need(!is.null(df), "Please select a data set"))
     #if (is.null(df)) return(NULL)
-    if(is.null(input$infiltervar1)|input$infiltervar1=="None") {return(NULL)}
-    if(!is.null(input$infiltervar1)&input$infiltervar1!="None" )  {
+    if(is.null(input$infiltervar1) || input$infiltervar1=="None") {return(NULL)}
+    if(!is.null(input$infiltervar1) && input$infiltervar1!="None" )  {
       choices <- levels(as.factor(df[,input$infiltervar1]))
       selectInput('infiltervar1valuesnotnull',
                   label = paste("Select values", input$infiltervar1),
@@ -383,7 +386,7 @@ function(input, output, session) {
     validate(       need(!is.null(df), "Please select a data set"))
     #if (is.null(df)) return(NULL)
     if(is.null(input$infiltervar1)) {
-      df <-  df 
+      return(df)
     }
     if(!is.null(input$infiltervar1)&input$infiltervar1!="None") {
       
@@ -396,7 +399,7 @@ function(input, output, session) {
   output$filtervar2values <- renderUI({
     df <- filterdata()
     validate(       need(!is.null(df), "Please select a data set"))
-    #if (is.null(df)) return(NULL)
+    if (is.null(input$infiltervar2)) return()
     if(input$infiltervar2=="None") {
       selectInput('infiltervar2valuesnull',
                   label ='No filter variable 2 specified', 
@@ -418,25 +421,23 @@ function(input, output, session) {
   filterdata2  <- reactive({
     df <- filterdata()
     validate(       need(!is.null(df), "Please select a data set"))
-    #if (is.null(df)) return(NULL)
-    if(!is.null(input$infiltervar2)&input$infiltervar2!="None") {
-      df <-  df [ is.element(df[,input$infiltervar2],input$infiltervar2valuesnotnull),]
+    if (is.null(input$infiltervar2)) {
+      return(df)
     }
-    if(input$infiltervar2=="None") {
-      df 
+    if(input$infiltervar2 != "None") {
+      df <-  df [ is.element(df[,input$infiltervar2],input$infiltervar2valuesnotnull),]
     }
     df
   }) 
   output$filtervar3values <- renderUI({
     df <- filterdata2()
     validate(       need(!is.null(df), "Please select a data set"))
-    #if (is.null(df)) return(NULL)
-    if(!is.null(input$infiltervar3)&input$infiltervar3=="None") {
+    if (is.null(input$infiltervar3)) return()
+    if(input$infiltervar3 == "None") {
       selectInput('infiltervar3valuesnull',
                   label ='No filter variable 2 specified', 
                   choices = list(""),multiple=TRUE, selectize=FALSE)   
-    }
-    if(input$infiltervar3!="None"&!is.null(input$infiltervar3) )  {
+    } else {
       choices <- levels(as.factor(as.character(df[,input$infiltervar3])))
       selectizeInput('infiltervar3valuesnotnull',
                      label = paste("Select values", input$infiltervar3),
@@ -452,12 +453,11 @@ function(input, output, session) {
   filterdata3  <- reactive({
     df <- filterdata2()
     validate(       need(!is.null(df), "Please select a data set"))
-    #if (is.null(df)) return(NULL)
-    if(!is.null(input$infiltervar3)&input$infiltervar3!="None") {
-      df <-  df [ is.element(df[,input$infiltervar3],input$infiltervar3valuesnotnull),]
+    if (is.null(input$infiltervar3)) {
+      return(df)
     }
-    if(input$infiltervar3=="None") {
-      df 
+    if(input$infiltervar3!="None") {
+      df <-  df [ is.element(df[,input$infiltervar3],input$infiltervar3valuesnotnull),]
     }
     df
   })  
@@ -467,7 +467,7 @@ function(input, output, session) {
     validate(       need(!is.null(df), "Please select a data set"))
     #if (is.null(df)) return(NULL)
     xvariable<- input$infiltervarcont1
-    if(input$infiltervarcont1=="None" ){
+    if(is.null(xvariable) || input$infiltervarcont1=="None" ){
       return(NULL)  
     }
     if (!is.numeric(df[,xvariable]) ) return(NULL)
@@ -482,7 +482,7 @@ function(input, output, session) {
   filterdata4  <- reactive({
     df <- filterdata3()
     validate(       need(!is.null(df), "Please select a data set"))
-    #if (is.null(df)) return(NULL)
+    if (is.null(input$infiltervarcont1)) return()
     if(input$infiltervarcont1!="None" ){
       if(is.numeric( input$infSlider1[1]) & is.numeric(df[,input$infiltervarcont1])) {
         df <- df [!is.na(df[,input$infiltervarcont1]),]
@@ -689,8 +689,8 @@ function(input, output, session) {
   output$variabletoorderby <- renderUI({
     df <-rounddata()
     validate(       need(!is.null(df), "Please select a data set"))
-    #if (is.null(df)) return(NULL)
-    if (!is.null(input$reordervarin)&length(input$reordervarin ) <1)  return(NULL)
+    if (is.null(input$reordervarin)) return()
+    if (length(input$reordervarin ) <1)  return(NULL)
     if ( input$reordervarin!=""){
       yinputs <- input$y
       items=names(df)
@@ -712,8 +712,10 @@ function(input, output, session) {
   reorderdata <- reactive({
     df <- rounddata()
     validate(       need(!is.null(df), "Please select a data set"))
-    #if (is.null(df)) return(NULL)
-    if(!is.null(input$reordervarin)&length(input$reordervarin ) >=1 &
+    if (is.null(input$reordervarin)) {
+      return(df)
+    }
+    if(length(input$reordervarin ) >=1 &
        length(input$varreorderin ) >=1 & input$reordervarin!=""  ) {
       varname<- input$reordervarin[1]
       if(input$functionordervariable=="Median" )  {
@@ -751,7 +753,7 @@ function(input, output, session) {
   output$reordervar2values <- renderUI({
     df <- reorderdata()
     validate(       need(!is.null(df), "Please select a data set"))
-    # if (is.null(df)) return(NULL)
+    if (is.null(input$reordervar2in)) return()
     if(input$reordervar2in=="None") {
       selectInput('reordervar2valuesnull',
                   label ='No reorder variable specified', 
@@ -775,7 +777,9 @@ function(input, output, session) {
   reorderdata2 <- reactive({
     df <- reorderdata()
     validate(       need(!is.null(df), "Please select a data set"))
-    #if (is.null(df)) return(NULL)
+    if (is.null(input$reordervar2in)) {
+      return(df)
+    }
     if(input$reordervar2in!="None"  ) {
       df [,input$reordervar2in] <- factor(df [,input$reordervar2in],
                                           levels = input$reordervar2valuesnotnull)
@@ -900,7 +904,7 @@ function(input, output, session) {
   output$labeltext5 <- renderText({
     df <- reorderdata2()
     validate(       need(!is.null(df), "Please select a data set"))
-    #if (is.null(df)) return(NULL)
+    if (is.null(input$catvar5in)) return("")
     labeltext5out <- ""
     if(input$catvar5in!="") {
       varname<- input$catvar5in
@@ -912,8 +916,8 @@ function(input, output, session) {
   output$nlabels5 <- renderUI({
     df <-reorderdata2()
     validate(       need(!is.null(df), "Please select a data set"))
-    
-    if (!is.null(input$catvar5in)&length(input$catvar5in ) <1)  return(NULL)
+    if (is.null(input$catvar5in)) return()
+    if (length(input$catvar5in ) <1)  return(NULL)
     if ( input$catvar5in!=""){
       nlevels <- length( unique( levels(as.factor( df[,input$catvar5in] ))))
       levelsvalues <- levels(as.factor( df[,input$catvar5in] ))
@@ -932,7 +936,9 @@ function(input, output, session) {
   recodedata5  <- reactive({
     df <- reorderdata2()
     validate(       need(!is.null(df), "Please select a data set"))
-    if (is.null(df)) return(NULL)
+    if (is.null(input$catvar5in)) {
+      return(df)
+    }
     if(input$catvar5in!="") {
       varname<- input$catvar5in
       xlabels <- input$customvarlabels5 
@@ -2473,5 +2479,4 @@ function(input, output, session) {
   output$plotcode <- renderText({
     get_source_code(plotObject())
   })  
-  
 }
