@@ -53,11 +53,11 @@ ui <- fluidPage(
         fluidRow(
           column(
             4,
-            h2("Exporting", textOutput("num_plots", inline = TRUE), "plots"),
+            h2("Export Options"),
             div(
               id = "exporting_plots_options",
               selectInput("export_file_type", "File type",
-                c("PDF" = "pdf", "JPEG" = "jpeg", "PNG" = "png", "BMP" = "bmp")),
+                c("PDF" = "pdf", "JPEG" = "jpeg", "PNG" = "png")),
               conditionalPanel(
                 condition = "input.export_file_type == 'pdf'",
                 selectInput("export_pdf_orientation", "Page orientation",
@@ -66,23 +66,11 @@ ui <- fluidPage(
                               "Custom dimensions" = "custom")
                 ),
                 conditionalPanel(
-                condition = "input.export_pdf_orientation == 'custom'",
-                  numericInput("export_pdf_width", "Page width (inches)",
-                             value = 8.5, min = 1, max = 50, step = 0.5),
-                  numericInput("export_pdf_height", "Page height (inches)",
-                               value = 11, min = 1, max = 50, step = 0.5)
-                ),
-                checkboxInput("export_pdf_multiple", "Multiple plots per page"),
-                conditionalPanel(
-                  condition = "input.export_pdf_multiple",
-                  selectInput("export_pdf_arrangement", NULL,
-                              c("Arrange plots by row" = "byrow",
-                                "Arrange plots by column" = "bycol")),
-                  numericInput("export_pdf_nrow", "Rows per page",
-                               value = 1, min = 1, max = 20),
-                  numericInput("export_pdf_ncol", "Columns per page",
-                               value = 1, min = 1, max = 20)
-                  
+                  condition = "input.export_pdf_orientation == 'custom'",
+                    numericInput("export_pdf_width", "Page width (inches)",
+                               value = 8.5, min = 1, max = 50, step = 0.5),
+                    numericInput("export_pdf_height", "Page height (inches)",
+                                 value = 11, min = 1, max = 50, step = 0.5)
                 )
               ),
               conditionalPanel(
@@ -92,7 +80,19 @@ ui <- fluidPage(
                 numericInput("export_file_height", "Image height (pixels)",
                              value = 480, min = 100, max = 2000)
               ),
-              downloadButton("export_btn", "Download plots")
+              checkboxInput("export_multiple", "Multiple plots per page"),
+              conditionalPanel(
+                condition = "input.export_multiple",
+                selectInput("export_arrangement", NULL,
+                            c("Arrange plots by row" = "byrow",
+                              "Arrange plots by column" = "bycol")),
+                numericInput("export_nrow", "Rows per page",
+                             value = 1, min = 1, max = 20),
+                numericInput("export_ncol", "Columns per page",
+                             value = 1, min = 1, max = 20)
+                
+              ),
+              uiOutput("export_btn_ui")
             )
           ),
           column(
@@ -104,12 +104,7 @@ ui <- fluidPage(
             uiOutput("plots_order_ui"),
             div(
               id = "preview_plots_options",
-              conditionalPanel("input.export_file_type == 'pdf'",
-                               uiOutput("plots_select_page_ui")
-              ),
-              conditionalPanel("input.export_file_type != 'pdf'",
-                               uiOutput("plots_select_plot_ui")
-              ),
+              uiOutput("plots_select_page_ui"),
               plotOutput("plot_preview", height = "auto")
             )
           )
@@ -122,19 +117,7 @@ ui <- fluidPage(
 server <- function(input, output, session) {
   
   values <- reactiveValues(
-    plots = list(
-      'p1' = ggplot(mtcars,aes(mpg,wt))+geom_point()+ggtitle("1"),
-      'p2' = ggplot(mtcars,aes(mpg,wt))+geom_point()+ggtitle("2"),
-      'p3' = ggplot(mtcars,aes(mpg,wt))+geom_point()+ggtitle("3"),
-      'p4' = ggplot(mtcars,aes(mpg,wt))+geom_point()+ggtitle("4"),
-      'p5' = ggplot(mtcars,aes(mpg,wt))+geom_point()+ggtitle("5"),
-      'p6' = ggplot(mtcars,aes(mpg,wt))+geom_point()+ggtitle("6"),
-      'p7' = ggplot(mtcars,aes(mpg,wt))+geom_point()+ggtitle("7"),
-      'p8' = ggplot(mtcars,aes(mpg,wt))+geom_point()+ggtitle("8"),
-      'p9' = ggplot(mtcars,aes(mpg,wt))+geom_point()+ggtitle("9"),
-      'p10' = ggplot(mtcars,aes(mpg,wt))+geom_point()+ggtitle("10"),
-      'p11' = ggplot(mtcars,aes(mpg,wt))+geom_point()+ggtitle("11")
-    )
+    plots = list()
   )
   
   # ---------- Plots tab -----------
@@ -201,8 +184,9 @@ server <- function(input, output, session) {
   })
   outputOptions(output, 'saved_plots_exist', suspendWhenHidden = FALSE)
   
-  output$num_plots <- renderText({
-    length(input$plots_order)
+  output$export_btn_ui <- renderUI({
+    downloadButton("export_btn",
+                   paste("Download", length(input$plots_order), "plots"))
   })
 
   # Select the plots and the order of the plots to export
@@ -219,7 +203,7 @@ server <- function(input, output, session) {
                     condition = length(input$plots_order) > 0)
   })
 
-  # Show a dropdown to select which page from the exported PDF to show
+  # Show a dropdown to select which page to show
   output$plots_select_page_ui <- renderUI({
     num_pages <- export_num_pages()
     
@@ -236,26 +220,10 @@ server <- function(input, output, session) {
                 choices = seq(num_pages), selected = selected)
   })
   
-  # Show a dropdown to select a plot to preview
-  output$plots_select_plot_ui <- renderUI({
-    
-    # Try to stay on the same plot even when the dropdown changes
-    isolate({
-      if (!is.null(input$plots_select_plot) &&
-          input$plots_select_plot %in% input$plots_order) {
-        selected <- input$plots_select_plot
-      } else {
-        selected <- input$plots_order[1]
-      }
-    })
-    selectInput("plots_select_plot", "Plot to preview", input$plots_order,
-                selected = selected)
-  })
-  
-  # Calculate the number of PDF pages to export
+  # Calculate the number of pages to export
   export_num_pages <- reactive({
-    if (input$export_pdf_multiple) {
-      plots_per_page <- input$export_pdf_nrow * input$export_pdf_ncol
+    if (input$export_multiple) {
+      plots_per_page <- input$export_nrow * input$export_ncol
       pages <- ceiling(length(input$plots_order) / plots_per_page)
     } else {
       pages <- length(input$plots_order)
@@ -266,11 +234,11 @@ server <- function(input, output, session) {
   # print a specific page of plots (either 1 plot/page or multiple rows/cols)
   export_print_page <- function(page) {
     page <- as.numeric(page)
-    if (!input$export_pdf_multiple) {
+    if (!input$export_multiple) {
       plot_name <- input$plots_order[page]
       values$plots[plot_name]
     } else {
-      plots_per_page <- input$export_pdf_nrow * input$export_pdf_ncol
+      plots_per_page <- input$export_nrow * input$export_ncol
       idx_start <- (page - 1) * plots_per_page + 1
       idx_end <- min(length(input$plots_order), page * plots_per_page)
       if (idx_start > idx_end) {
@@ -281,9 +249,9 @@ server <- function(input, output, session) {
     
       gridExtra::grid.arrange(
         grobs = plots,
-        nrow = input$export_pdf_nrow,
-        ncol = input$export_pdf_ncol,
-        as.table = (input$export_pdf_arrangement == "byrow")
+        nrow = input$export_nrow,
+        ncol = input$export_ncol,
+        as.table = (input$export_arrangement == "byrow")
       )
     }
   }
@@ -295,13 +263,10 @@ server <- function(input, output, session) {
 
   # Preview a plot in the Export tab
   output$plot_preview <- renderPlot({
-    if (input$export_file_type == "pdf") {
-      if (is.null(input$plots_select_page)) return()
-      export_print_page(input$plots_select_page)
-    } else {
-      if (is.null(input$plots_select_plot)) return()
-      values$plots[[input$plots_select_plot]]
+    if (is.null(input$plots_select_page)) {
+      return()
     }
+    export_print_page(input$plots_select_page)
   },
   width = function() { plot_preview_width() },
   height = function() { plot_preview_height() })
@@ -360,10 +325,10 @@ server <- function(input, output, session) {
   # If there's only one plot or using PDF, export it in its raw format.
   # Multiple plots in non-PDF format are zipped together.
   export_file_name <- reactive({
-    if (length(input$plots_order) == 1 || input$export_file_type == "pdf") {
-      paste0("export-plots", ".", input$export_file_type)
+    if (export_num_pages() == 1 || input$export_file_type == "pdf") {
+      paste0("export_plots", ".", input$export_file_type)
     } else {
-      paste0("export-plots", ".zip")
+      paste0("export_plots", ".zip")
     }
   })
 
@@ -376,7 +341,7 @@ server <- function(input, output, session) {
       tryCatch({
         file_type <- input$export_file_type
 
-        # If saving as PDF, there are many more options, so take special care
+        # If saving as PDF, save all pages in one file
         if (file_type == "pdf") {
           width <- pdf_page_dim()$width
           height <- pdf_page_dim()$height
@@ -384,33 +349,32 @@ server <- function(input, output, session) {
           file_names <- "export_plots.pdf"
           grDevices::pdf(file = file_names, width = width, height = height,
                          title = file_names, onefile = TRUE)
-          
-          # Print all the images into a PDF file, one plot per page
-          if (!input$export_pdf_multiple) {
+
+          if (!input$export_multiple) {
             plots <- values$plots[input$plots_order]
             invisible <- lapply(plots, print)
-          }
-          # Print multiple plots per page
-          else {
+          } else {
             num_pages <- export_num_pages()
             for (page in seq(num_pages)) {
-              export_print_page(page)
+              suppressMessages(print(export_print_page(page)))
             }
           }
 
           grDevices::dev.off()
         }
-        # If saving as simple images, the job is much simpler
+        # If saving as raw images, save each page as a separate file
         else {
-          # Create all the individual files for each plot and save the filenames
-          plots <- values$plots[input$plots_order]
-          file_names <- lapply(names(plots), function(plot_name) { 
-            file_name <- paste0(plot_name, ".", file_type)
+          num_pages <- export_num_pages()
+          for (page in seq(num_pages)) {
+            export_print_page(page)
+          }
+          file_names <- lapply(seq(num_pages), function(page) { 
+            file_name <- paste0("export_plots_p", page, ".", file_type)
             export_params <- list(file_name,
                                   width = input$export_file_width,
                                   height = input$export_file_height)
             do.call(file_type, export_params)
-            print(plots[[plot_name]])
+            print(export_print_page(page))
             grDevices::dev.off()
             file_name
           })
@@ -425,6 +389,7 @@ server <- function(input, output, session) {
         }
 
         # Remove the generated files so that we don't run out of disk space :)
+        
         file.remove(file_names)
       },
       error = function(err) {
