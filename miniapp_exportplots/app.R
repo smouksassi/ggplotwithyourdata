@@ -184,9 +184,16 @@ server <- function(input, output, session) {
   })
   outputOptions(output, 'saved_plots_exist', suspendWhenHidden = FALSE)
   
+  countNoun <- function(num, noun) {
+    if (num == 1) paste0(num, " ", noun)
+    else paste0(num, " ", noun, "s")
+  }
+  
   output$export_btn_ui <- renderUI({
-    downloadButton("export_btn",
-                   paste("Download", length(input$plots_order), "plots"))
+    btn_text <- paste0("Download ",
+                       countNoun(length(input$plots_order), "plot"),
+                       " (", countNoun(export_num_pages(), "page"), ")")
+    downloadButton("export_btn", btn_text)
   })
 
   # Select the plots and the order of the plots to export

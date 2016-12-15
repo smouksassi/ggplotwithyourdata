@@ -4,10 +4,15 @@
 }
 
 #save_plot_btn {
-  margin-left: 15px;
+  margin-left: 5px;
   vertical-align: top;
 }
 
 #save_plot_checkmark {
   color: green;
+}
+
+#remove_plot_btn {
+  margin-left: 5px;
+  vertical-align: top;
 }

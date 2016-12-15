@@ -654,52 +654,60 @@ fluidPage(
           fluidRow(
             column(
               4,
-              h2("Exporting", textOutput("num_plots", inline = TRUE),
-                 "saved plots"),
-              selectInput("export_file_type", "File type",
-                          c("PDF" = "pdf", "JPEG" = "jpeg", "PNG" = "png", "BMP" = "bmp")),
-              conditionalPanel(
-                condition = "input.export_file_type == 'pdf'",
-                selectInput("export_pdf_orientation", "Page orientation",
-                            c("Portrait (8.5\" x 11\")" = "portrait",
-                              "Landscape (11\" x 8.5\")" = "landscape",
-                              "Custom dimensions" = "custom")
+              h2("Export Options"),
+              div(
+                id = "exporting_plots_options",
+                selectInput("export_file_type", "File type",
+                            c("PDF" = "pdf", "JPEG" = "jpeg", "PNG" = "png")),
+                conditionalPanel(
+                  condition = "input.export_file_type == 'pdf'",
+                  selectInput("export_pdf_orientation", "Page orientation",
+                              c("Portrait (8.5\" x 11\")" = "portrait",
+                                "Landscape (11\" x 8.5\")" = "landscape",
+                                "Custom dimensions" = "custom")
+                  ),
+                  conditionalPanel(
+                    condition = "input.export_pdf_orientation == 'custom'",
+                    numericInput("export_pdf_width", "Page width (inches)",
+                                 value = 8.5, min = 1, max = 50, step = 0.5),
+                    numericInput("export_pdf_height", "Page height (inches)",
+                                 value = 11, min = 1, max = 50, step = 0.5)
+                  )
                 ),
                 conditionalPanel(
-                  condition = "input.export_pdf_orientation == 'custom'",
-                  numericInput("export_pdf_width", "Page width (inches)",
-                               value = 8.5, min = 1, max = 50, step = 0.5),
-                  numericInput("export_pdf_height", "Page height (inches)",
-                               value = 11, min = 1, max = 50, step = 0.5)
+                  condition = "input.export_file_type != 'pdf'",
+                  numericInput("export_file_width", "Image width (pixels)",
+                               value = 480, min = 100, max = 2000),
+                  numericInput("export_file_height", "Image height (pixels)",
+                               value = 480, min = 100, max = 2000)
                 ),
-                checkboxInput("export_pdf_multiple", "Multiple plots per page"),
+                checkboxInput("export_multiple", "Multiple plots per page"),
                 conditionalPanel(
-                  condition = "input.export_pdf_multiple",
-                  selectInput("export_pdf_arrangement", NULL,
+                  condition = "input.export_multiple",
+                  selectInput("export_arrangement", NULL,
                               c("Arrange plots by row" = "byrow",
                                 "Arrange plots by column" = "bycol")),
-                  numericInput("export_pdf_nrow", "Rows per page",
+                  numericInput("export_nrow", "Rows per page",
                                value = 1, min = 1, max = 20),
-                  numericInput("export_pdf_ncol", "Columns per page",
+                  numericInput("export_ncol", "Columns per page",
                                value = 1, min = 1, max = 20)
                   
-                )
-              ),
-              conditionalPanel(
-                condition = "input.export_file_type != 'pdf'",
-                numericInput("export_file_width", "Image width (pixels)",
-                             value = 480, min = 100, max = 2000),
-                numericInput("export_file_height", "Image height (pixels)",
-                             value = 480, min = 100, max = 2000)
-              ),
-              downloadButton("export_btn", "Download plots")
+                ),
+                uiOutput("export_btn_ui")
+              )
             ),
             column(
               8,
-              h2("Preview saved plots"),
-              uiOutput("plots_select_ui"),
-              actionButton("remove_plot", "Remove plot"),
-              plotOutput("plot_preview")
+              h2("Preview"),
+              strong("Remove plot"), br(),
+              inline_ui(uiOutput("plots_remove_ui")),
+              actionButton("remove_plot_btn", "Remove"),
+              uiOutput("plots_order_ui"),
+              div(
+                id = "preview_plots_options",
+                uiOutput("plots_select_page_ui"),
+                plotOutput("plot_preview", height = "auto")
+              )
             )
           )
         )
