@@ -1,0 +1,69 @@
+/* General */
+
+body {
+  background-color: #fcfcfc;
+  font-size: 16px;
+  color: #333;
+  position: relative;
+}
+
+body > .container > .tab-content {
+  padding: 30px 20px;
+  background: white;
+  border: 1px solid #eee;
+  border-top-width: 0;
+  margin-bottom: 100px;
+}
+
+/* Navbar */
+
+.navbar-inverse {
+  background: #201a16;
+  margin-bottom: 0;
+}
+.navbar-inverse .navbar-nav>li>a {
+  color: #9c9999;
+  font-family: "Open Sans", "Arial";
+}
+.navbar .fa-fw {
+  margin-right: -1px;
+}
+.navbar {
+  font-size: 16px;
+}
+
+.navbar-inverse .navbar-nav>li>a {
+  border-color: transparent;
+  margin-bottom: -1px;
+}
+
+.navbar-inverse .navbar-nav>.active>a,
+.navbar-inverse .navbar-nav>.active>a:hover,
+.navbar-inverse .navbar-nav>.active>a:focus {
+  border-top-color: #201a16; /* #0647d2; */
+  background: #fff;
+  color: #201a16;
+  cursor: default;
+  transition: background 0.3s;
+}
+
+/* Animated underline for the main nav */
+
+.navbar .navbar-nav>li>a:after {
+	content: '';
+	display: block;
+	margin: auto;
+	margin-top: 1px;
+	height: 2px;
+	width: 0px;
+	background: transparent;
+	transition: width .3s ease, background-color .3s ease;
+}
+.navbar .navbar-nav>li>a:hover:after {
+	width: 100%;
+	background: #fff;
+}
+.navbar .navbar-nav>.active>a:hover:after {
+	width: 0px;
+	background: transparent;
+}
