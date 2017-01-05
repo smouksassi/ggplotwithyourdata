@@ -10,6 +10,7 @@ suppressMessages ({
   library(ggkm)
   library(Hmisc)
   library(quantreg)
+  library(markdown)
   #library(lazyeval)
 })
 
