@@ -1,3 +1,8 @@
+# TODO
+# allow user to upload data file for Test (have a checkbox)
+# When an uploaded file is used the test treatment will be from this file while the reference will be from the built in and in this situation we will allow to have the same treatment since it comes from two different files
+
+
 function(input, output, session) {
   # Make sure the reference and test treatment dropdowns don't let you select
   # the same drug
