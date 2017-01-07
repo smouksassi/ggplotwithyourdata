@@ -32,7 +32,7 @@ function(input, output, session) {
     test_rows$TRTDOSE_NAME <- paste0("Test: ", input$test_treat)
     data <- rbind(ref_rows, test_rows)
     
-    plot <- ggplot(data, aes(WEEK, TTP)) +
+    plot <- ggplot(data, aes(WEEK_BIN, TTP)) +
       aes(color = TRTDOSE, group = TRTDOSE) + 
       geom_point(alpha = 0.5, shape = 16, size = 1) +
       geom_boxplot(aes(group = NULL), varwidth = FALSE,

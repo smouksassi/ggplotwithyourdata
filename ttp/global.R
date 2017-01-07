@@ -46,11 +46,11 @@ validate_dataset <- function(data) {
 
 # Given a TTP dataset with the WEEKS column as raw integers, convert it to bins 
 clean_dataset_weeks <- function(data) {
-  data$WEEK_RAW <- data$WEEK
-  max_week <- max(as.integer(data$WEEK_RAW, 51))
+  data$WEEK_BIN <- data$WEEK
+  max_week <- max(as.integer(data$WEEK), 51)
   week_cats <- 
     cut(
-      data$WEEK_RAW,
+      data$WEEK_BIN,
       breaks = c(0:11, 13, 15, 17, 19, 21, 23, 25, max_week),
       include.lowest = TRUE, right = FALSE, ordered_result = TRUE
     )
@@ -61,7 +61,7 @@ clean_dataset_weeks <- function(data) {
                lapply(levels(week_cats), week_category_name)
       )
     )
-  data$WEEK <- week_cats
+  data$WEEK_BIN <- week_cats
   data
 }
 
