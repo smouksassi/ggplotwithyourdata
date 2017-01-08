@@ -77,3 +77,7 @@ body > .container > .tab-content {
   display: inline-block;
   width: 200px;
 }
+#upload_error {
+  color: red;
+  margin-bottom: 15px;
+}

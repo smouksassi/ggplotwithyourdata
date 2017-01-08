@@ -26,18 +26,18 @@ week_category_name <- function(old_name) {
 # validate a TTP dataset to ensure it contains the necessary columns and values
 validate_dataset <- function(data) {
   required_cols <- c("WEEK", "TTP", "TRTDOSE")
-  lapply(required_cols, function(col) {
+  for (col in required_cols) {
     if (!col %in% colnames(data)) {
       error <- paste("Column", col, "must be present in the data")
       return(error)
     }
-  })
+  }
   
   suppressWarnings(
     weeks <- as.integer(data$WEEK)
   )
   if (any(is.na(weeks)) || any(weeks < 0)) {
-    error <-  "WEEK must be only non-negative integers"
+    error <-  "WEEK must be non-negative integers"
     return(error)
   }
   
@@ -71,6 +71,8 @@ clean_dataset_weeks <- function(data) {
 ttp_data <- read.csv("data/TTPDATA_Shiny.csv",
                      na.strings = c("", " ", ".", "NA", "na"),
                      stringsAsFactors = FALSE)
-validate_dataset(ttp_data)
+if (!isTRUE(validate_dataset(ttp_data))) {
+  stop("There is a problem with the internal data file", call. = FALSE)
+}
 ttp_data <- clean_dataset_weeks(ttp_data)
-drug_list <- as.character(unique(ttp_data$TRTDOSE))
+ref_drug_list <- as.character(unique(ttp_data$TRTDOSE))
