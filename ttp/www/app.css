@@ -67,3 +67,17 @@ body > .container > .tab-content {
 	width: 0px;
 	background: transparent;
 }
+
+/* Other */
+
+#plot-main-opts {
+  text-align: center;
+}
+#plot-main-opts .shiny-input-container {
+  display: inline-block;
+  width: 200px;
+}
+#upload_error {
+  color: red;
+  margin-bottom: 15px;
+}
