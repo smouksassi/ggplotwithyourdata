@@ -41,6 +41,13 @@ function(input, output, session) {
     
   })
   
+  # If an X is selected but no Y is selected, switch to the Histograms tab
+  observe({
+    if (!is.null(input$x) && is.null(input$y)) {
+      updateTabsetPanel(session, "graphicaltypes", "histograms_density")
+    }
+  })
+  
   outputOptions(output, "ycol", suspendWhenHidden=FALSE)
   outputOptions(output, "xcol", suspendWhenHidden=FALSE)
   
