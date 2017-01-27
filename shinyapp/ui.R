@@ -11,11 +11,17 @@ fluidPage(
       tabsetPanel(
         tabPanel(
           "Inputs", 
-          fileInput("datafile", "Choose csv file to upload",
+          br(),
+          tags$div(
+            tags$strong("Choose csv file to upload"),
+            "or", actionLink("sample_data_btn", "use sample data")
+          ),
+          fileInput("datafile", NULL,
                     multiple = FALSE, accept = c("csv")),
           uiOutput("ycol"),uiOutput("xcol"),
           tabsetPanel(
             id = "filtercategorize",
+            type = "pills",
             tabPanel(
               "Categorize/Rename", 
               uiOutput("catvar"),
@@ -401,6 +407,7 @@ fluidPage(
               ),
               tabPanel(
                 "Histograms/Density",
+                value = "histograms_density",
                 fluidRow(
                   column (12, h6("A plot of the mapped x variable
                                  will be produced when no y variable(s) are selected.This is still very limited. Options are to be added as per users requests.")),

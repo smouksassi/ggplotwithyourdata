@@ -1,29 +1,23 @@
 function(input, output, session) {
   values <- reactiveValues(
-    plots = list()
+    plots = list(),  # list of plots the user saved
+    maindata = NULL  # the data frame used throughout the app
   )
   
-  filedata <- reactive({
-    infile <- input$datafile
-    if (is.null(infile)) {
-      # User has not uploaded a file yet
-      return(NULL)
-    }
-    read.csv(infile$datapath,na.strings = c("NA","."))
-    
-    
+  # Load user data
+  observeEvent(input$datafile, {
+    file <- input$datafile$datapath
+    values$maindata <- read.csv(file, na.strings = c("NA","."))
   })
   
-  
-  
-  myData <- reactive({
-    df=filedata()
-    if (is.null(df)) return(NULL)
+  # Load sample dataset
+  observeEvent(input$sample_data_btn, {
+    file <- "data/sample_data.csv"
+    values$maindata <- read.csv(file, na.strings = c("NA","."))
   })
-  
-  
+
   output$ycol <- renderUI({
-    df <-filedata()
+    df <- values$maindata
     if (is.null(df)) return(NULL)
     items=names(df)
     names(items)=items
@@ -33,7 +27,7 @@ function(input, output, session) {
   })
   
   output$xcol <- renderUI({
-    df <-filedata()
+    df <-values$maindata
     if (is.null(df)) return(NULL)
     items=names(df)
     names(items)=items
@@ -41,11 +35,18 @@ function(input, output, session) {
     
   })
   
+  # If an X is selected but no Y is selected, switch to the Histograms tab
+  observe({
+    if (!is.null(input$x) && is.null(input$y)) {
+      updateTabsetPanel(session, "graphicaltypes", "histograms_density")
+    }
+  })
+  
   outputOptions(output, "ycol", suspendWhenHidden=FALSE)
   outputOptions(output, "xcol", suspendWhenHidden=FALSE)
   
   output$catvar <- renderUI({
-    df <-filedata()
+    df <-values$maindata
     validate(       need(!is.null(df), "Please select a data set"))
     #if (is.null(df)) return(NULL)
     items=names(df)
@@ -62,7 +63,7 @@ function(input, output, session) {
   })
   
   output$catvar2 <- renderUI({
-    df <-filedata()
+    df <-values$maindata
     validate(       need(!is.null(df), "Please select a data set"))
     #if (is.null(df)) return(NULL)
     items=names(df)
@@ -79,7 +80,7 @@ function(input, output, session) {
   })
   
   output$catvar3 <- renderUI({
-    df <-filedata()
+    df <-values$maindata
     validate(       need(!is.null(df), "Please select a data set"))
     # if (is.null(df)) return(NULL)
     items=names(df)
@@ -100,7 +101,7 @@ function(input, output, session) {
     )
   })
   output$ncuts2 <- renderUI({
-    df <-filedata()
+    df <-values$maindata
     validate(       need(!is.null(df), "Please select a data set"))
     if (is.null(input$catvar3in)) return()
     if (!is.null(input$catvar3in) && length(input$catvar3in ) <1)  return(NULL)
@@ -115,7 +116,7 @@ function(input, output, session) {
     }
   })
   output$asnumeric <- renderUI({
-    df <-filedata()
+    df <-values$maindata
     validate(       need(!is.null(df), "Please select a data set"))
     if (is.null(input$catvar3in)) return()
     if (!is.null(input$catvar3in) && length(input$catvar3in ) <1)  return(NULL)
@@ -140,7 +141,7 @@ function(input, output, session) {
   
   
   recodedata1  <- reactive({
-    df <- filedata() 
+    df <- values$maindata 
     validate(       need(!is.null(df), "Please select a data set"))
     # if (is.null(df)) return(NULL)
     if(!is.null(input$catvarin)&length(input$catvarin ) >=1) {
@@ -951,7 +952,7 @@ function(input, output, session) {
   })
   
   output$colour <- renderUI({
-    df <-filedata()
+    df <-values$maindata
     validate(       need(!is.null(df), "Please select a data set"))
     #if (is.null(df)) return(NULL)
     items=names(df)
@@ -968,7 +969,7 @@ function(input, output, session) {
   
   
   output$group <- renderUI({
-    df <-filedata()
+    df <-values$maindata
     validate(       need(!is.null(df), "Please select a data set"))
     #if (is.null(df)) return(NULL)
     items=names(df)
@@ -986,7 +987,7 @@ function(input, output, session) {
   
   
   output$facet_col <- renderUI({
-    df <-filedata()
+    df <-values$maindata
     validate(       need(!is.null(df), "Please select a data set"))
     # if (is.null(df)) return(NULL)
     items=names(df)
@@ -1000,7 +1001,7 @@ function(input, output, session) {
     selectInput("facetcolin", "Column Split:",items)
   })
   output$facet_row <- renderUI({
-    df <-filedata()
+    df <-values$maindata
     validate(       need(!is.null(df), "Please select a data set"))
     #if (is.null(df)) return(NULL)
     items=names(df)
@@ -1015,7 +1016,7 @@ function(input, output, session) {
   })
   
   output$facet_col_extra <- renderUI({
-    df <-filedata()
+    df <-values$maindata
     if (is.null(df)) return(NULL)
     items=names(df)
     names(items)=items
@@ -1028,7 +1029,7 @@ function(input, output, session) {
     selectInput("facetcolextrain", "Extra Column Split:",items)
   })
   output$facet_row_extra <- renderUI({
-    df <-filedata()
+    df <-values$maindata
     if (is.null(df)) return(NULL)
     items=names(df)
     names(items)=items
@@ -1069,7 +1070,7 @@ function(input, output, session) {
   outputOptions(output, "facetscales", suspendWhenHidden=FALSE)
   
   output$pointsize <- renderUI({
-    df <-filedata()
+    df <-values$maindata
     if (is.null(df)) return(NULL)
     items=names(df)
     names(items)=items
@@ -1084,7 +1085,7 @@ function(input, output, session) {
   })
   
   output$fill <- renderUI({
-    df <-filedata()
+    df <-values$maindata
     if (is.null(df)) return(NULL)
     items=names(df)
     names(items)=items
@@ -1098,7 +1099,7 @@ function(input, output, session) {
   })
   
   output$weight <- renderUI({
-    df <-filedata()
+    df <-values$maindata
     if (is.null(df)) return(NULL)
     items=names(df)
     names(items)=items
@@ -2465,7 +2466,7 @@ function(input, output, session) {
   
   # Disable the "save" button if the plot name input is empty
   observe({
-    shinyjs::toggle("save_plot_area", condition = !is.null(filedata()))
+    shinyjs::toggle("save_plot_area", condition = !is.null(values$maindata))
     shinyjs::toggleState("save_plot_btn",
                          condition = nzchar(trimws(input$save_plot_name)))
   })
