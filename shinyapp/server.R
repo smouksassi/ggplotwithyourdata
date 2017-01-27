@@ -1045,6 +1045,7 @@ function(input, output, session) {
     if (length(input$y) > 1 ){
       items= c("yvars",None=".",items, "yvalues")    
       if (!is.null(input$pastevarin)&length(input$pastevarin) >1 ){
+        nameofcombinedvariables<- paste(as.character(input$pastevarin),collapse="_",sep="") 
         items= c(items,nameofcombinedvariables)    
       }
     }
