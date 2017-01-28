@@ -262,17 +262,15 @@ function(input, output, session) {
   recodedata4  <- reactive({
     df <- recodedata3()
     validate(       need(!is.null(df), "Please select a data set"))
-    if (is.null(input$catvar4in)) return()
+    if (is.null(input$catvar4in) || is.null(input$customvarlabels)) return()
     #if (is.null(df)) return(NULL)
     if(input$catvar4in!="") {
       varname<- input$catvar4in
       xlabels <- input$customvarlabels 
       xlabels <- gsub("\\\\n", "\\\n", xlabels)
-      nxxlabels <- length(as.numeric(unlist (strsplit(xlabels, ",")) )) -1
       df[,varname] <- as.factor(df[,varname])
       levels(df[,varname])  <-  unlist (strsplit(xlabels, ",") )
     }
-    
     df
   })
   
@@ -946,7 +944,6 @@ function(input, output, session) {
       varname<- input$catvar5in
       xlabels <- input$customvarlabels5 
       xlabels <- gsub("\\\\n", "\\\n", xlabels)
-      nxxlabels <- length(as.numeric(unlist (strsplit(xlabels, ",")) )) -1
       df[,varname] <- as.factor(df[,varname])
       levels(df[,varname])  <-  unlist (strsplit(xlabels, ",") )
     }
@@ -2506,5 +2503,5 @@ function(input, output, session) {
   # Show the source code of the plot
   output$plotcode <- renderText({
     get_source_code(plotObject())
-  })  
-  }
+  })
+}
