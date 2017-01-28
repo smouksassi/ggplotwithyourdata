@@ -276,6 +276,15 @@ fluidPage(
           "X/Y Plot"  , 
           uiOutput('ui_plot'),
           shinyjs::hidden(div(
+            id = "update_plot_area",
+            inline_ui(
+              checkboxInput("auto_update_plot",
+                            "Update plot automatically", value = TRUE)
+            ),
+            actionButton("update_plot_btn", "Update plot",
+                         icon = icon("refresh"))
+          )),
+          shinyjs::hidden(div(
             id = "save_plot_area",
             inline_ui(
               textInput("save_plot_name", NULL, "",
@@ -294,8 +303,7 @@ fluidPage(
           tableOutput("plot_clickedpoints"),
           uiOutput("brushheader"),
           tableOutput("plot_brushedpoints"),
-          #actionButton("plotButton", "Update Plot"),
-          
+
           tabPanel(
             "Types of Graphs",
             tabsetPanel(

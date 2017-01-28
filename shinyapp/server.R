@@ -1,7 +1,9 @@
 function(input, output, session) {
   values <- reactiveValues(
-    plots = list(),  # list of plots the user saved
-    maindata = NULL  # the data frame used throughout the app
+    plots = list(),      # list of plots the user saved
+    maindata = NULL,     # the data frame used throughout the app
+    updatePlot = FALSE,  # whether to manually update the plot
+    prevPlot = NULL      # the last plot that was successfully plotted
   )
   
   # Load user data
@@ -15,7 +17,7 @@ function(input, output, session) {
     file <- "data/sample_data.csv"
     values$maindata <- read.csv(file, na.strings = c("NA","."))
   })
-
+  
   output$ycol <- renderUI({
     df <- values$maindata
     if (is.null(df)) return(NULL)
@@ -1045,7 +1047,7 @@ function(input, output, session) {
     if (length(input$y) > 1 ){
       items= c("yvars",None=".",items, "yvalues")    
       if (!is.null(input$pastevarin)&length(input$pastevarin) >1 ){
-        nameofcombinedvariables<- paste(as.character(input$pastevarin),collapse="_",sep="") 
+        nameofcombinedvariables<- paste(as.character(input$pastevarin),collapse="_",sep="")
         items= c(items,nameofcombinedvariables)    
       }
     }
@@ -1058,9 +1060,9 @@ function(input, output, session) {
     if (!is.null(input$y)&length(input$y) > 1 ){
       items= c("free_y","fixed","free_x","free")    
     }
-  #  if (!is.null(input$y)&length(input$y) < 2 ){
-   #   items= c("fixed","free_x","free_y","free")   
-  # }
+    #  if (!is.null(input$y)&length(input$y) < 2 ){
+    #   items= c("fixed","free_x","free_y","free")   
+    # }
     selectInput('facetscalesin','Facet Scales:',items)
   })
   
@@ -1147,10 +1149,19 @@ function(input, output, session) {
   
   
   plotObject <- reactive({
+    # Don't generate a new plot if the user wants to refresh manually
+    if (!input$auto_update_plot) {
+      if (values$updatePlot == TRUE) {
+        values$updatePlot <- FALSE
+      } else {
+        return(values$prevPlot)
+      }
+    }
     plotdata <- recodedata5()
     validate(need(!is.null(plotdata), "Please select a data set") )
     
     if(!is.null(plotdata)) {
+      
       
       if (input$themetableau){
         scale_colour_discrete <- function(...) 
@@ -2372,16 +2383,18 @@ function(input, output, session) {
         }
       }
       if (input$showtargettext){
-      p <- p +
-        annotate("text", x=input$lowerxin*1.1, y=input$lowerytarget,
-                 label=input$targettext, col="blue", hjust=0, vjust=1,size=3)
+        p <- p +
+          annotate("text", x=input$lowerxin*1.1, y=input$lowerytarget,
+                   label=input$targettext, col="blue", hjust=0, vjust=1,size=3)
       }
       #p <- ggplotly(p)
       
       # You should attach any variables (dependencies) that are used in the
       # source code
       # p <- attach_source_dep(p, c("var1", "var2", "var3"))
-
+      
+      values$prevPlot <- p
+      
       p
     }
   })
@@ -2430,7 +2443,7 @@ function(input, output, session) {
   })
   
   # ------ Save Plot button in Plot tab ------
-
+  
   # When the save button is clicked, add the plot to a list and clear the input
   observeEvent(input$save_plot_btn, {
     plot_name <- trimws(input$save_plot_name)
@@ -2472,13 +2485,26 @@ function(input, output, session) {
                          condition = nzchar(trimws(input$save_plot_name)))
   })
   
+  # Don't show the update plot options when there is no plot
+  observe({
+    shinyjs::toggle("update_plot_area", condition = !is.null(values$maindata))
+  })
+  observe({
+    shinyjs::toggle("update_plot_btn",
+                    condition = input$auto_update_plot == FALSE)
+  })
+  # Signal the app to update the plot manually
+  observeEvent(input$update_plot_btn, {
+    values$updatePlot <- TRUE
+  })
+  
   # ----- Export Plots tab -----
   source(file.path("server", "tab-export.R"), local = TRUE)$value
   
   # ----- Plot Code tab ------
-    
+  
   # Show the source code of the plot
   output$plotcode <- renderText({
     get_source_code(plotObject())
   })  
-}
+  }
