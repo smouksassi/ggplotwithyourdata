@@ -33,9 +33,9 @@ fluidPage(
               textOutput("bintext"),
               uiOutput("catvar4"),
               textOutput("labeltext"),
-              uiOutput("nlabels")
+              shinyjs::hidden(textInput("customvarlabels", "", ""))
             ),
-                      
+            
             tabPanel("Combine Variables",
                      h6("Combined variables can be used for colour, fill, group, size and facets. They cannot be used as X or Y variables."),
                      
@@ -131,7 +131,7 @@ fluidPage(
               conditionalPanel(condition = "input.useryzoom" ,uiOutput("lowery"),uiOutput("uppery"))
               
             ),
-                             
+            
             tabPanel(
               "Background Color and Legend(s)",
               selectInput('backgroundcol', label ='Background Color',
@@ -211,13 +211,13 @@ fluidPage(
               conditionalPanel(
                 condition = "input.customncolnrow" ,
                 h6("An error (nrow*ncol >= n is not TRUE) will show up if the total number of facets/panels
-                                                            is greater than the product of the specified  N columns x N rows. Increase the N columns and/or N rows to avoid the error.
+                   is greater than the product of the specified  N columns x N rows. Increase the N columns and/or N rows to avoid the error.
                    The default empty values will use ggplot automatic algorithm."),        
                 numericInput("wrapncol",label = "N columns",value =NA,min=1,max =10) ,
                 numericInput("wrapnrow",label = "N rows",value = NA,min=1,max=10) 
                 )
-            ) ,
-                             
+              ) ,
+            
             tabPanel(
               "Reference Lines/Target",
               checkboxInput('identityline', 'Identity Line')    ,   
@@ -230,17 +230,17 @@ fluidPage(
                                numericInput("hline",label = "",value = 1) ),
               checkboxInput('showtarget', 'Add Target Window', value = FALSE) ,
               conditionalPanel(condition = "input.showtarget" , 
-              numericInput("lowerytarget",label = "Lower Target Value",
-              value = 1,min=NA,max=NA,width='50%'),
-              numericInput("uppertarget",label = "Upper Target Value",
-                           value = 1,min=NA,max=NA,width='50%'),                 
+                               numericInput("lowerytarget",label = "Lower Target Value",
+                                            value = 1,min=NA,max=NA,width='50%'),
+                               numericInput("uppertarget",label = "Upper Target Value",
+                                            value = 1,min=NA,max=NA,width='50%'),                 
                                
-              sliderInput("targetopacity", label = "Target Opacity:",
-                          min = 0, max = 1, value = 0.7, step = 0.05)
+                               sliderInput("targetopacity", label = "Target Opacity:",
+                                           min = 0, max = 1, value = 0.7, step = 0.05)
               ),
               checkboxInput('showtargettext', 'Add Target Text', value = FALSE),
               conditionalPanel(condition = "input.showtargettext" ,
-              textInput('targettext', 'Target Text', value = "Target: XX-XXX"))
+                               textInput('targettext', 'Target Text', value = "Target: XX-XXX"))
               
               
               
@@ -260,15 +260,15 @@ fluidPage(
                                             value = 1,min=0.1,max=10,step=0.01)) 
             ) #tabpanel
           )#tabsetpanel
-        ), # tabpanel
+          ), # tabpanel
         #) ,#tabsetPanel(),
         
         tabPanel(
           "How To",
           includeMarkdown(file.path("text", "howto.md"))
         )# tabpanel 
-      )
-    ), #sidebarPanel
+          )
+      ), #sidebarPanel
     
     mainPanel(
       tabsetPanel(
@@ -303,7 +303,7 @@ fluidPage(
           tableOutput("plot_clickedpoints"),
           uiOutput("brushheader"),
           tableOutput("plot_brushedpoints"),
-
+          
           tabPanel(
             "Types of Graphs",
             tabsetPanel(
@@ -385,11 +385,11 @@ fluidPage(
                 "Boxplots",
                 fluidRow(
                   column (12, h6("Limited Boxplots support. Options are to be added as per users requests.")),
-                                                   
+                  
                   column (
                     4,
                     checkboxInput('boxplotaddition', 'Add a Boxplot ? (makes sense if x variable is categorical and
-                                        you Group By a sensible choice. By default the x variable is used for grouping)'),
+                                  you Group By a sensible choice. By default the x variable is used for grouping)'),
                     checkboxInput('boxplotignoregroup', 'Ignore Mapped Group ? (can me helpful to superpose a loess or median on top of the boxplot)',value = TRUE)
                   ),
                   column (
@@ -399,7 +399,7 @@ fluidPage(
                                   Notches are used to compare groups; if the notches of two boxes do not overlap, this suggests that the medians are significantly different." ),
                     checkboxInput('boxplotshowlegend', "Show Legend ?", value=TRUE)
                     ),
-                                                   
+                  
                   column(
                     4,
                     checkboxInput('boxplotignorecol', 'Ignore Mapped Color'),
@@ -412,7 +412,7 @@ fluidPage(
                   
                 )#fluidrow 
                 
-              ),
+                  ),
               tabPanel(
                 "Histograms/Density",
                 value = "histograms_density",
@@ -425,10 +425,10 @@ fluidPage(
                     checkboxInput('histogramaddition', 'Add a Histogram ?',value = FALSE),
                     checkboxInput('densityaddition', 'Add a Density Curve ?',value = TRUE)
                   )
-                )
+                  )
               ),
-                                      
-                                      
+              
+              
               #rqss quantile regression
               tabPanel(
                 "Quantile Regression (?)",
@@ -458,7 +458,7 @@ fluidPage(
                                             "Convex and Increasing"="VI", "Convex and Decreasing"= "VD",
                                             "Concave and Increasing"="CI","Concave and Decreasing"= "CD"),
                                 selected = "N")
-                                                          
+                    
                   ),
                   column(
                     3,
@@ -472,7 +472,7 @@ fluidPage(
                   
                 )#fluidrow
               ),
-                                      
+              
               tabPanel(
                 "Smooth/Linear/Logistic Regressions (?)",
                 
@@ -496,7 +496,7 @@ fluidPage(
                       sliderInput("loessens", "Loess Span:", min=0, max=1, value=c(0.75),step=0.05)
                     ) 
                   ),
-
+                  
                   column (
                     3,  conditionalPanel( " input.Smooth!= 'None' ",
                                           checkboxInput('ignorecol', 'Ignore Mapped Color'),
@@ -518,7 +518,7 @@ fluidPage(
               ### Mean CI section
               tabPanel(
                 "Mean CI (?)",
-
+                
                 fluidRow(
                   column(12,hr()),
                   column (3, 
@@ -548,8 +548,8 @@ fluidPage(
                                         selectInput('colmean', label ='Mean Color', choices=colors(),multiple=FALSE, selectize=TRUE,selected="black") )
                       
                     ) ),
-                                                   
-                                                   
+                  
+                  
                   column(
                     3,
                     conditionalPanel(
@@ -562,7 +562,7 @@ fluidPage(
               ), # tab panel for mean
               
               ### median PI section
-                                      
+              
               
               tabPanel(
                 "Median PIs (?)",
@@ -615,7 +615,7 @@ fluidPage(
               ### median PI section
               
               ### KM section
-                                      
+              
               
               tabPanel(
                 "Kaplan-Meier (?)",
@@ -636,9 +636,9 @@ fluidPage(
                       " input.KM== 'KM/CI' ",
                       sliderInput("KMCI", "KM CI:", min=0, max=1, value=c(0.95),step=0.01),
                       sliderInput("KMCItransparency", "KM CI Transparency:", min=0, max=1, value=c(0.2),step=0.01)
-                                      
+                      
                     )),
-                                                   
+                  
                   column (
                     3,
                     conditionalPanel(
@@ -654,91 +654,91 @@ fluidPage(
               ) #tabpanel km
               ### KM section
               
-            )#tabsetPanel
-          )#tabPanel
-          
+        )#tabsetPanel
+        )#tabPanel
+        
         ),#tabPanel1
-      tabPanel(
-        "Export Plots", 
-        conditionalPanel(
-          condition = "!output.saved_plots_exist",
-          h2("You do not have any saved plots to export")
-        ),
-        conditionalPanel(
-          condition = "output.saved_plots_exist",
-          fluidRow(
-            column(
-              4,
-              h2("Export Options"),
-              div(
-                id = "exporting_plots_options",
-                selectInput("export_file_type", "File type",
-                            c("PDF" = "pdf", "JPEG" = "jpeg", "PNG" = "png")),
-                conditionalPanel(
-                  condition = "input.export_file_type == 'pdf'",
-                  selectInput("export_pdf_orientation", "Page orientation",
-                              c("Portrait (8.5\" x 11\")" = "portrait",
-                                "Landscape (11\" x 8.5\")" = "landscape",
-                                "Custom dimensions" = "custom")
+        tabPanel(
+          "Export Plots", 
+          conditionalPanel(
+            condition = "!output.saved_plots_exist",
+            h2("You do not have any saved plots to export")
+          ),
+          conditionalPanel(
+            condition = "output.saved_plots_exist",
+            fluidRow(
+              column(
+                4,
+                h2("Export Options"),
+                div(
+                  id = "exporting_plots_options",
+                  selectInput("export_file_type", "File type",
+                              c("PDF" = "pdf", "JPEG" = "jpeg", "PNG" = "png")),
+                  conditionalPanel(
+                    condition = "input.export_file_type == 'pdf'",
+                    selectInput("export_pdf_orientation", "Page orientation",
+                                c("Portrait (8.5\" x 11\")" = "portrait",
+                                  "Landscape (11\" x 8.5\")" = "landscape",
+                                  "Custom dimensions" = "custom")
+                    ),
+                    conditionalPanel(
+                      condition = "input.export_pdf_orientation == 'custom'",
+                      numericInput("export_pdf_width", "Page width (inches)",
+                                   value = 8.5, min = 1, max = 50, step = 0.5),
+                      numericInput("export_pdf_height", "Page height (inches)",
+                                   value = 11, min = 1, max = 50, step = 0.5)
+                    )
                   ),
                   conditionalPanel(
-                    condition = "input.export_pdf_orientation == 'custom'",
-                    numericInput("export_pdf_width", "Page width (inches)",
-                                 value = 8.5, min = 1, max = 50, step = 0.5),
-                    numericInput("export_pdf_height", "Page height (inches)",
-                                 value = 11, min = 1, max = 50, step = 0.5)
-                  )
-                ),
-                conditionalPanel(
-                  condition = "input.export_file_type != 'pdf'",
-                  numericInput("export_file_width", "Image width (pixels)",
-                               value = 480, min = 100, max = 2000),
-                  numericInput("export_file_height", "Image height (pixels)",
-                               value = 480, min = 100, max = 2000)
-                ),
-                checkboxInput("export_multiple", "Multiple plots per page"),
-                conditionalPanel(
-                  condition = "input.export_multiple",
-                  selectInput("export_arrangement", NULL,
-                              c("Arrange plots by row" = "byrow",
-                                "Arrange plots by column" = "bycol")),
-                  numericInput("export_nrow", "Rows per page",
-                               value = 1, min = 1, max = 20),
-                  numericInput("export_ncol", "Columns per page",
-                               value = 1, min = 1, max = 20)
-                  
-                ),
-                uiOutput("export_btn_ui")
-              )
-            ),
-            column(
-              8,
-              h2("Preview"),
-              strong("Remove plot"), br(),
-              inline_ui(uiOutput("plots_remove_ui")),
-              actionButton("remove_plot_btn", "Remove"),
-              uiOutput("plots_order_ui"),
-              div(
-                id = "preview_plots_options",
-                uiOutput("plots_select_page_ui"),
-                plotOutput("plot_preview", height = "auto")
+                    condition = "input.export_file_type != 'pdf'",
+                    numericInput("export_file_width", "Image width (pixels)",
+                                 value = 480, min = 100, max = 2000),
+                    numericInput("export_file_height", "Image height (pixels)",
+                                 value = 480, min = 100, max = 2000)
+                  ),
+                  checkboxInput("export_multiple", "Multiple plots per page"),
+                  conditionalPanel(
+                    condition = "input.export_multiple",
+                    selectInput("export_arrangement", NULL,
+                                c("Arrange plots by row" = "byrow",
+                                  "Arrange plots by column" = "bycol")),
+                    numericInput("export_nrow", "Rows per page",
+                                 value = 1, min = 1, max = 20),
+                    numericInput("export_ncol", "Columns per page",
+                                 value = 1, min = 1, max = 20)
+                    
+                  ),
+                  uiOutput("export_btn_ui")
+                )
+              ),
+              column(
+                8,
+                h2("Preview"),
+                strong("Remove plot"), br(),
+                inline_ui(uiOutput("plots_remove_ui")),
+                actionButton("remove_plot_btn", "Remove"),
+                uiOutput("plots_order_ui"),
+                div(
+                  id = "preview_plots_options",
+                  uiOutput("plots_select_page_ui"),
+                  plotOutput("plot_preview", height = "auto")
+                )
               )
             )
           )
+        ),
+        
+        tabPanel(
+          'Data',
+          dataTableOutput("mytablex") 
+        ),#tabPanel2
+        
+        tabPanel(
+          'Plot Code',
+          h5("Plot reproducibility initial support. To reproduce a plot, in the data tab save the plotdata into a csv, read back to R naming it plotdata then copy paste the code below. Some inputs might not be yet supported we will be adding those during the coming weeks."),
+          verbatimTextOutput("plotcode")
         )
-      ),
-      
-      tabPanel(
-        'Data',
-        dataTableOutput("mytablex") 
-      ),#tabPanel2
-      
-      tabPanel(
-        'Plot Code',
-        h5("Plot reproducibility initial support. To reproduce a plot, in the data tab save the plotdata into a csv, read back to R naming it plotdata then copy paste the code below. Some inputs might not be yet supported we will be adding those during the coming weeks."),
-        verbatimTextOutput("plotcode")
-      )
-      )#tabsetPanel
-    )#mainPanel
-  )#sidebarLayout
+    )#tabsetPanel
+      )#mainPanel
+    )#sidebarLayout
 )#fluidPage

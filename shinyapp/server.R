@@ -208,69 +208,61 @@ function(input, output, session) {
   #  xaxislabels <-levels(cut( as.numeric ( as.character( dataedafilter$month_ss)), breaks=   as.numeric(unlist (strsplit(ageglimits, ",") )),include.lowest=TRUE))
   #+ scale_x_continuous(breaks=seq(0,length(xaxislabels)-1),labels=xaxislabels )   useasxaxislabels
   output$catvar4 <- renderUI({
-    df <-recodedata3()
-    validate(       need(!is.null(df), "Please select a data set"))
-    #if (is.null(df)) return(NULL)
-    items=names(df)
-    names(items)=items
-    MODEDF <- sapply(df, function(x) is.numeric(x))
-    NAMESTOKEEP2<- names(df)  [! MODEDF ]
-    selectizeInput(  "catvar4in", 'Change labels of this variable:',
-                     choices =NAMESTOKEEP2 ,multiple=FALSE,
-                     options = list(    placeholder = 'Please select a variable',
-                                        onInitialize = I('function() { this.setValue(""); }')
-                     )
-    )
+    df <- recodedata3()
+    if (is.null(df)) return()
+    items <- names(df)
+    names(items) <- items
+    MODEDF <- sapply(df, is.numeric)
+    NAMESTOKEEP2 <- names(df)[!MODEDF]
+    NAMESTOKEEP2["Please select a variable"] = ""
+    
+    selectizeInput("catvar4in", 'Change labels of this variable:',
+                   choices = NAMESTOKEEP2, multiple = FALSE, selected = "")
   })
   
   output$labeltext <- renderText({
     df <- recodedata3()
-    validate(       need(!is.null(df), "Please select a data set"))
-    if (is.null(input$catvar4in)) return(NULL)
-    labeltextout <- ""
-    if(input$catvar4in!="") {
-      varname<- input$catvar4in
-      labeltextout <- c("Old labels",levels(df[,varname] ))
-    }
+    varname <- input$catvar4in
+    if (is.null(df) || is.null(varname) || varname == "") return(NULL)
+    labeltextout <- c("Old labels", levels(df[, varname] ))
     labeltextout   
   })   
   
-  
-  
-  
-  output$nlabels <- renderUI({
-    df <-recodedata3()
-    validate(       need(!is.null(df), "Please select a data set"))
-    if (is.null(input$catvar4in)) return()
-    if (!is.null(input$catvar4in)&length(input$catvar4in ) <1)  return(NULL)
-    if ( input$catvar4in!=""){
-      nlevels <- length( unique( levels(as.factor( df[,input$catvar4in] ))))
-      levelsvalues <- levels(as.factor( df[,input$catvar4in] ))
-      textInput("customvarlabels", label =  paste(input$catvar4in,"requires",nlevels,"new labels,
-                                                  type in a comma separated list below"),
-                value = paste(as.character(levelsvalues),collapse=", ",sep="")
-                
-      )
+  # When a variable is chosen for "change labels of a variable", update
+  # the input for the label values
+  observeEvent(input$catvar4in, {
+    selected_var <- input$catvar4in
+    if (is.null(selected_var) || selected_var == "") {
+      shinyjs::hide("customvarlabels")
+      return()
     }
     
+    shinyjs::show("customvarlabels")
+    df <- recodedata3()
+    selected_var_factor <- as.factor( df[, selected_var] )
+    nlevels <- nlevels(selected_var_factor)
+    levelsvalues <- levels(selected_var_factor)
+    updateTextInput(session, "customvarlabels",
+                    label = paste(selected_var, "requires", nlevels, "new labels, type in a comma separated list below"),
+                    value = paste0(as.character(levelsvalues), collapse = ", ")
+    )
   })
+  
   outputOptions(output, "labeltext", suspendWhenHidden=FALSE) 
   outputOptions(output, "catvar4", suspendWhenHidden=FALSE)
-  outputOptions(output, "nlabels", suspendWhenHidden=FALSE)
-  
   
   recodedata4  <- reactive({
     df <- recodedata3()
-    validate(       need(!is.null(df), "Please select a data set"))
-    if (is.null(input$catvar4in) || is.null(input$customvarlabels)) return()
-    #if (is.null(df)) return(NULL)
-    if(input$catvar4in!="") {
-      varname<- input$catvar4in
-      xlabels <- input$customvarlabels 
-      xlabels <- gsub("\\\\n", "\\\n", xlabels)
-      df[,varname] <- as.factor(df[,varname])
-      levels(df[,varname])  <-  unlist (strsplit(xlabels, ",") )
-    }
+    if (is.null(df) || is.null(input$catvar4in) || is.null(input$customvarlabels))
+      return()
+
+    if (input$catvar4in == "" || input$customvarlabels == "") return(df)
+
+    varname <- input$catvar4in
+    xlabels <- input$customvarlabels 
+    xlabels <- gsub("\\\\n", "\\\n", xlabels)
+    df[,varname] <- as.factor(df[,varname])
+    levels(df[,varname])  <-  unlist (strsplit(xlabels, ",") )
     df
   })
   
@@ -2504,4 +2496,4 @@ function(input, output, session) {
   output$plotcode <- renderText({
     get_source_code(plotObject())
   })
-}
+  }
