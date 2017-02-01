@@ -31,9 +31,12 @@ fluidPage(
               uiOutput("ncuts2"),
               uiOutput("asnumeric"),
               textOutput("bintext"),
-              uiOutput("catvar4"),
-              textOutput("labeltext"),
-              shinyjs::hidden(textInput("customvarlabels", "", ""))
+              shinyjs::hidden(div(
+                id = "factor_lvl_change_section",
+                tags$h3("Change the labels of a variable"),
+                div(id = "factor_lvl_change_placeholder"),
+                actionButton("factor_lvl_change_add", "Add another variable", icon("plus"))
+              ))
             ),
             
             tabPanel("Combine Variables",

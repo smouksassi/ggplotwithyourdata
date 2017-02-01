@@ -6,6 +6,74 @@ function(input, output, session) {
     prevPlot = NULL      # the last plot that was successfully plotted
   )
   
+  # Variables to help with maintaining the dynamic number of "change the labels
+  # of a variable" boxes
+  changeLblsVals <- reactiveValues(
+    numCurrent = 0,  # How many boxes are there currently
+    numTotal = 0  # Max # of boxes at the same time, to prevent memory leaks
+  )
+  
+  # Add UI and corresponding outputs+observers for a "change factor levels"
+  # section
+  add_factor_lvl_change_box <- function() {
+    changeLblsVals$numCurrent <- changeLblsVals$numCurrent + 1
+    
+    df <- recodedata3()
+    items <- names(df)
+    names(items) <- items
+    MODEDF <- sapply(df, is.numeric)
+    NAMESTOKEEP2 <- names(df)[!MODEDF]
+    NAMESTOKEEP2["Please select a variable"] = ""
+    
+    insertUI(
+      selector = "#factor_lvl_change_placeholder", where = "beforeEnd",
+      immediate = TRUE,
+      div(class = "factor_lvl_change_box",
+          selectizeInput(
+            paste0("factor_lvl_change_select_", changeLblsVals$numCurrent),
+            sprintf('Select a variable (%s):', changeLblsVals$numCurrent),
+            choices = NAMESTOKEEP2, selected = ""
+          ),
+          textOutput(paste0("factor_lvl_change_labeltext_",
+                            changeLblsVals$numCurrent)),
+          shinyjs::hidden(textInput(
+            paste0("factor_lvl_change_labels_", changeLblsVals$numCurrent), "", ""))
+      )
+    )
+    
+    if (changeLblsVals$numCurrent <= changeLblsVals$numTotal) {
+      # if we already had this many sections before, no need to wire up any
+      # new observers
+    } else {
+      num1 <- changeLblsVals$numCurrent
+      changeLblsVals$numTotal <- num1
+      
+      output[[paste0("factor_lvl_change_labeltext_", num1)]] <- renderText({
+        df <- recodedata3()
+        selected_var <- input[[paste0("factor_lvl_change_select_", num1)]]
+        if (is.null(selected_var) || selected_var == "") return(NULL)
+        labeltextout <- c("Old labels", levels(df[, selected_var]))
+        labeltextout   
+      })
+      
+      observeEvent(input[[paste0("factor_lvl_change_select_", num1)]], {
+        selected_var <- input[[paste0("factor_lvl_change_select_", num1)]]
+        if (selected_var == "") return()
+        
+        df <- recodedata3()
+        shinyjs::show(paste0("factor_lvl_change_labels_", num1))
+        
+        selected_var_factor <- as.factor( df[, selected_var] )
+        nlevels <- nlevels(selected_var_factor)
+        levelsvalues <- levels(selected_var_factor)
+        updateTextInput(session, paste0("factor_lvl_change_labels_", num1),
+                        label = paste(selected_var, "requires", nlevels, "new labels, type in a comma separated list below"),
+                        value = paste0(as.character(levelsvalues), collapse = ", ")
+        )
+      })
+    }
+  }
+  
   # Load user data
   observeEvent(input$datafile, {
     file <- input$datafile$datapath
@@ -16,6 +84,23 @@ function(input, output, session) {
   observeEvent(input$sample_data_btn, {
     file <- "data/sample_data.csv"
     values$maindata <- read.csv(file, na.strings = c("NA","."))
+  })
+  
+  # when recodedata3 changes, reset the dynamic "change factor levels" boxes
+  observeEvent(recodedata3(), {
+    shinyjs::show("factor_lvl_change_section")
+    
+    changeLblsVals$numCurrent <- 0
+    
+    removeUI(selector = ".factor_lvl_change_box",
+             multiple = TRUE, immediate = TRUE)
+    
+    add_factor_lvl_change_box()
+  })
+  
+  # add another "change factor levels box
+  observeEvent(input$factor_lvl_change_add, {
+    add_factor_lvl_change_box()
   })
   
   output$ycol <- renderUI({
@@ -207,62 +292,21 @@ function(input, output, session) {
   })   
   #  xaxislabels <-levels(cut( as.numeric ( as.character( dataedafilter$month_ss)), breaks=   as.numeric(unlist (strsplit(ageglimits, ",") )),include.lowest=TRUE))
   #+ scale_x_continuous(breaks=seq(0,length(xaxislabels)-1),labels=xaxislabels )   useasxaxislabels
-  output$catvar4 <- renderUI({
-    df <- recodedata3()
-    if (is.null(df)) return()
-    items <- names(df)
-    names(items) <- items
-    MODEDF <- sapply(df, is.numeric)
-    NAMESTOKEEP2 <- names(df)[!MODEDF]
-    NAMESTOKEEP2["Please select a variable"] = ""
-    
-    selectizeInput("catvar4in", 'Change labels of this variable:',
-                   choices = NAMESTOKEEP2, multiple = FALSE, selected = "")
-  })
-  
-  output$labeltext <- renderText({
-    df <- recodedata3()
-    varname <- input$catvar4in
-    if (is.null(df) || is.null(varname) || varname == "") return(NULL)
-    labeltextout <- c("Old labels", levels(df[, varname] ))
-    labeltextout   
-  })   
-  
-  # When a variable is chosen for "change labels of a variable", update
-  # the input for the label values
-  observeEvent(input$catvar4in, {
-    selected_var <- input$catvar4in
-    if (is.null(selected_var) || selected_var == "") {
-      shinyjs::hide("customvarlabels")
-      return()
-    }
-    
-    shinyjs::show("customvarlabels")
-    df <- recodedata3()
-    selected_var_factor <- as.factor( df[, selected_var] )
-    nlevels <- nlevels(selected_var_factor)
-    levelsvalues <- levels(selected_var_factor)
-    updateTextInput(session, "customvarlabels",
-                    label = paste(selected_var, "requires", nlevels, "new labels, type in a comma separated list below"),
-                    value = paste0(as.character(levelsvalues), collapse = ", ")
-    )
-  })
-  
-  outputOptions(output, "labeltext", suspendWhenHidden=FALSE) 
-  outputOptions(output, "catvar4", suspendWhenHidden=FALSE)
   
   recodedata4  <- reactive({
     df <- recodedata3()
-    if (is.null(df) || is.null(input$catvar4in) || is.null(input$customvarlabels))
-      return()
-
-    if (input$catvar4in == "" || input$customvarlabels == "") return(df)
-
-    varname <- input$catvar4in
-    xlabels <- input$customvarlabels 
-    xlabels <- gsub("\\\\n", "\\\n", xlabels)
-    df[,varname] <- as.factor(df[,varname])
-    levels(df[,varname])  <-  unlist (strsplit(xlabels, ",") )
+    if (is.null(df)) return()
+    
+    # get all the "change factor levels" inputs and apply them
+    for (i in seq_len(changeLblsVals$numCurrent)) {
+      variable_name <- input[[paste0("factor_lvl_change_select_", i)]]
+      if (is.null(variable_name) || variable_name == "") next
+      labels <- input[[paste0("factor_lvl_change_labels_", i)]]
+      if (is.null(labels) || labels == "") next
+      labels <- gsub("\\\\n", "\\\n", labels)
+      df[, variable_name] <- as.factor(df[, variable_name])
+      levels(df[, variable_name]) <- unlist(strsplit(labels, ","))
+    }
     df
   })
   
@@ -2496,4 +2540,7 @@ function(input, output, session) {
   output$plotcode <- renderText({
     get_source_code(plotObject())
   })
-  }
+  
+  # for testing purposes
+  #values$maindata <- read.csv("data/sample_data.csv", na.strings = c("NA","."))
+}
