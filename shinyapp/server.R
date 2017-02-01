@@ -261,7 +261,7 @@ function(input, output, session) {
     df <- recodedata2()
     validate(       need(!is.null(df), "Please select a data set"))
     if (is.null(input$catvar3in)) return(NULL)
-    if(input$catvar3in!="") {
+    if(input$catvar3in!="" && !is.null(input$xcutoffs)) {
       varname<- input$catvar3in
       xlimits <- input$xcutoffs 
       nxintervals <- length(as.numeric(unlist (strsplit(xlimits, ",")) )) -1
@@ -280,7 +280,7 @@ function(input, output, session) {
     validate(       need(!is.null(df), "Please select a data set"))
     #if (is.null(df)) return(NULL)
     bintextout <- ""
-    if(input$catvar3in!="") {
+    if(input$catvar3in!="" && !is.null(input$asnumericin)) {
       varname<- input$catvar3in
       if(!input$asnumericin){
         bintextout <- levels(df[,"custombins"] )
