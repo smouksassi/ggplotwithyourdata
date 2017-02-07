@@ -17,7 +17,7 @@ tagList(
       icon = icon("info"),
       class = "fade in",
       
-      "[TODO] information goes here"
+      includeMarkdown(file.path("text", "howto.md"))
     ),
     
     tabPanel(
