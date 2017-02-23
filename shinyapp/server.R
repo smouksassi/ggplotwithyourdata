@@ -145,8 +145,9 @@ function(input, output, session) {
   
   
   output$ncuts <- renderUI({
-    if (!is.null(input$catvarin)&length(input$catvarin ) <1)  return(NULL)
-    sliderInput('ncutsin',label = 'N of Cut Breaks:', min=2, max=10, value=c(3),step=1)
+    if (is.null(input$catvarin))  return(NULL)
+    if (!is.null(input$catvarin) && length(input$catvarin ) <1)  return(NULL)
+    sliderInput('ncutsin',label = 'N of Cut Breaks:', min=2, max=10, value=c(2),step=1)
   })
   
   output$catvar2 <- renderUI({
