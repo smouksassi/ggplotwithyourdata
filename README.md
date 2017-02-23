@@ -26,6 +26,13 @@ R Shiny app as a handy inteface to ggplot2. It enables you to quickly explore yo
 * Controlling y and x axis labels, legends and other commonly used theme options.
 
 ### Running Information
+Make sure to have all required packages installed
+shiny, shinyjs, ggplot2, ggrepel, scales, DT, tidyr, dplyr, Hmisc, quantreg, markdown and ggkm
+ggkm can be installed using this command:
+```
+devtools::install_github("sachsmc/ggkm")
+```
+The main app contains several testing apps the main app can be run using this command:
 ```
 shiny::runGitHub('ggplotwithyourdata', 'smouksassi', subdir = 'shinyapp')
 ```
