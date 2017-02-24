@@ -1,0 +1,54 @@
+---
+title: ""
+output: html_document
+---
+
+
+ 
+###1- How to Perform a Comparison Between Two Treatments in the Database
+
+The application allows the user to perform a comparison of longitudinal TTP between a selected reference and test treatments. TTP data is represented using boxplots.
+
+![](./boxplotpic.png)
+
+The user has the choice of presenting longitudinal TTP data of two treatments side-by-side, or using the overlay option (refer to check box). Numerical values (median and sample size) of TTP can be selected using check boxes.
+
+###2- How to Perform a Comparison Between a Treatment in the Database and a User-Defined Treatment
+
+The application also allows the user to upload TTP data collected in new clinical trials and perform a comparison to any reference treatment.  The user can upload TTP data by selecting the “Upload TTP data file for test treatment” checkbox.
+![](./uploadpic.png)
+
+A browse button will open a navigation window for the use to select the file to be uploaded.  The uploaded file must be in a comma-separated values (CSV) format with the following headers. 
+
+```{r xtable, echo=FALSE}
+knitr::kable (
+  data.frame(ID= "ID_XYZ",TIMEDAYS= " ",TTP= " " ,WEEK=" ", WEEKCAT=" " , HIV= " ", CAVITATION=" ",CD4=" ",
+             TRTDOSE=" ", TRT=" ", AGE=" ", SEX=" ", RACE=" ", WT=" ", STUDY=" " )
+  
+)
+
+```
+
+```        
+
+```
+Definition of Variables:
+
+* "#ID" = Subject ID (string)
+* "TIMEDAYS" = Time (Days, number)   
+* "TTP" = TTP (Days, number)
+* "WEEK" = Time of TTP Observation (Week, number)
+* "WEEKCAT" = Week categories (string)
+* "HIV" = HIV status (Yes/No)
+* "CAVITATION" = Presence of cavitation (Yes/No)
+* "CD4" = CD4 count (units, string)      
+* "TRTDOSE" = Treatment name with Dose when available (string)
+* "TRT" = Treatment name (string)
+* "AGE" = Age (years, number) 
+* "SEX" = Sex (Female/Male)
+* "RACE" = Race (Asian/Black or African American/Hispanic/Missing/Other/White)
+* "WT" = Weight (kg, number)
+* "STUDY" = Study name (string)
+
+The current version of the application reads the column “TTP”, “WEEKCAT” and “TRTDOSE” for plotting purposes.  Reading of other fields will be implemented in future versions. 
+Missing information can be entered as “.” in any field.  

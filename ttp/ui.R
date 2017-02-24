@@ -17,7 +17,7 @@ tagList(
       icon = icon("info"),
       class = "fade in",
       
-      includeMarkdown(file.path("text", "howto.md"))
+      includeHTML(file.path("text", "howto.html"))
     ),
     
     tabPanel(
@@ -53,7 +53,9 @@ tagList(
       icon = icon("cog"),
       class = "fade in",
       
-      "[TODO] more plot options"
+      "Under Construction",br(),
+      icon("pencil-square-o", "fa-3x")        
+      
     )
   )
 )
