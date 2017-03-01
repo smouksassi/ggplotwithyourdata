@@ -988,6 +988,38 @@ function(input, output, session) {
     df
   })
   
+  output$onerowidgroup <- renderUI({
+    df <-values$maindata
+    validate(       need(!is.null(df), "Please select a data set"))
+    items=names(df)
+    names(items)=items
+    items= items 
+    items= c("None",items, "yvars","yvalues") 
+    if (!is.null(input$pastevarin)&length(input$pastevarin) >1 ){
+      nameofcombinedvariables<- paste(as.character(input$pastevarin),collapse="_",sep="") 
+      items= c(items,nameofcombinedvariables)
+    }
+    selectInput("onerowidgroupin", "ID:",items)
+  })
+  outputOptions(output, "onerowidgroup", suspendWhenHidden=FALSE)
+  
+  filterdata7  <- reactive({
+    df <- recodedata5()
+    validate(       need(!is.null(df), "Please select a data set"))
+    
+    if(input$filtertoonerowbyid &  input$onerowidgroupin!="None" ){
+        df<- df %>%
+          group_by_(input$onerowidgroupin,"yvars")%>%
+          filter(row_number()==1 ) %>%
+          ungroup()
+    }
+    
+    df
+  })
+
+  
+  
+  
   output$colour <- renderUI({
     df <-values$maindata
     validate(       need(!is.null(df), "Please select a data set"))
@@ -1153,9 +1185,10 @@ function(input, output, session) {
   outputOptions(output, "fill", suspendWhenHidden=FALSE)
   outputOptions(output, "weight", suspendWhenHidden=FALSE)
   
+
   
   output$mytablex = renderDataTable({
-    df <- recodedata5() 
+    df <- filterdata7() 
     validate(       need(!is.null(df), "Please select a data set"))
     
     datatable(df ,
@@ -1192,7 +1225,7 @@ function(input, output, session) {
         return(values$prevPlot)
       }
     }
-    plotdata <- recodedata5()
+    plotdata <- filterdata7()
     validate(need(!is.null(plotdata), "Please select a data set") )
     
     if(!is.null(plotdata)) {
@@ -2356,7 +2389,7 @@ function(input, output, session) {
       
       
       
-      if (!is.null(input$xaxiszoomin[1])&!is.numeric(plotdata[,"yvalues"])&
+      if (!is.null(input$xaxiszoomin[1])&
           is.numeric(plotdata[,input$x] )&
           input$facetscalesin!="free_x"&
           input$facetscalesin!="free"
@@ -2372,7 +2405,7 @@ function(input, output, session) {
         
       }
       
-      if (!is.null(input$yaxiszoomin[1])&!is.numeric(plotdata[,input$x])&
+      if (!is.null(input$yaxiszoomin[1])&
           is.numeric(plotdata[,"yvalues"] )&
           input$facetscalesin!="free_y"&
           input$facetscalesin!="free"
@@ -2448,30 +2481,30 @@ function(input, output, session) {
   
   
   output$clickheader <-  renderUI({
-    df <-recodedata5()
+    df <-filterdata7()
     if (is.null(df)) return(NULL)
     h4("Clicked points")
   })
   
   output$brushheader <-  renderUI({
-    df <- recodedata5()
+    df <- filterdata7()
     if (is.null(df)) return(NULL)
     h4("Brushed points")
     
   })
   
   output$plot_clickedpoints <- renderTable({
-    df<- recodedata5()  
+    df<- filterdata7()  
     if (is.null(df)) return(NULL)
-    res <- nearPoints(recodedata5(), input$plot_click, input$x, "yvalues")
+    res <- nearPoints(filterdata7(), input$plot_click, input$x, "yvalues")
     if (nrow(res) == 0|is.null(res))
       return(NULL)
     res
   })
   output$plot_brushedpoints <- renderTable({
-    df<- recodedata5()  
+    df<- filterdata7()  
     if (is.null(df)) return(NULL)
-    res <- brushedPoints(recodedata5(), input$plot_brush, input$x,"yvalues")
+    res <- brushedPoints(filterdata7(), input$plot_brush, input$x,"yvalues")
     if (nrow(res) == 0|is.null(res))
       return(NULL)
     res
@@ -2558,10 +2591,10 @@ function(input, output, session) {
       }
     }
     validate(
-      need(!is.null(recodedata5()), "Please select a data set") 
+      need(!is.null(filterdata7()), "Please select a data set") 
     )
     
-    stacked <- recodedata5()
+    stacked <- filterdata7()
     stacked <- stacked[, c(input$x, "yvars", "yvalues")]
     stacked$id <- 1:(nrow(stacked)/length(unique(stacked$yvars)))
     df <- spread_(stacked, "yvars", "yvalues", convert=TRUE)
