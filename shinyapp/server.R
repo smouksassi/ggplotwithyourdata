@@ -2618,7 +2618,7 @@ function(input, output, session) {
           variables=as.list(vars),
           strata=as.list(strat))
 
-      t <- capture.output(table1(strata, labels))
+      t <- capture.output(table1(strata, labels, topclass=paste("Rtable1", input$table_style)))
       values$prevTable <- t
       t
     }

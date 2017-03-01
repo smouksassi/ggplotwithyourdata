@@ -751,7 +751,8 @@ fluidPage(
                          ),
                      actionButton("update_table_btn", "Update table",
                                   icon = icon("refresh")),
-                     checkboxInput("table_incl_overall", "Include Overall column?", TRUE)
+                     checkboxInput("table_incl_overall", "Include Overall column?", TRUE),
+                     selectInput("table_style", "Style", c("Default"="t1default", "Zebra"="t1zebra", "Grid"="t1grid"))
                  ))
         ),
 
