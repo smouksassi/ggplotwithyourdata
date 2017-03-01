@@ -5,6 +5,7 @@ inline_ui <- function(tag) {
 fluidPage(
   useShinyjs(),
   includeCSS("www/app.css"),
+  includeCSS("www/table1-style.css"),
   titlePanel("Hello GHAP HBGDki Member!"),
   sidebarLayout(
     sidebarPanel(
@@ -731,6 +732,20 @@ fluidPage(
           )
         ),
         
+        tabPanel("Descriptive Stats",
+                 htmlOutput("dstats"),
+                 shinyjs::hidden(div(
+                     id = "table_options_area",
+                     inline_ui(
+                         checkboxInput("auto_update_table",
+                                       "Update table automatically", value = TRUE)
+                         ),
+                     actionButton("update_table_btn", "Update table",
+                                  icon = icon("refresh")),
+                     checkboxInput("table_incl_overall", "Include Overall column?", TRUE)
+                 ))
+        ),
+
         tabPanel(
           'Data',
           dataTableOutput("mytablex") 
