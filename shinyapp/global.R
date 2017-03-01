@@ -12,6 +12,10 @@ suppressMessages ({
   library(quantreg)
   library(markdown)
   #library(lazyeval)
+  if (!suppressWarnings(require(table1, quietly=TRUE))) {
+      devtools::install_github("benjaminrich/table1")
+      library(table1)
+  }
 })
 
 source("sourceable.R")

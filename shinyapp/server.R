@@ -3,7 +3,8 @@ function(input, output, session) {
     plots = list(),      # list of plots the user saved
     maindata = NULL,     # the data frame used throughout the app
     updatePlot = FALSE,  # whether to manually update the plot
-    prevPlot = NULL      # the last plot that was successfully plotted
+    prevPlot = NULL,     # the last plot that was successfully plotted
+    updateTable = FALSE  # whether to manually update the dstats table
   )
   
   # Variables to help with maintaining the dynamic number of "change the labels
@@ -2544,4 +2545,67 @@ function(input, output, session) {
   
   # for testing purposes
   #values$maindata <- read.csv("data/sample_data.csv", na.strings = c("NA","."))
+
+  # ----- Descriptive Stats tab ------
+
+  dstatsTable <- reactive({
+    # Don't generate a new table if the user wants to refresh manually
+    if (!input$auto_update_table) {
+      if (values$updateTable == TRUE) {
+        values$updateTable <- FALSE
+      } else {
+        return(values$prevTable)
+      }
+    }
+    validate(
+      need(!is.null(recodedata5()), "Please select a data set") 
+    )
+    
+    stacked <- recodedata5()
+    stacked <- stacked[, c(input$x, "yvars", "yvalues")]
+    stacked$id <- 1:(nrow(stacked)/length(unique(stacked$yvars)))
+    df <- spread_(stacked, "yvars", "yvalues", convert=TRUE)
+    
+    
+    if(!is.null(df)) {
+      strata <- split(df, df[[input$x]])
+      if(input$table_incl_overall) {
+          strata <- c(strata, list(Overall=df))
+      }
+
+      if (is.factor(stacked$yvars)) {
+          vars <- levels(stacked$yvars)
+      } else {
+          vars <- unique(as.character(stacked$yvars))
+      }
+      names(vars) <- vars
+      strat <- names(strata)
+      names(strat) <- strat
+      labels <- list(
+          variables=as.list(vars),
+          strata=as.list(strat))
+
+      t <- capture.output(table1(strata, labels))
+      values$prevTable <- t
+      t
+    }
+  })
+  
+  output$dstats <- renderUI({
+    HTML(dstatsTable())
+  })
+
+  # Don't show the table options when there is no table
+  observe({
+    shinyjs::toggle("table_options_area", condition = !is.null(values$maindata))
+  })
+  observe({
+    shinyjs::toggle("update_table_btn",
+                    condition = input$auto_update_table == FALSE)
+  })
+  # Signal the app to update the table manually
+  observeEvent(input$update_table_btn, {
+    values$updateTable <- TRUE
+  })
+  
 }
