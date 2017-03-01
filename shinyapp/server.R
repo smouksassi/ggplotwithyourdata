@@ -1681,12 +1681,12 @@ function(input, output, session) {
             
             if (input$Median!="None" & input$medianvalues )  {
               p <-   p   +
-                stat_summary(fun.data = median.n,geom = "label_repel",alpha=0.1,
+                stat_summary(fun.data = median.n,geom = "label_repel",alpha=0.4,
                              fun.y = median, fontface = "bold",
                              show.legend=FALSE,size=6)}
             if (input$Median!="None" & input$medianN)  {
               p <-   p   +
-                stat_summary(fun.data = give.n, geom = "label_repel",alpha=0.1,
+                stat_summary(fun.data = give.n, geom = "label_repel",alpha=0.4,
                              fun.y = median, fontface = "bold", 
                              show.legend=FALSE,size=6)      
             }  
@@ -1742,12 +1742,12 @@ function(input, output, session) {
             }
             if (input$Median!="None" & input$medianvalues )  {
               p <-   p   +
-                stat_summary(fun.data = median.n,geom = "label_repel",alpha=0.1,
+                stat_summary(fun.data = median.n,geom = "label_repel",alpha=0.4,
                              fun.y = median, fontface = "bold",colour=mediancol,
                              show.legend=FALSE,size=6)}
             if (input$Median!="None" & input$medianN)  {
               p <-   p   +
-                stat_summary(fun.data = give.n, geom = "label_repel",alpha=0.1,
+                stat_summary(fun.data = give.n, geom = "label_repel",alpha=0.4,
                              fun.y = median, fontface = "bold", colour=mediancol,
                              show.legend=FALSE,size=6)      
             }       
@@ -1801,13 +1801,13 @@ function(input, output, session) {
             }
             if (input$Median!="None" & input$medianvalues )  {
               p <-   p   +
-                stat_summary(fun.data = median.n, aes(group=NULL),geom = "label_repel",alpha=0.1,
+                stat_summary(fun.data = median.n, aes(group=NULL),geom = "label_repel",alpha=0.4,
                              fun.y = median, fontface = "bold",fill="white",
                              show.legend=FALSE,
                              size=6)}
             if (input$Median!="None" & input$medianN)  {
               p <-   p   +
-                stat_summary(fun.data = give.n, aes(group=NULL), geom = "label_repel",alpha=0.1,
+                stat_summary(fun.data = give.n, aes(group=NULL), geom = "label_repel",alpha=0.4,
                              fun.y = median, fontface = "bold", fill="white",
                              show.legend=FALSE,size=6)      
             }
@@ -1865,12 +1865,12 @@ function(input, output, session) {
             
             if (input$Median!="None" & input$medianvalues )  {
               p <-   p   +
-                stat_summary(fun.data = median.n, aes(group=NULL),geom = "label_repel",alpha=0.1,
+                stat_summary(fun.data = median.n, aes(group=NULL),geom = "label_repel",alpha=0.4,
                              fun.y = median, fontface = "bold",colour=mediancol,
                              show.legend=FALSE,size=6)}
             if (input$Median!="None" & input$medianN)  {
               p <-   p   +
-                stat_summary(fun.data = give.n, aes(group=NULL), geom = "label_repel",alpha=0.1,
+                stat_summary(fun.data = give.n, aes(group=NULL), geom = "label_repel",alpha=0.4,
                              fun.y = median, fontface = "bold", colour=mediancol,
                              show.legend=FALSE,size=6)      
             }
