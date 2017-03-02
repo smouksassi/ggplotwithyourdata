@@ -14,6 +14,12 @@ function(input, output, session) {
     numTotal = 0  # Max # of boxes at the same time, to prevent memory leaks
   )
   
+  # Variables to help with maintaining the dynamic number of "quick relabel" boxes
+  quickRelabel <- reactiveValues(
+    numCurrent = 0,  # How many boxes are there currently
+    numTotal = 0  # Max # of boxes at the same time, to prevent memory leaks
+  )
+  
   # Add UI and corresponding outputs+observers for a "change factor levels"
   # section
   add_factor_lvl_change_box <- function() {
@@ -2581,6 +2587,17 @@ function(input, output, session) {
 
   # ----- Descriptive Stats tab ------
 
+  dstatsTableData <- reactive({
+    validate(
+      need(!is.null(recodedata5()), "Please select a data set") 
+    )
+    
+    stacked <- filterdata7()
+    stacked <- stacked[, c(input$x, "yvars", "yvalues")]
+    stacked$id <- 1:(nrow(stacked)/length(unique(stacked$yvars)))
+    stacked
+  })
+
   dstatsTable <- reactive({
     # Don't generate a new table if the user wants to refresh manually
     if (!input$auto_update_table) {
@@ -2594,9 +2611,7 @@ function(input, output, session) {
       need(!is.null(filterdata7()), "Please select a data set") 
     )
     
-    stacked <- filterdata7()
-    stacked <- stacked[, c(input$x, "yvars", "yvalues")]
-    stacked$id <- 1:(nrow(stacked)/length(unique(stacked$yvars)))
+    stacked <- dstatsTableData()
     df <- spread_(stacked, "yvars", "yvalues", convert=TRUE)
     
     
@@ -2612,6 +2627,9 @@ function(input, output, session) {
           vars <- unique(as.character(stacked$yvars))
       }
       names(vars) <- vars
+      for (i in 1:length(vars)) {
+          vars[i] <- input[[paste0("quick_relabel_", i)]]
+      }
       strat <- names(strata)
       names(strat) <- strat
       labels <- list(
@@ -2626,6 +2644,34 @@ function(input, output, session) {
   
   output$dstats <- renderUI({
     HTML(dstatsTable())
+  })
+
+  observe({
+    df <-reorderdata2()
+    validate(need(!is.null(df), "Please select a data set"))
+    lvl <- levels(as.factor(df[,"yvars"]))
+    for (i in 1:quickRelabel$numTotal) {
+        shinyjs::hide(paste0("quick_relabel_", i))
+    }
+    for (i in 1:length(lvl)) {
+      if (i <= quickRelabel$numTotal) {
+          updateTextInput(session, 
+                  paste0("quick_relabel_", i),
+                  lvl[i], lvl[i])
+      } else {
+          insertUI(
+            selector = "#quick_relabel_placeholder", where = "beforeEnd",
+            immediate = TRUE,
+            div(class = "quick_relabel",
+                textInput(
+                  paste0("quick_relabel_", i),
+                  NULL, lvl[i])
+            )
+          )
+          quickRelabel$numTotal <- quickRelabel$numTotal + 1
+      }
+      shinyjs::show(paste0("quick_relabel_", i))
+    }
   })
 
   # Don't show the table options when there is no table

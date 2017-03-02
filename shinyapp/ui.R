@@ -742,6 +742,7 @@ fluidPage(
         ),
         
         tabPanel("Descriptive Stats",
+                 p("Note: use y to select variables of interest (rows) and x for stratification (columns)"),
                  htmlOutput("dstats"),
                  shinyjs::hidden(div(
                      id = "table_options_area",
@@ -752,7 +753,9 @@ fluidPage(
                      actionButton("update_table_btn", "Update table",
                                   icon = icon("refresh")),
                      checkboxInput("table_incl_overall", "Include Overall column?", TRUE),
-                     selectInput("table_style", "Style", c("Default"="t1default", "Zebra"="t1zebra", "Grid"="t1grid"))
+                     selectInput("table_style", "Style", c("Default"="t1default", "Zebra"="t1zebra", "Grid"="t1grid")),
+                     h4("Labels:"),
+                     div(id="quick_relabel_placeholder")
                  ))
         ),
 
