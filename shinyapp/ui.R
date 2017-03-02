@@ -86,6 +86,15 @@ fluidPage(
               uiOutput("catvar5"),
               textOutput("labeltext5"),
               uiOutput("nlabels5")
+            ),
+            tabPanel(
+              "One Row by ID",
+              checkboxInput('filtertoonerowbyid', 'Filter to One Row by ID ?', value = FALSE),
+              conditionalPanel(
+                condition = "input.filtertoonerowbyid" ,
+                uiOutput("onerowidgroup")
+              )
+              
             )
           ),
           hr()
