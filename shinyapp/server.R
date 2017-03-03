@@ -14,6 +14,12 @@ function(input, output, session) {
     numTotal = 0  # Max # of boxes at the same time, to prevent memory leaks
   )
   
+  # Variables to help with maintaining the dynamic number of "quick relabel" boxes
+  quickRelabel <- reactiveValues(
+    numCurrent = 0,  # How many boxes are there currently
+    numTotal = 0  # Max # of boxes at the same time, to prevent memory leaks
+  )
+  
   # Add UI and corresponding outputs+observers for a "change factor levels"
   # section
   add_factor_lvl_change_box <- function() {
@@ -2581,6 +2587,60 @@ function(input, output, session) {
 
   # ----- Descriptive Stats tab ------
 
+  dstatsTableData <- reactive({
+    validate(
+      need(!is.null(recodedata5()), "Please select a data set") 
+    )
+    
+    stacked <- filterdata7()
+    stacked <- stacked[, c(input$x, "yvars", "yvalues")]
+    stacked$id <- 1:(nrow(stacked)/length(unique(stacked$yvars)))
+    stacked
+  })
+
+  stats.apply.rounding <- function(x, digits=3, digits.pct=1) {
+      r <- lapply(x, signif_pad, digits=digits)
+      nr <- c("N", "FREQ", "MEDIAN", "MIN", "MAX")
+      nr <- nr[nr %in% names(x)]
+      r[nr] <- x[nr]
+      if (!is.null(x$PCT)) {
+          r$PCT <- round(x$PCT, digits.pct)
+      }
+      r
+  }
+
+  dstatsRenderCont <- reactive({
+      all <- input$dstats_cont_list
+      all <- all[all %in% allstats]
+      all <- c("None", all)
+
+      stats.fun <- list(
+        "None"                 = function(x) "",
+        "N"                    = function(x) x$N,
+        "Mean"                 = function(x) x$MEAN,
+        "SD"                   = function(x) x$SD,
+        "CV%"                  = function(x) x$CV,
+        "Median"               = function(x) x$MEDIAN,
+        "Min"                  = function(x) x$MIN,
+        "Max"                  = function(x) x$MAX,
+        "IQR"                  = function(x) x$IQR,
+        "Geo. Mean"            = function(x) x$GMEAN,
+        "Geo. CV%"             = function(x) x$GCV,
+        "Mean (SD)"            = function(x) sprintf("%s (%s)", x$MEAN, x$SD),
+        "Mean (CV%)"           = function(x) sprintf("%s (%s)", x$MEAN, x$CV),
+        "Mean (SD) (CV%)"      = function(x) sprintf("%s (%s) (%s)", x$MEAN, x$SD, x$CV),
+        "Mean (Median)"        = function(x) sprintf("%s (%s)", x$MEAN, x$MEDIAN),
+        "[Min, Max]"           = function(x) sprintf("[%s]", x$MIN, x$MAX),
+        "Median [Min, Max]"    = function(x) sprintf("%s [%s]", x$MEDIAN, x$MIN, x$MAX),
+        "Median [IQR]"         = function(x) sprintf("%s [%s]", x$MEDIAN, x$IQR),
+        "Geo. Mean (Geo. CV%)" = function(x) sprintf("%s (%s)", x$GMEAN, x$GCV))
+
+      function(x) {
+          s <- stats.apply.rounding(stats.default(x), digits=input$dstats_sigfig)
+          sapply(all, function(l) stats.fun[[l]](s))
+      }
+  })
+
   dstatsTable <- reactive({
     # Don't generate a new table if the user wants to refresh manually
     if (!input$auto_update_table) {
@@ -2594,9 +2654,7 @@ function(input, output, session) {
       need(!is.null(filterdata7()), "Please select a data set") 
     )
     
-    stacked <- filterdata7()
-    stacked <- stacked[, c(input$x, "yvars", "yvalues")]
-    stacked$id <- 1:(nrow(stacked)/length(unique(stacked$yvars)))
+    stacked <- dstatsTableData()
     df <- spread_(stacked, "yvars", "yvalues", convert=TRUE)
     
     
@@ -2612,13 +2670,18 @@ function(input, output, session) {
           vars <- unique(as.character(stacked$yvars))
       }
       names(vars) <- vars
+      for (i in 1:length(vars)) {
+          vars[i] <- input[[paste0("quick_relabel_", i)]]
+      }
       strat <- names(strata)
       names(strat) <- strat
       labels <- list(
           variables=as.list(vars),
           strata=as.list(strat))
 
-      t <- capture.output(table1(strata, labels))
+      t <- capture.output(table1(strata, labels,
+                                 topclass=paste("Rtable1", input$table_style),
+                                 render.continuous=dstatsRenderCont()))
       values$prevTable <- t
       t
     }
@@ -2626,6 +2689,36 @@ function(input, output, session) {
   
   output$dstats <- renderUI({
     HTML(dstatsTable())
+  })
+
+  observe({
+    df <-reorderdata2()
+    validate(need(!is.null(df), "Please select a data set"))
+    lvl <- levels(as.factor(df[,"yvars"]))
+    for (i in 1:quickRelabel$numTotal) {
+        shinyjs::hide(paste0("quick_relabel_", i))
+    }
+    for (i in 1:length(lvl)) {
+      if (i <= quickRelabel$numTotal) {
+          updateTextInput(session, 
+                  paste0("quick_relabel_", i),
+                  if (i==1) "Labels" else NULL,
+                  lvl[i])
+      } else {
+          insertUI(
+            selector = "#quick_relabel_placeholder", where = "beforeEnd",
+            immediate = TRUE,
+            div(class = "quick_relabel",
+                textInput(
+                  paste0("quick_relabel_", i),
+                  if (i==1) "Labels" else NULL,
+                  lvl[i])
+            )
+          )
+          quickRelabel$numTotal <- quickRelabel$numTotal + 1
+      }
+      shinyjs::show(paste0("quick_relabel_", i))
+    }
   })
 
   # Don't show the table options when there is no table
