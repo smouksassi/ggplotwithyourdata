@@ -43,44 +43,32 @@ table.Rtable1 {
 }
 
 /* Zebra stripes */
-.style2 tbody tr:nth-child(odd) {
+.t1zebra tbody tr:nth-child(odd) {
     background-color: #eee;
 }
 
-table.style3 {
+/* Grid style */
+table.t1grid {
     font-family: "Times New Roman", Times, serif;
     font-size: 11pt;
 }
-.style3 th {
+.t1grid th {
     background-color: #ccc;
 }
-.style3 th,  .style3 td {
+.t1grid th,  .t1grid td {
     border-left: 1pt solid black;
     border-right: 1pt solid black;
 }
-.style3 thead>tr:first-child>th {
+.t1grid thead>tr:first-child>th {
     border-top: 1pt solid black;
 }
-.style3 thead>tr:last-child>th {
+.t1grid thead>tr:last-child>th {
     border-bottom: 1pt solid black;
 }
-.style3 tbody>tr:last-child>td {
+.t1grid tbody>tr:last-child>td {
     border-bottom: 1pt solid black;
 }
-.style3 .firstrow, .style3 .firstrow ~ td {
+.t1grid .firstrow, .t1grid .firstrow ~ td {
     border-top: 1pt solid black;
-}
-
-.style4 td {
-    white-space:nowrap
-}
-.style4 td.firstrow {
-    font-weight: normal;
-}
-.style4 td.rowlabel {
-    font-weight: bold;
-    text-align: center;
-    padding-left: 2.5ex;
-    padding-right: 2.5ex;
 }
 
