@@ -2598,6 +2598,49 @@ function(input, output, session) {
     stacked
   })
 
+  stats.apply.rounding <- function(x, digits=3, digits.pct=1) {
+      r <- lapply(x, signif_pad, digits=digits)
+      nr <- c("N", "FREQ", "MEDIAN", "MIN", "MAX")
+      nr <- nr[nr %in% names(x)]
+      r[nr] <- x[nr]
+      if (!is.null(x$PCT)) {
+          r$PCT <- round(x$PCT, digits.pct)
+      }
+      r
+  }
+
+  dstatsRenderCont <- reactive({
+      all <- input$dstats_cont_list
+      all <- all[all %in% allstats]
+      all <- c("None", all)
+
+      stats.fun <- list(
+        "None"                 = function(x) "",
+        "N"                    = function(x) x$N,
+        "Mean"                 = function(x) x$MEAN,
+        "SD"                   = function(x) x$SD,
+        "CV%"                  = function(x) x$CV,
+        "Median"               = function(x) x$MEDIAN,
+        "Min"                  = function(x) x$MIN,
+        "Max"                  = function(x) x$MAX,
+        "IQR"                  = function(x) x$IQR,
+        "Geo. Mean"            = function(x) x$GMEAN,
+        "Geo. CV%"             = function(x) x$GCV,
+        "Mean (SD)"            = function(x) sprintf("%s (%s)", x$MEAN, x$SD),
+        "Mean (CV%)"           = function(x) sprintf("%s (%s)", x$MEAN, x$CV),
+        "Mean (SD) (CV%)"      = function(x) sprintf("%s (%s) (%s)", x$MEAN, x$SD, x$CV),
+        "Mean (Median)"        = function(x) sprintf("%s (%s)", x$MEAN, x$MEDIAN),
+        "[Min, Max]"           = function(x) sprintf("[%s]", x$MIN, x$MAX),
+        "Median [Min, Max]"    = function(x) sprintf("%s [%s]", x$MEDIAN, x$MIN, x$MAX),
+        "Median [IQR]"         = function(x) sprintf("%s [%s]", x$MEDIAN, x$IQR),
+        "Geo. Mean (Geo. CV%)" = function(x) sprintf("%s (%s)", x$GMEAN, x$GCV))
+
+      function(x) {
+          s <- stats.apply.rounding(stats.default(x), digits=input$dstats_sigfig)
+          sapply(all, function(l) stats.fun[[l]](s))
+      }
+  })
+
   dstatsTable <- reactive({
     # Don't generate a new table if the user wants to refresh manually
     if (!input$auto_update_table) {
@@ -2636,7 +2679,9 @@ function(input, output, session) {
           variables=as.list(vars),
           strata=as.list(strat))
 
-      t <- capture.output(table1(strata, labels, topclass=paste("Rtable1", input$table_style)))
+      t <- capture.output(table1(strata, labels,
+                                 topclass=paste("Rtable1", input$table_style),
+                                 render.continuous=dstatsRenderCont()))
       values$prevTable <- t
       t
     }
@@ -2657,7 +2702,8 @@ function(input, output, session) {
       if (i <= quickRelabel$numTotal) {
           updateTextInput(session, 
                   paste0("quick_relabel_", i),
-                  lvl[i], lvl[i])
+                  if (i==1) "Labels" else NULL,
+                  lvl[i])
       } else {
           insertUI(
             selector = "#quick_relabel_placeholder", where = "beforeEnd",
@@ -2665,7 +2711,8 @@ function(input, output, session) {
             div(class = "quick_relabel",
                 textInput(
                   paste0("quick_relabel_", i),
-                  NULL, lvl[i])
+                  if (i==1) "Labels" else NULL,
+                  lvl[i])
             )
           )
           quickRelabel$numTotal <- quickRelabel$numTotal + 1

@@ -742,7 +742,7 @@ fluidPage(
         ),
         
         tabPanel("Descriptive Stats",
-                 p("Note: use y to select variables of interest (rows) and x for stratification (columns)"),
+                 p("Note: use y for variables of interest (rows) and x for stratification (columns)"),
                  htmlOutput("dstats"),
                  shinyjs::hidden(div(
                      id = "table_options_area",
@@ -752,10 +752,30 @@ fluidPage(
                          ),
                      actionButton("update_table_btn", "Update table",
                                   icon = icon("refresh")),
-                     checkboxInput("table_incl_overall", "Include Overall column?", TRUE),
-                     selectInput("table_style", "Style", c("Default"="t1default", "Zebra"="t1zebra", "Grid"="t1grid")),
-                     h4("Labels:"),
-                     div(id="quick_relabel_placeholder")
+                     fluidRow(
+                       column(6,
+                         div(id="quick_relabel_placeholder")
+                       ),
+                       column(6,
+                         checkboxInput("table_incl_overall",
+                                       label="Include Overall column?",
+                                       value=TRUE),
+                         selectInput("table_style",
+                           label="Style",
+                           choices=c("Default"="t1default",
+                                     "Zebra"="t1zebra",
+                                     "Grid"="t1grid")),
+                         selectizeInput("dstats_cont_list",
+                           label="Statistics to display for continuous variables (per line)",
+                           choices=allstats,
+                           selected=c("Mean (SD)", "Median [Min, Max]"),
+                           multiple=TRUE,
+                           options=list(plugins=list('drag_drop','remove_button'))),
+                         numericInput("dstats_sigfig",
+                           label="Number of significant figures (for Mean, SD, ...)",
+                           value=3, min=1, max=10, step=1)
+                       )
+                     )
                  ))
         ),
 
