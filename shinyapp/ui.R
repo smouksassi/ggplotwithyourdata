@@ -773,7 +773,10 @@ fluidPage(
                            options=list(plugins=list('drag_drop','remove_button'))),
                          numericInput("dstats_sigfig",
                            label="Number of significant figures (for Mean, SD, ...)",
-                           value=3, min=1, max=10, step=1)
+                           value=3, min=1, max=10, step=1),
+                         checkboxInput("round_median_min_max",
+                                       label="Also round median, min, max?",
+                                       value=TRUE)
                        )
                      )
                  ))

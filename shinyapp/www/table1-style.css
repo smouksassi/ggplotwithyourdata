@@ -11,6 +11,7 @@ table.Rtable1 {
     text-align: center;
     padding: 0.5ex 1.5ex;
     margin: 0px;
+    white-space: nowrap;
 }
 .Rtable1 thead>tr:first-child>th {
     border-top: 2pt solid black;
