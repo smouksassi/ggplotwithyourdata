@@ -2598,9 +2598,13 @@ function(input, output, session) {
     stacked
   })
 
-  stats.apply.rounding <- function(x, digits=3, digits.pct=1) {
+  stats.apply.rounding <- function(x, digits=3, digits.pct=1, round.median.min.max=F) {
       r <- lapply(x, signif_pad, digits=digits)
-      nr <- c("N", "FREQ", "MEDIAN", "MIN", "MAX")
+      r[x == 0] <- prettyNum(0, nsmall=digits-1)  # Fix for special case 0
+      nr <- c("N", "FREQ")
+      if (!round.median.min.max) {
+          nr <- c(nr, "MEDIAN", "MIN", "MAX")
+      }
       nr <- nr[nr %in% names(x)]
       r[nr] <- x[nr]
       if (!is.null(x$PCT)) {
@@ -2630,13 +2634,14 @@ function(input, output, session) {
         "Mean (CV%)"           = function(x) sprintf("%s (%s)", x$MEAN, x$CV),
         "Mean (SD) (CV%)"      = function(x) sprintf("%s (%s) (%s)", x$MEAN, x$SD, x$CV),
         "Mean (Median)"        = function(x) sprintf("%s (%s)", x$MEAN, x$MEDIAN),
-        "[Min, Max]"           = function(x) sprintf("[%s]", x$MIN, x$MAX),
-        "Median [Min, Max]"    = function(x) sprintf("%s [%s]", x$MEDIAN, x$MIN, x$MAX),
+        "[Min, Max]"           = function(x) sprintf("[%s, %s]", x$MIN, x$MAX),
+        "Median [Min, Max]"    = function(x) sprintf("%s [%s, %s]", x$MEDIAN, x$MIN, x$MAX),
         "Median [IQR]"         = function(x) sprintf("%s [%s]", x$MEDIAN, x$IQR),
         "Geo. Mean (Geo. CV%)" = function(x) sprintf("%s (%s)", x$GMEAN, x$GCV))
 
       function(x) {
-          s <- stats.apply.rounding(stats.default(x), digits=input$dstats_sigfig)
+          s <- stats.apply.rounding(stats.default(x), digits=input$dstats_sigfig,
+              round.median.min.max=input$round_median_min_max)
           sapply(all, function(l) stats.fun[[l]](s))
       }
   })
