@@ -631,6 +631,7 @@ function(input, output, session) {
       validate(  need(!is.element(input$x,input$y) ,
                       "Please select a different x variable or remove the x variable from the list of y variable(s)"))
       
+    tidydata <- NULL
       if(!is.null(input$y) ){
         
         if(       all( sapply(df[,as.vector(input$y)], is.numeric)) )
