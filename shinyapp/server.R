@@ -1021,7 +1021,7 @@ function(input, output, session) {
           ungroup()
     }
     
-    df
+    as.data.frame(df)
   })
 
   
