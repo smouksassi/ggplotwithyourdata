@@ -17,8 +17,9 @@ function(input, output, session) {
   # Variables to help with maintaining the dynamic number of "quick relabel" boxes
   quickRelabel <- reactiveValues(
     numCurrent = 0,  # How many boxes are there currently
-    numTotal = 0  # Max # of boxes at the same time, to prevent memory leaks
+    numTotal = 0     # Max # of boxes at the same time, to prevent memory leaks
   )
+  relabels <- character(0)
   
   # Add UI and corresponding outputs+observers for a "change factor levels"
   # section
@@ -117,7 +118,7 @@ function(input, output, session) {
     names(items)=items
     selectizeInput("y", "y variable(s):",choices=items,selected = items[1],multiple=TRUE,
                    options = list(
-                     plugins = list('remove_button')))
+                     plugins = list('remove_button', 'drag_drop')))
   })
   
   output$xcol <- renderUI({
@@ -634,37 +635,22 @@ function(input, output, session) {
     tidydata <- NULL
       if(!is.null(input$y) ){
         
+        validate(need(all(input$y %in% names(df)), "Invalid y value(s)"))
         if(       all( sapply(df[,as.vector(input$y)], is.numeric)) )
         {
           tidydata <- df %>%
             gather_( "yvars", "yvalues", gather_cols=as.vector(input$y) ) #%>%
           # mutate(combinedvariable="Choose two variables to combine first")
+        } else {
+          tidydata <- df %>%
+            gather_( "yvars", "yvalues", gather_cols=as.vector(input$y) ) %>%
+            mutate(yvalues=as.factor(as.character(yvalues) ))#%>%
+          # mutate(combinedvariable="Choose two variables to combine first")
         }
-        if(       any( sapply(df[,as.vector(input$y)], is.factor)) |
-                  any( sapply(df[,as.vector(input$y)], is.character)))
-        {
-          tidydata <- df %>%
-            gather_( "yvars", "yvalues", gather_cols=as.vector(input$y) ) %>%
-            mutate(yvalues=as.factor(as.character(yvalues) ))#%>%
-          # mutate(combinedvariable="Choose two variables to combine first")
-        } 
-        
-        if(       all( sapply(df[,as.vector(input$y)], is.factor)) |
-                  all( sapply(df[,as.vector(input$y)], is.character)))
-        {
-          tidydata <- df %>%
-            gather_( "yvars", "yvalues", gather_cols=as.vector(input$y) ) %>%
-            mutate(yvalues=as.factor(as.character(yvalues) ))#%>%
-          # mutate(combinedvariable="Choose two variables to combine first")
-        }    
-        
-        
-      }
-      if(is.null(input$y) ){
+      } else {
         tidydata <- df
         tidydata$yvars <- "None"
         tidydata$yvalues <- NA
-        
       }
       
       if( !is.null(input$pastevarin)   ) {
@@ -2594,6 +2580,9 @@ function(input, output, session) {
     )
     
     stacked <- filterdata7()
+    lvl <- unique(as.character(stacked[,"yvars"]))
+    validate(need(!(lvl=="None" && all(is.na(stacked[,"yvalues"]))), 
+        "No y variable(s) selected"))
     stacked <- stacked[, c(input$x, "yvars", "yvalues")]
     stacked$id <- 1:(nrow(stacked)/length(unique(stacked$yvars)))
     stacked
@@ -2657,7 +2646,7 @@ function(input, output, session) {
       }
     }
     validate(
-      need(!is.null(filterdata7()), "Please select a data set") 
+      need(!is.null(dstatsTableData()), "Please select a data set") 
     )
     
     stacked <- dstatsTableData()
@@ -2670,15 +2659,20 @@ function(input, output, session) {
           strata <- c(strata, list(Overall=df))
       }
 
-      if (is.factor(stacked$yvars)) {
-          vars <- levels(stacked$yvars)
-      } else {
-          vars <- unique(as.character(stacked$yvars))
-      }
+
+
+      vars <- unique(as.character(stacked$yvars))
+      #cat("y=", input$y, "vars=", vars, "lab=", relabels, "\n")
       names(vars) <- vars
-      for (i in 1:length(vars)) {
-          vars[i] <- input[[paste0("quick_relabel_", i)]]
+      for (i in seq_along(vars)) {
+        if (i <= quickRelabel$numTotal) {
+          lab <- as.character(input[[paste0("quick_relabel_", i)]])
+          if (length(lab) > 0) {
+            vars[i] <- lab
+          }
+        }
       }
+
       strat <- names(strata)
       names(strat) <- strat
       labels <- list(
@@ -2697,33 +2691,63 @@ function(input, output, session) {
     HTML(dstatsTable())
   })
 
+  #observe({
+  #  df <- values$maindata
+  #  if (is.null(df)) return(NULL)
+  #  items <- names(df)
+  #  names(items) <- items
+  #  quickRelabel$labels <- items
+  #})
+  observeEvent(values$maindata, {
+    relabels <- character(0)
+  })
+
+
   observe({
-    df <-reorderdata2()
-    validate(need(!is.null(df), "Please select a data set"))
-    lvl <- levels(as.factor(df[,"yvars"]))
-    for (i in 1:quickRelabel$numTotal) {
+    yvars <- input$y
+    nyvars <- length(yvars)
+
+    for (i in seq_len(quickRelabel$numTotal)) {
         shinyjs::hide(paste0("quick_relabel_", i))
     }
-    for (i in 1:length(lvl)) {
+    for (i in seq_len(nyvars)) {
+      lab <- as.character(yvars[i])
+      if (lab %in% names(relabels)) {
+        lab <- as.character(relabels[lab])
+      } else {
+        relabels[lab] <- lab
+      }
       if (i <= quickRelabel$numTotal) {
           updateTextInput(session, 
-                  paste0("quick_relabel_", i),
-                  if (i==1) "Labels" else NULL,
-                  lvl[i])
+                  inputId=paste0("quick_relabel_", i),
+                  label=if (i==1) "Labels" else NULL,
+                  value=lab)
       } else {
           insertUI(
             selector = "#quick_relabel_placeholder", where = "beforeEnd",
             immediate = TRUE,
             div(class = "quick_relabel",
                 textInput(
-                  paste0("quick_relabel_", i),
-                  if (i==1) "Labels" else NULL,
-                  lvl[i])
+                  inputId=paste0("quick_relabel_", i),
+                  label=if (i==1) "Labels" else NULL,
+                  value=lab)
             )
           )
           quickRelabel$numTotal <- quickRelabel$numTotal + 1
       }
       shinyjs::show(paste0("quick_relabel_", i))
+    }
+  })
+
+  observe({
+    yvars <- input$y
+    nyvars <- length(yvars)
+    for (i in seq_len(nyvars)) {
+      newlab <- as.character(input[[paste0("quick_relabel_", i)]])
+      if (length(newlab) == 0) {
+        newlab <- as.character(yvars[i])
+      }
+      relabels[as.character(yvars[i])] <- newlab
     }
   })
 
