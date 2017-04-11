@@ -708,7 +708,7 @@ function(input, output, session) {
     names(items)=items
     MODEDF <- sapply(df, function(x) is.numeric(x))
     NAMESTOKEEP2<- names(df)  [ !MODEDF ]
-    selectizeInput(  "reordervarin", 'Reorder This Variable By:',
+    selectizeInput(  "reordervarin", 'Reorder This Variable:',
                      choices =NAMESTOKEEP2 ,multiple=FALSE,
                      options = list(    placeholder = 'Please select a variable',
                                         onInitialize = I('function() { this.setValue(""); }')
