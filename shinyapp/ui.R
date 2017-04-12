@@ -427,16 +427,29 @@ fluidPage(
                 
                   ),
               tabPanel(
-                "Histograms/Density",
+                "Histograms/Density/Bar",
                 value = "histograms_density",
                 fluidRow(
                   column (12, h6("A plot of the mapped x variable
-                                 will be produced when no y variable(s) are selected.This is still very limited. Options are to be added as per users requests.")),
+                                 will be produced when no y variable(s) are selected.This is still limited. Options are to be added as per users requests.")),
                   
                   column (
                     3,
-                    checkboxInput('histogramaddition', 'Add a Histogram ?',value = FALSE),
+                    checkboxInput('histogramaddition', 'Add a Histogram ?',value = FALSE)
+                    ),
+                  column (
+                    3,
                     checkboxInput('densityaddition', 'Add a Density Curve ?',value = TRUE)
+                  ),
+                  
+                  column (
+                    3,
+                    checkboxInput('barplotaddition', 'Add a Barplot ?',value = TRUE),
+                    selectInput("positionbar", label = "Bar positioning:",
+                                choices = c("Stacked"="position_stack()","Dodged"="position_dodge()"),
+                                selected = "position_stack()"),
+                    checkboxInput('barplotflip', 'Flip the Barplot ?',value = FALSE)
+                    
                   )
                   )
               ),

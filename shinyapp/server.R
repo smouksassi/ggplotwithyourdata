@@ -2130,30 +2130,54 @@ function(input, output, session) {
       
       if (is.null(input$y) ) {
         
-        validate(       need(is.numeric(plotdata[,input$x]), "Please select a numeric x variable"))
-        
-        p <- sourceable(ggplot(plotdata, aes_string(x=input$x)))
-        if (input$colorin != 'None')
-          p <- p + aes_string(color=input$colorin)
-        if (input$fillin != 'None')
-          p <- p + aes_string(fill=input$fillin)
-        if (input$groupin != 'None')
-          p <- p + aes_string(group=input$groupin)
-        if (input$groupin == 'None' & !is.numeric(plotdata[,input$x]) 
-            & input$colorin == 'None')
-          p <- p + aes(group=1)
-        
-        if ( input$histogramaddition){
-          p <- p+ aes(y=..density..)+
-            geom_histogram(alpha=0.2)
-        }
-        if ( input$densityaddition){
-          p <- p+
-            geom_density(alpha=0.1)
+        if(is.numeric(plotdata[,input$x]) ){
+          #validate(       need(is.numeric(plotdata[,input$x]), "Please select a numeric x variable"))
+            p <- sourceable(ggplot(plotdata, aes_string(x=input$x)))
+          if (input$colorin != 'None')
+            p <- p + aes_string(color=input$colorin)
+          if (input$fillin != 'None')
+            p <- p + aes_string(fill=input$fillin)
+          if (input$groupin != 'None')
+            p <- p + aes_string(group=input$groupin)
+          if (input$groupin == 'None' & !is.numeric(plotdata[,input$x]) 
+              & input$colorin == 'None')
+            p <- p + aes(group=1)
           
+          if ( input$histogramaddition){
+            p <- p+ aes(y=..density..)+
+              geom_histogram(alpha=0.2)
+          }
+          if ( input$densityaddition){
+            p <- p+
+              geom_density(alpha=0.1)
+            
+          }
         }
         
+        if(!is.numeric(plotdata[,input$x]) ){
+          p <- sourceable(ggplot(plotdata, aes_string(x=input$x)))
+          if (input$colorin != 'None')
+            p <- p + aes_string(color=input$colorin)
+          if (input$fillin != 'None')
+            p <- p + aes_string(fill=input$fillin)
+          if (input$groupin != 'None')
+            p <- p + aes_string(group=input$groupin)
+          if (input$groupin == 'None' & !is.numeric(plotdata[,input$x]) 
+              & input$colorin == 'None')
+            p <- p + aes(group=1)
+          
+          if ( input$barplotaddition){
+            p <- p+ 
+              geom_bar(alpha=0.2,position = eval(parse(text=input$positionbar)))
+            if ( input$barplotflip){
+              p <- p +
+                coord_flip()
+          }
+          }
+        }
+
         
+       
         
         
       }
