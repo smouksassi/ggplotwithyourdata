@@ -9,16 +9,32 @@ output: html_document
 
 The application allows the user to perform a comparison of longitudinal TTP between a selected reference and test treatments. TTP data is represented using boxplots.
 
-![](./boxplotpic.png)
+<div style="text-align: center;">
+![](./boxplotpic.png){ width=30% }
+</div>
 
-The user has the choice of presenting longitudinal TTP data of two treatments side-by-side, or using the overlay option (refer to check box). Numerical values (median and sample size) of TTP can be selected using check boxes.
+The user has the choice of presenting longitudinal TTP data of two treatments side-by-side (Example 1) or using the overlay option by clicking on the "Overlay data" check box (Example 2). Numerical values (median and sample size) of TTP can be selected by clicking on the "Show median" and "Show sample size" check boxes (Examples 3 and 4, respectively).
+
+Example 1: Side-by-side Comparison of treatments
+![](./Example1.png)
+
+Example 2: Overlaid Comparison of treatments
+![](./Example2.png)
+
+Example 3: Add TTP median to the plots
+![](./Example3.png)
+
+Example 4: Add sample size by week (number of TTP observations) to the plots
+![](./Example4.png)
+
+The above options could be used separate or combined.
 
 ###2- How to Perform a Comparison Between a Treatment in the Database and a User-Defined Treatment
 
-The application also allows the user to upload TTP data collected in new clinical trials and perform a comparison to any reference treatment.  The user can upload TTP data by selecting the “Upload TTP data file for test treatment” checkbox.
-![](./uploadpic.png)
+The application also allows the user to upload TTP data collected in new clinical trials and perform a comparison to any reference treatment.  The user can upload TTP data by selecting the "Upload TTP data file for test treatment" check box.
+![](./uploadpic.jpg)
 
-A browse button will open a navigation window for the use to select the file to be uploaded.  The uploaded file must be in a comma-separated values (CSV) format with the following headers. 
+A browse button will open a navigation window for the user to select the file to be uploaded.  The uploaded file must be in a comma-separated values (CSV) format with the following headers. 
 
 ```{r xtable, echo=FALSE}
 knitr::kable (
@@ -35,13 +51,13 @@ knitr::kable (
 Definition of Variables:
 
 * "#ID" = Subject ID (string)
-* "TIMEDAYS" = Time (Days, number)   
+* "TIMEDAYS" = Time of TTP Observation (Days, number)   
 * "TTP" = TTP (Days, number)
 * "WEEK" = Time of TTP Observation (Week, number)
 * "WEEKCAT" = Week categories (string)
 * "HIV" = HIV status (Yes/No)
 * "CAVITATION" = Presence of cavitation (Yes/No)
-* "CD4" = CD4 count (units, string)      
+* "CD4" = CD4 count (Cells/UL, string)      
 * "TRTDOSE" = Treatment name with Dose when available (string)
 * "TRT" = Treatment name (string)
 * "AGE" = Age (years, number) 
@@ -50,5 +66,12 @@ Definition of Variables:
 * "WT" = Weight (kg, number)
 * "STUDY" = Study name (string)
 
-The current version of the application reads the column “TTP”, “WEEKCAT” and “TRTDOSE” for plotting purposes.  Reading of other fields will be implemented in future versions. 
-Missing information can be entered as “.” in any field.  
+The current version of the application reads the column "TTP", "WEEK" and "TRTDOSE" for plotting purposes.  Reading of other fields will be implemented in future versions. 
+Missing information can be entered as "." in any field.  
+
+###3- Interpretation of results
+An example of how to interpret results is provided based on the data presented in Example 5 below. 
+The increase of pyrazinamide dose in the HPZE treatment from 10 mg (red line) to 20 mg (blue line) resulted in a faster rate of TTP progression to negative growth (E.g., at week 5, the TTP rates were 21.7 and 30.9 days for the 10 mg and 20 mg doses, respectively).
+
+Example 5: Result interpretation
+![](./Example5.png)

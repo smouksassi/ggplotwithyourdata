@@ -1,0 +1,77 @@
+---
+title: ""
+output: html_document
+---
+
+
+ 
+###List of Studies in the Database 
+
+The interactive interface (R-Shiny application) was developed based on the patient-level TTP data collected in 11 clinical studies, which included a total of 30 treatments (dose-ranging, monotherapy and combination therapy) administered to patients with TB. 
+
+The Description of the clinical studies and their references are provided below.  
+
+Vitamin A (Rifafour) (TB-1002)
+Full Title: Randomized controlled trial to assess the efficacy of vitamin A and zinc supplementation on sputum smear and culture conversion and time to culture detection in adults with sputum smear-positive pulmonary tuberculosis, at the Delft Community Health Centre in Cape Town, South Africa.
+Treatment: Vitamin A/HRZE and HRZE
+ClinicalTrials.gov Identifier: N/A
+
+PA-824 (50-200mg) (TB-1003)
+Full Title: A Phase II Dose Ranging Trial to Evaluate the Extended Early Bactericidal Activity, Safety, Tolerability, and Pharmacokinetics of PA-824 in Adult Participants with Newly Diagnosed, Uncomplicated, Smear-Positive, Pulmonary Tuberculosis.
+Treatment: Pa and HRZE
+ClinicalTrials.gov Identifier: NCT00944021
+https://clinicaltrials.gov/ct2/show/NCT00944021?term=CL-010&rank=1
+
+TMC207-TiDP13-C208 (TB-1004)
+Full Title: TMC207 -TiDP13-C208: Anti-bacterial Activity, Safety, and Tolerability of TMC207 in Participants With Multi-drug Resistant Mycobacterium Tuberculosis (MDR-TB).
+Treatment: B and placebo
+ClinicalTrials.gov Identifier: NCT00449644
+https://clinicaltrials.gov/ct2/show/NCT00449644?term=TMC207-TiDP13-C208&rank=1
+
+TMC207 CL-001 (TB-1005)
+Full Title: Evaluation of Early Bactericidal Activity in Pulmonary Tuberculosis.
+Treatment:  B and HRZE
+ClinicalTrials.gov Identifier: NCT01215110
+https://clinicaltrials.gov/ct2/show/NCT01215110?term=TMC207+CL-001&rank=1
+
+PA-824 (200-1200mg) (TB-1007)
+Full Title: A Phase IIa Trial to Evaluate the Safety, Tolerability, Extended Early Bactericidal Activity and Pharmacokinetics of 14 Days' Treatment With Four Oral Doses of PA-824 in Adult Participants With Newly Diagnosed, Uncomplicated, Smear-Positive, Pulmonary Tuberculosis.
+Treatment: Pa and HRZE
+ClinicalTrials.gov Identifier: NCT00567840
+https://clinicaltrials.gov/ct2/show/NCT00567840?term=CL-007&rank=1
+
+J-M-Pa-Z (TB-1008)
+Full Title: Evaluation of Early Bactericidal Activity in Pulmonary Tuberculosis With(J-M-Pa-Z) (NC-001).
+Treatment: B, B/PA, B/Z, HRZE, Pa/Z, and Pa/Z/M
+ClinicalTrials.gov Identifier: NCT01215851
+https://clinicaltrials.gov/ct2/show/NCT01215851?term=J-M-Pa-Z&rank=1
+
+TBTC 28 (TB-1009)
+Full Title: TBTC Study 28: Moxifloxacin Versus Isoniazid for TB Treatment.
+Treatment: HRZE and MRZE
+ClinicalTrials.gov Identifier: NCT00144417
+https://clinicaltrials.gov/ct2/show/NCT00144417?term=TBTC+28&rank=2
+
+TBTC 29 (TB-1010)
+Full Title:  TBTC Study 29: Rifapentine During Intensive Phase Tuberculosis (TB) Treatment.
+Treatment: PHZE and HRZE
+ClinicalTrials.gov Identifier: NCT00694629
+https://clinicaltrials.gov/ct2/show/NCT00694629?term=TBTC+29&rank=3
+
+PA-824 NC-002-(M-Pa-Z) (TB-1011)
+Full Title: Evaluation of 8 Weeks of Treatment With the Combination of Moxifloxacin, PA-824 and Pyrazinamide in Patients With Drug Sensitive and Multi Drug-Resistant Pulmonary Tuberculosis (TB) (NC-002).
+Treatment: Pa/Z/M and HRZE
+ClinicalTrials.gov Identifier: NCT01498419
+https://clinicaltrials.gov/ct2/show/NCT01498419?term=PA-824+NC-002-%28M-Pa-Z%29&rank=1
+
+TBTC 29X (TB-1013)
+Full Title: TBTC Study 29X: Enrollment complete in the main study (TBTC 29). Study amended with extension to evaluate safety of higher rifapentine doses.
+Treatment: PHZE and HRZE
+ClinicalTrials.gov Identifier: NCT00694629
+https://clinicaltrials.gov/ct2/show/NCT00694629?term=TBTC+Study+29&rank=1
+
+PA-824 NC-003-(C-J-Pa-Z) (TB-1014)
+Full Title: Evaluation of Early Bactericidal Activity in Pulmonary Tuberculosis With Clofazimine (C)-TMC207 (J)-PA-824 (Pa)-Pyrazinamide (Z) (NC-003).
+Treatment: B/Pa/Z/Cfz, B/Pa/Cfz, B/Pa/Z, B/Z/Cfz, Cfz, HRZE, and Z. 
+ClinicalTrials.gov Identifier: NCT01691534
+https://clinicaltrials.gov/ct2/show/NCT01691534?term=PA-824+NC-003-%28C-J-Pa-Z%29&rank=1

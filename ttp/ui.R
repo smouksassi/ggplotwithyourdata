@@ -5,11 +5,20 @@ tagList(
   ),
   
   navbarPage(
-    title = "TTP",
+    title = "Plot and Compare TTP",
     id = "mainNav",
     inverse = TRUE,
     fluid = FALSE,
     collapsible = TRUE,
+    
+    tabPanel(
+      "TB Study Description",
+      value = "TBStudyDescription",
+      icon = icon("info"),
+      class = "fade in",
+      
+      includeHTML(file.path("text", "TBStudyDescription.html"))
+    ),
     
     tabPanel(
       "How to",
@@ -45,17 +54,6 @@ tagList(
         checkboxInput("opt_samplesize", "Show sample size", value = FALSE) 
       ),
       plotOutput("tpp_boxplot", width = "100%", height = "500px")
-    ),
-    
-    tabPanel(
-      "Graph Options",
-      value = "graph-options",
-      icon = icon("cog"),
-      class = "fade in",
-      
-      "Under Construction",br(),
-      icon("pencil-square-o", "fa-3x")        
-      
     )
   )
 )
