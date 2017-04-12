@@ -13,6 +13,11 @@ suppressMessages ({
   library(markdown)
   #library(lazyeval)
   if (!suppressWarnings(require(table1, quietly=TRUE))) {
+    devtools::install_github("sachsmc/ggkm")
+    library(table1)
+  }
+  
+  if (!suppressWarnings(require(table1, quietly=TRUE))) {
       devtools::install_github("benjaminrich/table1")
       library(table1)
   }
