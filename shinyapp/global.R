@@ -7,14 +7,13 @@ suppressMessages ({
   library(DT)
   library(tidyr)
   library(dplyr)
-  library(ggkm)
   library(Hmisc)
   library(quantreg)
   library(markdown)
   #library(lazyeval)
   if (!suppressWarnings(require(table1, quietly=TRUE))) {
     devtools::install_github("sachsmc/ggkm")
-    library(table1)
+    library(ggkm)
   }
   
   if (!suppressWarnings(require(table1, quietly=TRUE))) {

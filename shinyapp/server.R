@@ -1010,7 +1010,10 @@ function(input, output, session) {
     as.data.frame(df)
   })
 
-  
+  finalplotdata <- reactive({
+    df <- filterdata7()
+    as.data.frame(df)
+  })
   
   
   output$colour <- renderUI({
@@ -1181,7 +1184,7 @@ function(input, output, session) {
 
   
   output$mytablex = renderDataTable({
-    df <- filterdata7() 
+    df <- finalplotdata() 
     validate(       need(!is.null(df), "Please select a data set"))
     
     datatable(df ,
@@ -1218,7 +1221,7 @@ function(input, output, session) {
         return(values$prevPlot)
       }
     }
-    plotdata <- filterdata7()
+    plotdata <- finalplotdata()
     validate(need(!is.null(plotdata), "Please select a data set") )
     
     if(!is.null(plotdata)) {
@@ -2498,30 +2501,30 @@ function(input, output, session) {
   
   
   output$clickheader <-  renderUI({
-    df <-filterdata7()
+    df <-finalplotdata()
     if (is.null(df)) return(NULL)
     h4("Clicked points")
   })
   
   output$brushheader <-  renderUI({
-    df <- filterdata7()
+    df <- finalplotdata()
     if (is.null(df)) return(NULL)
     h4("Brushed points")
     
   })
   
   output$plot_clickedpoints <- renderTable({
-    df<- filterdata7()  
+    df<- finalplotdata()  
     if (is.null(df)) return(NULL)
-    res <- nearPoints(filterdata7(), input$plot_click, input$x, "yvalues")
+    res <- nearPoints(finalplotdata(), input$plot_click, input$x, "yvalues")
     if (nrow(res) == 0|is.null(res))
       return(NULL)
     res
   })
   output$plot_brushedpoints <- renderTable({
-    df<- filterdata7()  
+    df<- finalplotdata()  
     if (is.null(df)) return(NULL)
-    res <- brushedPoints(filterdata7(), input$plot_brush, input$x,"yvalues")
+    res <- brushedPoints(finalplotdata(), input$plot_brush, input$x,"yvalues")
     if (nrow(res) == 0|is.null(res))
       return(NULL)
     res
@@ -2600,10 +2603,10 @@ function(input, output, session) {
 
   dstatsTableData <- reactive({
     validate(
-      need(!is.null(recodedata5()), "Please select a data set") 
+      need(!is.null(finalplotdata()), "Please select a data set") 
     )
     
-    stacked <- filterdata7()
+    stacked <- finalplotdata()
     lvl <- unique(as.character(stacked[,"yvars"]))
     validate(need(!(lvl=="None" && all(is.na(stacked[,"yvalues"]))), 
         "No y variable(s) selected"))
@@ -2675,9 +2678,12 @@ function(input, output, session) {
     
     stacked <- dstatsTableData()
     df <- spread_(stacked, "yvars", "yvalues", convert=TRUE)
-    
+    df[sapply(df, is.character)] <- lapply(df[sapply(df, is.character)], 
+                                           as.factor)
     
     if(!is.null(df)) {
+      df[,input$x]  <- as.factor(as.character( df[,input$x]))
+      
       strata <- split(df, df[[input$x]])
       if(input$table_incl_overall) {
           strata <- c(strata, list(Overall=df))
