@@ -47,11 +47,13 @@ validate_dataset <- function(data) {
 # Given a TTP dataset with the WEEKS column as raw integers, convert it to bins 
 clean_dataset_weeks <- function(data) {
   data$WEEK_BIN <- data$WEEK
-  max_week <- max(as.integer(data$WEEK), 51)
+  max_week <- max(as.integer(data$WEEK))
   week_cats <- 
     cut(
       data$WEEK_BIN,
-      breaks = c(0:11, 13, 15, 17, 19, 21, 23, 25, max_week),
+      
+      breaks = unique(sort( c(0:11, 13, 15, 17, 19, 21, 23, 25, max_week) ) ),
+      
       include.lowest = TRUE, right = FALSE, ordered_result = TRUE
     )
   levels(week_cats) <-
@@ -62,6 +64,21 @@ clean_dataset_weeks <- function(data) {
       )
     )
   data$WEEK_BIN <- week_cats
+  max_day <- max(as.integer(data$TIMEDAYS))
+  day_cats <- 
+    cut(
+      data$TIMEDAYS,
+      breaks = unique(sort(c(0:15, 17, 19, 21, 23, 25, max_day ))) ,
+      include.lowest = TRUE, right = FALSE, ordered_result = TRUE
+    )
+  levels(day_cats) <-
+    as.list(
+      setNames(
+        levels(day_cats),
+               lapply(levels(day_cats), week_category_name)
+      )
+    )
+  data$DAY_BIN <- day_cats
   data
 }
 
@@ -75,4 +92,6 @@ if (!isTRUE(validate_dataset(ttp_data))) {
   stop("There is a problem with the internal data file", call. = FALSE)
 }
 ttp_data <- clean_dataset_weeks(ttp_data)
-ref_drug_list <- as.character(unique(ttp_data$TRTDOSE))
+ref_drug_list_all <- sort(as.character(unique(ttp_data$TRTDOSE)))
+study_list <- sort(as.character(unique(ttp_data$STUDY)))
+

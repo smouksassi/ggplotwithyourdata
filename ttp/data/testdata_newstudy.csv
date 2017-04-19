@@ -1,0 +1,1001 @@
+X.ID,TIMEDAYS,TTP,WEEK,HIV,CAVITATION,CD4,TRTDOSE,TRT,AGE,SEX,RACE,WT,STUDY
+782,57,38,60,No,Yes,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),55,Male,BLACK OR AFRICAN AMERICAN,52,TBXYZ
+782,85,42,12,No,Yes,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),55,Male,BLACK OR AFRICAN AMERICAN,49,TBXYZ
+783,114,42,70,No,Yes,NA,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),21,Male,BLACK OR AFRICAN AMERICAN,57.4,TBXYZ
+783,142,42,20,No,Yes,NA,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),21,Male,BLACK OR AFRICAN AMERICAN,56.8,TBXYZ
+783,15,16.83,2,No,Yes,NA,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),21,Male,BLACK OR AFRICAN AMERICAN,51.5,TBXYZ
+783,29,20.96,4,No,Yes,NA,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),21,Male,BLACK OR AFRICAN AMERICAN,52.2,TBXYZ
+783,43,42,6,No,Yes,NA,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),21,Male,BLACK OR AFRICAN AMERICAN,53.6,TBXYZ
+783,57,42,8,No,Yes,NA,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),21,Male,BLACK OR AFRICAN AMERICAN,53.5,TBXYZ
+783,85,42,12,No,Yes,NA,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),21,Male,BLACK OR AFRICAN AMERICAN,56.4,TBXYZ
+784,113,42,16,No,Yes,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),23,Male,BLACK OR AFRICAN AMERICAN,55.5,TBXYZ
+784,141,42,20,No,Yes,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),23,Male,BLACK OR AFRICAN AMERICAN,56.8,TBXYZ
+784,15,16.08,2,No,Yes,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),23,Male,BLACK OR AFRICAN AMERICAN,48.7,TBXYZ
+784,169,42,24,No,Yes,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),23,Male,BLACK OR AFRICAN AMERICAN,57.1,TBXYZ
+784,29,20.25,4,No,Yes,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),23,Male,BLACK OR AFRICAN AMERICAN,47,TBXYZ
+785,141,42,20,No,Yes,NA,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),30,Female,BLACK OR AFRICAN AMERICAN,71.7,TBXYZ
+785,15,12.67,2,No,Yes,NA,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),30,Female,BLACK OR AFRICAN AMERICAN,67.8,TBXYZ
+785,169,42,24,No,Yes,NA,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),30,Female,BLACK OR AFRICAN AMERICAN,71.6,TBXYZ
+785,43,34.88,6,No,Yes,NA,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),30,Female,BLACK OR AFRICAN AMERICAN,68.5,TBXYZ
+785,57,42,8,No,Yes,NA,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),30,Female,BLACK OR AFRICAN AMERICAN,68.8,TBXYZ
+786,113,42,16,Yes,No,653,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),27,Female,BLACK OR AFRICAN AMERICAN,68,TBXYZ
+786,14,15.88,2,Yes,No,653,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),27,Female,BLACK OR AFRICAN AMERICAN,63.5,TBXYZ
+786,141,42,20,Yes,No,653,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),27,Female,BLACK OR AFRICAN AMERICAN,71,TBXYZ
+786,166,42,24,Yes,No,653,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),27,Female,BLACK OR AFRICAN AMERICAN,71,TBXYZ
+786,29,28.92,4,Yes,No,653,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),27,Female,BLACK OR AFRICAN AMERICAN,62,TBXYZ
+786,43,42,6,Yes,No,653,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),27,Female,BLACK OR AFRICAN AMERICAN,61,TBXYZ
+786,56,42,8,Yes,No,653,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),27,Female,BLACK OR AFRICAN AMERICAN,62.5,TBXYZ
+786,85,42,12,Yes,No,653,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),27,Female,BLACK OR AFRICAN AMERICAN,65,TBXYZ
+787,113,42,16,No,Yes,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),28,Male,ASIAN,51.5,TBXYZ
+787,15,13.17,2,No,Yes,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),28,Male,ASIAN,51,TBXYZ
+787,29,20.29,4,No,Yes,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),28,Male,ASIAN,50.5,TBXYZ
+787,43,42,6,No,Yes,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),28,Male,ASIAN,51,TBXYZ
+787,57,42,8,No,Yes,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),28,Male,ASIAN,51,TBXYZ
+787,85,42,12,No,Yes,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),28,Male,ASIAN,51,TBXYZ
+788,113,42,16,No,Yes,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),26,Male,ASIAN,56,TBXYZ
+788,141,42,20,No,Yes,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),26,Male,ASIAN,56,TBXYZ
+788,169,42,24,No,Yes,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),26,Male,ASIAN,55,TBXYZ
+788,29,29.21,4,No,Yes,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),26,Male,ASIAN,54.5,TBXYZ
+788,43,42,6,No,Yes,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),26,Male,ASIAN,54.5,TBXYZ
+788,57,42,8,No,Yes,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),26,Male,ASIAN,56.5,TBXYZ
+788,85,42,12,No,Yes,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),26,Male,ASIAN,56,TBXYZ
+789,1,4.29,0,No,Yes,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),29,Male,ASIAN,61,TBXYZ
+789,113,42,16,No,Yes,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),29,Male,ASIAN,58,TBXYZ
+789,141,42,20,No,Yes,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),29,Male,ASIAN,59,TBXYZ
+789,15,16.75,2,No,Yes,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),29,Male,ASIAN,58.5,TBXYZ
+789,29,42,4,No,Yes,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),29,Male,ASIAN,60,TBXYZ
+789,43,42,6,No,Yes,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),29,Male,ASIAN,59,TBXYZ
+789,57,42,8,No,Yes,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),29,Male,ASIAN,58,TBXYZ
+789,85,42,12,No,Yes,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),29,Male,ASIAN,59,TBXYZ
+79,0,4.583,0,No,No,491,TMC207/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),TMC207/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),20,Female,BLACK OR AFRICAN AMERICAN,38.7,TBXYZ
+79,14,13.8335,2,No,No,491,TMC207/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),TMC207/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),20,Female,BLACK OR AFRICAN AMERICAN,37.6,TBXYZ
+79,20,19.25,3,No,No,491,TMC207/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),TMC207/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),20,Female,BLACK OR AFRICAN AMERICAN,39.1,TBXYZ
+79,27,22,4,No,No,491,TMC207/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),TMC207/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),20,Female,BLACK OR AFRICAN AMERICAN,39,TBXYZ
+79,34,20.375,5,No,No,491,TMC207/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),TMC207/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),20,Female,BLACK OR AFRICAN AMERICAN,38,TBXYZ
+79,42,20.208,6,No,No,491,TMC207/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),TMC207/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),20,Female,BLACK OR AFRICAN AMERICAN,38.8,TBXYZ
+79,48,42,7,No,No,491,TMC207/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),TMC207/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),20,Female,BLACK OR AFRICAN AMERICAN,37.7,TBXYZ
+79,55,42,8,No,No,491,TMC207/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),TMC207/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),20,Female,BLACK OR AFRICAN AMERICAN,40,TBXYZ
+79,7,10.125,1,No,No,491,TMC207/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),TMC207/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),20,Female,BLACK OR AFRICAN AMERICAN,38.6,TBXYZ
+790,114,42,16,No,Yes,NA,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),33,Female,ASIAN,47.2,TBXYZ
+790,2,8.63,0,No,Yes,NA,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),33,Female,ASIAN,40.3,TBXYZ
+790,30,42,4,No,Yes,NA,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),33,Female,ASIAN,42.1,TBXYZ
+790,58,42,8,No,Yes,NA,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),33,Female,ASIAN,42.3,TBXYZ
+790,86,42,12,No,Yes,NA,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),33,Female,ASIAN,44.4,TBXYZ
+791,1,8,0,No,Yes,NA,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),46,Male,BLACK OR AFRICAN AMERICAN,40.7,TBXYZ
+792,16,42,2,No,Yes,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),49,Female,WHITE,66.2,TBXYZ
+792,2,7.21,0,No,Yes,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),49,Female,WHITE,67.6,TBXYZ
+792,30,42,4,No,Yes,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),49,Female,WHITE,66.9,TBXYZ
+792,44,42,6,No,Yes,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),49,Female,WHITE,66.7,TBXYZ
+793,1,5,0,No,Yes,606,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),55,Female,BLACK OR AFRICAN AMERICAN,41,TBXYZ
+793,138,42,20,No,Yes,606,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),55,Female,BLACK OR AFRICAN AMERICAN,44,TBXYZ
+793,15,15,2,No,Yes,606,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),55,Female,BLACK OR AFRICAN AMERICAN,43.3,TBXYZ
+793,29,28,4,No,Yes,606,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),55,Female,BLACK OR AFRICAN AMERICAN,42.3,TBXYZ
+793,43,41,6,No,Yes,606,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),55,Female,BLACK OR AFRICAN AMERICAN,45.4,TBXYZ
+793,57,42,8,No,Yes,606,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),55,Female,BLACK OR AFRICAN AMERICAN,42.6,TBXYZ
+793,85,42,12,No,Yes,606,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),55,Female,BLACK OR AFRICAN AMERICAN,44.2,TBXYZ
+794,15,12.04,2,No,No,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),30,Male,WHITE,58,TBXYZ
+794,29,15.13,4,No,No,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),30,Male,WHITE,60,TBXYZ
+794,43,21,6,No,No,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),30,Male,WHITE,62,TBXYZ
+794,59,42,8,No,No,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),30,Male,WHITE,62,TBXYZ
+794,84,42,12,No,No,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),30,Male,WHITE,62,TBXYZ
+795,113,42,16,No,Yes,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),19,Female,BLACK OR AFRICAN AMERICAN,69.5,TBXYZ
+795,141,42,20,No,Yes,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),19,Female,BLACK OR AFRICAN AMERICAN,67.6,TBXYZ
+795,15,18.63,2,No,Yes,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),19,Female,BLACK OR AFRICAN AMERICAN,67.3,TBXYZ
+795,169,42,24,No,Yes,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),19,Female,BLACK OR AFRICAN AMERICAN,69.3,TBXYZ
+795,29,33,4,No,Yes,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),19,Female,BLACK OR AFRICAN AMERICAN,67,TBXYZ
+795,43,42,6,No,Yes,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),19,Female,BLACK OR AFRICAN AMERICAN,68,TBXYZ
+795,57,42,8,No,Yes,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),19,Female,BLACK OR AFRICAN AMERICAN,67.4,TBXYZ
+796,114,42,16,Yes,Yes,319,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),34,Male,BLACK OR AFRICAN AMERICAN,67.6,TBXYZ
+796,142,42,20,Yes,Yes,319,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),34,Male,BLACK OR AFRICAN AMERICAN,64.8,TBXYZ
+796,30,42,4,Yes,Yes,319,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),34,Male,BLACK OR AFRICAN AMERICAN,63,TBXYZ
+797,116,42,17,No,Yes,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),28,Female,ASIAN,46,TBXYZ
+797,141,42,20,No,Yes,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),28,Female,ASIAN,45.5,TBXYZ
+797,18,26.29,3,No,Yes,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),28,Female,ASIAN,44.1,TBXYZ
+797,29,42,4,No,Yes,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),28,Female,ASIAN,45,TBXYZ
+797,4,14.42,1,No,Yes,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),28,Female,ASIAN,43.4,TBXYZ
+797,43,42,6,No,Yes,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),28,Female,ASIAN,45.4,TBXYZ
+797,57,42,8,No,Yes,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),28,Female,ASIAN,44.8,TBXYZ
+798,113,42,16,No,Yes,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),25,Female,BLACK OR AFRICAN AMERICAN,65.5,TBXYZ
+798,225,42,32,No,Yes,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),25,Female,BLACK OR AFRICAN AMERICAN,66.5,TBXYZ
+798,29,4.21,4,No,Yes,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),25,Female,BLACK OR AFRICAN AMERICAN,65,TBXYZ
+799,15,16.13,2,No,Yes,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),27,Male,BLACK OR AFRICAN AMERICAN,51.7,TBXYZ
+799,169,42,24,No,Yes,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),27,Male,BLACK OR AFRICAN AMERICAN,55.4,TBXYZ
+799,43,9.33,6,No,Yes,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),27,Male,BLACK OR AFRICAN AMERICAN,53,TBXYZ
+799,57,42,8,No,Yes,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),27,Male,BLACK OR AFRICAN AMERICAN,53,TBXYZ
+799,85,42,12,No,Yes,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),27,Male,BLACK OR AFRICAN AMERICAN,55.7,TBXYZ
+8,0,12.75,0,No,No,1179,PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),45,Male,WHITE,65,TBXYZ
+8,111,28.0625,16,No,No,1179,PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),45,Male,WHITE,72,TBXYZ
+8,112,15,16,No,No,1179,PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),45,Male,WHITE,72,TBXYZ
+8,125,24.6875,18,No,No,1179,PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),45,Male,WHITE,72,TBXYZ
+8,126,15.5,18,No,No,1179,PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),45,Male,WHITE,72,TBXYZ
+8,139,42,20,No,No,1179,PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),45,Male,WHITE,72,TBXYZ
+8,14,11.208,2,No,No,1179,PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),45,Male,WHITE,65.5,TBXYZ
+8,140,12.6875,20,No,No,1179,PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),45,Male,WHITE,72,TBXYZ
+8,153,9.5,22,No,No,1179,PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),45,Male,WHITE,72,TBXYZ
+8,154,10.25,22,No,No,1179,PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),45,Male,WHITE,73,TBXYZ
+8,167,10.167,24,No,No,1179,PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),45,Male,WHITE,73,TBXYZ
+8,28,14.625,4,No,No,1179,PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),45,Male,WHITE,70,TBXYZ
+8,35,10.708,5,No,No,1179,PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),45,Male,WHITE,71,TBXYZ
+8,39,11.25,6,No,No,1179,PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),45,Male,WHITE,71,TBXYZ
+8,40,26.521,6,No,No,1179,PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),45,Male,WHITE,71,TBXYZ
+8,49,9.958,7,No,No,1179,PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),45,Male,WHITE,72,TBXYZ
+8,55,13.75,8,No,No,1179,PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),45,Male,WHITE,72,TBXYZ
+8,56,6.146,8,No,No,1179,PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),45,Male,WHITE,72,TBXYZ
+8,69,11,10,No,No,1179,PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),45,Male,WHITE,72,TBXYZ
+8,7,10.125,1,No,No,1179,PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),45,Male,WHITE,65,TBXYZ
+8,70,4.625,10,No,No,1179,PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),45,Male,WHITE,72,TBXYZ
+8,83,18,12,No,No,1179,PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),45,Male,WHITE,72,TBXYZ
+8,84,28.5415,12,No,No,1179,PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),45,Male,WHITE,72,TBXYZ
+8,95,18.104,14,No,No,1179,PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),45,Male,WHITE,72,TBXYZ
+8,96,42,14,No,No,1179,PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),45,Male,WHITE,72,TBXYZ
+80,0,5,0,Yes,No,588,PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),27,Female,BLACK OR AFRICAN AMERICAN,61.8,TBXYZ
+80,15,11.333,2,Yes,No,588,PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),27,Female,BLACK OR AFRICAN AMERICAN,61.3,TBXYZ
+80,16,9.958,2,Yes,No,588,PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),27,Female,BLACK OR AFRICAN AMERICAN,61.3,TBXYZ
+80,21,9.375,3,Yes,No,588,PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),27,Female,BLACK OR AFRICAN AMERICAN,63,TBXYZ
+80,28,18.917,4,Yes,No,588,PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),27,Female,BLACK OR AFRICAN AMERICAN,63,TBXYZ
+80,7,9.333,1,Yes,No,588,PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),27,Female,BLACK OR AFRICAN AMERICAN,58.3,TBXYZ
+800,113,42,16,No,Yes,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),27,Male,BLACK OR AFRICAN AMERICAN,72.9,TBXYZ
+800,15,21.67,2,No,Yes,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),27,Male,BLACK OR AFRICAN AMERICAN,69.2,TBXYZ
+800,169,42,24,No,Yes,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),27,Male,BLACK OR AFRICAN AMERICAN,72.1,TBXYZ
+800,29,42,4,No,Yes,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),27,Male,BLACK OR AFRICAN AMERICAN,71.9,TBXYZ
+800,43,42,6,No,Yes,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),27,Male,BLACK OR AFRICAN AMERICAN,74,TBXYZ
+800,57,42,8,No,Yes,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),27,Male,BLACK OR AFRICAN AMERICAN,70.8,TBXYZ
+800,85,42,12,No,Yes,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),27,Male,BLACK OR AFRICAN AMERICAN,71.5,TBXYZ
+801,113,42,16,No,Yes,NA,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),31,Male,ASIAN,71,TBXYZ
+801,15,42,2,No,Yes,NA,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),31,Male,ASIAN,72,TBXYZ
+801,29,24,4,No,Yes,NA,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),31,Male,ASIAN,74.5,TBXYZ
+801,43,42,6,No,Yes,NA,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),31,Male,ASIAN,74,TBXYZ
+801,57,42,8,No,Yes,NA,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),31,Male,ASIAN,74,TBXYZ
+801,85,42,12,No,Yes,NA,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),31,Male,ASIAN,72,TBXYZ
+802,113,42,16,No,Yes,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),28,Female,BLACK OR AFRICAN AMERICAN,57.9,TBXYZ
+802,15,13.71,2,No,Yes,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),28,Female,BLACK OR AFRICAN AMERICAN,57.6,TBXYZ
+802,171,42,24,No,Yes,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),28,Female,BLACK OR AFRICAN AMERICAN,59.9,TBXYZ
+802,29,21.17,4,No,Yes,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),28,Female,BLACK OR AFRICAN AMERICAN,58.8,TBXYZ
+802,57,42,8,No,Yes,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),28,Female,BLACK OR AFRICAN AMERICAN,58.6,TBXYZ
+802,85,42,12,No,Yes,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),28,Female,BLACK OR AFRICAN AMERICAN,56.9,TBXYZ
+803,16,13.25,2,No,No,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),32,Male,BLACK OR AFRICAN AMERICAN,52,TBXYZ
+804,113,36.83,16,Yes,Yes,426,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),30,Male,BLACK OR AFRICAN AMERICAN,62.8,TBXYZ
+804,141,42,20,Yes,Yes,426,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),30,Male,BLACK OR AFRICAN AMERICAN,63.4,TBXYZ
+804,15,14.46,2,Yes,Yes,426,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),30,Male,BLACK OR AFRICAN AMERICAN,55.2,TBXYZ
+804,169,42,24,Yes,Yes,426,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),30,Male,BLACK OR AFRICAN AMERICAN,64.4,TBXYZ
+804,225,42,32,Yes,Yes,426,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),30,Male,BLACK OR AFRICAN AMERICAN,61.5,TBXYZ
+804,254,42,36,Yes,Yes,426,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),30,Male,BLACK OR AFRICAN AMERICAN,60.6,TBXYZ
+804,43,42,6,Yes,Yes,426,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),30,Male,BLACK OR AFRICAN AMERICAN,56,TBXYZ
+804,57,33,8,Yes,Yes,426,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),30,Male,BLACK OR AFRICAN AMERICAN,57,TBXYZ
+804,85,25.83,12,Yes,Yes,426,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),30,Male,BLACK OR AFRICAN AMERICAN,61,TBXYZ
+805,141,42,20,No,Yes,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),37,Male,BLACK OR AFRICAN AMERICAN,55,TBXYZ
+805,15,14.63,2,No,Yes,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),37,Male,BLACK OR AFRICAN AMERICAN,53,TBXYZ
+805,29,18.75,4,No,Yes,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),37,Male,BLACK OR AFRICAN AMERICAN,55,TBXYZ
+805,43,22.04,6,No,Yes,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),37,Male,BLACK OR AFRICAN AMERICAN,54,TBXYZ
+805,85,42,12,No,Yes,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),37,Male,BLACK OR AFRICAN AMERICAN,55,TBXYZ
+806,15,7,2,No,Yes,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),25,Male,BLACK OR AFRICAN AMERICAN,47,TBXYZ
+806,169,42,24,No,Yes,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),25,Male,BLACK OR AFRICAN AMERICAN,48.5,TBXYZ
+806,197,42,28,No,Yes,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),25,Male,BLACK OR AFRICAN AMERICAN,49.8,TBXYZ
+806,225,42,32,No,Yes,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),25,Male,BLACK OR AFRICAN AMERICAN,46.6,TBXYZ
+806,258,42,37,No,Yes,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),25,Male,BLACK OR AFRICAN AMERICAN,48.6,TBXYZ
+806,29,8.88,4,No,Yes,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),25,Male,BLACK OR AFRICAN AMERICAN,47.8,TBXYZ
+806,43,14.58,6,No,Yes,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),25,Male,BLACK OR AFRICAN AMERICAN,50.5,TBXYZ
+806,57,16.13,8,No,Yes,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),25,Male,BLACK OR AFRICAN AMERICAN,49.6,TBXYZ
+806,88,42,13,No,Yes,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),25,Male,BLACK OR AFRICAN AMERICAN,56.4,TBXYZ
+807,15,42,2,Yes,No,288,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),39,Male,BLACK OR AFRICAN AMERICAN,41,TBXYZ
+807,168,42,24,Yes,No,288,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),39,Male,BLACK OR AFRICAN AMERICAN,43.3,TBXYZ
+807,29,42,4,Yes,No,288,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),39,Male,BLACK OR AFRICAN AMERICAN,41,TBXYZ
+807,43,28.79,6,Yes,No,288,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),39,Male,BLACK OR AFRICAN AMERICAN,41,TBXYZ
+807,57,42,8,Yes,No,288,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),39,Male,BLACK OR AFRICAN AMERICAN,41,TBXYZ
+807,86,42,12,Yes,No,288,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),39,Male,BLACK OR AFRICAN AMERICAN,41.2,TBXYZ
+808,141,42,20,No,Yes,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),32,Male,BLACK OR AFRICAN AMERICAN,61.9,TBXYZ
+808,15,34.88,2,No,Yes,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),32,Male,BLACK OR AFRICAN AMERICAN,54,TBXYZ
+808,169,42,24,No,Yes,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),32,Male,BLACK OR AFRICAN AMERICAN,58,TBXYZ
+808,226,42,32,No,Yes,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),32,Male,BLACK OR AFRICAN AMERICAN,58.9,TBXYZ
+808,254,42,36,No,Yes,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),32,Male,BLACK OR AFRICAN AMERICAN,65.4,TBXYZ
+808,29,42,4,No,Yes,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),32,Male,BLACK OR AFRICAN AMERICAN,56.5,TBXYZ
+808,43,42,6,No,Yes,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),32,Male,BLACK OR AFRICAN AMERICAN,56,TBXYZ
+808,57,42,8,No,Yes,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),32,Male,BLACK OR AFRICAN AMERICAN,57.5,TBXYZ
+808,85,39.88,12,No,Yes,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),32,Male,BLACK OR AFRICAN AMERICAN,59.4,TBXYZ
+809,113,42,16,No,No,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),25,Female,BLACK OR AFRICAN AMERICAN,53,TBXYZ
+809,141,42,20,No,No,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),25,Female,BLACK OR AFRICAN AMERICAN,52.5,TBXYZ
+809,15,12.63,2,No,No,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),25,Female,BLACK OR AFRICAN AMERICAN,51.2,TBXYZ
+809,169,42,24,No,No,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),25,Female,BLACK OR AFRICAN AMERICAN,51.7,TBXYZ
+809,29,23,4,No,No,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),25,Female,BLACK OR AFRICAN AMERICAN,50.6,TBXYZ
+809,43,42,6,No,No,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),25,Female,BLACK OR AFRICAN AMERICAN,52,TBXYZ
+809,57,42,8,No,No,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),25,Female,BLACK OR AFRICAN AMERICAN,53,TBXYZ
+809,85,42,12,No,No,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),25,Female,BLACK OR AFRICAN AMERICAN,53.5,TBXYZ
+81,0,5.417,0,Yes,No,621,PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),29,Female,BLACK OR AFRICAN AMERICAN,44,TBXYZ
+81,113,42,16,Yes,No,621,PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),29,Female,BLACK OR AFRICAN AMERICAN,46,TBXYZ
+81,115,42,16,Yes,No,621,PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),29,Female,BLACK OR AFRICAN AMERICAN,46,TBXYZ
+81,124,42,18,Yes,No,621,PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),29,Female,BLACK OR AFRICAN AMERICAN,45.5,TBXYZ
+81,139,42,20,Yes,No,621,PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),29,Female,BLACK OR AFRICAN AMERICAN,45.2,TBXYZ
+81,14,8.271,2,Yes,No,621,PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),29,Female,BLACK OR AFRICAN AMERICAN,43,TBXYZ
+81,140,42,20,Yes,No,621,PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),29,Female,BLACK OR AFRICAN AMERICAN,45.2,TBXYZ
+81,151,42,22,Yes,No,621,PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),29,Female,BLACK OR AFRICAN AMERICAN,47.4,TBXYZ
+81,167,42,24,Yes,No,621,PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),29,Female,BLACK OR AFRICAN AMERICAN,47,TBXYZ
+81,20,9.75,3,Yes,No,621,PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),29,Female,BLACK OR AFRICAN AMERICAN,42.6,TBXYZ
+81,26,14.2085,4,Yes,No,621,PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),29,Female,BLACK OR AFRICAN AMERICAN,43.5,TBXYZ
+81,34,14.5415,5,Yes,No,621,PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),29,Female,BLACK OR AFRICAN AMERICAN,44.6,TBXYZ
+81,41,16.125,6,Yes,No,621,PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),29,Female,BLACK OR AFRICAN AMERICAN,45.1,TBXYZ
+81,48,18.8335,7,Yes,No,621,PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),29,Female,BLACK OR AFRICAN AMERICAN,45.2,TBXYZ
+81,55,18.667,8,Yes,No,621,PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),29,Female,BLACK OR AFRICAN AMERICAN,46,TBXYZ
+81,67,42,10,Yes,No,621,PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),29,Female,BLACK OR AFRICAN AMERICAN,45.4,TBXYZ
+81,7,7.521,1,Yes,No,621,PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),29,Female,BLACK OR AFRICAN AMERICAN,43.2,TBXYZ
+81,84,42,12,Yes,No,621,PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),29,Female,BLACK OR AFRICAN AMERICAN,45.9,TBXYZ
+81,97,42,14,Yes,No,621,PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),29,Female,BLACK OR AFRICAN AMERICAN,46,TBXYZ
+810,15,7.38,2,No,Yes,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),54,Male,WHITE,55,TBXYZ
+811,113,42,16,No,No,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),27,Male,ASIAN,58.5,TBXYZ
+811,15,19.63,2,No,No,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),27,Male,ASIAN,56,TBXYZ
+811,29,10.75,4,No,No,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),27,Male,ASIAN,57,TBXYZ
+811,43,42,6,No,No,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),27,Male,ASIAN,57,TBXYZ
+811,57,42,8,No,No,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),27,Male,ASIAN,58,TBXYZ
+811,85,42,12,No,No,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),27,Male,ASIAN,58,TBXYZ
+812,113,42,16,No,Yes,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),41,Male,BLACK OR AFRICAN AMERICAN,71.4,TBXYZ
+812,145,42,21,No,Yes,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),41,Male,BLACK OR AFRICAN AMERICAN,71.6,TBXYZ
+812,15,16.29,2,No,Yes,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),41,Male,BLACK OR AFRICAN AMERICAN,66.8,TBXYZ
+812,170,42,24,No,Yes,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),41,Male,BLACK OR AFRICAN AMERICAN,73.3,TBXYZ
+812,29,37.42,4,No,Yes,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),41,Male,BLACK OR AFRICAN AMERICAN,68.6,TBXYZ
+812,43,42,6,No,Yes,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),41,Male,BLACK OR AFRICAN AMERICAN,68.8,TBXYZ
+812,57,42,8,No,Yes,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),41,Male,BLACK OR AFRICAN AMERICAN,68.9,TBXYZ
+813,142,42,20,No,No,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),50,Male,ASIAN,55,TBXYZ
+813,15,10.71,2,No,No,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),50,Male,ASIAN,53,TBXYZ
+813,169,42,24,No,No,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),50,Male,ASIAN,55.5,TBXYZ
+813,197,42,28,No,No,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),50,Male,ASIAN,55.5,TBXYZ
+813,29,8.54,4,No,No,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),50,Male,ASIAN,54,TBXYZ
+813,43,9.58,6,No,No,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),50,Male,ASIAN,53.5,TBXYZ
+813,57,42,8,No,No,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),50,Male,ASIAN,54,TBXYZ
+814,113,42,16,No,Yes,NA,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),23,Female,BLACK OR AFRICAN AMERICAN,55,TBXYZ
+814,141,42,20,No,Yes,NA,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),23,Female,BLACK OR AFRICAN AMERICAN,55.1,TBXYZ
+814,15,15.88,2,No,Yes,NA,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),23,Female,BLACK OR AFRICAN AMERICAN,50.6,TBXYZ
+814,169,42,24,No,Yes,NA,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),23,Female,BLACK OR AFRICAN AMERICAN,54.9,TBXYZ
+814,44,23.17,6,No,Yes,NA,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),23,Female,BLACK OR AFRICAN AMERICAN,52,TBXYZ
+814,57,42,8,No,Yes,NA,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),23,Female,BLACK OR AFRICAN AMERICAN,52.6,TBXYZ
+814,85,42,12,No,Yes,NA,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),23,Female,BLACK OR AFRICAN AMERICAN,53.5,TBXYZ
+815,15,19.42,2,No,No,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),21,Female,BLACK OR AFRICAN AMERICAN,56,TBXYZ
+815,29,42,4,No,No,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),21,Female,BLACK OR AFRICAN AMERICAN,56.5,TBXYZ
+816,113,42,16,No,Yes,NA,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),26,Male,ASIAN,40,TBXYZ
+816,141,42,20,No,Yes,NA,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),26,Male,ASIAN,42,TBXYZ
+816,15,11.17,2,No,Yes,NA,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),26,Male,ASIAN,41.5,TBXYZ
+816,169,42,24,No,Yes,NA,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),26,Male,ASIAN,45,TBXYZ
+816,29,12.75,4,No,Yes,NA,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),26,Male,ASIAN,41.5,TBXYZ
+816,43,18.42,6,No,Yes,NA,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),26,Male,ASIAN,40,TBXYZ
+816,57,18.21,8,No,Yes,NA,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),26,Male,ASIAN,40.5,TBXYZ
+816,85,42,12,No,Yes,NA,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),26,Male,ASIAN,42,TBXYZ
+817,113,42,16,No,No,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),32,Female,ASIAN,52.3,TBXYZ
+817,141,42,20,No,No,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),32,Female,ASIAN,52.2,TBXYZ
+817,15,15.04,2,No,No,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),32,Female,ASIAN,49.5,TBXYZ
+817,32,42,5,No,No,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),32,Female,ASIAN,49.8,TBXYZ
+817,4,10.67,1,No,No,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),32,Female,ASIAN,49,TBXYZ
+817,46,42,7,No,No,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),32,Female,ASIAN,51,TBXYZ
+817,60,42,9,No,No,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),32,Female,ASIAN,51.2,TBXYZ
+817,84,42,12,No,No,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),32,Female,ASIAN,51.5,TBXYZ
+818,114,42,16,No,No,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),48,Male,ASIAN,68.5,TBXYZ
+818,141,42,20,No,No,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),48,Male,ASIAN,70,TBXYZ
+818,16,19.08,2,No,No,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),48,Male,ASIAN,68.2,TBXYZ
+818,2,8.67,0,No,No,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),48,Male,ASIAN,69,TBXYZ
+818,29,42,4,No,No,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),48,Male,ASIAN,68,TBXYZ
+818,44,42,6,No,No,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),48,Male,ASIAN,66.5,TBXYZ
+818,60,42,9,No,No,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),48,Male,ASIAN,66.5,TBXYZ
+818,87,42,12,No,No,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),48,Male,ASIAN,67.5,TBXYZ
+819,142,42,20,No,No,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),28,Male,BLACK OR AFRICAN AMERICAN,57.4,TBXYZ
+819,15,14.21,2,No,No,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),28,Male,BLACK OR AFRICAN AMERICAN,58,TBXYZ
+819,29,11.46,4,No,No,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),28,Male,BLACK OR AFRICAN AMERICAN,59,TBXYZ
+819,43,42,6,No,No,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),28,Male,BLACK OR AFRICAN AMERICAN,55.5,TBXYZ
+819,57,42,8,No,No,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),28,Male,BLACK OR AFRICAN AMERICAN,57.5,TBXYZ
+819,85,42,12,No,No,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),28,Male,BLACK OR AFRICAN AMERICAN,59.2,TBXYZ
+82,0,9.875,0,No,No,608,TMC207/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),TMC207/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),21,Female,BLACK OR AFRICAN AMERICAN,47.3,TBXYZ
+82,112,42,16,No,No,608,TMC207/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),TMC207/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),21,Female,BLACK OR AFRICAN AMERICAN,45,TBXYZ
+82,113,42,16,No,No,608,TMC207/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),TMC207/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),21,Female,BLACK OR AFRICAN AMERICAN,45,TBXYZ
+82,124,42,18,No,No,608,TMC207/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),TMC207/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),21,Female,BLACK OR AFRICAN AMERICAN,45.5,TBXYZ
+82,14,12.75,2,No,No,608,TMC207/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),TMC207/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),21,Female,BLACK OR AFRICAN AMERICAN,46,TBXYZ
+82,145,42,21,No,No,608,TMC207/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),TMC207/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),21,Female,BLACK OR AFRICAN AMERICAN,46.4,TBXYZ
+82,155,42,22,No,No,608,TMC207/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),TMC207/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),21,Female,BLACK OR AFRICAN AMERICAN,47.2,TBXYZ
+82,168,42,24,No,No,608,TMC207/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),TMC207/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),21,Female,BLACK OR AFRICAN AMERICAN,47,TBXYZ
+82,21,24.708,3,No,No,608,TMC207/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),TMC207/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),21,Female,BLACK OR AFRICAN AMERICAN,45.6,TBXYZ
+82,28,42,4,No,No,608,TMC207/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),TMC207/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),21,Female,BLACK OR AFRICAN AMERICAN,45,TBXYZ
+82,35,20.583,5,No,No,608,TMC207/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),TMC207/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),21,Female,BLACK OR AFRICAN AMERICAN,46.2,TBXYZ
+82,40,42,6,No,No,608,TMC207/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),TMC207/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),21,Female,BLACK OR AFRICAN AMERICAN,44.8,TBXYZ
+82,49,42,7,No,No,608,TMC207/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),TMC207/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),21,Female,BLACK OR AFRICAN AMERICAN,45.6,TBXYZ
+82,56,42,8,No,No,608,TMC207/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),TMC207/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),21,Female,BLACK OR AFRICAN AMERICAN,44,TBXYZ
+82,7,15,1,No,No,608,TMC207/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),TMC207/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),21,Female,BLACK OR AFRICAN AMERICAN,47.6,TBXYZ
+82,70,42,10,No,No,608,TMC207/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),TMC207/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),21,Female,BLACK OR AFRICAN AMERICAN,44.6,TBXYZ
+82,84,42,12,No,No,608,TMC207/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),TMC207/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),21,Female,BLACK OR AFRICAN AMERICAN,45,TBXYZ
+82,96,42,14,No,No,608,TMC207/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),TMC207/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),21,Female,BLACK OR AFRICAN AMERICAN,45.8,TBXYZ
+820,1,6,0,No,Yes,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),19,Male,BLACK OR AFRICAN AMERICAN,61,TBXYZ
+820,114,42,16,No,Yes,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),19,Male,BLACK OR AFRICAN AMERICAN,64,TBXYZ
+820,14,10,2,No,Yes,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),19,Male,BLACK OR AFRICAN AMERICAN,61,TBXYZ
+820,142,42,20,No,Yes,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),19,Male,BLACK OR AFRICAN AMERICAN,63.9,TBXYZ
+820,30,15,4,No,Yes,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),19,Male,BLACK OR AFRICAN AMERICAN,60,TBXYZ
+820,43,42,6,No,Yes,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),19,Male,BLACK OR AFRICAN AMERICAN,59.4,TBXYZ
+820,57,42,8,No,Yes,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),19,Male,BLACK OR AFRICAN AMERICAN,60.8,TBXYZ
+821,21,42,3,No,Yes,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),62,Female,MISSING,44.9,TBXYZ
+821,3,42,0,No,Yes,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),62,Female,MISSING,45.4,TBXYZ
+821,33,42,5,No,Yes,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),62,Female,MISSING,45.8,TBXYZ
+821,42,42,6,No,Yes,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),62,Female,MISSING,46.3,TBXYZ
+821,63,42,9,No,Yes,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),62,Female,MISSING,46.7,TBXYZ
+821,95,42,14,No,Yes,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),62,Female,MISSING,47.2,TBXYZ
+822,1,11,0,No,Yes,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),21,Female,ASIAN,49.4,TBXYZ
+822,114,42,16,No,Yes,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),21,Female,ASIAN,51.7,TBXYZ
+822,146,42,21,No,Yes,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),21,Female,ASIAN,52.6,TBXYZ
+822,16,42,2,No,Yes,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),21,Female,ASIAN,49.7,TBXYZ
+822,30,42,4,No,Yes,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),21,Female,ASIAN,47.6,TBXYZ
+822,58,42,8,No,Yes,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),21,Female,ASIAN,49,TBXYZ
+822,86,42,12,No,Yes,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),21,Female,ASIAN,50.6,TBXYZ
+823,114,13.33,16,No,No,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),25,Male,BLACK OR AFRICAN AMERICAN,81.4,TBXYZ
+823,143,42,20,No,No,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),25,Male,BLACK OR AFRICAN AMERICAN,81,TBXYZ
+823,15,18.29,2,No,No,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),25,Male,BLACK OR AFRICAN AMERICAN,75.3,TBXYZ
+823,172,42,25,No,No,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),25,Male,BLACK OR AFRICAN AMERICAN,80,TBXYZ
+823,29,42,4,No,No,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),25,Male,BLACK OR AFRICAN AMERICAN,77.3,TBXYZ
+823,46,42,7,No,No,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),25,Male,BLACK OR AFRICAN AMERICAN,78.3,TBXYZ
+823,59,42,8,No,No,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),25,Male,BLACK OR AFRICAN AMERICAN,77.5,TBXYZ
+823,88,42,13,No,No,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),25,Male,BLACK OR AFRICAN AMERICAN,78,TBXYZ
+824,113,42,16,Yes,Yes,277,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),47,Female,BLACK OR AFRICAN AMERICAN,49.6,TBXYZ
+824,141,42,20,Yes,Yes,277,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),47,Female,BLACK OR AFRICAN AMERICAN,50.5,TBXYZ
+824,169,42,24,Yes,Yes,277,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),47,Female,BLACK OR AFRICAN AMERICAN,50.5,TBXYZ
+824,192,42,27,Yes,Yes,277,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),47,Female,BLACK OR AFRICAN AMERICAN,51.5,TBXYZ
+824,225,42,32,Yes,Yes,277,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),47,Female,BLACK OR AFRICAN AMERICAN,51.6,TBXYZ
+824,253,42,36,Yes,Yes,277,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),47,Female,BLACK OR AFRICAN AMERICAN,53.5,TBXYZ
+824,29,22.08,4,Yes,Yes,277,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),47,Female,BLACK OR AFRICAN AMERICAN,47.5,TBXYZ
+824,43,24.33,6,Yes,Yes,277,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),47,Female,BLACK OR AFRICAN AMERICAN,49.5,TBXYZ
+824,57,10.08,8,Yes,Yes,277,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),47,Female,BLACK OR AFRICAN AMERICAN,48.5,TBXYZ
+825,113,42,16,No,Yes,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),24,Female,BLACK OR AFRICAN AMERICAN,66.3,TBXYZ
+825,144,42,21,No,Yes,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),24,Female,BLACK OR AFRICAN AMERICAN,67.4,TBXYZ
+825,16,13.54,2,No,Yes,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),24,Female,BLACK OR AFRICAN AMERICAN,62.7,TBXYZ
+825,169,42,24,No,Yes,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),24,Female,BLACK OR AFRICAN AMERICAN,69.2,TBXYZ
+825,29,14.04,4,No,Yes,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),24,Female,BLACK OR AFRICAN AMERICAN,64.5,TBXYZ
+825,43,21.29,6,No,Yes,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),24,Female,BLACK OR AFRICAN AMERICAN,64.6,TBXYZ
+825,57,42,8,No,Yes,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),24,Female,BLACK OR AFRICAN AMERICAN,63.8,TBXYZ
+825,85,9.71,12,No,Yes,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),24,Female,BLACK OR AFRICAN AMERICAN,66.3,TBXYZ
+826,15,8.46,2,No,Yes,NA,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),50,Male,BLACK OR AFRICAN AMERICAN,48,TBXYZ
+826,29,12.75,4,No,Yes,NA,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),50,Male,BLACK OR AFRICAN AMERICAN,48.5,TBXYZ
+826,43,4.38,6,No,Yes,NA,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),50,Male,BLACK OR AFRICAN AMERICAN,49.2,TBXYZ
+826,57,42,8,No,Yes,NA,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),50,Male,BLACK OR AFRICAN AMERICAN,49.5,TBXYZ
+827,113,42,16,No,Yes,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),22,Female,BLACK OR AFRICAN AMERICAN,53.1,TBXYZ
+827,15,13.17,2,No,Yes,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),22,Female,BLACK OR AFRICAN AMERICAN,49.3,TBXYZ
+827,169,42,24,No,Yes,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),22,Female,BLACK OR AFRICAN AMERICAN,52,TBXYZ
+827,197,42,28,No,Yes,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),22,Female,BLACK OR AFRICAN AMERICAN,53.5,TBXYZ
+827,29,12.83,4,No,Yes,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),22,Female,BLACK OR AFRICAN AMERICAN,50.4,TBXYZ
+827,43,33,6,No,Yes,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),22,Female,BLACK OR AFRICAN AMERICAN,50.8,TBXYZ
+827,57,33,8,No,Yes,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),22,Female,BLACK OR AFRICAN AMERICAN,52.2,TBXYZ
+827,85,42,12,No,Yes,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),22,Female,BLACK OR AFRICAN AMERICAN,52.5,TBXYZ
+828,1,11.79,0,No,Yes,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),62,Male,BLACK OR AFRICAN AMERICAN,56.7,TBXYZ
+828,18,18.33,3,No,Yes,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),62,Male,BLACK OR AFRICAN AMERICAN,54.4,TBXYZ
+828,32,35.63,5,No,Yes,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),62,Male,BLACK OR AFRICAN AMERICAN,58.1,TBXYZ
+828,47,42,7,No,Yes,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),62,Male,BLACK OR AFRICAN AMERICAN,55,TBXYZ
+828,57,42,8,No,Yes,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),62,Male,BLACK OR AFRICAN AMERICAN,57.6,TBXYZ
+829,113,42,16,Yes,Yes,814,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),33,Female,BLACK OR AFRICAN AMERICAN,65,TBXYZ
+829,14,23.75,2,Yes,Yes,814,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),33,Female,BLACK OR AFRICAN AMERICAN,63.5,TBXYZ
+829,183,42,26,Yes,Yes,814,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),33,Female,BLACK OR AFRICAN AMERICAN,61,TBXYZ
+829,29,42,4,Yes,Yes,814,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),33,Female,BLACK OR AFRICAN AMERICAN,64,TBXYZ
+829,43,26.17,6,Yes,Yes,814,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),33,Female,BLACK OR AFRICAN AMERICAN,64,TBXYZ
+829,57,42,8,Yes,Yes,814,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),33,Female,BLACK OR AFRICAN AMERICAN,64,TBXYZ
+829,85,42,12,Yes,Yes,814,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),33,Female,BLACK OR AFRICAN AMERICAN,64,TBXYZ
+83,0,6.5,0,Yes,No,667,PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),35,Male,OTHER,52.1,TBXYZ
+83,118,42,17,Yes,No,667,PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),35,Male,OTHER,52,TBXYZ
+83,124,42,18,Yes,No,667,PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),35,Male,OTHER,52.9,TBXYZ
+83,139,42,20,Yes,No,667,PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),35,Male,OTHER,53.2,TBXYZ
+83,14,13.229,2,Yes,No,667,PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),35,Male,OTHER,52.1,TBXYZ
+83,153,42,22,Yes,No,667,PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),35,Male,OTHER,52.4,TBXYZ
+83,172,42,25,Yes,No,667,PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),35,Male,OTHER,52,TBXYZ
+83,20,15.7085,3,Yes,No,667,PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),35,Male,OTHER,52.7,TBXYZ
+83,27,25.333,4,Yes,No,667,PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),35,Male,OTHER,52.6,TBXYZ
+83,34,42,5,Yes,No,667,PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),35,Male,OTHER,52.7,TBXYZ
+83,41,23.771,6,Yes,No,667,PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),35,Male,OTHER,51.4,TBXYZ
+83,48,19.2085,7,Yes,No,667,PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),35,Male,OTHER,52.4,TBXYZ
+83,55,42,8,Yes,No,667,PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),35,Male,OTHER,53,TBXYZ
+83,69,34.25,10,Yes,No,667,PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),35,Male,OTHER,52.9,TBXYZ
+83,7,11.1665,1,Yes,No,667,PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),35,Male,OTHER,52,TBXYZ
+83,83,42,12,Yes,No,667,PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),35,Male,OTHER,50.9,TBXYZ
+83,97,42,14,Yes,No,667,PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),35,Male,OTHER,53.5,TBXYZ
+830,1,6.5,0,No,No,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),67,Male,WHITE,81.2,TBXYZ
+830,15,17.29,2,No,No,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),67,Male,WHITE,79.3,TBXYZ
+830,29,21.75,4,No,No,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),67,Male,WHITE,78.6,TBXYZ
+831,15,10.54,2,No,Yes,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),24,Male,BLACK OR AFRICAN AMERICAN,59.9,TBXYZ
+831,29,19.33,4,No,Yes,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),24,Male,BLACK OR AFRICAN AMERICAN,60.2,TBXYZ
+831,43,26.58,6,No,Yes,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),24,Male,BLACK OR AFRICAN AMERICAN,60.4,TBXYZ
+831,57,42,8,No,Yes,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),24,Male,BLACK OR AFRICAN AMERICAN,60,TBXYZ
+832,15,17.08,2,No,No,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),40,Male,BLACK OR AFRICAN AMERICAN,52,TBXYZ
+832,169,42,24,No,No,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),40,Male,BLACK OR AFRICAN AMERICAN,58.9,TBXYZ
+832,29,17.96,4,No,No,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),40,Male,BLACK OR AFRICAN AMERICAN,53,TBXYZ
+832,43,20,6,No,No,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),40,Male,BLACK OR AFRICAN AMERICAN,54.3,TBXYZ
+832,57,22.83,8,No,No,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),40,Male,BLACK OR AFRICAN AMERICAN,56,TBXYZ
+833,1,5.96,0,No,Yes,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),23,Male,BLACK OR AFRICAN AMERICAN,62.2,TBXYZ
+833,113,42,16,No,Yes,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),23,Male,BLACK OR AFRICAN AMERICAN,66.5,TBXYZ
+833,141,42,20,No,Yes,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),23,Male,BLACK OR AFRICAN AMERICAN,66,TBXYZ
+833,15,24.96,2,No,Yes,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),23,Male,BLACK OR AFRICAN AMERICAN,60.5,TBXYZ
+833,169,42,24,No,Yes,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),23,Male,BLACK OR AFRICAN AMERICAN,66.7,TBXYZ
+833,28,42,4,No,Yes,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),23,Male,BLACK OR AFRICAN AMERICAN,62.5,TBXYZ
+833,43,42,6,No,Yes,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),23,Male,BLACK OR AFRICAN AMERICAN,61.7,TBXYZ
+833,57,42,8,No,Yes,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),23,Male,BLACK OR AFRICAN AMERICAN,61.6,TBXYZ
+833,84,42,12,No,Yes,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),23,Male,BLACK OR AFRICAN AMERICAN,65,TBXYZ
+834,15,15.88,2,No,Yes,NA,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),22,Male,ASIAN,58,TBXYZ
+834,29,42,4,No,Yes,NA,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),22,Male,ASIAN,58,TBXYZ
+834,43,42,6,No,Yes,NA,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),22,Male,ASIAN,58.5,TBXYZ
+834,57,42,8,No,Yes,NA,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),22,Male,ASIAN,59,TBXYZ
+834,85,42,12,No,Yes,NA,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),22,Male,ASIAN,58,TBXYZ
+835,15,31.17,2,No,Yes,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),25,Male,BLACK OR AFRICAN AMERICAN,45.5,TBXYZ
+835,29,42,4,No,Yes,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),25,Male,BLACK OR AFRICAN AMERICAN,45,TBXYZ
+835,43,42,6,No,Yes,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),25,Male,BLACK OR AFRICAN AMERICAN,45,TBXYZ
+836,114,42,16,No,Yes,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),49,Male,WHITE,68.5,TBXYZ
+836,19,12,3,No,Yes,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),49,Male,WHITE,55.8,TBXYZ
+836,30,14.71,4,No,Yes,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),49,Male,WHITE,58.1,TBXYZ
+836,47,3.54,7,No,Yes,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),49,Male,WHITE,59.9,TBXYZ
+836,6,8.88,1,No,Yes,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),49,Male,WHITE,55.3,TBXYZ
+836,61,4.46,9,No,Yes,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),49,Male,WHITE,61.7,TBXYZ
+836,62,42,9,No,Yes,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),49,Male,WHITE,61.7,TBXYZ
+836,92,42,13,No,Yes,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),49,Male,WHITE,68,TBXYZ
+837,113,42,16,No,Yes,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),48,Male,ASIAN,51,TBXYZ
+837,15,10.75,2,No,Yes,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),48,Male,ASIAN,50,TBXYZ
+837,29,15.33,4,No,Yes,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),48,Male,ASIAN,50,TBXYZ
+837,43,16.67,6,No,Yes,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),48,Male,ASIAN,50,TBXYZ
+837,57,42,8,No,Yes,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),48,Male,ASIAN,50,TBXYZ
+837,85,42,12,No,Yes,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),48,Male,ASIAN,51.5,TBXYZ
+838,15,15.08,2,No,Yes,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),57,Female,BLACK OR AFRICAN AMERICAN,82.5,TBXYZ
+838,57,42,8,No,Yes,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),57,Female,BLACK OR AFRICAN AMERICAN,84.4,TBXYZ
+839,113,42,16,No,No,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),58,Male,BLACK OR AFRICAN AMERICAN,59,TBXYZ
+839,141,42,20,No,No,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),58,Male,BLACK OR AFRICAN AMERICAN,61,TBXYZ
+839,15,12.88,2,No,No,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),58,Male,BLACK OR AFRICAN AMERICAN,58,TBXYZ
+839,29,17.08,4,No,No,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),58,Male,BLACK OR AFRICAN AMERICAN,58,TBXYZ
+839,57,42,8,No,No,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),58,Male,BLACK OR AFRICAN AMERICAN,59,TBXYZ
+84,0,14.375,0,No,No,777,PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),20,Male,OTHER,44,TBXYZ
+84,14,42,2,No,No,777,PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),20,Male,OTHER,44,TBXYZ
+840,110,42,16,No,Yes,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),26,Male,WHITE,64.6,TBXYZ
+840,138,42,20,No,Yes,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),26,Male,WHITE,64.7,TBXYZ
+840,15,42,2,No,Yes,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),26,Male,WHITE,61,TBXYZ
+840,180,42,26,No,Yes,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),26,Male,WHITE,66.5,TBXYZ
+840,29,42,4,No,Yes,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),26,Male,WHITE,62,TBXYZ
+840,43,42,6,No,Yes,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),26,Male,WHITE,63,TBXYZ
+840,57,42,8,No,Yes,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),26,Male,WHITE,64,TBXYZ
+840,82,42,12,No,Yes,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),26,Male,WHITE,64.7,TBXYZ
+841,113,42,16,No,Yes,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),25,Male,MISSING,48.5,TBXYZ
+841,15,16.83,2,No,Yes,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),25,Male,MISSING,46.1,TBXYZ
+841,155,42,22,No,Yes,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),25,Male,MISSING,48.9,TBXYZ
+841,169,42,24,No,Yes,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),25,Male,MISSING,47.7,TBXYZ
+841,190,42,27,No,Yes,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),25,Male,MISSING,48,TBXYZ
+841,29,18.83,4,No,Yes,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),25,Male,MISSING,47.7,TBXYZ
+841,43,25.5,6,No,Yes,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),25,Male,MISSING,47.7,TBXYZ
+841,57,22.96,8,No,Yes,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),25,Male,MISSING,50.1,TBXYZ
+841,85,42,12,No,Yes,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),25,Male,MISSING,49.9,TBXYZ
+842,15,14.96,2,No,No,NA,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),49,Male,BLACK OR AFRICAN AMERICAN,58,TBXYZ
+842,29,22.25,4,No,No,NA,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),49,Male,BLACK OR AFRICAN AMERICAN,58,TBXYZ
+842,43,25.17,6,No,No,NA,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),49,Male,BLACK OR AFRICAN AMERICAN,61,TBXYZ
+842,57,19.54,8,No,No,NA,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),49,Male,BLACK OR AFRICAN AMERICAN,61,TBXYZ
+842,85,42,12,No,No,NA,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),49,Male,BLACK OR AFRICAN AMERICAN,62,TBXYZ
+843,1,9.08,0,No,Yes,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),22,Female,WHITE,57.2,TBXYZ
+843,15,18.25,2,No,Yes,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),22,Female,WHITE,57.6,TBXYZ
+843,34,26.21,5,No,Yes,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),22,Female,WHITE,58.4,TBXYZ
+843,61,42,9,No,Yes,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),22,Female,WHITE,61.2,TBXYZ
+843,88,42,13,No,Yes,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),22,Female,WHITE,61.5,TBXYZ
+844,114,42,16,No,Yes,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),18,Male,BLACK OR AFRICAN AMERICAN,56.4,TBXYZ
+844,142,42,20,No,Yes,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),18,Male,BLACK OR AFRICAN AMERICAN,56,TBXYZ
+844,15,12.88,2,No,Yes,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),18,Male,BLACK OR AFRICAN AMERICAN,50.4,TBXYZ
+844,170,42,24,No,Yes,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),18,Male,BLACK OR AFRICAN AMERICAN,56.3,TBXYZ
+844,29,16.71,4,No,Yes,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),18,Male,BLACK OR AFRICAN AMERICAN,50,TBXYZ
+844,58,42,8,No,Yes,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),18,Male,BLACK OR AFRICAN AMERICAN,52.8,TBXYZ
+844,86,42,12,No,Yes,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),18,Male,BLACK OR AFRICAN AMERICAN,54.6,TBXYZ
+845,1,7,0,No,Yes,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),34,Male,BLACK OR AFRICAN AMERICAN,55,TBXYZ
+845,141,42,20,No,Yes,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),34,Male,BLACK OR AFRICAN AMERICAN,62.6,TBXYZ
+845,15,16,2,No,Yes,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),34,Male,BLACK OR AFRICAN AMERICAN,55,TBXYZ
+845,29,42,4,No,Yes,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),34,Male,BLACK OR AFRICAN AMERICAN,60,TBXYZ
+845,43,42,6,No,Yes,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),34,Male,BLACK OR AFRICAN AMERICAN,62.3,TBXYZ
+845,57,42,8,No,Yes,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),34,Male,BLACK OR AFRICAN AMERICAN,63,TBXYZ
+845,85,42,12,No,Yes,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),34,Male,BLACK OR AFRICAN AMERICAN,65,TBXYZ
+846,1,4,0,Yes,Yes,469,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),24,Female,BLACK OR AFRICAN AMERICAN,69.3,TBXYZ
+846,141,42,20,Yes,Yes,469,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),24,Female,BLACK OR AFRICAN AMERICAN,69.7,TBXYZ
+846,15,42,2,Yes,Yes,469,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),24,Female,BLACK OR AFRICAN AMERICAN,66.5,TBXYZ
+846,155,42,22,Yes,Yes,469,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),24,Female,BLACK OR AFRICAN AMERICAN,69.7,TBXYZ
+846,169,42,24,Yes,Yes,469,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),24,Female,BLACK OR AFRICAN AMERICAN,69.7,TBXYZ
+846,29,42,4,Yes,Yes,469,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),24,Female,BLACK OR AFRICAN AMERICAN,66.5,TBXYZ
+846,43,42,6,Yes,Yes,469,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),24,Female,BLACK OR AFRICAN AMERICAN,66,TBXYZ
+846,62,42,9,Yes,Yes,469,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),24,Female,BLACK OR AFRICAN AMERICAN,65,TBXYZ
+846,85,42,12,Yes,Yes,469,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),24,Female,BLACK OR AFRICAN AMERICAN,68,TBXYZ
+847,1,7,0,No,No,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),32,Male,BLACK OR AFRICAN AMERICAN,49.3,TBXYZ
+847,146,42,21,No,No,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),32,Male,BLACK OR AFRICAN AMERICAN,50.2,TBXYZ
+847,15,17,2,No,No,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),32,Male,BLACK OR AFRICAN AMERICAN,50.6,TBXYZ
+847,29,42,4,No,No,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),32,Male,BLACK OR AFRICAN AMERICAN,52.2,TBXYZ
+847,42,17,6,No,No,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),32,Male,BLACK OR AFRICAN AMERICAN,52.2,TBXYZ
+847,85,42,12,No,No,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),32,Male,BLACK OR AFRICAN AMERICAN,49.2,TBXYZ
+848,1,11,0,No,Yes,NA,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),18,Male,BLACK OR AFRICAN AMERICAN,61.9,TBXYZ
+848,143,42,20,No,Yes,NA,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),18,Male,BLACK OR AFRICAN AMERICAN,65,TBXYZ
+848,15,19,2,No,Yes,NA,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),18,Male,BLACK OR AFRICAN AMERICAN,62.8,TBXYZ
+848,29,27,4,No,Yes,NA,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),18,Male,BLACK OR AFRICAN AMERICAN,62.8,TBXYZ
+848,43,25,6,No,Yes,NA,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),18,Male,BLACK OR AFRICAN AMERICAN,63.3,TBXYZ
+848,57,42,8,No,Yes,NA,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),18,Male,BLACK OR AFRICAN AMERICAN,63.3,TBXYZ
+848,86,42,12,No,Yes,NA,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),18,Male,BLACK OR AFRICAN AMERICAN,64.1,TBXYZ
+849,111,42,16,No,Yes,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),21,Male,WHITE,73.9,TBXYZ
+849,139,42,20,No,Yes,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),21,Male,WHITE,78.3,TBXYZ
+849,15,16.5,2,No,Yes,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),21,Male,WHITE,70,TBXYZ
+849,181,42,26,No,Yes,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),21,Male,WHITE,79.4,TBXYZ
+849,29,18.29,4,No,Yes,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),21,Male,WHITE,71.2,TBXYZ
+849,43,42,6,No,Yes,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),21,Male,WHITE,71,TBXYZ
+849,58,42,8,No,Yes,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),21,Male,WHITE,72.8,TBXYZ
+849,83,42,12,No,Yes,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),21,Male,WHITE,73.4,TBXYZ
+85,0,5.458,0,Yes,No,463,TMC207/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),TMC207/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),23,Female,BLACK OR AFRICAN AMERICAN,44.6,TBXYZ
+85,111,21.375,16,Yes,No,463,TMC207/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),TMC207/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),23,Female,BLACK OR AFRICAN AMERICAN,52,TBXYZ
+85,125,42,18,Yes,No,463,TMC207/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),TMC207/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),23,Female,BLACK OR AFRICAN AMERICAN,52,TBXYZ
+85,14,12.833,2,Yes,No,463,TMC207/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),TMC207/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),23,Female,BLACK OR AFRICAN AMERICAN,44.6,TBXYZ
+85,22,12.208,3,Yes,No,463,TMC207/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),TMC207/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),23,Female,BLACK OR AFRICAN AMERICAN,44.6,TBXYZ
+85,29,12.708,4,Yes,No,463,TMC207/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),TMC207/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),23,Female,BLACK OR AFRICAN AMERICAN,44.5,TBXYZ
+85,34,16.25,5,Yes,No,463,TMC207/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),TMC207/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),23,Female,BLACK OR AFRICAN AMERICAN,45.6,TBXYZ
+85,43,11.75,6,Yes,No,463,TMC207/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),TMC207/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),23,Female,BLACK OR AFRICAN AMERICAN,49,TBXYZ
+85,50,15.333,7,Yes,No,463,TMC207/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),TMC207/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),23,Female,BLACK OR AFRICAN AMERICAN,49,TBXYZ
+85,55,15.167,8,Yes,No,463,TMC207/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),TMC207/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),23,Female,BLACK OR AFRICAN AMERICAN,49,TBXYZ
+85,69,14.833,10,Yes,No,463,TMC207/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),TMC207/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),23,Female,BLACK OR AFRICAN AMERICAN,50,TBXYZ
+85,7,8.333,1,Yes,No,463,TMC207/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),TMC207/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),23,Female,BLACK OR AFRICAN AMERICAN,45.4,TBXYZ
+85,83,15.5,12,Yes,No,463,TMC207/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),TMC207/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),23,Female,BLACK OR AFRICAN AMERICAN,53,TBXYZ
+85,97,10.2295,14,Yes,No,463,TMC207/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),TMC207/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),23,Female,BLACK OR AFRICAN AMERICAN,52,TBXYZ
+850,15,18.38,2,No,Yes,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),60,Male,WHITE,78,TBXYZ
+850,34,16.29,5,No,Yes,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),60,Male,WHITE,80,TBXYZ
+850,43,42,6,No,Yes,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),60,Male,WHITE,80,TBXYZ
+850,58,42,8,No,Yes,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),60,Male,WHITE,82,TBXYZ
+850,83,42,12,No,Yes,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),60,Male,WHITE,83,TBXYZ
+850,93,42,13,No,Yes,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),60,Male,WHITE,82,TBXYZ
+851,113,42,16,No,Yes,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),27,Male,ASIAN,51.5,TBXYZ
+851,15,16.83,2,No,Yes,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),27,Male,ASIAN,50,TBXYZ
+851,29,24.71,4,No,Yes,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),27,Male,ASIAN,50,TBXYZ
+851,43,42,6,No,Yes,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),27,Male,ASIAN,50,TBXYZ
+851,68,42,10,No,Yes,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),27,Male,ASIAN,50,TBXYZ
+851,85,42,12,No,Yes,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),27,Male,ASIAN,51,TBXYZ
+852,116,42,17,No,No,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),43,Female,WHITE,62.8,TBXYZ
+852,15,9.71,2,No,No,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),43,Female,WHITE,61,TBXYZ
+852,29,20.29,4,No,No,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),43,Female,WHITE,61,TBXYZ
+852,43,42,6,No,No,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),43,Female,WHITE,61,TBXYZ
+852,57,42,8,No,No,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),43,Female,WHITE,61.5,TBXYZ
+852,85,42,12,No,No,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),43,Female,WHITE,62,TBXYZ
+853,11,10.88,2,No,Yes,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),59,Female,WHITE,46.7,TBXYZ
+853,115,42,16,No,Yes,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),59,Female,WHITE,51.3,TBXYZ
+853,16,16.83,2,No,Yes,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),59,Female,WHITE,48.3,TBXYZ
+853,2,10.04,0,No,Yes,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),59,Female,WHITE,46.7,TBXYZ
+853,31,19.17,4,No,Yes,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),59,Female,WHITE,46.3,TBXYZ
+853,45,28.46,6,No,Yes,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),59,Female,WHITE,48.1,TBXYZ
+853,59,25.83,8,No,Yes,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),59,Female,WHITE,49.4,TBXYZ
+854,113,42,16,No,Yes,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),22,Male,BLACK OR AFRICAN AMERICAN,55.1,TBXYZ
+854,141,42,20,No,Yes,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),22,Male,BLACK OR AFRICAN AMERICAN,56,TBXYZ
+854,15,18.25,2,No,Yes,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),22,Male,BLACK OR AFRICAN AMERICAN,54.5,TBXYZ
+854,169,42,24,No,Yes,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),22,Male,BLACK OR AFRICAN AMERICAN,56.5,TBXYZ
+854,28,42,4,No,Yes,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),22,Male,BLACK OR AFRICAN AMERICAN,55.6,TBXYZ
+854,43,42,6,No,Yes,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),22,Male,BLACK OR AFRICAN AMERICAN,56.1,TBXYZ
+854,57,42,8,No,Yes,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),22,Male,BLACK OR AFRICAN AMERICAN,55.4,TBXYZ
+854,84,42,12,No,Yes,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),22,Male,BLACK OR AFRICAN AMERICAN,55.6,TBXYZ
+855,113,42,16,No,Yes,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),52,Male,ASIAN,56,TBXYZ
+855,141,42,20,No,Yes,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),52,Male,ASIAN,56,TBXYZ
+855,15,10.29,2,No,Yes,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),52,Male,ASIAN,54,TBXYZ
+855,29,42,4,No,Yes,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),52,Male,ASIAN,55.5,TBXYZ
+855,43,42,6,No,Yes,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),52,Male,ASIAN,55.5,TBXYZ
+855,57,42,8,No,Yes,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),52,Male,ASIAN,55.5,TBXYZ
+855,85,42,12,No,Yes,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),52,Male,ASIAN,56,TBXYZ
+856,114,42,16,No,Yes,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),39,Female,BLACK OR AFRICAN AMERICAN,63.5,TBXYZ
+856,141,42,20,No,Yes,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),39,Female,BLACK OR AFRICAN AMERICAN,66.2,TBXYZ
+856,15,11.63,2,No,Yes,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),39,Female,BLACK OR AFRICAN AMERICAN,64.6,TBXYZ
+856,169,42,24,No,Yes,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),39,Female,BLACK OR AFRICAN AMERICAN,67.5,TBXYZ
+856,29,21,4,No,Yes,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),39,Female,BLACK OR AFRICAN AMERICAN,63.8,TBXYZ
+856,43,42,6,No,Yes,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),39,Female,BLACK OR AFRICAN AMERICAN,63,TBXYZ
+856,58,32.63,8,No,Yes,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),39,Female,BLACK OR AFRICAN AMERICAN,61,TBXYZ
+856,85,42,12,No,Yes,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),39,Female,BLACK OR AFRICAN AMERICAN,61.9,TBXYZ
+857,122,42,17,No,No,NA,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),22,Female,BLACK OR AFRICAN AMERICAN,64.5,TBXYZ
+857,151,42,22,No,No,NA,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),22,Female,BLACK OR AFRICAN AMERICAN,65.4,TBXYZ
+857,18,20.46,3,No,No,NA,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),22,Female,BLACK OR AFRICAN AMERICAN,64.1,TBXYZ
+857,31,42,4,No,No,NA,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),22,Female,BLACK OR AFRICAN AMERICAN,62.8,TBXYZ
+857,46,42,7,No,No,NA,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),22,Female,BLACK OR AFRICAN AMERICAN,62.8,TBXYZ
+857,60,42,9,No,No,NA,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),22,Female,BLACK OR AFRICAN AMERICAN,62.5,TBXYZ
+858,1,13,0,Yes,Yes,415,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),37,Male,BLACK OR AFRICAN AMERICAN,53.3,TBXYZ
+858,148,42,21,Yes,Yes,415,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),37,Male,BLACK OR AFRICAN AMERICAN,61.5,TBXYZ
+858,15,42,2,Yes,Yes,415,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),37,Male,BLACK OR AFRICAN AMERICAN,54.7,TBXYZ
+858,29,42,4,Yes,Yes,415,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),37,Male,BLACK OR AFRICAN AMERICAN,56,TBXYZ
+858,43,42,6,Yes,Yes,415,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),37,Male,BLACK OR AFRICAN AMERICAN,57.5,TBXYZ
+858,57,42,8,Yes,Yes,415,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),37,Male,BLACK OR AFRICAN AMERICAN,61.2,TBXYZ
+858,85,42,12,Yes,Yes,415,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),37,Male,BLACK OR AFRICAN AMERICAN,63,TBXYZ
+859,15,10.46,2,Yes,Yes,628,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),25,Female,BLACK OR AFRICAN AMERICAN,43.5,TBXYZ
+859,29,10.54,4,Yes,Yes,628,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),25,Female,BLACK OR AFRICAN AMERICAN,43.8,TBXYZ
+859,57,7.58,8,Yes,Yes,628,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),25,Female,BLACK OR AFRICAN AMERICAN,44.8,TBXYZ
+859,85,7.88,12,Yes,Yes,628,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),25,Female,BLACK OR AFRICAN AMERICAN,44.4,TBXYZ
+86,0,4.208,0,Yes,No,381,PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),38,Female,BLACK OR AFRICAN AMERICAN,40.4,TBXYZ
+86,14,15.354,2,Yes,No,381,PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),38,Female,BLACK OR AFRICAN AMERICAN,40.5,TBXYZ
+86,7,13.708,1,Yes,No,381,PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),38,Female,BLACK OR AFRICAN AMERICAN,40.5,TBXYZ
+860,120,37.75,17,No,Yes,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),48,Male,WHITE,55.8,TBXYZ
+860,147,42,21,No,Yes,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),48,Male,WHITE,54.4,TBXYZ
+860,16,11.08,2,No,Yes,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),48,Male,WHITE,53.1,TBXYZ
+860,2,6.13,0,No,Yes,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),48,Male,WHITE,53.5,TBXYZ
+860,30,13.83,4,No,Yes,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),48,Male,WHITE,54.4,TBXYZ
+860,44,2.67,6,No,Yes,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),48,Male,WHITE,54.9,TBXYZ
+860,62,22.96,9,No,Yes,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),48,Male,WHITE,55.3,TBXYZ
+860,86,25.25,12,No,Yes,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),48,Male,WHITE,54.9,TBXYZ
+861,113,42,16,Yes,Yes,139,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),28,Male,BLACK OR AFRICAN AMERICAN,57.6,TBXYZ
+861,141,42,20,Yes,Yes,139,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),28,Male,BLACK OR AFRICAN AMERICAN,60,TBXYZ
+861,15,17.79,2,Yes,Yes,139,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),28,Male,BLACK OR AFRICAN AMERICAN,56,TBXYZ
+861,170,42,24,Yes,Yes,139,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),28,Male,BLACK OR AFRICAN AMERICAN,60.9,TBXYZ
+861,193,42,28,Yes,Yes,139,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),28,Male,BLACK OR AFRICAN AMERICAN,63,TBXYZ
+861,226,42,32,Yes,Yes,139,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),28,Male,BLACK OR AFRICAN AMERICAN,65,TBXYZ
+861,29,21,4,Yes,Yes,139,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),28,Male,BLACK OR AFRICAN AMERICAN,58,TBXYZ
+861,43,26.96,6,Yes,Yes,139,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),28,Male,BLACK OR AFRICAN AMERICAN,57.1,TBXYZ
+861,57,22.5,8,Yes,Yes,139,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),28,Male,BLACK OR AFRICAN AMERICAN,56.1,TBXYZ
+861,85,42,12,Yes,Yes,139,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),28,Male,BLACK OR AFRICAN AMERICAN,58.6,TBXYZ
+862,113,42,16,No,Yes,NA,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),23,Male,BLACK OR AFRICAN AMERICAN,66,TBXYZ
+862,141,42,20,No,Yes,NA,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),23,Male,BLACK OR AFRICAN AMERICAN,66.9,TBXYZ
+862,15,15.79,2,No,Yes,NA,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),23,Male,BLACK OR AFRICAN AMERICAN,63.7,TBXYZ
+862,169,42,24,No,Yes,NA,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),23,Male,BLACK OR AFRICAN AMERICAN,65.6,TBXYZ
+862,29,19.29,4,No,Yes,NA,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),23,Male,BLACK OR AFRICAN AMERICAN,64,TBXYZ
+862,43,42,6,No,Yes,NA,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),23,Male,BLACK OR AFRICAN AMERICAN,63.8,TBXYZ
+862,57,42,8,No,Yes,NA,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),23,Male,BLACK OR AFRICAN AMERICAN,65.3,TBXYZ
+862,85,42,12,No,Yes,NA,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),23,Male,BLACK OR AFRICAN AMERICAN,65.7,TBXYZ
+863,141,42,20,No,Yes,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),26,Male,BLACK OR AFRICAN AMERICAN,56.7,TBXYZ
+863,15,20.42,2,No,Yes,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),26,Male,BLACK OR AFRICAN AMERICAN,47.2,TBXYZ
+863,169,42,24,No,Yes,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),26,Male,BLACK OR AFRICAN AMERICAN,55,TBXYZ
+863,225,42,32,No,Yes,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),26,Male,BLACK OR AFRICAN AMERICAN,56.5,TBXYZ
+863,255,42,36,No,Yes,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),26,Male,BLACK OR AFRICAN AMERICAN,58,TBXYZ
+863,43,42,6,No,Yes,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),26,Male,BLACK OR AFRICAN AMERICAN,52,TBXYZ
+864,114,42,16,No,Yes,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),46,Female,WHITE,54.9,TBXYZ
+864,16,42,2,No,Yes,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),46,Female,WHITE,53.1,TBXYZ
+864,2,13,0,No,Yes,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),46,Female,WHITE,49.9,TBXYZ
+864,30,42,4,No,Yes,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),46,Female,WHITE,54,TBXYZ
+864,51,42,7,No,Yes,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),46,Female,WHITE,55.3,TBXYZ
+864,69,42,10,No,Yes,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),46,Female,WHITE,52.6,TBXYZ
+864,86,42,12,No,Yes,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),46,Female,WHITE,54.2,TBXYZ
+865,113,42,16,No,Yes,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),21,Male,BLACK OR AFRICAN AMERICAN,62.8,TBXYZ
+865,15,13.83,2,No,Yes,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),21,Male,BLACK OR AFRICAN AMERICAN,52.5,TBXYZ
+865,150,42,21,No,Yes,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),21,Male,BLACK OR AFRICAN AMERICAN,64.2,TBXYZ
+865,177,42,25,No,Yes,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),21,Male,BLACK OR AFRICAN AMERICAN,64.5,TBXYZ
+865,206,42,29,No,Yes,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),21,Male,BLACK OR AFRICAN AMERICAN,65.1,TBXYZ
+865,30,18.08,4,No,Yes,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),21,Male,BLACK OR AFRICAN AMERICAN,54.9,TBXYZ
+865,44,19.08,6,No,Yes,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),21,Male,BLACK OR AFRICAN AMERICAN,56.5,TBXYZ
+865,58,42,8,No,Yes,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),21,Male,BLACK OR AFRICAN AMERICAN,55.7,TBXYZ
+865,80,42,11,No,Yes,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),21,Male,BLACK OR AFRICAN AMERICAN,60.6,TBXYZ
+866,1,7.63,0,No,Yes,NA,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),44,Female,ASIAN,46.5,TBXYZ
+866,113,42,16,No,Yes,NA,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),44,Female,ASIAN,50,TBXYZ
+866,142,42,20,No,Yes,NA,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),44,Female,ASIAN,49,TBXYZ
+866,184,42,26,No,Yes,NA,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),44,Female,ASIAN,48.8,TBXYZ
+866,30,42,4,No,Yes,NA,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),44,Female,ASIAN,49.6,TBXYZ
+866,44,42,6,No,Yes,NA,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),44,Female,ASIAN,50.5,TBXYZ
+866,5,9.13,1,No,Yes,NA,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),44,Female,ASIAN,46.5,TBXYZ
+866,58,42,8,No,Yes,NA,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),44,Female,ASIAN,49.2,TBXYZ
+867,113,42,16,No,No,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),28,Male,MISSING,55,TBXYZ
+867,141,42,20,No,No,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),28,Male,MISSING,57,TBXYZ
+867,15,13.88,2,No,No,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),28,Male,MISSING,52,TBXYZ
+867,29,16.46,4,No,No,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),28,Male,MISSING,54,TBXYZ
+867,43,42,6,No,No,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),28,Male,MISSING,53,TBXYZ
+867,57,42,8,No,No,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),28,Male,MISSING,54.5,TBXYZ
+867,85,42,12,No,No,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),28,Male,MISSING,54.5,TBXYZ
+868,142,42,20,No,Yes,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),31,Male,BLACK OR AFRICAN AMERICAN,60,TBXYZ
+868,15,15.04,2,No,Yes,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),31,Male,BLACK OR AFRICAN AMERICAN,54.5,TBXYZ
+868,170,42,24,No,Yes,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),31,Male,BLACK OR AFRICAN AMERICAN,60,TBXYZ
+868,254,42,36,No,Yes,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),31,Male,BLACK OR AFRICAN AMERICAN,60,TBXYZ
+868,43,42,6,No,Yes,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),31,Male,BLACK OR AFRICAN AMERICAN,55.7,TBXYZ
+868,58,42,8,No,Yes,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),31,Male,BLACK OR AFRICAN AMERICAN,56,TBXYZ
+869,113,42,16,No,Yes,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),46,Male,ASIAN,51,TBXYZ
+869,15,16.25,2,No,Yes,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),46,Male,ASIAN,49,TBXYZ
+869,29,42,4,No,Yes,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),46,Male,ASIAN,50,TBXYZ
+869,43,42,6,No,Yes,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),46,Male,ASIAN,50,TBXYZ
+869,57,42,8,No,Yes,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),46,Male,ASIAN,50,TBXYZ
+869,85,42,12,No,Yes,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),46,Male,ASIAN,52,TBXYZ
+87,0,10.167,0,No,No,509,PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),38,Male,BLACK OR AFRICAN AMERICAN,50.7,TBXYZ
+87,111,42,16,No,No,509,PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),38,Male,BLACK OR AFRICAN AMERICAN,58,TBXYZ
+87,125,42,18,No,No,509,PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),38,Male,BLACK OR AFRICAN AMERICAN,60,TBXYZ
+87,139,42,20,No,No,509,PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),38,Male,BLACK OR AFRICAN AMERICAN,57,TBXYZ
+87,14,13.354,2,No,No,509,PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),38,Male,BLACK OR AFRICAN AMERICAN,51,TBXYZ
+87,153,42,22,No,No,509,PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),38,Male,BLACK OR AFRICAN AMERICAN,57,TBXYZ
+87,167,42,24,No,No,509,PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),38,Male,BLACK OR AFRICAN AMERICAN,57,TBXYZ
+87,20,11.708,3,No,No,509,PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),38,Male,BLACK OR AFRICAN AMERICAN,51,TBXYZ
+87,27,14.125,4,No,No,509,PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),38,Male,BLACK OR AFRICAN AMERICAN,50,TBXYZ
+87,34,14.583,5,No,No,509,PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),38,Male,BLACK OR AFRICAN AMERICAN,52,TBXYZ
+87,41,22.125,6,No,No,509,PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),38,Male,BLACK OR AFRICAN AMERICAN,52,TBXYZ
+87,48,18.333,7,No,No,509,PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),38,Male,BLACK OR AFRICAN AMERICAN,52,TBXYZ
+87,55,19.208,8,No,No,509,PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),38,Male,BLACK OR AFRICAN AMERICAN,52,TBXYZ
+87,69,20.208,10,No,No,509,PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),38,Male,BLACK OR AFRICAN AMERICAN,54.6,TBXYZ
+87,7,8.917,1,No,No,509,PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),38,Male,BLACK OR AFRICAN AMERICAN,50.7,TBXYZ
+87,83,18.917,12,No,No,509,PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),38,Male,BLACK OR AFRICAN AMERICAN,53.2,TBXYZ
+87,96,42,14,No,No,509,PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),38,Male,BLACK OR AFRICAN AMERICAN,57,TBXYZ
+870,113,42,16,No,Yes,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),77,Male,WHITE,46.4,TBXYZ
+870,15,15.13,2,No,Yes,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),77,Male,WHITE,46.5,TBXYZ
+870,169,42,24,No,Yes,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),77,Male,WHITE,47,TBXYZ
+870,194,42,28,No,Yes,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),77,Male,WHITE,47,TBXYZ
+870,29,17.08,4,No,Yes,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),77,Male,WHITE,46.5,TBXYZ
+870,43,17.54,6,No,Yes,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),77,Male,WHITE,46,TBXYZ
+870,60,20.08,9,No,Yes,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),77,Male,WHITE,46,TBXYZ
+871,113,42,16,No,No,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),24,Male,BLACK OR AFRICAN AMERICAN,56.5,TBXYZ
+871,15,16.71,2,No,No,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),24,Male,BLACK OR AFRICAN AMERICAN,52.7,TBXYZ
+871,29,17.63,4,No,No,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),24,Male,BLACK OR AFRICAN AMERICAN,56.2,TBXYZ
+871,43,18.21,6,No,No,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),24,Male,BLACK OR AFRICAN AMERICAN,56.4,TBXYZ
+871,57,33.58,8,No,No,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),24,Male,BLACK OR AFRICAN AMERICAN,57,TBXYZ
+871,85,42,12,No,No,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),24,Male,BLACK OR AFRICAN AMERICAN,57,TBXYZ
+872,136,0.25,19,Yes,No,20,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),28,Male,ASIAN,60.8,TBXYZ
+872,16,21.29,2,Yes,No,20,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),28,Male,ASIAN,53.5,TBXYZ
+872,178,42,25,Yes,No,20,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),28,Male,ASIAN,63,TBXYZ
+872,45,42,6,Yes,No,20,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),28,Male,ASIAN,57.2,TBXYZ
+873,113,42,16,No,Yes,NA,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),30,Female,ASIAN,43,TBXYZ
+873,15,11.88,2,No,Yes,NA,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),30,Female,ASIAN,40.5,TBXYZ
+873,29,18.58,4,No,Yes,NA,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),30,Female,ASIAN,41.5,TBXYZ
+873,43,42,6,No,Yes,NA,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),30,Female,ASIAN,41.5,TBXYZ
+873,57,42,8,No,Yes,NA,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),30,Female,ASIAN,41.5,TBXYZ
+873,85,42,12,No,Yes,NA,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),30,Female,ASIAN,42,TBXYZ
+874,15,18.08,2,No,No,NA,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),61,Male,ASIAN,41,TBXYZ
+874,29,42,4,No,No,NA,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),61,Male,ASIAN,41,TBXYZ
+874,43,42,6,No,No,NA,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),61,Male,ASIAN,41,TBXYZ
+874,57,42,8,No,No,NA,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),61,Male,ASIAN,42,TBXYZ
+874,58,42,8,No,No,NA,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),61,Male,ASIAN,42,TBXYZ
+874,85,42,12,No,No,NA,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),61,Male,ASIAN,43,TBXYZ
+875,1,13.04,0,No,Yes,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),21,Male,WHITE,44.5,TBXYZ
+875,119,42,17,No,Yes,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),21,Male,WHITE,49.9,TBXYZ
+875,16,3,2,No,Yes,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),21,Male,WHITE,44.5,TBXYZ
+875,44,42,6,No,Yes,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),21,Male,WHITE,46.3,TBXYZ
+875,59,42,8,No,Yes,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),21,Male,WHITE,46.7,TBXYZ
+875,85,42,12,No,Yes,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),21,Male,WHITE,49.4,TBXYZ
+876,1,12.71,0,No,No,NA,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),41,Male,BLACK OR AFRICAN AMERICAN,66,TBXYZ
+876,16,42,2,No,No,NA,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),41,Male,BLACK OR AFRICAN AMERICAN,64.1,TBXYZ
+876,58,42,8,No,No,NA,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),41,Male,BLACK OR AFRICAN AMERICAN,67.4,TBXYZ
+877,113,42,16,No,Yes,NA,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),50,Male,ASIAN,59,TBXYZ
+877,15,42,2,No,Yes,NA,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),50,Male,ASIAN,59,TBXYZ
+877,29,42,4,No,Yes,NA,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),50,Male,ASIAN,59,TBXYZ
+877,43,42,6,No,Yes,NA,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),50,Male,ASIAN,59,TBXYZ
+877,57,42,8,No,Yes,NA,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),50,Male,ASIAN,59,TBXYZ
+877,85,42,12,No,Yes,NA,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),50,Male,ASIAN,59,TBXYZ
+878,113,42,16,No,Yes,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),30,Male,BLACK OR AFRICAN AMERICAN,55.5,TBXYZ
+878,141,42,20,No,Yes,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),30,Male,BLACK OR AFRICAN AMERICAN,55.5,TBXYZ
+878,15,13.33,2,No,Yes,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),30,Male,BLACK OR AFRICAN AMERICAN,55,TBXYZ
+878,34,18.54,5,No,Yes,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),30,Male,BLACK OR AFRICAN AMERICAN,55.6,TBXYZ
+878,48,32.67,7,No,Yes,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),30,Male,BLACK OR AFRICAN AMERICAN,56.7,TBXYZ
+878,62,42,9,No,Yes,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),30,Male,BLACK OR AFRICAN AMERICAN,56.2,TBXYZ
+879,111,42,16,No,Yes,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),19,Male,WHITE,63,TBXYZ
+879,19,21.33,3,No,Yes,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),19,Male,WHITE,58.1,TBXYZ
+879,32,36.58,5,No,Yes,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),19,Male,WHITE,60.3,TBXYZ
+879,46,42,7,No,Yes,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),19,Male,WHITE,62.1,TBXYZ
+879,5,16.21,1,No,Yes,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),19,Male,WHITE,57.2,TBXYZ
+879,60,42,9,No,Yes,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),19,Male,WHITE,62.1,TBXYZ
+879,88,42,13,No,Yes,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),19,Male,WHITE,64.9,TBXYZ
+88,0,6.375,0,No,No,611,TMC207/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),TMC207/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),26,Female,BLACK OR AFRICAN AMERICAN,38,TBXYZ
+88,111,42,16,No,No,611,TMC207/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),TMC207/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),26,Female,BLACK OR AFRICAN AMERICAN,43,TBXYZ
+88,125,42,18,No,No,611,TMC207/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),TMC207/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),26,Female,BLACK OR AFRICAN AMERICAN,43,TBXYZ
+88,139,42,20,No,No,611,TMC207/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),TMC207/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),26,Female,BLACK OR AFRICAN AMERICAN,43,TBXYZ
+88,14,15.083,2,No,No,611,TMC207/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),TMC207/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),26,Female,BLACK OR AFRICAN AMERICAN,38,TBXYZ
+88,151,8.292,22,No,No,611,TMC207/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),TMC207/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),26,Female,BLACK OR AFRICAN AMERICAN,41.2,TBXYZ
+88,165,42,24,No,No,611,TMC207/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),TMC207/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),26,Female,BLACK OR AFRICAN AMERICAN,42,TBXYZ
+88,20,21.396,3,No,No,611,TMC207/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),TMC207/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),26,Female,BLACK OR AFRICAN AMERICAN,41,TBXYZ
+88,27,42,4,No,No,611,TMC207/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),TMC207/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),26,Female,BLACK OR AFRICAN AMERICAN,41,TBXYZ
+88,34,42,5,No,No,611,TMC207/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),TMC207/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),26,Female,BLACK OR AFRICAN AMERICAN,41,TBXYZ
+88,41,42,6,No,No,611,TMC207/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),TMC207/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),26,Female,BLACK OR AFRICAN AMERICAN,41.5,TBXYZ
+88,48,42,7,No,No,611,TMC207/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),TMC207/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),26,Female,BLACK OR AFRICAN AMERICAN,42.2,TBXYZ
+88,55,42,8,No,No,611,TMC207/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),TMC207/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),26,Female,BLACK OR AFRICAN AMERICAN,42.2,TBXYZ
+88,68,42,10,No,No,611,TMC207/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),TMC207/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),26,Female,BLACK OR AFRICAN AMERICAN,41.5,TBXYZ
+88,7,14.917,1,No,No,611,TMC207/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),TMC207/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),26,Female,BLACK OR AFRICAN AMERICAN,38.2,TBXYZ
+88,83,42,12,No,No,611,TMC207/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),TMC207/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),26,Female,BLACK OR AFRICAN AMERICAN,40.4,TBXYZ
+88,97,42,14,No,No,611,TMC207/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),TMC207/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),26,Female,BLACK OR AFRICAN AMERICAN,41,TBXYZ
+880,143,42,20,No,Yes,NA,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),31,Male,ASIAN,60,TBXYZ
+880,18,42,3,No,Yes,NA,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),31,Male,ASIAN,59.8,TBXYZ
+880,185,42,26,No,Yes,NA,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),31,Male,ASIAN,59,TBXYZ
+880,2,7.92,0,No,Yes,NA,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),31,Male,ASIAN,58.8,TBXYZ
+880,31,42,4,No,Yes,NA,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),31,Male,ASIAN,59.2,TBXYZ
+880,46,42,7,No,Yes,NA,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),31,Male,ASIAN,59.4,TBXYZ
+880,59,42,8,No,Yes,NA,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),31,Male,ASIAN,61,TBXYZ
+880,88,42,13,No,Yes,NA,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),31,Male,ASIAN,58.8,TBXYZ
+881,1,26.08,0,No,No,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),22,Male,WHITE,61.6,TBXYZ
+881,125,42,18,No,No,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),22,Male,WHITE,66.9,TBXYZ
+881,15,24.83,2,No,No,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),22,Male,WHITE,61.6,TBXYZ
+881,29,20.04,4,No,No,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),22,Male,WHITE,62.6,TBXYZ
+881,43,42,6,No,No,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),22,Male,WHITE,63.1,TBXYZ
+881,57,42,8,No,No,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),22,Male,WHITE,63.9,TBXYZ
+881,85,42,12,No,No,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),22,Male,WHITE,65.8,TBXYZ
+882,114,42,16,No,No,NA,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),25,Male,BLACK OR AFRICAN AMERICAN,54.5,TBXYZ
+882,142,42,20,No,No,NA,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),25,Male,BLACK OR AFRICAN AMERICAN,54,TBXYZ
+882,170,42,24,No,No,NA,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),25,Male,BLACK OR AFRICAN AMERICAN,56,TBXYZ
+882,29,15.67,4,No,No,NA,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),25,Male,BLACK OR AFRICAN AMERICAN,52.6,TBXYZ
+882,43,20.54,6,No,No,NA,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),25,Male,BLACK OR AFRICAN AMERICAN,53.9,TBXYZ
+882,57,42,8,No,No,NA,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),25,Male,BLACK OR AFRICAN AMERICAN,54.5,TBXYZ
+882,88,42,13,No,No,NA,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),25,Male,BLACK OR AFRICAN AMERICAN,56,TBXYZ
+883,113,42,16,No,No,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),20,Male,BLACK OR AFRICAN AMERICAN,53.5,TBXYZ
+883,141,42,20,No,No,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),20,Male,BLACK OR AFRICAN AMERICAN,55,TBXYZ
+883,15,11.88,2,No,No,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),20,Male,BLACK OR AFRICAN AMERICAN,52,TBXYZ
+883,29,14.63,4,No,No,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),20,Male,BLACK OR AFRICAN AMERICAN,54,TBXYZ
+883,43,24.33,6,No,No,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),20,Male,BLACK OR AFRICAN AMERICAN,54,TBXYZ
+883,57,25.21,8,No,No,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),20,Male,BLACK OR AFRICAN AMERICAN,53,TBXYZ
+884,113,42,16,No,Yes,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),24,Female,BLACK OR AFRICAN AMERICAN,47,TBXYZ
+884,141,42,20,No,Yes,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),24,Female,BLACK OR AFRICAN AMERICAN,48.5,TBXYZ
+884,15,18.21,2,No,Yes,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),24,Female,BLACK OR AFRICAN AMERICAN,44.5,TBXYZ
+884,169,42,24,No,Yes,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),24,Female,BLACK OR AFRICAN AMERICAN,50,TBXYZ
+884,29,25,4,No,Yes,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),24,Female,BLACK OR AFRICAN AMERICAN,45.2,TBXYZ
+884,43,42,6,No,Yes,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),24,Female,BLACK OR AFRICAN AMERICAN,44.4,TBXYZ
+884,57,42,8,No,Yes,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),24,Female,BLACK OR AFRICAN AMERICAN,44,TBXYZ
+884,93,42,13,No,Yes,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),24,Female,BLACK OR AFRICAN AMERICAN,46,TBXYZ
+885,113,42,16,No,Yes,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),31,Male,ASIAN,53,TBXYZ
+885,15,10.79,2,No,Yes,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),31,Male,ASIAN,51,TBXYZ
+885,29,13.79,4,No,Yes,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),31,Male,ASIAN,50,TBXYZ
+885,43,18.71,6,No,Yes,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),31,Male,ASIAN,50,TBXYZ
+885,57,42,8,No,Yes,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),31,Male,ASIAN,50,TBXYZ
+885,85,42,12,No,Yes,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),31,Male,ASIAN,52,TBXYZ
+886,113,42,16,No,No,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),22,Female,ASIAN,43,TBXYZ
+886,15,9.33,2,No,No,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),22,Female,ASIAN,42.5,TBXYZ
+886,29,21.79,4,No,No,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),22,Female,ASIAN,42,TBXYZ
+886,43,19.67,6,No,No,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),22,Female,ASIAN,42,TBXYZ
+886,57,42,8,No,No,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),22,Female,ASIAN,41,TBXYZ
+886,85,42,12,No,No,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),22,Female,ASIAN,42,TBXYZ
+887,113,42,16,No,Yes,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),18,Female,BLACK OR AFRICAN AMERICAN,47.6,TBXYZ
+887,141,42,20,No,Yes,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),18,Female,BLACK OR AFRICAN AMERICAN,49.7,TBXYZ
+887,15,14.79,2,No,Yes,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),18,Female,BLACK OR AFRICAN AMERICAN,42.8,TBXYZ
+887,197,42,28,No,Yes,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),18,Female,BLACK OR AFRICAN AMERICAN,53.5,TBXYZ
+887,225,42,32,No,Yes,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),18,Female,BLACK OR AFRICAN AMERICAN,55,TBXYZ
+887,253,42,36,No,Yes,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),18,Female,BLACK OR AFRICAN AMERICAN,56.6,TBXYZ
+887,29,18.5,4,No,Yes,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),18,Female,BLACK OR AFRICAN AMERICAN,43.5,TBXYZ
+887,43,32.88,6,No,Yes,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),18,Female,BLACK OR AFRICAN AMERICAN,44,TBXYZ
+887,57,42,8,No,Yes,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),18,Female,BLACK OR AFRICAN AMERICAN,45.6,TBXYZ
+887,85,9.33,12,No,Yes,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),18,Female,BLACK OR AFRICAN AMERICAN,46.8,TBXYZ
+888,113,42,16,No,Yes,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),23,Male,BLACK OR AFRICAN AMERICAN,55,TBXYZ
+888,141,42,20,No,Yes,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),23,Male,BLACK OR AFRICAN AMERICAN,57,TBXYZ
+888,15,10.75,2,No,Yes,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),23,Male,BLACK OR AFRICAN AMERICAN,52,TBXYZ
+888,29,16.83,4,No,Yes,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),23,Male,BLACK OR AFRICAN AMERICAN,54,TBXYZ
+888,43,42,6,No,Yes,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),23,Male,BLACK OR AFRICAN AMERICAN,52.5,TBXYZ
+888,57,42,8,No,Yes,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),23,Male,BLACK OR AFRICAN AMERICAN,52.5,TBXYZ
+888,85,42,12,No,Yes,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),23,Male,BLACK OR AFRICAN AMERICAN,55,TBXYZ
+889,15,37.08,2,No,No,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),38,Female,ASIAN,52,TBXYZ
+889,29,42,4,No,No,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),38,Female,ASIAN,52,TBXYZ
+889,43,42,6,No,No,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),38,Female,ASIAN,52,TBXYZ
+889,57,42,8,No,No,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),38,Female,ASIAN,51,TBXYZ
+889,85,42,12,No,No,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),38,Female,ASIAN,51,TBXYZ
+89,0,3.667,0,No,No,996,PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),38,Male,BLACK OR AFRICAN AMERICAN,50,TBXYZ
+89,111,42,16,No,No,996,PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),38,Male,BLACK OR AFRICAN AMERICAN,52,TBXYZ
+89,125,42,18,No,No,996,PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),38,Male,BLACK OR AFRICAN AMERICAN,51,TBXYZ
+89,158,42,23,No,No,996,PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),38,Male,BLACK OR AFRICAN AMERICAN,49,TBXYZ
+89,167,42,24,No,No,996,PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),38,Male,BLACK OR AFRICAN AMERICAN,49,TBXYZ
+89,27,15.0625,4,No,No,996,PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),38,Male,BLACK OR AFRICAN AMERICAN,48,TBXYZ
+89,34,9.5,5,No,No,996,PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),38,Male,BLACK OR AFRICAN AMERICAN,49,TBXYZ
+89,41,20.0625,6,No,No,996,PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),38,Male,BLACK OR AFRICAN AMERICAN,49,TBXYZ
+89,48,13.4585,7,No,No,996,PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),38,Male,BLACK OR AFRICAN AMERICAN,49,TBXYZ
+89,56,42,8,No,No,996,PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),38,Male,BLACK OR AFRICAN AMERICAN,49,TBXYZ
+89,69,42,10,No,No,996,PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),38,Male,BLACK OR AFRICAN AMERICAN,52,TBXYZ
+89,7,6.292,1,No,No,996,PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),38,Male,BLACK OR AFRICAN AMERICAN,50,TBXYZ
+89,83,42,12,No,No,996,PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),38,Male,BLACK OR AFRICAN AMERICAN,52,TBXYZ
+89,97,42,14,No,No,996,PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),38,Male,BLACK OR AFRICAN AMERICAN,52,TBXYZ
+890,113,42,16,No,Yes,NA,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),27,Male,BLACK OR AFRICAN AMERICAN,56.5,TBXYZ
+890,141,42,20,No,Yes,NA,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),27,Male,BLACK OR AFRICAN AMERICAN,54,TBXYZ
+890,15,17.88,2,No,Yes,NA,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),27,Male,BLACK OR AFRICAN AMERICAN,53.5,TBXYZ
+890,29,17.46,4,No,Yes,NA,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),27,Male,BLACK OR AFRICAN AMERICAN,55,TBXYZ
+890,57,42,8,No,Yes,NA,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),27,Male,BLACK OR AFRICAN AMERICAN,55.4,TBXYZ
+890,85,42,12,No,Yes,NA,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),27,Male,BLACK OR AFRICAN AMERICAN,56.1,TBXYZ
+891,141,42,20,No,Yes,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),34,Male,ASIAN,55,TBXYZ
+891,15,9.67,2,No,Yes,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),34,Male,ASIAN,58,TBXYZ
+891,169,42,24,No,Yes,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),34,Male,ASIAN,55,TBXYZ
+891,197,42,28,No,Yes,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),34,Male,ASIAN,55.5,TBXYZ
+891,29,17.33,4,No,Yes,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),34,Male,ASIAN,58,TBXYZ
+891,43,18.04,6,No,Yes,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),34,Male,ASIAN,58,TBXYZ
+891,57,26.42,8,No,Yes,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),34,Male,ASIAN,57,TBXYZ
+891,85,42,12,No,Yes,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),34,Male,ASIAN,57,TBXYZ
+892,1,8.58,0,No,Yes,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),51,Male,BLACK OR AFRICAN AMERICAN,65.3,TBXYZ
+892,114,42,16,No,Yes,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),51,Male,BLACK OR AFRICAN AMERICAN,81.6,TBXYZ
+892,15,11.54,2,No,Yes,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),51,Male,BLACK OR AFRICAN AMERICAN,65,TBXYZ
+892,30,14.96,4,No,Yes,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),51,Male,BLACK OR AFRICAN AMERICAN,68.5,TBXYZ
+892,59,42,8,No,Yes,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),51,Male,BLACK OR AFRICAN AMERICAN,71.7,TBXYZ
+892,60,42,9,No,Yes,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),51,Male,BLACK OR AFRICAN AMERICAN,73.5,TBXYZ
+892,85,42,12,No,Yes,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),51,Male,BLACK OR AFRICAN AMERICAN,78.5,TBXYZ
+893,114,42,16,No,No,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),18,Female,BLACK OR AFRICAN AMERICAN,45,TBXYZ
+893,16,25.5,2,No,No,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),18,Female,BLACK OR AFRICAN AMERICAN,43.3,TBXYZ
+893,170,42,24,No,No,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),18,Female,BLACK OR AFRICAN AMERICAN,45.2,TBXYZ
+893,30,42,4,No,No,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),18,Female,BLACK OR AFRICAN AMERICAN,43,TBXYZ
+893,44,42,6,No,No,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),18,Female,BLACK OR AFRICAN AMERICAN,43,TBXYZ
+893,58,42,8,No,No,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),18,Female,BLACK OR AFRICAN AMERICAN,43.6,TBXYZ
+893,86,42,12,No,No,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),18,Female,BLACK OR AFRICAN AMERICAN,44.5,TBXYZ
+894,1,42,0,Yes,No,434,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),37,Female,BLACK OR AFRICAN AMERICAN,64.6,TBXYZ
+894,138,42,20,Yes,No,434,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),37,Female,BLACK OR AFRICAN AMERICAN,70,TBXYZ
+894,15,42,2,Yes,No,434,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),37,Female,BLACK OR AFRICAN AMERICAN,66,TBXYZ
+894,29,42,4,Yes,No,434,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),37,Female,BLACK OR AFRICAN AMERICAN,68.3,TBXYZ
+894,43,42,6,Yes,No,434,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),37,Female,BLACK OR AFRICAN AMERICAN,65,TBXYZ
+894,57,42,8,Yes,No,434,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),37,Female,BLACK OR AFRICAN AMERICAN,65,TBXYZ
+894,85,42,12,Yes,No,434,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),37,Female,BLACK OR AFRICAN AMERICAN,68,TBXYZ
+895,113,42,16,No,Yes,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),44,Male,ASIAN,55,TBXYZ
+895,15,16.96,2,No,Yes,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),44,Male,ASIAN,50,TBXYZ
+895,29,42,4,No,Yes,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),44,Male,ASIAN,52.5,TBXYZ
+895,43,42,6,No,Yes,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),44,Male,ASIAN,50.5,TBXYZ
+895,57,42,8,No,Yes,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),44,Male,ASIAN,52,TBXYZ
+895,85,42,12,No,Yes,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),44,Male,ASIAN,54,TBXYZ
+896,113,42,16,Yes,Yes,77,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),41,Male,BLACK OR AFRICAN AMERICAN,67.2,TBXYZ
+896,141,42,20,Yes,Yes,77,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),41,Male,BLACK OR AFRICAN AMERICAN,68.8,TBXYZ
+896,15,12.29,2,Yes,Yes,77,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),41,Male,BLACK OR AFRICAN AMERICAN,60.4,TBXYZ
+896,169,42,24,Yes,Yes,77,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),41,Male,BLACK OR AFRICAN AMERICAN,66.4,TBXYZ
+896,225,42,32,Yes,Yes,77,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),41,Male,BLACK OR AFRICAN AMERICAN,66.4,TBXYZ
+896,255,42,36,Yes,Yes,77,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),41,Male,BLACK OR AFRICAN AMERICAN,66.4,TBXYZ
+896,43,42,6,Yes,Yes,77,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),41,Male,BLACK OR AFRICAN AMERICAN,64.5,TBXYZ
+896,57,42,8,Yes,Yes,77,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),41,Male,BLACK OR AFRICAN AMERICAN,65.8,TBXYZ
+896,85,42,12,Yes,Yes,77,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),41,Male,BLACK OR AFRICAN AMERICAN,68.5,TBXYZ
+897,1,4.92,0,No,Yes,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),27,Female,BLACK OR AFRICAN AMERICAN,50,TBXYZ
+897,113,42,16,No,Yes,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),27,Female,BLACK OR AFRICAN AMERICAN,54,TBXYZ
+897,141,42,20,No,Yes,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),27,Female,BLACK OR AFRICAN AMERICAN,53.6,TBXYZ
+897,15,17.13,2,No,Yes,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),27,Female,BLACK OR AFRICAN AMERICAN,49.4,TBXYZ
+897,169,42,24,No,Yes,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),27,Female,BLACK OR AFRICAN AMERICAN,54,TBXYZ
+897,29,20.75,4,No,Yes,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),27,Female,BLACK OR AFRICAN AMERICAN,50.5,TBXYZ
+897,43,9.04,6,No,Yes,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),27,Female,BLACK OR AFRICAN AMERICAN,50.6,TBXYZ
+897,57,42,8,No,Yes,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),27,Female,BLACK OR AFRICAN AMERICAN,52,TBXYZ
+897,85,42,12,No,Yes,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),27,Female,BLACK OR AFRICAN AMERICAN,52.5,TBXYZ
+898,113,42,16,No,No,NA,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),41,Male,WHITE,80,TBXYZ
+898,141,42,20,No,No,NA,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),41,Male,WHITE,83,TBXYZ
+898,15,42,2,No,No,NA,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),41,Male,WHITE,78,TBXYZ
+898,29,42,4,No,No,NA,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),41,Male,WHITE,78,TBXYZ
+898,46,42,7,No,No,NA,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),41,Male,WHITE,79,TBXYZ
+898,60,42,9,No,No,NA,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),41,Male,WHITE,80,TBXYZ
+898,85,42,12,No,No,NA,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),41,Male,WHITE,81,TBXYZ
+899,113,42,16,No,Yes,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),24,Male,ASIAN,59,TBXYZ
+899,15,13.17,2,No,Yes,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),24,Male,ASIAN,54.5,TBXYZ
+899,29,42,4,No,Yes,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),24,Male,ASIAN,54,TBXYZ
+899,43,42,6,No,Yes,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),24,Male,ASIAN,55.5,TBXYZ
+899,57,42,8,No,Yes,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),24,Male,ASIAN,55.5,TBXYZ
+899,85,42,12,No,Yes,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),24,Male,ASIAN,55,TBXYZ
+9,0,3.333,0,No,No,1092,PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),33,Male,WHITE,76.5,TBXYZ
+9,112,42,16,No,No,1092,PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),33,Male,WHITE,76,TBXYZ
+9,125,3.875,18,No,No,1092,PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),33,Male,WHITE,76,TBXYZ
+9,126,42,18,No,No,1092,PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),33,Male,WHITE,76,TBXYZ
+9,14,11.5,2,No,No,1092,PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),33,Male,WHITE,76,TBXYZ
+9,140,42,20,No,No,1092,PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),33,Male,WHITE,76,TBXYZ
+9,154,42,22,No,No,1092,PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),33,Male,WHITE,75.5,TBXYZ
+9,21,42,3,No,No,1092,PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),33,Male,WHITE,76,TBXYZ
+9,37,16.083,5,No,No,1092,PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),33,Male,WHITE,78,TBXYZ
+9,49,2.458,7,No,No,1092,PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),33,Male,WHITE,78,TBXYZ
+9,56,29.375,8,No,No,1092,PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),33,Male,WHITE,78,TBXYZ
+9,69,21.771,10,No,No,1092,PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),33,Male,WHITE,78,TBXYZ
+9,70,23,10,No,No,1092,PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),33,Male,WHITE,77,TBXYZ
+9,88,42,13,No,No,1092,PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),33,Male,WHITE,77,TBXYZ
+9,98,3.25,14,No,No,1092,PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),PLACEBO/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),33,Male,WHITE,77.5,TBXYZ
+90,0,42,0,Yes,No,340,TMC207/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),TMC207/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),48,Male,BLACK OR AFRICAN AMERICAN,54,TBXYZ
+90,114,42,16,Yes,No,340,TMC207/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),TMC207/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),48,Male,BLACK OR AFRICAN AMERICAN,55,TBXYZ
+90,128,42,18,Yes,No,340,TMC207/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),TMC207/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),48,Male,BLACK OR AFRICAN AMERICAN,54,TBXYZ
+90,14,42,2,Yes,No,340,TMC207/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),TMC207/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),48,Male,BLACK OR AFRICAN AMERICAN,56,TBXYZ
+90,154,42,22,Yes,No,340,TMC207/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),TMC207/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),48,Male,BLACK OR AFRICAN AMERICAN,53,TBXYZ
+90,168,42,24,Yes,No,340,TMC207/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),TMC207/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),48,Male,BLACK OR AFRICAN AMERICAN,53,TBXYZ
+90,21,42,3,Yes,No,340,TMC207/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),TMC207/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),48,Male,BLACK OR AFRICAN AMERICAN,56,TBXYZ
+90,28,42,4,Yes,No,340,TMC207/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),TMC207/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),48,Male,BLACK OR AFRICAN AMERICAN,56,TBXYZ
+90,35,42,5,Yes,No,340,TMC207/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),TMC207/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),48,Male,BLACK OR AFRICAN AMERICAN,56,TBXYZ
+90,49,42,7,Yes,No,340,TMC207/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),TMC207/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),48,Male,BLACK OR AFRICAN AMERICAN,56,TBXYZ
+90,56,42,8,Yes,No,340,TMC207/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),TMC207/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),48,Male,BLACK OR AFRICAN AMERICAN,55,TBXYZ
+90,7,42,1,Yes,No,340,TMC207/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),TMC207/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),48,Male,BLACK OR AFRICAN AMERICAN,54,TBXYZ
+90,70,42,10,Yes,No,340,TMC207/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),TMC207/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),48,Male,BLACK OR AFRICAN AMERICAN,55,TBXYZ
+90,84,42,12,Yes,No,340,TMC207/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),TMC207/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),48,Male,BLACK OR AFRICAN AMERICAN,54,TBXYZ
+90,98,42,14,Yes,No,340,TMC207/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),TMC207/RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),48,Male,BLACK OR AFRICAN AMERICAN,53.8,TBXYZ
+900,1,20.63,0,No,Yes,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),31,Male,ASIAN,57.6,TBXYZ
+900,114,42,16,No,Yes,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),31,Male,ASIAN,60.8,TBXYZ
+900,16,23.25,2,No,Yes,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),31,Male,ASIAN,58.2,TBXYZ
+900,30,42,4,No,Yes,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),31,Male,ASIAN,59.6,TBXYZ
+900,44,42,6,No,Yes,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),31,Male,ASIAN,59.7,TBXYZ
+900,5,10.38,1,No,Yes,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),31,Male,ASIAN,57.6,TBXYZ
+900,58,42,8,No,Yes,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),31,Male,ASIAN,60.6,TBXYZ
+900,87,42,12,No,Yes,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),31,Male,ASIAN,59.5,TBXYZ
+901,117,42,17,No,Yes,NA,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),20,Male,WHITE,59.9,TBXYZ
+901,146,42,21,No,Yes,NA,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),20,Male,WHITE,57.8,TBXYZ
+901,179,42,26,No,Yes,NA,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),20,Male,WHITE,58.1,TBXYZ
+901,18,19.79,3,No,Yes,NA,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),20,Male,WHITE,55.3,TBXYZ
+901,32,42,5,No,Yes,NA,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),20,Male,WHITE,56.2,TBXYZ
+901,46,31.21,7,No,Yes,NA,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),20,Male,WHITE,58.1,TBXYZ
+901,63,42,9,No,Yes,NA,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),20,Male,WHITE,58.5,TBXYZ
+901,64,42,9,No,Yes,NA,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),20,Male,WHITE,58.5,TBXYZ
+902,15,13.38,2,No,Yes,NA,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),51,Male,BLACK OR AFRICAN AMERICAN,56.1,TBXYZ
+902,29,18.67,4,No,Yes,NA,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),51,Male,BLACK OR AFRICAN AMERICAN,56.4,TBXYZ
+902,43,42,6,No,Yes,NA,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),51,Male,BLACK OR AFRICAN AMERICAN,56.7,TBXYZ
+902,57,42,8,No,Yes,NA,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),51,Male,BLACK OR AFRICAN AMERICAN,58.6,TBXYZ
+902,89,42,13,No,Yes,NA,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),51,Male,BLACK OR AFRICAN AMERICAN,58,TBXYZ
+903,112,42,16,No,Yes,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),32,Male,WHITE,59,TBXYZ
+903,139,42,20,No,Yes,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),32,Male,WHITE,60.7,TBXYZ
+903,15,23.58,2,No,Yes,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),32,Male,WHITE,54,TBXYZ
+903,184,31.17,26,No,Yes,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),32,Male,WHITE,62.2,TBXYZ
+903,29,14.13,4,No,Yes,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),32,Male,WHITE,57,TBXYZ
+903,43,22.21,6,No,Yes,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),32,Male,WHITE,56,TBXYZ
+903,57,42,8,No,Yes,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),32,Male,WHITE,55,TBXYZ
+903,83,42,12,No,Yes,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),32,Male,WHITE,58,TBXYZ
+904,16,16.38,2,No,Yes,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),45,Female,BLACK OR AFRICAN AMERICAN,55.1,TBXYZ
+904,2,8.54,0,No,Yes,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),45,Female,BLACK OR AFRICAN AMERICAN,53.5,TBXYZ
+904,30,35.25,4,No,Yes,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),45,Female,BLACK OR AFRICAN AMERICAN,55.1,TBXYZ
+904,44,42,6,No,Yes,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),45,Female,BLACK OR AFRICAN AMERICAN,55.8,TBXYZ
+904,58,42,8,No,Yes,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),45,Female,BLACK OR AFRICAN AMERICAN,55.8,TBXYZ
+904,90,42,13,No,Yes,NA,PHZE(20)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),45,Female,BLACK OR AFRICAN AMERICAN,54.9,TBXYZ
+905,113,42,16,No,Yes,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),28,Female,BLACK OR AFRICAN AMERICAN,57.5,TBXYZ
+905,141,42,20,No,Yes,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),28,Female,BLACK OR AFRICAN AMERICAN,58,TBXYZ
+905,15,10,2,No,Yes,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),28,Female,BLACK OR AFRICAN AMERICAN,53.5,TBXYZ
+905,169,42,24,No,Yes,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),28,Female,BLACK OR AFRICAN AMERICAN,59.2,TBXYZ
+905,29,12.54,4,No,Yes,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),28,Female,BLACK OR AFRICAN AMERICAN,54,TBXYZ
+905,43,17.5,6,No,Yes,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),28,Female,BLACK OR AFRICAN AMERICAN,54.1,TBXYZ
+905,57,42,8,No,Yes,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),28,Female,BLACK OR AFRICAN AMERICAN,55.5,TBXYZ
+905,85,42,12,No,Yes,NA,RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),RHZE(rifampin-isoniazid-pyrazinamide-ethambutol),28,Female,BLACK OR AFRICAN AMERICAN,56.7,TBXYZ
+906,15,14.71,2,No,Yes,NA,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),32,Male,BLACK OR AFRICAN AMERICAN,52.3,TBXYZ
+906,29,24.33,4,No,Yes,NA,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),32,Male,BLACK OR AFRICAN AMERICAN,53.2,TBXYZ
+906,44,42,6,No,Yes,NA,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),32,Male,BLACK OR AFRICAN AMERICAN,53,TBXYZ
+907,113,42,16,No,Yes,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),32,Male,BLACK OR AFRICAN AMERICAN,62.8,TBXYZ
+907,141,42,20,No,Yes,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),32,Male,BLACK OR AFRICAN AMERICAN,63.3,TBXYZ
+907,15,14.92,2,No,Yes,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),32,Male,BLACK OR AFRICAN AMERICAN,59.2,TBXYZ
+907,169,42,24,No,Yes,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),32,Male,BLACK OR AFRICAN AMERICAN,62.5,TBXYZ
+907,29,24.04,4,No,Yes,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),32,Male,BLACK OR AFRICAN AMERICAN,59.3,TBXYZ
+907,43,23.46,6,No,Yes,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),32,Male,BLACK OR AFRICAN AMERICAN,59.9,TBXYZ
+907,57,25,8,No,Yes,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),32,Male,BLACK OR AFRICAN AMERICAN,61.1,TBXYZ
+907,85,42,12,No,Yes,NA,SOMEDRUG2,PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),32,Male,BLACK OR AFRICAN AMERICAN,62,TBXYZ
+908,111,42,16,No,Yes,NA,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),31,Male,WHITE,69.9,TBXYZ
+908,16,12.63,2,No,Yes,NA,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),31,Male,WHITE,64.9,TBXYZ
+908,2,6.13,0,No,Yes,NA,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),31,Male,WHITE,64.9,TBXYZ
+908,30,16.38,4,No,Yes,NA,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),31,Male,WHITE,65.8,TBXYZ
+908,44,26.38,6,No,Yes,NA,PHZE(15)(rifapentine-isoniazid-pyrazinamide-ethambutol),PHZE(rifapentine-isoniazid-pyrazinamide-ethambutol),31,Male,WHITE,65.8,TBXYZ
