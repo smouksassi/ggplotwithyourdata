@@ -2711,7 +2711,8 @@ function(input, output, session) {
 
       t <- capture.output(table1(strata, labels,
                                  topclass=paste("Rtable1", input$table_style),
-                                 render.continuous=dstatsRenderCont()))
+                                 render.continuous=dstatsRenderCont(),
+                                 standalone=FALSE))
       values$prevTable <- t
       t
     }
