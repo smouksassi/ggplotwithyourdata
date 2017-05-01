@@ -1268,10 +1268,13 @@ function(input, output, session) {
         p <- sourceable(ggplot(plotdata, aes_string(x=input$x, y="yvalues")))
         
         if (input$showtarget)  {
-          p <-   p   +
-            annotate("rect", xmin = -Inf, xmax = Inf, ymin = input$lowerytarget,
-                     ymax = input$uppertarget,fill="gray",
-                     alpha =input$targetopacity)
+          if ( is.numeric( plotdata[,input$x] ) ) {
+            p <-   p   +
+              annotate("rect", xmin = -Inf, xmax = Inf, ymin = input$lowerytarget,
+                       ymax = input$uppertarget,fill="gray",
+                       alpha =input$targetopacity)  
+          } 
+
         } 
         
         
@@ -2280,16 +2283,20 @@ function(input, output, session) {
         p <-    p+
         geom_hline(aes(yintercept=0))
       
-      if (input$customline1)
+      if (input$customvline1)
         p <-    p+
-        geom_vline(xintercept=input$vline)
-      
-      
-      if (input$customline2)
+        geom_vline(xintercept=input$vline1)
+      if (input$customvline2)
         p <-    p+
-        geom_hline(yintercept=input$hline)
+        geom_vline(xintercept=input$vline2)      
       
+      if (input$customhline1)
+        p <-    p+
+        geom_hline(yintercept=input$hline1)
       
+      if (input$customhline2)
+        p <-    p+
+        geom_hline(yintercept=input$hline2)     
       
       if (input$identityline)
         p <-    p+ geom_abline(intercept = 0, slope = 1)
