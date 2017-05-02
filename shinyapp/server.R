@@ -206,7 +206,8 @@ function(input, output, session) {
                 value = as.character(paste(
                   min(df[,input$catvar3in] ,na.rm=T),
                   median(df[,input$catvar3in],na.rm=T),
-                  max(df[,input$catvar3in],na.rm=T) ,sep=",")
+                  max(df[,input$catvar3in],na.rm=T)
+                  ,sep=",")
                 )
       )
     }
@@ -272,10 +273,10 @@ function(input, output, session) {
     if (is.null(input$catvar3in)) return(NULL)
     if(input$catvar3in!="" && !is.null(input$xcutoffs)) {
       varname<- input$catvar3in
-      xlimits <- input$xcutoffs 
-      nxintervals <- length(as.numeric(unlist (strsplit(xlimits, ",")) )) -1
+      xlimits <- input$xcutoffs
+      nxintervals <- length(as.numeric(unique(unlist (strsplit(xlimits, ",")) ))) -1
       df[,varname] <- cut( as.numeric ( as.character(  df[,varname])),
-                           breaks=   as.numeric(unlist (strsplit(xlimits, ","))),include.lowest=TRUE)
+                           breaks=   as.numeric(unique(unlist (strsplit(xlimits, ","))) ),include.lowest=TRUE)
       df[,"custombins"] <-   df[,varname] 
       
       if(input$asnumericin) {
@@ -2684,9 +2685,23 @@ function(input, output, session) {
     )
     
     stacked <- dstatsTableData()
+    vars <- unique(as.character(stacked$yvars))
     df <- spread_(stacked, "yvars", "yvalues", convert=TRUE)
     df[sapply(df, is.character)] <- lapply(df[sapply(df, is.character)], 
                                            as.factor)
+    
+    if(!is.null(input$catvar2in) ){
+      CATVARS<-  input$catvar2in[is.element(input$catvar2in,vars)] 
+      if(length(CATVARS ) >=1) {
+        for (i in 1:length(CATVARS ) ) {
+          varname<- CATVARS[i]
+          if( !is.null(df[,varname])  ) {
+            df[,varname]   <- as.factor( df[,varname])
+          }
+        }
+      }  
+    }
+    
     
     if(!is.null(df)) {
       df[,input$x]  <- as.factor(as.character( df[,input$x]))
@@ -2698,7 +2713,7 @@ function(input, output, session) {
 
 
 
-      vars <- unique(as.character(stacked$yvars))
+      #vars <- unique(as.character(stacked$yvars))
       #cat("y=", input$y, "vars=", vars, "lab=", relabels, "\n")
       names(vars) <- vars
       for (i in seq_along(vars)) {
