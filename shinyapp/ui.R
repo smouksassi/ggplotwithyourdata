@@ -24,7 +24,7 @@ fluidPage(
             id = "filtercategorize",
             type = "pills",
             tabPanel(
-              "Categorize/Rename", 
+              "Categorize/Recode", 
               uiOutput("catvar"),
               uiOutput("ncuts"),
               uiOutput("catvar2"),
@@ -34,13 +34,13 @@ fluidPage(
               textOutput("bintext"),
               shinyjs::hidden(div(
                 id = "factor_lvl_change_section",
-                tags$h3("Change the labels of a variable"),
+                tags$h4("Change the labels of a variable"),
                 div(id = "factor_lvl_change_placeholder"),
                 actionButton("factor_lvl_change_add", "Add another variable", icon("plus"))
               ))
             ),
             
-            tabPanel("Combine Variables",
+            tabPanel("Combine Two Variables",
                      h6("Combined variables can be used for colour, fill, group, size and facets. They cannot be used as X or Y variables."),
                      
                      uiOutput("pastevar")
