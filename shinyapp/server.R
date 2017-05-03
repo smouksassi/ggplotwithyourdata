@@ -2787,7 +2787,7 @@ function(input, output, session) {
       if (i <= quickRelabel$numTotal) {
           updateTextInput(session, 
                   inputId=paste0("quick_relabel_", i),
-                  label=if (i==1) "Labels" else NULL,
+                  label=if (i==1) "Quick HTML Labels" else NULL,
                   value=lab)
       } else {
           insertUI(
@@ -2796,7 +2796,7 @@ function(input, output, session) {
             div(class = "quick_relabel",
                 textInput(
                   inputId=paste0("quick_relabel_", i),
-                  label=if (i==1) "Labels" else NULL,
+                  label=if (i==1) "Quick HTML Labels" else NULL,
                   value=lab)
             )
           )

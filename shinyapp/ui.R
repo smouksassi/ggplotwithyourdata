@@ -768,7 +768,7 @@ fluidPage(
         ),
         
         tabPanel("Descriptive Stats",
-                 p("Note: use y for variables of interest (rows) and x for stratification (columns)"),
+                 p("Note: use y for variables of interest (rows) and x for stratification (columns). Drag and Drop the y variable(s) list on the left to the order of your liking"),
                  htmlOutput("dstats"),
                  shinyjs::hidden(div(
                      id = "table_options_area",
