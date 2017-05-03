@@ -14,6 +14,12 @@ function(input, output, session) {
     numTotal = 0  # Max # of boxes at the same time, to prevent memory leaks
   )
   
+  # Variables to reorder levels for in the table
+  # changeorderVals <- reactiveValues(
+  #   numCurrent = 0,  # How many boxes are there currently
+  #   numTotal = 0  # Max # of boxes at the same time, to prevent memory leaks
+  # )
+  
   # Variables to help with maintaining the dynamic number of "quick relabel" boxes
   quickRelabel <- reactiveValues(
     numCurrent = 0,  # How many boxes are there currently
@@ -82,6 +88,7 @@ function(input, output, session) {
     }
   }
   
+
   # Load user data
   observeEvent(input$datafile, {
     file <- input$datafile$datapath
@@ -1234,8 +1241,15 @@ function(input, output, session) {
         scale_fill_discrete <- function(...) 
           scale_fill_manual(..., values = tableau10,drop=!input$themecolordrop)
       }
+
+      if (input$colorblind&!input$themetableau){
+        scale_colour_discrete <- function(...) 
+          scale_colour_manual(..., values = cbbPalette,drop=!input$themecolordrop)
+        scale_fill_discrete <- function(...) 
+          scale_fill_manual(..., values = cbbPalette,drop=!input$themecolordrop)
+      }
       
-      
+
       if (!is.null(input$y) ){
         
         # listvarcor <- c(input$colorin,input$fillin,input$groupin,
@@ -2385,7 +2399,7 @@ function(input, output, session) {
       if (input$themeaspect)
         p <-    p+
         theme(aspect.ratio=input$aspectratio)
-      if (!input$themetableau){
+      if (!input$colorblind&!input$themetableau){
         p <-  p +
           scale_colour_hue(drop=!input$themecolordrop)+
           scale_fill_hue(drop=!input$themecolordrop)

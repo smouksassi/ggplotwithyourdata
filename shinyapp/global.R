@@ -11,7 +11,7 @@ suppressMessages ({
   library(quantreg)
   library(markdown)
   #library(lazyeval)
-  if (!suppressWarnings(require(table1, quietly=TRUE))) {
+  if (!suppressWarnings(require(ggkm, quietly=TRUE))) {
     devtools::install_github("sachsmc/ggkm")
     library(ggkm)
   }
@@ -20,6 +20,7 @@ suppressMessages ({
       devtools::install_github("benjaminrich/table1")
       library(table1)
   }
+
 })
 
 source("sourceable.R")
@@ -50,6 +51,13 @@ tableau20 <- c("#1F77B4","#AEC7E8", "#FF7F0E","#FFBB78"  ,"#2CA02C",
                "#98DF8A" ,"#D62728","#FF9896" ,"#9467BD","#C5B0D5" ,
                "#8C564B","#C49C94" ,"#E377C2","#F7B6D2" ,"#7F7F7F",
                "#C7C7C7" ,"#BCBD22","#DBDB8D" ,"#17BECF","#9EDAE5")
+
+cbPalette <- c("#999999", "#E69F00", "#56B4E9", "#009E73", "#F0E442",
+               "#0072B2", "#D55E00", "#CC79A7")
+cbbPalette <- c("#000000", "#E69F00", "#56B4E9", "#009E73", "#F0E442", 
+                "#0072B2", "#D55E00", "#CC79A7")
+
+
 
 # All stats that can be displayed for continuous variables
 allstats <- c("N",

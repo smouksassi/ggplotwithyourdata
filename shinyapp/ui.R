@@ -148,7 +148,7 @@ fluidPage(
             tabPanel(
               "Background Color and Legend(s)",
               selectInput('backgroundcol', label ='Background Color',
-                          choices=c("Gray" ="gray97","White"="white","Dark Gray"="grey90"),
+                          choices=c("Gray" ="grey95","White"="white","Dark Gray"="grey90"),
                           multiple=FALSE, selectize=TRUE,selected="white"),
               selectInput('legendposition', label ='Legend Position',
                           choices=c("left", "right", "bottom", "top","none"),
@@ -270,7 +270,14 @@ fluidPage(
               checkboxInput('themetableau', 'Use Tableau Colors and Fills ? (maximum of 10 colours are provided)',value=TRUE),
               conditionalPanel(condition = "input.themetableau" ,
                                h6("If you have more than 10 color groups the plot will not work and you get /Error: Insufficient values in manual scale. ## needed but only 10 provided./  Uncheck Use Tableau Colors and Fills to use default ggplot2 colors.")),
+              checkboxInput('colorblind', 'Use Colour Blind Safe Colors ? (maximum of 10 colours are provided)',value=TRUE) , 
+              conditionalPanel(condition = "input.colorblind" ,
+                               h6("This will override the Tableau colors
+                                  if checed and If you have more than 8 color groups the plot will not work
+                                  and you get /Error: Insufficient values in manual scale. ## needed but only 8 provided./  Uncheck to use default ggplot2 colors.")),
+              
               checkboxInput('themecolordrop', 'Keep All levels of Colors and Fills ?',value=TRUE) , 
+              
               
               checkboxInput('themebw', 'Use Black and White Theme ?',value=TRUE), 
               checkboxInput('themeaspect', 'Use custom aspect ratio ?')   ,  
@@ -772,8 +779,11 @@ fluidPage(
                      actionButton("update_table_btn", "Update table",
                                   icon = icon("refresh")),
                      fluidRow(
-                       column(6,
+                       column(3,
                          div(id="quick_relabel_placeholder")
+                       ),
+                       column(3,
+                              div(id="quick_reorder_placeholder")
                        ),
                        column(6,
                          checkboxInput("table_incl_overall",
