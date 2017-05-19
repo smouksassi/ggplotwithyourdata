@@ -6,7 +6,7 @@ fluidPage(
   useShinyjs(),
   includeCSS("www/app.css"),
   includeCSS("www/table1-style.css"),
-  titlePanel("Hello GHAP HBGDki Member!"),
+  titlePanel("Hello ggploteR/Table1R!"),
   sidebarLayout(
     sidebarPanel(
       tabsetPanel(
