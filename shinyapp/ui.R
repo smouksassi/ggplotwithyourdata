@@ -6,7 +6,7 @@ fluidPage(
   useShinyjs(),
   includeCSS("www/app.css"),
   includeCSS("www/table1-style.css"),
-  titlePanel("Hello GHAP HBGDki Member!"),
+  titlePanel("Hello ggploteR/Table1R!"),
   sidebarLayout(
     sidebarPanel(
       tabsetPanel(
@@ -88,8 +88,8 @@ fluidPage(
               uiOutput("nlabels5")
             ),
             tabPanel(
-              "One Row by ID",
-              checkboxInput('filtertoonerowbyid', 'Filter to One Row by ID ?', value = FALSE),
+              "One Row by ID(s)",
+              checkboxInput('filtertoonerowbyid', 'Filter to One Row by ID(s)?', value = FALSE),
               conditionalPanel(
                 condition = "input.filtertoonerowbyid" ,
                 uiOutput("onerowidgroup")
@@ -459,8 +459,12 @@ fluidPage(
                     3,
                     checkboxInput('barplotaddition', 'Add a Barplot ?',value = TRUE),
                     selectInput("positionbar", label = "Bar positioning:",
-                                choices = c("Stacked"="position_stack()","Dodged"="position_dodge()"),
-                                selected = "position_stack()"),
+                                choices = c("Stacked"="position_stack(vjust = 0.5)",
+                                            "Side By Side"="position_dodge(width = 0.9)",
+                                            "Sum to 100%"="position_fill(vjust = 0.5)"),
+                                selected = "position_stack(vjust = 0.5)"),
+                    checkboxInput('barplotpercent', 'Show Percentage instead of Counts ?',value = FALSE),
+                    checkboxInput('barplotlabel', 'Show Labels ?',value = FALSE),
                     checkboxInput('barplotflip', 'Flip the Barplot ?',value = FALSE)
                     
                   )

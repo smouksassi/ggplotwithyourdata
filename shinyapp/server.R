@@ -995,23 +995,31 @@ function(input, output, session) {
     items=names(df)
     names(items)=items
     items= items 
-    items= c("None",items, "yvars","yvalues") 
+    items= c(items, "yvars","yvalues") 
     if (!is.null(input$pastevarin)&length(input$pastevarin) >1 ){
       nameofcombinedvariables<- paste(as.character(input$pastevarin),collapse="_",sep="") 
       items= c(items,nameofcombinedvariables)
     }
-    selectInput("onerowidgroupin", "ID:",items)
+    selectizeInput("onerowidgroupin", "ID(s):", choices = items,multiple=TRUE,
+                   options = list(
+                     placeholder = 'Please select at least one variable',
+                     onInitialize = I('function() { this.setValue(""); }'),
+                     plugins = list('remove_button')
+                   )
+    )
+    
   })
   outputOptions(output, "onerowidgroup", suspendWhenHidden=FALSE)
   
   filterdata7  <- reactive({
     df <- recodedata5()
     validate(       need(!is.null(df), "Please select a data set"))
+    if(input$filtertoonerowbyid && !is.null(input$onerowidgroupin) && length(input$onerowidgroupin) >0 ){
     
-    if(input$filtertoonerowbyid &  input$onerowidgroupin!="None" ){
-        df<- df %>%
-          group_by_(input$onerowidgroupin,"yvars")%>%
-          filter(row_number()==1 ) %>%
+        dots <- lapply(c(as.vector(input$onerowidgroupin),"yvars" ), as.symbol)
+        df <-   df %>%
+        group_by_(.dots=dots)
+        df<- df %>% filter(row_number()==1 ) %>%
           ungroup()
     }
     
@@ -2177,24 +2185,62 @@ function(input, output, session) {
         
         if(!is.numeric(plotdata[,input$x]) ){
           p <- sourceable(ggplot(plotdata, aes_string(x=input$x)))
+          
           if (input$colorin != 'None')
             p <- p + aes_string(color=input$colorin)
+          
           if (input$fillin != 'None')
             p <- p + aes_string(fill=input$fillin)
+          
           if (input$groupin != 'None')
             p <- p + aes_string(group=input$groupin)
-          if (input$groupin == 'None' & !is.numeric(plotdata[,input$x]) 
-              & input$colorin == 'None')
-            p <- p + aes(group=1)
           
-          if ( input$barplotaddition){
+          #if (input$groupin == 'None' & !is.numeric(plotdata[,input$x]) 
+           #   & input$colorin == 'None')
+           # p <- p + aes(group=1)
+          
+          if ( input$barplotaddition&!input$barplotpercent){
             p <- p+ 
-              geom_bar(alpha=0.2,position = eval(parse(text=input$positionbar)))
+              geom_bar(alpha=0.2,position = eval(parse(text=input$positionbar)))+
+              ylab("Count")
+            if ( input$barplotlabel){
+              p <- p+   geom_text(aes(y = ((..count..)),
+                                      label = ((..count..))),
+                                  stat = "count", vjust = 0.5,
+                                  position = eval(parse(text=input$positionbar)))
+            }
+            
+            
             if ( input$barplotflip){
               p <- p +
                 coord_flip()
           }
           }
+          if ( input$barplotaddition&input$barplotpercent){
+            p <- p+  
+              geom_bar(alpha=0.2,aes(y = ((..count..)/tapply(..count..,..PANEL..,sum)[..PANEL..])) ,
+                       position = eval(parse(text=input$positionbar)))  
+            if ( input$barplotlabel){
+              if(input$positionbar!="position_fill(vjust = 0.5)")
+              {
+                p <- p+   geom_text(aes(y = ((..count..)/tapply(..count..,..PANEL..,sum)[..PANEL..]),
+                                        label = scales::percent(
+                                            ((..count..)/tapply(..count..,..PANEL..,sum)[..PANEL..]))),
+                                    stat = "count", vjust = 0.5,
+                                    position = eval(parse(text=input$positionbar)))    
+              }
+
+            }
+ 
+              
+              p <- p+   scale_y_continuous(labels = percent) +
+              ylab("Percentage")
+                     if ( input$barplotflip){
+              p <- p +
+                coord_flip()
+            }
+          }
+          
         }
 
         
