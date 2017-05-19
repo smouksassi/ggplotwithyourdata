@@ -1536,55 +1536,62 @@ function(input, output, session) {
         
         ###### Smoothing Section START
         if(!is.null(input$Smooth) ){
-          familyargument <- ifelse(input$smoothmethod=="glm","binomial","gaussian") 
+          familyargument <- input$loessfamily
+          if(input$smoothmethod=="glm") {
+            familyargument<- "binomial"  
+          }
+          methodsargument<- list(family = familyargument,degree=input$loessdegree) 
+          if(input$smoothmethod=="glm"){
+            methodsargument<- list(family = familyargument) 
+          }
+
+          spanplot <- input$loessens
           
           if ( input$ignoregroup) {
             if (!input$ignorecol) {
-              spanplot <- input$loessens
               if (input$Smooth=="Smooth")
                 p <- p + geom_smooth(method=input$smoothmethod,
-                                     method.args = list(family = familyargument),
+                                     method.args = methodsargument,
                                      size=1.5,se=F,span=spanplot,aes(group=NULL))
               
               if (input$Smooth=="Smooth and SE")
                 p <- p + geom_smooth(method=input$smoothmethod,
-                                     method.args = list(family = familyargument),
+                                     method.args = methodsargument,
                                      size=1.5,se=T,span=spanplot,aes(group=NULL))
               
               if (input$Smooth=="Smooth"& input$weightin != 'None')
                 p <- p + geom_smooth(method=input$smoothmethod,
-                                     method.args = list(family = familyargument),
+                                     method.args = methodsargument,
                                      size=1.5,se=F,span=spanplot,aes(group=NULL))+  
                   aes_string(weight=input$weightin)
               
               if (input$Smooth=="Smooth and SE"& input$weightin != 'None')
                 p <- p + geom_smooth(method=input$smoothmethod,
-                                     method.args = list(family = familyargument),
+                                     method.args = methodsargument,
                                      size=1.5,se=T,span=spanplot,aes(group=NULL))+  
                   aes_string(weight=input$weightin)
             }
             if (input$ignorecol) {
-              spanplot <- input$loessens
               colsmooth <- input$colsmooth
               if (input$Smooth=="Smooth")
                 p <- p + geom_smooth(method=input$smoothmethod,
-                                     method.args = list(family = familyargument),
+                                     method.args = methodsargument,
                                      size=1.5,se=F,span=spanplot,col=colsmooth,aes(group=NULL))
               
               if (input$Smooth=="Smooth and SE")
                 p <- p + geom_smooth(method=input$smoothmethod,
-                                     method.args = list(family = familyargument),
+                                     method.args = methodsargument,
                                      size=1.5,se=T,span=spanplot,col=colsmooth,aes(group=NULL))
               
               if (input$Smooth=="Smooth"& input$weightin != 'None')
                 p <- p + geom_smooth(method=input$smoothmethod,
-                                     method.args = list(family = familyargument),
+                                     method.args = methodsargument,
                                      size=1.5,se=F,span=spanplot,col=colsmooth,aes(group=NULL))+  
                 aes_string(weight=input$weightin)
               
               if (input$Smooth=="Smooth and SE"& input$weightin != 'None')
                 p <- p + geom_smooth(method=input$smoothmethod,
-                                     method.args = list(family = familyargument),
+                                     method.args = methodsargument,
                                      size=1.5,se=T,span=spanplot,col=colsmooth,aes(group=NULL))+  
                 aes_string(weight=input$weightin)
             }
@@ -1593,51 +1600,49 @@ function(input, output, session) {
           
           if ( !input$ignoregroup) {
             if (!input$ignorecol) {
-              spanplot <- input$loessens
               if (input$Smooth=="Smooth")
                 p <- p + geom_smooth(method=input$smoothmethod,
-                                     method.args = list(family = familyargument),
+                                     method.args = methodsargument,
                                      size=1.5,se=F,span=spanplot)
               
               if (input$Smooth=="Smooth and SE")
                 p <- p + geom_smooth(method=input$smoothmethod,
-                                     method.args = list(family = familyargument),
+                                     method.args = methodsargument,
                                      size=1.5,se=T,span=spanplot)
               
               if (input$Smooth=="Smooth"& input$weightin != 'None')
                 p <- p + geom_smooth(method=input$smoothmethod,
-                                     method.args = list(family = familyargument),
+                                     method.args = methodsargument,
                                      size=1.5,se=F,span=spanplot)+  
                   aes_string(weight=input$weightin)
               
               if (input$Smooth=="Smooth and SE"& input$weightin != 'None')
                 p <- p + geom_smooth(method=input$smoothmethod,
-                                     method.args = list(family = familyargument),
+                                     method.args = methodsargument,
                                      size=1.5,se=T,span=spanplot)+  
                   aes_string(weight=input$weightin)
             }
             if (input$ignorecol) {
-              spanplot <- input$loessens
               colsmooth <- input$colsmooth
               if (input$Smooth=="Smooth")
                 p <- p + geom_smooth(method=input$smoothmethod,
-                                     method.args = list(family = familyargument),
+                                     method.args = methodsargument,
                                      size=1.5,se=F,span=spanplot,col=colsmooth)
               
               if (input$Smooth=="Smooth and SE")
                 p <- p + geom_smooth(method=input$smoothmethod,
-                                     method.args = list(family = familyargument),
+                                     method.args = methodsargument,
                                      size=1.5,se=T,span=spanplot,col=colsmooth)
               
               if (input$Smooth=="Smooth"& input$weightin != 'None')
                 p <- p + geom_smooth(method=input$smoothmethod,
-                                     method.args = list(family = familyargument),
+                                     method.args = methodsargument,
                                      size=1.5,se=F,span=spanplot,col=colsmooth)+  
                 aes_string(weight=input$weightin)
               
               if (input$Smooth=="Smooth and SE"& input$weightin != 'None')
                 p <- p + geom_smooth(method=input$smoothmethod,
-                                     method.args = list(family = familyargument),
+                                     method.args = methodsargument,
                                      size=1.5,se=T,span=spanplot,col=colsmooth)+  
                 aes_string(weight=input$weightin)
             }

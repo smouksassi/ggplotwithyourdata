@@ -536,24 +536,31 @@ fluidPage(
                                   choices=c("Loess" ="loess","Linear Fit"="lm","Logistic"="glm"),
                                   multiple=FALSE, selectize=TRUE,selected="loess"),
                       
-                      sliderInput("loessens", "Loess Span:", min=0, max=1, value=c(0.75),step=0.05)
+                      sliderInput("loessens", "Loess Span:", min=0, max=1, value=c(0.75),step=0.05),
+                      selectInput('loessfamily', label ='Loess Family:',
+                                  choices=c("Gaussian" ="gaussian","Symmetric"="symmetric"),
+                                  multiple=FALSE, selectize=TRUE,selected="gaussian"),
+                      sliderInput("loessdegree", "Loess Degree:", min=0, max=2, value=c(1),step=1)
+                      
                     ) 
                   ),
                   
                   column (
                     3,  conditionalPanel( " input.Smooth!= 'None' ",
                                           checkboxInput('ignorecol', 'Ignore Mapped Color'),
-                                          uiOutput("weight")
+                                          conditionalPanel(
+                                            " input.ignorecol ",
+                                            selectInput('colsmooth', label ='Smooth Color', choices=colors(),
+                                                        multiple=FALSE, selectize=TRUE,selected="black") )
+                                         
                     )
                   ),
                   column (
                     3, conditionalPanel(
                       " input.Smooth!= 'None' ",
-                      checkboxInput('ignoregroup', 'Ignore Mapped Group',value = TRUE),
-                      conditionalPanel(
-                        " input.ignorecol ",
-                        selectInput('colsmooth', label ='Smooth Color', choices=colors(),multiple=FALSE, selectize=TRUE,selected="black") )
-                    ) )
+                      checkboxInput('ignoregroup', 'Ignore Mapped Group',value = TRUE)
+                    ) ,
+                    uiOutput("weight"))
                   
                 )#fluidrow
               )
