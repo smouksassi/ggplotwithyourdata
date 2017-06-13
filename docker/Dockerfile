@@ -17,9 +17,6 @@ RUN r -e "install.packages(                                       \
   dependencies=c('Depends', 'Imports', 'LinkingTo'))              \
 "
 
-
-
-# install latest pbdR packages from github
 RUN r -e "                                          \
   remotes::install_github('sachsmc/ggkm')         ; \
   remotes::install_github('benjaminrich/table1')  ; \
@@ -27,7 +24,7 @@ RUN r -e "                                          \
 
 
 
-# install tag shiny app build
+# install shiny app
 ENV SHINY_PATH /srv/shiny-server
 ENV APP_NAME ggplotwithyourdata
 RUN rm -rf ${SHINY_PATH}/*
