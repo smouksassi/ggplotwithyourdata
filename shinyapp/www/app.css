@@ -16,3 +16,8 @@
   margin-left: 5px;
   vertical-align: top;
 }
+#plot-log-opts .shiny-input-container {
+  display: inline-block;
+  width: 100px;
+}
+

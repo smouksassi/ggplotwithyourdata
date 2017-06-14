@@ -251,7 +251,7 @@ function(input, output, session) {
     if(!is.null(input$catvarin)&length(input$catvarin ) >=1) {
       for (i in 1:length(input$catvarin ) ) {
         varname<- input$catvarin[i]
-        df[,varname] <- cut(df[,varname],input$ncutsin)
+        df[,varname] <- cut(df[,varname],input$ncutsin , include.lowest = TRUE, right = FALSE, ordered_result = TRUE)
         df[,varname]   <- as.factor( df[,varname])
       }
     }
@@ -1358,31 +1358,31 @@ function(input, output, session) {
           if (input$groupin != 'None'& !input$boxplotignoregroup ){
             if (!input$boxplotignorecol){
               p <- p + aes_string(group=input$groupin)
-              p <- p + geom_boxplot(varwidth = input$boxplotvarwidh,notch = input$boxplotnotch,show.legend=input$boxplotshowlegend)
+              p <- p + geom_boxplot(varwidth = input$boxplotvarwidh,notch = input$boxplotnotch,show.legend=input$boxplotshowlegend,alpha=input$boxplotalpha)
               
             }
             if (input$boxplotignorecol){
               p <- p + aes_string(group=input$groupin)
-              p <- p + geom_boxplot(varwidth = input$boxplotvarwidh,notch = input$boxplotnotch,show.legend=input$boxplotshowlegend,col=input$boxcolline)
+              p <- p + geom_boxplot(varwidth = input$boxplotvarwidh,notch = input$boxplotnotch,show.legend=input$boxplotshowlegend,col=input$boxcolline,alpha=input$boxplotalpha)
               
             }
           }
           if (input$groupin == 'None'){
             if (!input$boxplotignorecol){
-              p <- p + geom_boxplot(aes(group=NULL),varwidth = input$boxplotvarwidh,notch = input$boxplotnotch,show.legend=input$boxplotshowlegend)
+              p <- p + geom_boxplot(aes(group=NULL),varwidth = input$boxplotvarwidh,notch = input$boxplotnotch,show.legend=input$boxplotshowlegend,alpha=input$boxplotalpha)
             }
             if (input$boxplotignorecol){
-              p <- p + geom_boxplot(aes(group=NULL),varwidth = input$boxplotvarwidh,notch = input$boxplotnotch,show.legend=input$boxplotshowlegend,col=input$boxcolline)
+              p <- p + geom_boxplot(aes(group=NULL),varwidth = input$boxplotvarwidh,notch = input$boxplotnotch,show.legend=input$boxplotshowlegend,col=input$boxcolline,alpha=input$boxplotalpha)
             } 
           }
           
           
           if (input$boxplotignoregroup ){
             if (!input$boxplotignorecol){
-              p <- p + geom_boxplot(aes(group=NULL),varwidth = input$boxplotvarwidh,notch = input$boxplotnotch,show.legend=input$boxplotshowlegend)
+              p <- p + geom_boxplot(aes(group=NULL),varwidth = input$boxplotvarwidh,notch = input$boxplotnotch,show.legend=input$boxplotshowlegend,alpha=input$boxplotalpha)
             }
             if (input$boxplotignorecol){
-              p <- p + geom_boxplot(aes(group=NULL),varwidth = input$boxplotvarwidh,notch = input$boxplotnotch,show.legend=input$boxplotshowlegend,col=input$boxcolline)
+              p <- p + geom_boxplot(aes(group=NULL),varwidth = input$boxplotvarwidh,notch = input$boxplotnotch,show.legend=input$boxplotshowlegend,col=input$boxcolline,alpha=input$boxplotalpha)
             }
           }
           
@@ -2302,15 +2302,20 @@ function(input, output, session) {
       
       
       
-      
-      if (input$logy& is.numeric(plotdata[,"yvalues"]))
+      if (input$logy& is.numeric(plotdata[,"yvalues"])& input$logyformat)
         p <- p + scale_y_log10(breaks = trans_breaks("log10", function(x) 10^x),
-                               labels = trans_format("log10", math_format(10^.x))) 
+                               labels = trans_format("log10", math_format(10^.x)))
       
-      if (input$logx&  is.numeric(plotdata[,input$x]))
+      
+      if (input$logy& is.numeric(plotdata[,"yvalues"])& !input$logyformat)
+        p <- p + scale_y_log10() 
+      
+      if (input$logx&  is.numeric(plotdata[,input$x])& input$logxformat)
         p <- p + scale_x_log10(breaks = trans_breaks("log10", function(x) 10^x),
                                labels = trans_format("log10", math_format(10^.x))) 
       
+      if (input$logx&  is.numeric(plotdata[,input$x])& !input$logxformat)
+        p <- p + scale_x_log10() 
       
       
       if (input$scientificy & is.numeric(plotdata[,"yvalues"]) )
@@ -2428,13 +2433,7 @@ function(input, output, session) {
       
       if (!input$themebw){
         p <- p +
-          theme_gray(base_size=input$themebasesize)+
-          theme(  
-            #axis.title.y = element_text(size = rel(1.5)),
-            #axis.title.x = element_text(size = rel(1.5))#,
-            #strip.text.x = element_text(size = 16),
-            #strip.text.y = element_text(size = 16)
-          )
+          theme_gray(base_size=input$themebasesize)
       }
       
       
@@ -2769,7 +2768,11 @@ function(input, output, session) {
     
     
     if(!is.null(df)) {
-      df[,input$x]  <- as.factor(as.character( df[,input$x]))
+      if(is.numeric(df[,input$x] )){
+      }
+      if(!is.numeric(df[,input$x] )){
+       # df[,input$x]  <- as.factor(as.character( df[,input$x]))
+      }
       
       strata <- split(df, df[[input$x]])
       if(input$table_incl_overall) {

@@ -111,8 +111,14 @@ fluidPage(
               textInput('ylab', 'Y axis label', value = "") ,
               textInput('xlab', 'X axis label', value = "") ,
               hr(),
-              checkboxInput('logy', 'Log Y axis', value = FALSE) ,
-              checkboxInput('logx', 'Log X axis', value = FALSE) ,
+              
+              div(style="display:inline-block",
+                id = "plot-log-opts",
+                checkboxInput('logy', 'Log Y axis', value = FALSE) ,
+                checkboxInput('logx', 'Log X axis', value = FALSE) ,
+                checkboxInput('logyformat', 'Log Y 10^x Format', value = FALSE) ,
+                checkboxInput('logxformat', 'Log X 10^x Format', value = FALSE) 
+              ),
               conditionalPanel(condition = "!input.logy" ,
                                checkboxInput('scientificy', 'Comma separated Y axis ticks', value = FALSE)),
               conditionalPanel(condition = "!input.logx" ,
@@ -433,7 +439,9 @@ fluidPage(
                       " input.boxplotignorecol " ,
                       selectInput('boxcolline', label ='Box Outlines Color',
                                   choices=colors(),multiple=FALSE, selectize=TRUE,selected="black")
-                    )
+                    ),
+                    sliderInput("boxplotalpha", "Boxplot Transparency:", min=0, max=1, value=c(0.2),step=0.01)
+                    
                   )
                   
                 )#fluidrow 
