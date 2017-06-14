@@ -1,5 +1,5 @@
 FROM rocker/shiny
-MAINTAINER "Drew Schmidt" wrathematics@gmail.com
+MAINTAINER "Samer Mouksassi" samermouksassi@gmail.com
 
 RUN apt-get update && \
    apt-get install -y --no-install-recommends \

@@ -9,8 +9,8 @@ Docker configuration for the shiny app [ggplotwithyourdata](https://github.com/s
 Run:
 
 ```bash
-sudo docker pull wrathematics/ggplotwithyourdata
-sudo docker run -i -t -p 3838:3838 wrathematics/ggplotwithyourdata
+sudo docker pull smouksassi/ggplotwithyourdata
+sudo docker run -i -t -p 3838:3838 smouksassi/ggplotwithyourdata
 ```
 
 
