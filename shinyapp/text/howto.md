@@ -1,3 +1,7 @@
+Please read the How to to make sure you are using the app as intented.
+Contact me @ samermouksassi@gmail.com for feedback or use the link to file bugs/features/pull requests!
+<a href="https://github.com/smouksassi/ggplotwithyourdata/issues" target="_blank">Click Here to go to github</a>
+
 1. Upload your data file in CSV format. R default options for `read.csv` will apply except for missing values where both (NA) and dot (.) are treated as missing. If your data has columns with other non-numeric missing value codes then they be treated as factors.
 
 2. The UI is dynamic and changes depending on your choices of options, x ,y, filter, group and so on.
@@ -45,9 +49,6 @@
 
 11. **NEW** <a href="https://github.com/benjaminrich" target="_blank">Benjamin Rich </a> table1 package powers the summary statitics tab. More on this soon.
 
-
-Contact me @ samermouksassi@gmail.com for feedback or use the link below to file bugs/features/pull requests!
-
-<a href="https://github.com/smouksassi/ggplotwithyourdata/issues" target="_blank">Click Here to submit an issue on github</a>
+12. Copy Paste Bonus ≤ ≥ µ m² ³ &#8804 &#8805 &#188 &#177
 
 *Samer Mouksassi 2017*
