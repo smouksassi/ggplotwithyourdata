@@ -2710,7 +2710,7 @@ function(input, output, session) {
       }  
     }
     # Check with smouksassi:
-    df[,input$x]  <- as.factor(as.character( df[,input$x]))
+    #df[,input$x]  <- as.factor(as.character( df[,input$x]))
     attr(df, "vars") <- vars
     df
   })
@@ -2763,20 +2763,29 @@ function(input, output, session) {
       }
   })
 
-  # Note: copy of output$facet_col_extra
+  # Note: copy of output$facet_col_extra yvars and yvalues and xvar remved
   output$dstats_col_extra <- renderUI({
     df <-values$maindata
     if (is.null(df)) return(NULL)
     items=names(df)
     names(items)=items
     items= items
-    items =c(None='.',items,"yvars", "yvalues")
+    items= items[!is.element(items,input$x)]
+    items =c(None='.',items)
     if (!is.null(input$pastevarin)&length(input$pastevarin) >1 ){
       nameofcombinedvariables<- paste(as.character(input$pastevarin),collapse="_",sep="") 
       items= c(items,nameofcombinedvariables)
     }
     selectInput("dstatscolextrain", "Extra Column Split:",items)
   })
+  
+  output$filpthelevels <- renderUI({
+    df <-values$maindata
+    if (is.null(df)) return(NULL)
+    if(input$dstatscolextrain!="."){
+      checkboxInput('flipthelevelsin', 'Flip the Order of the Columns', value = FALSE)
+    }
+  })  
 
   dstatsTable <- reactive({
     # Don't generate a new table if the user wants to refresh manually
@@ -2809,8 +2818,15 @@ function(input, output, session) {
       RHS <- input$x
       if (!is.null(df[[input$dstatscolextrain]])) {
         RHS <- paste(c(RHS, input$dstatscolextrain), collapse=" * ")
+        if (input$flipthelevelsin )
+        {
+          RHS <- paste(c( input$dstatscolextrain,RHS), collapse=" * ")
+          
+        }
       }
       formula <- as.formula(paste("~", paste(c(LHS, RHS), collapse=" | ")))
+
+      
       overall <- if (input$table_incl_overall) "Overall" else FALSE
       t <- capture.output(table1(formula, data=df, overall=overall,
                                  topclass=paste("Rtable1", input$table_style),

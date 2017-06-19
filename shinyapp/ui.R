@@ -800,7 +800,8 @@ fluidPage(
                      fluidRow(
                        column(3,
                          div(id="quick_relabel_placeholder"),
-                         uiOutput("dstats_col_extra")
+                         uiOutput("dstats_col_extra"),
+                         uiOutput("filpthelevels")
                        ),
                        column(3,
                               div(id="quick_reorder_placeholder")
