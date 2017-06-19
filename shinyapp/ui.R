@@ -799,7 +799,8 @@ fluidPage(
                                   icon = icon("refresh")),
                      fluidRow(
                        column(3,
-                         div(id="quick_relabel_placeholder")
+                         div(id="quick_relabel_placeholder"),
+                         uiOutput("dstats_col_extra")
                        ),
                        column(3,
                               div(id="quick_reorder_placeholder")

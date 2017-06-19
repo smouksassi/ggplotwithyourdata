@@ -2673,7 +2673,7 @@ function(input, output, session) {
 
   # ----- Descriptive Stats tab ------
 
-  dstatsTableData <- reactive({
+  dstatsTableDataStacked <- reactive({
     validate(
       need(!is.null(finalplotdata()), "Please select a data set") 
     )
@@ -2682,9 +2682,37 @@ function(input, output, session) {
     lvl <- unique(as.character(stacked[,"yvars"]))
     validate(need(!(lvl=="None" && all(is.na(stacked[,"yvalues"]))), 
         "No y variable(s) selected"))
-    stacked <- stacked[, c(input$x, "yvars", "yvalues")]
-    stacked$id <- 1:(nrow(stacked)/length(unique(stacked$yvars)))
+    if (input$dstatscolextrain != ".") {
+      stacked <- stacked[, c(input$x, input$dstatscolextrain, "yvars", "yvalues")]
+    } else {
+      stacked <- stacked[, c(input$x, "yvars", "yvalues")]
+    }
+    stacked$.id <- 1:(nrow(stacked)/length(unique(stacked$yvars)))
     stacked
+  })
+
+  dstatsTableData <- reactive({
+    stacked <- dstatsTableDataStacked()
+    vars <- unique(as.character(stacked$yvars))
+    df <- spread_(stacked, "yvars", "yvalues", convert=TRUE)
+    df[sapply(df, is.character)] <- lapply(df[sapply(df, is.character)], 
+                                           as.factor)
+    
+    if(!is.null(input$catvar2in) ){
+      CATVARS<-  input$catvar2in[is.element(input$catvar2in,vars)] 
+      if(length(CATVARS ) >=1) {
+        for (i in 1:length(CATVARS ) ) {
+          varname<- CATVARS[i]
+          if( !is.null(df[,varname])  ) {
+            df[,varname]   <- as.factor( df[,varname])
+          }
+        }
+      }  
+    }
+    # Check with smouksassi:
+    df[,input$x]  <- as.factor(as.character( df[,input$x]))
+    attr(df, "vars") <- vars
+    df
   })
 
   stats.apply.rounding <- function(x, digits=3, digits.pct=1, round.median.min.max=F) {
@@ -2735,6 +2763,21 @@ function(input, output, session) {
       }
   })
 
+  # Note: copy of output$facet_col_extra
+  output$dstats_col_extra <- renderUI({
+    df <-values$maindata
+    if (is.null(df)) return(NULL)
+    items=names(df)
+    names(items)=items
+    items= items
+    items =c(None='.',items,"yvars", "yvalues")
+    if (!is.null(input$pastevarin)&length(input$pastevarin) >1 ){
+      nameofcombinedvariables<- paste(as.character(input$pastevarin),collapse="_",sep="") 
+      items= c(items,nameofcombinedvariables)
+    }
+    selectInput("dstatscolextrain", "Extra Column Split:",items)
+  })
+
   dstatsTable <- reactive({
     # Don't generate a new table if the user wants to refresh manually
     if (!input$auto_update_table) {
@@ -2748,58 +2791,28 @@ function(input, output, session) {
       need(!is.null(dstatsTableData()), "Please select a data set") 
     )
     
-    stacked <- dstatsTableData()
-    vars <- unique(as.character(stacked$yvars))
-    df <- spread_(stacked, "yvars", "yvalues", convert=TRUE)
-    df[sapply(df, is.character)] <- lapply(df[sapply(df, is.character)], 
-                                           as.factor)
-    
-    if(!is.null(input$catvar2in) ){
-      CATVARS<-  input$catvar2in[is.element(input$catvar2in,vars)] 
-      if(length(CATVARS ) >=1) {
-        for (i in 1:length(CATVARS ) ) {
-          varname<- CATVARS[i]
-          if( !is.null(df[,varname])  ) {
-            df[,varname]   <- as.factor( df[,varname])
-          }
-        }
-      }  
-    }
-    
-    
+    df <- dstatsTableData() 
+
     if(!is.null(df)) {
-      if(is.numeric(df[,input$x] )){
-      }
-      if(!is.numeric(df[,input$x] )){
-       # df[,input$x]  <- as.factor(as.character( df[,input$x]))
-      }
-      
-      strata <- split(df, df[[input$x]])
-      if(input$table_incl_overall) {
-          strata <- c(strata, list(Overall=df))
-      }
-
-
-
-      #vars <- unique(as.character(stacked$yvars))
-      #cat("y=", input$y, "vars=", vars, "lab=", relabels, "\n")
+      vars <- attr(df, "vars")
       names(vars) <- vars
       for (i in seq_along(vars)) {
         if (i <= quickRelabel$numTotal) {
           lab <- as.character(input[[paste0("quick_relabel_", i)]])
           if (length(lab) > 0) {
-            vars[i] <- lab
+            label(df[[vars[i]]]) <- lab
           }
         }
       }
 
-      strat <- names(strata)
-      names(strat) <- strat
-      labels <- list(
-          variables=as.list(vars),
-          strata=as.list(strat))
-
-      t <- capture.output(table1(strata, labels,
+      LHS <- paste(vars, collapse=" + ")
+      RHS <- input$x
+      if (!is.null(df[[input$dstatscolextrain]])) {
+        RHS <- paste(c(RHS, input$dstatscolextrain), collapse=" * ")
+      }
+      formula <- as.formula(paste("~", paste(c(LHS, RHS), collapse=" | ")))
+      overall <- if (input$table_incl_overall) "Overall" else FALSE
+      t <- capture.output(table1(formula, data=df, overall=overall,
                                  topclass=paste("Rtable1", input$table_style),
                                  render.continuous=dstatsRenderCont(),
                                  standalone=FALSE))
