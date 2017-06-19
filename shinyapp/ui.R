@@ -83,6 +83,8 @@ fluidPage(
               
               uiOutput("reordervar2"),
               uiOutput("reordervar2values"),
+              
+              h6("Changing the levels of yvars will break the summary table make sure to use the table quick labels instead"),
               uiOutput("catvar5"),
               textOutput("labeltext5"),
               uiOutput("nlabels5")

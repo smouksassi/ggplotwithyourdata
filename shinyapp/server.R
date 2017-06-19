@@ -933,7 +933,7 @@ function(input, output, session) {
     MODEDF <- sapply(df, function(x) is.numeric(x))
     NAMESTOKEEP2<- names(df)  [! MODEDF ]
     
-    selectizeInput(  "catvar5in", 'Change labels of this variable:',
+    selectizeInput(  "catvar5in", 'Change levels of this variable:',
                      choices =NAMESTOKEEP2 ,multiple=FALSE,
                      options = list(    placeholder = 'Please select a variable',
                                         onInitialize = I('function() { this.setValue(""); }')
@@ -1002,7 +1002,7 @@ function(input, output, session) {
     }
     selectizeInput("onerowidgroupin", "ID(s):", choices = items,multiple=TRUE,
                    options = list(
-                     placeholder = 'Please select at least one variable',
+                     placeholder = 'Please select at least one variable that is not in y variable(s)',
                      onInitialize = I('function() { this.setValue(""); }'),
                      plugins = list('remove_button')
                    )
@@ -2782,7 +2782,7 @@ function(input, output, session) {
   output$filpthelevels <- renderUI({
     df <-values$maindata
     if (is.null(df)) return(NULL)
-    if(input$dstatscolextrain!="."){
+    if(!is.null(df) && input$dstatscolextrain!="."){
       checkboxInput('flipthelevelsin', 'Flip the Order of the Columns', value = FALSE)
     }
   })  
@@ -2818,7 +2818,7 @@ function(input, output, session) {
       RHS <- input$x
       if (!is.null(df[[input$dstatscolextrain]])) {
         RHS <- paste(c(RHS, input$dstatscolextrain), collapse=" * ")
-        if (input$flipthelevelsin )
+        if (!is.null(input$flipthelevelsin)&&input$flipthelevelsin )
         {
           RHS <- paste(c( input$dstatscolextrain,RHS), collapse=" * ")
           
