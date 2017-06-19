@@ -49,6 +49,6 @@ Contact me @ samermouksassi@gmail.com for feedback or use the link to file bugs/
 
 11. **NEW** <a href="https://github.com/benjaminrich" target="_blank">Benjamin Rich </a> table1 package powers the summary statitics tab. More on this soon.
 
-12. Copy Paste Bonus ≤ ≥ µ m² ³ &#8804 &#8805 &#188 &#177
+12. Copy Paste Bonus ≤ ≥ µ m² ³ &le; &ge; &plusmn; &deg; &mu; <sup>blah</sup>
 
 *Samer Mouksassi 2017*
