@@ -1,6 +1,7 @@
 ggplotwithyourdata
 ========
-R Shiny app as a handy inteface to ggplot2. It enables you to quickly explore your data to detect trends on the fly. You can do scatter plots, dotplots, boxplots, histograms and densities.  
+R Shiny app as a handy inteface to ggplot2. It enables you to quickly explore your data to detect trends on the fly. You can do scatter plots, dotplots, boxplots, barplots, histograms and densities.
+For a quick overview head to this <a href="https://www.youtube.com/watch?v=1rBBmJUIZhs" target="_blank"> Youtube Tutorial </a>.
 
 **NEW!!** **Export Plots** and **Plot Code** tabs contributed by <a href="https://github.com/daattali" target="_blank">Dean Attali</a>. Once a plot is saved in the **X/Y Plot** tab by providing a name and hitting the **Save plot** star button it will become available for exporting. You can export in portrait, landscape and multiple plots per page.  
 **Plot Code** will let you look at the source code that generated the plot with the various options.
@@ -24,6 +25,7 @@ R Shiny app as a handy inteface to ggplot2. It enables you to quickly explore yo
 * Mean Confidence Intervals
 * Median Prediction Intervals
 * Kaplan-Meier
+* Correlation Coefficients
 
 ### `ggplot2` built-in functionality
 *`facet_grid` and `facet_wrap`
@@ -33,12 +35,19 @@ R Shiny app as a handy inteface to ggplot2. It enables you to quickly explore yo
 ### Running Information
 Make sure to have all required packages installed
 shiny, shinyjs, ggplot2, ggrepel, scales, DT, tidyr, dplyr, Hmisc, quantreg, markdown, ggkm abd table1.
-The app will try to install ggkm and table1 (if not found) using these commands:
+The app will try to install ggkm and table1 (if not found) using the commands below:
 ```
+install.packages(c("shiny","shinyjs","ggplot2","scales","DT","tidyr","dplyr","Hmisc","quantreg","markdown"))
 devtools::install_github("sachsmc/ggkm")
 devtools::install_github("benjaminrich/table1")
+```
+Make sure that you are using this version of ggrepel
+```
+devtools::install_github("slowkow/ggrepel@0.6.6")
 
 ```
+
+
 The main app contains several testing apps the main app can be run using this command:
 ```
 shiny::runGitHub('ggplotwithyourdata', 'smouksassi', subdir = 'shinyapp')

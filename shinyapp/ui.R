@@ -125,6 +125,10 @@ fluidPage(
                                checkboxInput('scientificy', 'Comma separated Y axis ticks', value = FALSE)),
               conditionalPanel(condition = "!input.logx" ,
                                checkboxInput('scientificx', 'Comma separated X axis ticks', value = FALSE)),
+              conditionalPanel(condition = "!input.logy" ,
+                               checkboxInput('percenty', 'Percent Y axis ticks', value = FALSE)),
+              conditionalPanel(condition = "!input.logx" ,
+                               checkboxInput('percentx', 'Percent X axis ticks', value = FALSE)),
               checkboxInput('rotateyticks', 'Rotate/Justify Y axis Ticks ?', value = FALSE),
               checkboxInput('rotatexticks', 'Rotate/Justify X axis Ticks ?', value = FALSE),
               conditionalPanel(condition = "input.rotateyticks" , 
@@ -711,9 +715,15 @@ fluidPage(
                     )
                   )
                 )#fluidrow
-              ) #tabpanel km
+              ), #tabpanel km
               ### KM section
-              
+              tabPanel(
+                "Correlation Coefficient (?)",
+                fluidRow(
+                  column(12,hr()),
+                  checkboxInput('addcorrcoeff',"Add Correlation Coefficient to the plot ?")
+              )#fluidrow
+              )##tabpanel corr
         )#tabsetPanel
         )#tabPanel
         

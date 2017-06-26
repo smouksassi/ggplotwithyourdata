@@ -833,9 +833,9 @@ function(input, output, session) {
     validate(       need(!is.null(df), "Please select a data set"))
     
     if (!is.numeric(df[,input$x] ) ) return(NULL)
-    if (is.numeric(df[,input$x]) &
-        input$facetscalesin!="free_x"&
-        input$facetscalesin!="free"){
+    if (all(is.numeric(df[,input$x]) &&
+        input$facetscalesin!="free_x"&&
+        input$facetscalesin!="free")){
       xvalues <- df[,input$x][!is.na( df[,input$x])]
       xmin <- min(xvalues)
       xmax <- max(xvalues)
@@ -851,9 +851,9 @@ function(input, output, session) {
   output$lowerx <- renderUI({
     df <-reorderdata2()
     if (is.null(df)| !is.numeric(df[,input$x] ) ) return(NULL)
-    if (is.numeric(df[,input$x]) &
-        input$facetscalesin!="free_x"&
-        input$facetscalesin!="free"){
+    if (all(is.numeric(df[,input$x]) &&
+        input$facetscalesin!="free_x"&&
+        input$facetscalesin!="free")){
       xvalues <- df[,input$x][!is.na( df[,input$x])]
       xmin <- min(xvalues)
       numericInput("lowerxin",label = "Lower X Limit",value = xmin,min=NA,max=NA,width='50%')
@@ -862,9 +862,9 @@ function(input, output, session) {
   output$upperx <- renderUI({
     df <-reorderdata2()
     if (is.null(df)| !is.numeric(df[,input$x] ) ) return(NULL)
-    if (is.numeric(df[,input$x]) &
-        input$facetscalesin!="free_x"&
-        input$facetscalesin!="free"){
+    if (all(is.numeric(df[,input$x]) &&
+        input$facetscalesin!="free_x"&&
+        input$facetscalesin!="free")){
       xvalues <- df[,input$x][!is.na( df[,input$x])]
       xmax <- max(xvalues)
       numericInput("upperxin",label = "Upper X Limit",value = xmax,min=NA,max=NA,width='50%')
@@ -878,9 +878,9 @@ function(input, output, session) {
     if ( is.null(input$y)  ) return(NULL)
     if ( !is.null(input$y)  ){
       if (is.null(df)| !is.numeric(df[,"yvalues"] ) | (length(input$y) > 1 ) ) return(NULL)
-      if (is.numeric(df[,"yvalues"]) &  (length(input$y) < 2 ) &
-          input$facetscalesin!="free_y"&
-          input$facetscalesin!="free"){
+      if (all(is.numeric(df[,"yvalues"]) &&  (length(input$y) < 2 ) &&
+          input$facetscalesin!="free_y"&&
+          input$facetscalesin!="free")){
         yvalues <- df[,"yvalues"][!is.na( df[,"yvalues"])]
         ymin <- min(yvalues)
         ymax <- max(yvalues)
@@ -899,9 +899,9 @@ function(input, output, session) {
   output$lowery <- renderUI({
     df <-reorderdata2()
     if (is.null(df)| !is.numeric(df[,"yvalues"] ) | (length(input$y) > 1 ) ) return(NULL)
-    if (is.numeric(df[,"yvalues"]) &  (length(input$y) < 2 ) &
-        input$facetscalesin!="free_y"&
-        input$facetscalesin!="free"){
+    if (all(is.numeric(df[,"yvalues"]) &&  (length(input$y) < 2 ) &&
+        input$facetscalesin!="free_y"&&
+        input$facetscalesin!="free")){
       yvalues <- df[,"yvalues"][!is.na( df[,"yvalues"])]
       ymin <- min(yvalues)
       numericInput("loweryin",label = "Lower Y Limit",value = ymin,min=NA,max=NA,width='50%')
@@ -910,9 +910,9 @@ function(input, output, session) {
   output$uppery <- renderUI({
     df <-reorderdata2()
     if (is.null(df)| !is.numeric(df[,"yvalues"] ) | (length(input$y) > 1 ) ) return(NULL)
-    if (is.numeric(df[,"yvalues"]) &  (length(input$y) < 2 ) &
-        input$facetscalesin!="free_y"&
-        input$facetscalesin!="free"){
+    if (all(is.numeric(df[,"yvalues"]) &&  (length(input$y) < 2 ) &&
+        input$facetscalesin!="free_y"&&
+        input$facetscalesin!="free")){
       yvalues <- df[,"yvalues"][!is.na( df[,"yvalues"])]
       ymax <- max(yvalues)
       numericInput("upperyin",label = "Upper Y Limit",value = ymax,min=NA,max=NA,width='50%')
@@ -1260,33 +1260,38 @@ function(input, output, session) {
 
       if (!is.null(input$y) ){
         
-        # listvarcor <- c(input$colorin,input$fillin,input$groupin,
-        #                 input$facetrowin,input$facetcolin,input$facetrowextrain,input$facetcolextrain)
-        ## listvarcor <- listvarcor[!is.element(listvarcor,c("None",".")) ]
-        # listvarcor <- listvarcor[!duplicated(listvarcor) ]
-        # listvarcor <- c("yvars",listvarcor)
+        if(input$addcorrcoeff){
+          listvarcor <- c(input$colorin,input$fillin,input$groupin,
+                          input$facetrowin,input$facetcolin,input$facetrowextrain,input$facetcolextrain)
+          listvarcor <- listvarcor[!is.element(listvarcor,c("None",".")) ]
+          listvarcor <- listvarcor[!duplicated(listvarcor) ]
+          listvarcor <- c("yvars",listvarcor)
+          if (!is.numeric(plotdata[,"yvalues"]) ){
+            cors <- NULL
+          }
+          if (is.numeric(plotdata[,"yvalues"]) ){
+            if (length(listvarcor)<=1){
+              cors <-  plotdata %>%
+                group_by_("yvars") %>%
+                dplyr::summarize_(corcoeff=lazyeval::interp(~round(cor(var1,var2,use="complete.obs"),2),
+                                                            var1= as.name(input$x) ,
+                                                            var2=as.name("yvalues"))
+                )
+            }
+            if (length(listvarcor)>=2){
+              cors <-  plotdata %>%
+                group_by_at(.vars= listvarcor ) %>%
+                dplyr::summarize_(corcoeff=lazyeval::interp(~round(cor(var1,var2,use="complete.obs"),2),
+                                                            var1= as.name(input$x) ,
+                                                            var2=as.name("yvalues"))
+                )
+            }
+            cors<-as.data.frame(cors)
+            
+          } 
+        }
         
-        # if (is.numeric(plotdata[,"yvalues"]) ){
-        # if (length(listvarcor)<=1){
-        #     cors <-  plotdata %>%
-        #     group_by_("yvars") %>%
-        #  dplyr::summarize_(corcoeff=interp(~round(cor(var1,var2,use="complete.obs"),2),
-        #                               var1= as.name(input$x) ,
-        #                               var2=as.name("yvalues"))
-        #                    )
-        #   print(cors)
-        # } 
-        # if (length(listvarcor)>=2){
-        #   cors <-  plotdata %>%
-        #     group_by_(.dots= listvarcor ) %>%
-        #     dplyr::summarize_(corcoeff=interp(~round(cor(var1,var2,use="complete.obs"),2),
-        #                                  var1= as.name(input$x) ,
-        #                                  var2=as.name("yvalues"))
-        #     )
-        #   print(cors)
-        #   
-        # } 
-        # }
+
         
         p <- sourceable(ggplot(plotdata, aes_string(x=input$x, y="yvalues")))
         
@@ -2127,9 +2132,11 @@ function(input, output, session) {
         ###### RQSS SECTION END
         
         #### Corr coefficient Start
-        #  p <- p +
-        #   geom_text_repel(data=data.frame(cors), aes(label=paste("italic(r) == ", corcoeff)), 
-        #  x=Inf, y=Inf, parse=TRUE)
+        if(input$addcorrcoeff&&!is.null(cors) ) {
+          p <- p +
+           geom_text_repel(data=data.frame(cors), aes(label=paste("italic(r) == ", corcoeff)), 
+          x=Inf, y=Inf, parse=TRUE,size=5)
+           }
         #### Corr coefficient END
         
         
@@ -2211,7 +2218,7 @@ function(input, output, session) {
             if ( input$barplotlabel){
               p <- p+   geom_text(aes(y = ((..count..)),
                                       label = ((..count..))),
-                                  stat = "count", vjust = 0.5,
+                                  stat = "count", vjust = 0.5,size=5,
                                   position = eval(parse(text=input$positionbar)))
             }
             
@@ -2231,7 +2238,7 @@ function(input, output, session) {
                 p <- p+   geom_text(aes(y = ((..count..)/tapply(..count..,..PANEL..,sum)[..PANEL..]),
                                         label = scales::percent(
                                             ((..count..)/tapply(..count..,..PANEL..,sum)[..PANEL..]))),
-                                    stat = "count", vjust = 0.5,
+                                    stat = "count", vjust = 0.5,size=5,
                                     position = eval(parse(text=input$positionbar)))    
               }
 
@@ -2326,7 +2333,13 @@ function(input, output, session) {
         p <- p  + 
         scale_x_continuous(labels=comma) 
       
+      if (input$percenty && is.numeric(plotdata[,"yvalues"]) )
+        p <- p  + 
+        scale_y_continuous(labels=percent )
       
+      if (input$percentx   &&   is.numeric(plotdata[,input$x]) )
+        p <- p  + 
+        scale_x_continuous(labels=percent) 
       
       
       if (!is.null(input$y) & length(input$y) >= 2 & input$ylab=="" ){
