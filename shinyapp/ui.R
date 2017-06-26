@@ -125,6 +125,10 @@ fluidPage(
                                checkboxInput('scientificy', 'Comma separated Y axis ticks', value = FALSE)),
               conditionalPanel(condition = "!input.logx" ,
                                checkboxInput('scientificx', 'Comma separated X axis ticks', value = FALSE)),
+              conditionalPanel(condition = "!input.logy" ,
+                               checkboxInput('percenty', 'Percent Y axis ticks', value = FALSE)),
+              conditionalPanel(condition = "!input.logx" ,
+                               checkboxInput('percentx', 'Percent X axis ticks', value = FALSE)),
               checkboxInput('rotateyticks', 'Rotate/Justify Y axis Ticks ?', value = FALSE),
               checkboxInput('rotatexticks', 'Rotate/Justify X axis Ticks ?', value = FALSE),
               conditionalPanel(condition = "input.rotateyticks" , 
@@ -424,7 +428,7 @@ fluidPage(
                     4,
                     checkboxInput('boxplotaddition', 'Add a Boxplot ? (makes sense if x variable is categorical and
                                   you Group By a sensible choice. By default the x variable is used for grouping)'),
-                    checkboxInput('boxplotignoregroup', 'Ignore Mapped Group ? (can me helpful to superpose a loess or median on top of the boxplot)',value = TRUE)
+                    checkboxInput('boxplotignoregroup', 'Ignore Mapped Group ? (can be helpful to superpose a loess or median on top of the boxplot)',value = TRUE)
                   ),
                   column (
                     4,
@@ -711,9 +715,18 @@ fluidPage(
                     )
                   )
                 )#fluidrow
-              ) #tabpanel km
+              ), #tabpanel km
               ### KM section
-              
+              tabPanel(
+                "Correlation Coefficient (?)",
+                fluidRow(
+                  column(12,hr()),
+                  checkboxInput('addcorrcoeff',"Add Correlation Coefficient to the plot ?"),
+                  checkboxInput('addcorrcoeffignoregroup',"Ignore Mapped Group ?", value=TRUE)
+                  
+                  
+              )#fluidrow
+              )##tabpanel corr
         )#tabsetPanel
         )#tabPanel
         

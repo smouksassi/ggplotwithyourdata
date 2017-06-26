@@ -10,7 +10,8 @@ suppressMessages ({
   library(Hmisc)
   library(quantreg)
   library(markdown)
-  #library(lazyeval)
+  library(rlang)
+  library(lazyeval)
   if (!suppressWarnings(require(ggkm, quietly=TRUE))) {
     devtools::install_github("sachsmc/ggkm")
     library(ggkm)
