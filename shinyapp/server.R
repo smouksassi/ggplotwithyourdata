@@ -150,7 +150,6 @@ function(input, output, session) {
   output$catvar <- renderUI({
     df <-values$maindata
     validate(       need(!is.null(df), "Please select a data set"))
-    #if (is.null(df)) return(NULL)
     items=names(df)
     names(items)=items
     MODEDF <- sapply(df, function(x) is.numeric(x))
@@ -168,7 +167,6 @@ function(input, output, session) {
   output$catvar2 <- renderUI({
     df <-values$maindata
     validate(       need(!is.null(df), "Please select a data set"))
-    #if (is.null(df)) return(NULL)
     items=names(df)
     names(items)=items
     MODEDF <- sapply(df, function(x) is.numeric(x))
@@ -185,7 +183,6 @@ function(input, output, session) {
   output$catvar3 <- renderUI({
     df <-values$maindata
     validate(       need(!is.null(df), "Please select a data set"))
-    # if (is.null(df)) return(NULL)
     items=names(df)
     names(items)=items
     MODEDF <- sapply(df, function(x) is.numeric(x))
@@ -227,8 +224,6 @@ function(input, output, session) {
     if ( input$catvar3in!=""){
       column(12,
              checkboxInput('asnumericin', 'Treat as Numeric (helpful to overlay a smooth/regression line on top of a boxplot or to convert a variable into 0/1 and overlay a logistic fit', value = FALSE)
-             #,checkboxInput('useasxaxislabels', 'Use the Categories Names as x axis label (makes sense only if you really chose it as x axis variable)', value = FALSE), 
-             #checkboxInput('useasyaxislabels', 'Use the Categories Names as y axis label (makes sense only if you really chose it as y axis variable)', value = FALSE) 
       )
     }
   })
@@ -307,9 +302,7 @@ function(input, output, session) {
       }}
     bintextout   
   })   
-  #  xaxislabels <-levels(cut( as.numeric ( as.character( dataedafilter$month_ss)), breaks=   as.numeric(unlist (strsplit(ageglimits, ",") )),include.lowest=TRUE))
-  #+ scale_x_continuous(breaks=seq(0,length(xaxislabels)-1),labels=xaxislabels )   useasxaxislabels
-  
+
   recodedata4  <- reactive({
     df <- recodedata3()
     if (is.null(df)) return()
@@ -348,12 +341,28 @@ function(input, output, session) {
     )
   })
   
+  pastedata  <- reactive({
+    df <- recodedata4()
+    if (is.null(df)) return()
+    if( !is.null(input$pastevarin)   ) {
+      if (length(input$pastevarin) > 1) {
+        df <- df %>%
+          unite_(paste(as.character(input$pastevarin),collapse="_",sep="") ,
+                 c(input$pastevarin[1], input$pastevarin[2] ),remove=FALSE)
+        
+      }
+    }
+    df
+  })
+  
+
+  
   
   outputOptions(output, "pastevar", suspendWhenHidden=FALSE)
   outputOptions(output, "bintext", suspendWhenHidden=FALSE)
   
   output$maxlevels <- renderUI({
-    df <-recodedata4()
+    df <-pastedata()
     validate(       need(!is.null(df), "Please select a data set"))
     #if (is.null(df)) return(NULL)
     numericInput( inputId = "inmaxlevels",label = "Maximum number of unique values for Filter variable (1),(2),(3) (this is to avoid performance issues):",value = 500,min = 1,max = NA)
@@ -363,7 +372,7 @@ function(input, output, session) {
   
   
   output$filtervar1 <- renderUI({
-    df <-recodedata4()
+    df <-pastedata()
     validate(       need(!is.null(df), "Please select a data set"))
     #if (is.null(df)) return(NULL)
     NUNIQUEDF <- sapply(df, function(x) length(unique(x)))
@@ -372,7 +381,7 @@ function(input, output, session) {
   })
   
   output$filtervar2 <- renderUI({
-    df <- recodedata4()
+    df <- pastedata()
     validate(       need(!is.null(df), "Please select a data set"))
     #if (is.null(df)) return(NULL)
     NUNIQUEDF <- sapply(df, function(x) length(unique(x)))
@@ -382,7 +391,7 @@ function(input, output, session) {
   })
   
   output$filtervar3 <- renderUI({
-    df <- recodedata4()
+    df <- pastedata()
     validate(       need(!is.null(df), "Please select a data set"))
     #if (is.null(df)) return(NULL)
     NUNIQUEDF <- sapply(df, function(x) length(unique(x)))
@@ -394,7 +403,7 @@ function(input, output, session) {
   
   
   output$filtervarcont1 <- renderUI({
-    df <-recodedata4()
+    df <-pastedata()
     validate(       need(!is.null(df), "Please select a data set"))
     #if (is.null(df)) return(NULL)
     NUNIQUEDF <- sapply(df, function(x) length(unique(x)))
@@ -403,7 +412,7 @@ function(input, output, session) {
     selectInput("infiltervarcont1" , "Filter continuous (1):",c('None',NAMESTOKEEP ) )
   })
   output$filtervarcont2 <- renderUI({
-    df <-recodedata4()
+    df <-pastedata()
     validate(       need(!is.null(df), "Please select a data set"))
     #if (is.null(df)) return(NULL)
     NUNIQUEDF <- sapply(df, function(x) length(unique(x)))
@@ -412,7 +421,7 @@ function(input, output, session) {
     selectInput("infiltervarcont2" , "Filter continuous (2):",c('None',NAMESTOKEEP ) )
   })
   output$filtervarcont3 <- renderUI({
-    df <-recodedata4()
+    df <-pastedata()
     validate(       need(!is.null(df), "Please select a data set"))
     #if (is.null(df)) return(NULL)
     NUNIQUEDF <- sapply(df, function(x) length(unique(x)))
@@ -421,7 +430,7 @@ function(input, output, session) {
     selectInput("infiltervarcont3" , "Filter continuous (3):",c('None',NAMESTOKEEP ) )
   })
   output$filtervar1values <- renderUI({
-    df <-recodedata4()
+    df <-pastedata()
     validate(       need(!is.null(df), "Please select a data set"))
     #if (is.null(df)) return(NULL)
     if(is.null(input$infiltervar1) || input$infiltervar1=="None") {return(NULL)}
@@ -436,7 +445,7 @@ function(input, output, session) {
   }) 
   
   filterdata  <- reactive({
-    df <-   recodedata4()
+    df <-   pastedata()
     validate(       need(!is.null(df), "Please select a data set"))
     #if (is.null(df)) return(NULL)
     if(is.null(input$infiltervar1)) {
@@ -459,16 +468,13 @@ function(input, output, session) {
                   label ='No filter variable 2 specified', 
                   choices = list(""),multiple=TRUE, selectize=FALSE)   
     }
-    if(input$infiltervar2!="None"&!is.null(input$infiltervar2) )  {
+    if(input$infiltervar2!="None"&&!is.null(input$infiltervar2) )  {
       choices <- levels(as.factor(as.character(df[,input$infiltervar2])))
-      selectizeInput('infiltervar2valuesnotnull',
+      selectInput('infiltervar2valuesnotnull',
                      label = paste("Select values", input$infiltervar2),
                      choices = c(choices),
                      selected = choices,
-                     multiple=TRUE,
-                     options = list(
-                       plugins = list('remove_button')
-                     ))   
+                     multiple=TRUE, selectize=FALSE)   
     }
   })
   
@@ -489,9 +495,10 @@ function(input, output, session) {
     if (is.null(input$infiltervar3)) return()
     if(input$infiltervar3 == "None") {
       selectInput('infiltervar3valuesnull',
-                  label ='No filter variable 2 specified', 
+                  label ='No filter variable 3 specified', 
                   choices = list(""),multiple=TRUE, selectize=FALSE)   
-    } else {
+    } 
+    if(input$infiltervar3!="None"&&!is.null(input$infiltervar3) )  {
       choices <- levels(as.factor(as.character(df[,input$infiltervar3])))
       selectizeInput('infiltervar3valuesnotnull',
                      label = paste("Select values", input$infiltervar3),
@@ -659,16 +666,6 @@ function(input, output, session) {
         tidydata <- df
         tidydata$yvars <- "None"
         tidydata$yvalues <- NA
-      }
-      
-      if( !is.null(input$pastevarin)   ) {
-        if (length(input$pastevarin) > 1) {
-          tidydata <- tidydata %>%
-            #unite_("combinedvariable" , c(input$pastevarin[1], input$pastevarin[2] ),remove=FALSE)
-            unite_(paste(as.character(input$pastevarin),collapse="_",sep="") ,
-                   c(input$pastevarin[1], input$pastevarin[2] ),remove=FALSE)
-          
-        }
       }
       
       tidydata
@@ -2351,13 +2348,20 @@ function(input, output, session) {
         p <- p  + 
         scale_x_continuous(labels=comma) 
       
-      if (input$percenty && is.numeric(plotdata[,"yvalues"]) )
+      if (input$percenty && is.numeric(plotdata[,"yvalues"])&& !input$logy)
         p <- p  + 
         scale_y_continuous(labels=percent )
       
-      if (input$percentx   &&   is.numeric(plotdata[,input$x]) )
+      if (input$percentx && is.numeric(plotdata[,input$x]  )&& !input$logx)
         p <- p  + 
         scale_x_continuous(labels=percent) 
+      
+      if (!input$percentx && input$customxticks) {
+        p <- p  + 
+          scale_x_continuous(breaks=as.numeric(unique(unlist (strsplit(input$xaxisbreaks, ","))) ),
+                             minor_breaks = as.numeric(unique(unlist (strsplit(input$xaxisminorbreaks, ","))) ) ) 
+      }
+      
       
       
       if (!is.null(input$y) & length(input$y) >= 2 & input$ylab=="" ){
@@ -2578,6 +2582,8 @@ function(input, output, session) {
           annotate("text", x=input$lowerxin*1.1, y=input$lowerytarget,
                    label=input$targettext, col="blue", hjust=0, vjust=1,size=3)
       }
+      
+      
       #p <- ggplotly(p)
       
       # You should attach any variables (dependencies) that are used in the

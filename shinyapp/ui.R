@@ -108,7 +108,7 @@ fluidPage(
           tabsetPanel(
             id = "graphicaloptions",
             tabPanel(
-              "X/Y Log /Labels",
+              "X/Y Axes Log/Labels",
               hr(),
               textInput('ylab', 'Y axis label', value = "") ,
               textInput('xlab', 'X axis label', value = "") ,
@@ -140,8 +140,20 @@ fluidPage(
                                sliderInput("xticksrotateangle", "X axis ticks angle:", min=0, max=360, value=c(20),step=10),
                                sliderInput("xtickshjust", "X axis ticks horizontal justification:", min=0, max=1, value=c(1),step=0.1),
                                sliderInput("xticksvjust", "X axis ticks vertical justification:", min=0, max=1, value=c(1),step=0.1)
-              )
-              
+              ),
+              checkboxInput('customxticks', 'Custom X axis Ticks ?', value = FALSE),
+              conditionalPanel(condition = "input.customxticks" , 
+                               textInput("xaxisbreaks",label ="X axis major Breaks",
+                                         value = as.character(paste(
+                                           0,12,24
+                                           ,sep=",") )
+                               ),
+                               textInput("xaxisminorbreaks",label ="X axis minor Breaks",
+                                         value = as.character(paste(
+                                           6,18
+                                           ,sep=",") )
+                               )
+                               )
             ),
             tabPanel(
               "Graph Size/Zoom",
