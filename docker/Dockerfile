@@ -8,11 +8,10 @@ RUN apt-get update && \
    curl
 
 
-
 # some CRAN dependencies
 RUN r -e "install.packages(                                       \
   c('shiny', 'shinyjs', 'ggplot2', 'ggrepel', 'scales', 'DT',     \
-  'tidyr', 'dplyr', 'Hmisc', 'quantreg', 'markdown', 'remotes'),  \
+  'tidyr', 'dplyr', 'Hmisc', 'quantreg', 'markdown', 'rlang', 'lazyeval', 'remotes'),  \
   repos='https://cran.rstudio.com/',                              \
   dependencies=c('Depends', 'Imports', 'LinkingTo'))              \
 "
@@ -20,6 +19,7 @@ RUN r -e "install.packages(                                       \
 RUN r -e "                                          \
   remotes::install_github('sachsmc/ggkm')         ; \
   remotes::install_github('benjaminrich/table1')  ; \
+  remotes::install_github('slowkow/ggrepel@0.6.6')  ; \
 "
 
 
