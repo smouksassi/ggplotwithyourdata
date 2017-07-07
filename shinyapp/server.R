@@ -88,7 +88,7 @@ function(input, output, session) {
     }
   }
   
-
+  
   # Load user data
   observeEvent(input$datafile, {
     file <- input$datafile$datapath
@@ -118,6 +118,10 @@ function(input, output, session) {
     add_factor_lvl_change_box()
   })
   
+  observeEvent(input$gridlinescolreset, {
+      shinyjs::reset("divgridlinescol")
+    })   
+  
   output$ycol <- renderUI({
     df <- values$maindata
     if (is.null(df)) return(NULL)
@@ -146,8 +150,8 @@ function(input, output, session) {
   observe({
     if (input$yaxisscale=="lineary") {
       updateRadioButtons(session, "yaxisformat", choices = c("default" = "default",
-                                                      "Comma separated" = "scientificy",
-                                                      "Percent" = "percenty"))
+                                                             "Comma separated" = "scientificy",
+                                                             "Percent" = "percenty"))
     }
     if (input$yaxisscale!="lineary") {
       updateRadioButtons(session, "yaxisformat", choices = c("default" = "default",
@@ -324,7 +328,7 @@ function(input, output, session) {
       }}
     bintextout   
   })   
-
+  
   recodedata4  <- reactive({
     df <- recodedata3()
     if (is.null(df)) return()
@@ -377,7 +381,7 @@ function(input, output, session) {
     df
   })
   
-
+  
   
   
   outputOptions(output, "pastevar", suspendWhenHidden=FALSE)
@@ -493,10 +497,10 @@ function(input, output, session) {
     if(input$infiltervar2!="None"&&!is.null(input$infiltervar2) )  {
       choices <- levels(as.factor(as.character(df[,input$infiltervar2])))
       selectInput('infiltervar2valuesnotnull',
-                     label = paste("Select values", input$infiltervar2),
-                     choices = c(choices),
-                     selected = choices,
-                     multiple=TRUE, selectize=FALSE)   
+                  label = paste("Select values", input$infiltervar2),
+                  choices = c(choices),
+                  selected = choices,
+                  multiple=TRUE, selectize=FALSE)   
     }
   })
   
@@ -669,7 +673,7 @@ function(input, output, session) {
       validate(  need(!is.element(input$x,input$y) ,
                       "Please select a different x variable or remove the x variable from the list of y variable(s)"))
       
-    tidydata <- NULL
+      tidydata <- NULL
       if(!is.null(input$y) ){
         
         validate(need(all(input$y %in% names(df)), "Invalid y value(s)"))
@@ -847,98 +851,6 @@ function(input, output, session) {
     df
   })
   
-  output$xaxiszoom <- renderUI({
-    df <-reorderdata2()
-    validate(       need(!is.null(df), "Please select a data set"))
-    
-    if (!is.numeric(df[,input$x] ) ) return(NULL)
-    if (all(is.numeric(df[,input$x]) &&
-        input$facetscalesin!="free_x"&&
-        input$facetscalesin!="free")){
-      xvalues <- df[,input$x][!is.na( df[,input$x])]
-      xmin <- min(xvalues)
-      xmax <- max(xvalues)
-      xstep <- (xmax -xmin)/100
-      sliderInput('xaxiszoomin',label = 'Zoom to X variable range:', min=xmin, max=xmax, value=c(xmin,xmax),step=xstep)
-      
-    }
-    
-    
-  })
-  outputOptions(output, "xaxiszoom", suspendWhenHidden=FALSE)
-  
-  output$lowerx <- renderUI({
-    df <-reorderdata2()
-    if (is.null(df)| !is.numeric(df[,input$x] ) ) return(NULL)
-    if (all(is.numeric(df[,input$x]) &&
-        input$facetscalesin!="free_x"&&
-        input$facetscalesin!="free")){
-      xvalues <- df[,input$x][!is.na( df[,input$x])]
-      xmin <- min(xvalues)
-      numericInput("lowerxin",label = "Lower X Limit",value = xmin,min=NA,max=NA,width='50%')
-    }
-  })
-  output$upperx <- renderUI({
-    df <-reorderdata2()
-    if (is.null(df)| !is.numeric(df[,input$x] ) ) return(NULL)
-    if (all(is.numeric(df[,input$x]) &&
-        input$facetscalesin!="free_x"&&
-        input$facetscalesin!="free")){
-      xvalues <- df[,input$x][!is.na( df[,input$x])]
-      xmax <- max(xvalues)
-      numericInput("upperxin",label = "Upper X Limit",value = xmax,min=NA,max=NA,width='50%')
-    }
-  }) 
-  outputOptions(output, "lowerx", suspendWhenHidden=FALSE)
-  outputOptions(output, "upperx", suspendWhenHidden=FALSE)
-  
-  output$yaxiszoom <- renderUI({
-    df <-reorderdata2()
-    if ( is.null(input$y)  ) return(NULL)
-    if ( !is.null(input$y)  ){
-      if (is.null(df)| !is.numeric(df[,"yvalues"] ) | (length(input$y) > 1 ) ) return(NULL)
-      if (all(is.numeric(df[,"yvalues"]) &&  (length(input$y) < 2 ) &&
-          input$facetscalesin!="free_y"&&
-          input$facetscalesin!="free")){
-        yvalues <- df[,"yvalues"][!is.na( df[,"yvalues"])]
-        ymin <- min(yvalues)
-        ymax <- max(yvalues)
-        ystep <- (ymax -ymin)/100
-        sliderInput('yaxiszoomin',label = 'Zoom to Y variable range:', min=ymin, max=ymax, value=c(ymin,ymax),step=ystep)
-        
-      }
-    }
-    
-    
-    
-    
-  })
-  outputOptions(output, "yaxiszoom", suspendWhenHidden=FALSE)  
-  
-  output$lowery <- renderUI({
-    df <-reorderdata2()
-    if (is.null(df)| !is.numeric(df[,"yvalues"] ) | (length(input$y) > 1 ) ) return(NULL)
-    if (all(is.numeric(df[,"yvalues"]) &&  (length(input$y) < 2 ) &&
-        input$facetscalesin!="free_y"&&
-        input$facetscalesin!="free")){
-      yvalues <- df[,"yvalues"][!is.na( df[,"yvalues"])]
-      ymin <- min(yvalues)
-      numericInput("loweryin",label = "Lower Y Limit",value = ymin,min=NA,max=NA,width='50%')
-    }
-  })
-  output$uppery <- renderUI({
-    df <-reorderdata2()
-    if (is.null(df)| !is.numeric(df[,"yvalues"] ) | (length(input$y) > 1 ) ) return(NULL)
-    if (all(is.numeric(df[,"yvalues"]) &&  (length(input$y) < 2 ) &&
-        input$facetscalesin!="free_y"&&
-        input$facetscalesin!="free")){
-      yvalues <- df[,"yvalues"][!is.na( df[,"yvalues"])]
-      ymax <- max(yvalues)
-      numericInput("upperyin",label = "Upper Y Limit",value = ymax,min=NA,max=NA,width='50%')
-    }
-  }) 
-  outputOptions(output, "lowery", suspendWhenHidden=FALSE)
-  outputOptions(output, "uppery", suspendWhenHidden=FALSE)
   
   
   
@@ -1034,22 +946,115 @@ function(input, output, session) {
     df <- recodedata5()
     validate(       need(!is.null(df), "Please select a data set"))
     if(input$filtertoonerowbyid && !is.null(input$onerowidgroupin) && length(input$onerowidgroupin) >0 ){
-    
-        #dots <- lapply(c(as.vector(input$onerowidgroupin),"yvars" ), as.symbol)
-        vars<- c(as.vector(input$onerowidgroupin),"yvars" )
-        df <-   df %>%
+      
+      #dots <- lapply(c(as.vector(input$onerowidgroupin),"yvars" ), as.symbol)
+      vars<- c(as.vector(input$onerowidgroupin),"yvars" )
+      df <-   df %>%
         group_by(!!!syms(vars))
-        df<- df %>% filter(row_number()==1 ) %>%
-          ungroup()
+      df<- df %>% filter(row_number()==1 ) %>%
+        ungroup()
     }
     
     as.data.frame(df)
   })
-
+  
   finalplotdata <- reactive({
     df <- filterdata7()
     as.data.frame(df)
   })
+  
+  output$xaxiszoom <- renderUI({
+    df <- finalplotdata()
+    validate(       need(!is.null(df), "Please select a data set"))
+    
+    if (!is.numeric(df[,input$x] ) ) return(NULL)
+    if (all(is.numeric(df[,input$x]) &&
+            input$facetscalesin!="free_x"&&
+            input$facetscalesin!="free")){
+      xvalues <- df[,input$x][!is.na( df[,input$x])]
+      xmin <- min(xvalues)
+      xmax <- max(xvalues)
+      xstep <- (xmax -xmin)/100
+      sliderInput('xaxiszoomin',label = 'Zoom to X variable range:', min=xmin, max=xmax, value=c(xmin,xmax),step=xstep)
+      
+    }
+    
+    
+  })
+  outputOptions(output, "xaxiszoom", suspendWhenHidden=FALSE)
+  
+  output$lowerx <- renderUI({
+    df <-finalplotdata()
+    if (is.null(df)| !is.numeric(df[,input$x] ) ) return(NULL)
+    if (all(is.numeric(df[,input$x]) &&
+            input$facetscalesin!="free_x"&&
+            input$facetscalesin!="free")){
+      xvalues <- df[,input$x][!is.na( df[,input$x])]
+      xmin <- min(xvalues)
+      numericInput("lowerxin",label = "Lower X Limit",value = xmin,min=NA,max=NA,width='100%')
+    }
+  })
+  output$upperx <- renderUI({
+    df <-finalplotdata()
+    if (is.null(df)| !is.numeric(df[,input$x] ) ) return(NULL)
+    if (all(is.numeric(df[,input$x]) &&
+            input$facetscalesin!="free_x"&&
+            input$facetscalesin!="free")){
+      xvalues <- df[,input$x][!is.na( df[,input$x])]
+      xmax <- max(xvalues)
+      numericInput("upperxin",label = "Upper X Limit",value = xmax,min=NA,max=NA,width='100%')
+    }
+  }) 
+  outputOptions(output, "lowerx", suspendWhenHidden=FALSE)
+  outputOptions(output, "upperx", suspendWhenHidden=FALSE)
+  
+  output$yaxiszoom <- renderUI({
+    df <-finalplotdata()
+    if ( is.null(input$y)  ) return(NULL)
+    if ( !is.null(input$y)  ){
+      if (is.null(df)| !is.numeric(df[,"yvalues"] ) | (length(input$y) > 1 ) ) return(NULL)
+      if (all(is.numeric(df[,"yvalues"]) &&  (length(input$y) < 2 ) &&
+              input$facetscalesin!="free_y"&&
+              input$facetscalesin!="free")){
+        yvalues <- df[,"yvalues"][!is.na( df[,"yvalues"])]
+        ymin <- min(yvalues)
+        ymax <- max(yvalues)
+        ystep <- (ymax -ymin)/100
+        sliderInput('yaxiszoomin',label = 'Zoom to Y variable range:', min=ymin, max=ymax, value=c(ymin,ymax),step=ystep)
+        
+      }
+    }
+    
+    
+    
+    
+  })
+  outputOptions(output, "yaxiszoom", suspendWhenHidden=FALSE)  
+  
+  output$lowery <- renderUI({
+    df <-finalplotdata()
+    if (is.null(df)| !is.numeric(df[,"yvalues"] ) | (length(input$y) > 1 ) ) return(NULL)
+    if (all(is.numeric(df[,"yvalues"]) &&  (length(input$y) < 2 ) &&
+            input$facetscalesin!="free_y"&&
+            input$facetscalesin!="free")){
+      yvalues <- df[,"yvalues"][!is.na( df[,"yvalues"])]
+      ymin <- min(yvalues)
+      numericInput("loweryin",label = "Lower Y Limit",value = ymin,min=NA,max=NA,width='50%')
+    }
+  })
+  output$uppery <- renderUI({
+    df <-finalplotdata()
+    if (is.null(df)| !is.numeric(df[,"yvalues"] ) | (length(input$y) > 1 ) ) return(NULL)
+    if (all(is.numeric(df[,"yvalues"]) &&  (length(input$y) < 2 ) &&
+            input$facetscalesin!="free_y"&&
+            input$facetscalesin!="free")){
+      yvalues <- df[,"yvalues"][!is.na( df[,"yvalues"])]
+      ymax <- max(yvalues)
+      numericInput("upperyin",label = "Upper Y Limit",value = ymax,min=NA,max=NA,width='50%')
+    }
+  }) 
+  outputOptions(output, "lowery", suspendWhenHidden=FALSE)
+  outputOptions(output, "uppery", suspendWhenHidden=FALSE)
   
   
   output$colour <- renderUI({
@@ -1156,12 +1161,9 @@ function(input, output, session) {
   
   output$facetscales <- renderUI({
     items= c("fixed","free_x","free_y","free")   
-    if (!is.null(input$y)&length(input$y) > 1 ){
+    if (!is.null(input$y)&&length(input$y) > 1 ){
       items= c("free_y","fixed","free_x","free")    
     }
-    #  if (!is.null(input$y)&length(input$y) < 2 ){
-    #   items= c("fixed","free_x","free_y","free")   
-    # }
     selectInput('facetscalesin','Facet Scales:',items)
   })
   
@@ -1217,7 +1219,7 @@ function(input, output, session) {
   outputOptions(output, "fill", suspendWhenHidden=FALSE)
   outputOptions(output, "weight", suspendWhenHidden=FALSE)
   
-
+  
   
   output$mytablex = renderDataTable({
     df <- finalplotdata() 
@@ -1269,7 +1271,7 @@ function(input, output, session) {
         scale_fill_discrete <- function(...) 
           scale_fill_manual(..., values = tableau10,drop=!input$themecolordrop)
       }
-
+      
       if (input$colorblind&!input$themetableau){
         scale_colour_discrete <- function(...) 
           scale_colour_manual(..., values = cbbPalette,drop=!input$themecolordrop)
@@ -1277,7 +1279,7 @@ function(input, output, session) {
           scale_fill_manual(..., values = cbbPalette,drop=!input$themecolordrop)
       }
       
-
+      
       if (!is.null(input$y) ){
         
         if(input$addcorrcoeff){
@@ -1320,7 +1322,7 @@ function(input, output, session) {
           } 
         }
         
-
+        
         
         p <- sourceable(ggplot(plotdata, aes_string(x=input$x, y="yvalues")))
         
@@ -1328,10 +1330,10 @@ function(input, output, session) {
           if ( is.numeric( plotdata[,input$x] ) ) {
             p <-   p   +
               annotate("rect", xmin = -Inf, xmax = Inf, ymin = input$lowerytarget,
-                       ymax = input$uppertarget,fill="gray",
+                       ymax = input$uppertarget,fill=input$targetcol,
                        alpha =input$targetopacity)  
           } 
-
+          
         } 
         
         
@@ -1578,7 +1580,7 @@ function(input, output, session) {
           if(input$smoothmethod=="glm"){
             methodsargument<- list(family = familyargument) 
           }
-
+          
           spanplot <- input$loessens
           
           if ( input$ignoregroup) {
@@ -1621,13 +1623,13 @@ function(input, output, session) {
                 p <- p + geom_smooth(method=input$smoothmethod,
                                      method.args = methodsargument,
                                      size=1.5,se=F,span=spanplot,col=colsmooth,aes(group=NULL))+  
-                aes_string(weight=input$weightin)
+                  aes_string(weight=input$weightin)
               
               if (input$Smooth=="Smooth and SE"& input$weightin != 'None')
                 p <- p + geom_smooth(method=input$smoothmethod,
                                      method.args = methodsargument,
                                      size=1.5,se=T,span=spanplot,col=colsmooth,aes(group=NULL))+  
-                aes_string(weight=input$weightin)
+                  aes_string(weight=input$weightin)
             }
             
           }
@@ -1672,13 +1674,13 @@ function(input, output, session) {
                 p <- p + geom_smooth(method=input$smoothmethod,
                                      method.args = methodsargument,
                                      size=1.5,se=F,span=spanplot,col=colsmooth)+  
-                aes_string(weight=input$weightin)
+                  aes_string(weight=input$weightin)
               
               if (input$Smooth=="Smooth and SE"& input$weightin != 'None')
                 p <- p + geom_smooth(method=input$smoothmethod,
                                      method.args = methodsargument,
                                      size=1.5,se=T,span=spanplot,col=colsmooth)+  
-                aes_string(weight=input$weightin)
+                  aes_string(weight=input$weightin)
             }
             
           }
@@ -2163,8 +2165,8 @@ function(input, output, session) {
         #### Corr coefficient Start
         if(input$addcorrcoeff&&!is.null(cors)&&!input$addcorrcoeffignoregroup) {
           p <- p +
-           geom_text_repel(data=data.frame(cors), aes(label=paste("italic(r) == ", corcoeff)), 
-          x=Inf, y=Inf, parse=TRUE,size=5)
+            geom_text_repel(data=data.frame(cors), aes(label=paste("italic(r) == ", corcoeff)), 
+                            x=Inf, y=Inf, parse=TRUE,size=5)
         }
         
         if(input$addcorrcoeff&&!is.null(cors)&&input$addcorrcoeffignoregroup) {
@@ -2210,7 +2212,7 @@ function(input, output, session) {
         
         if(is.numeric(plotdata[,input$x]) ){
           #validate(       need(is.numeric(plotdata[,input$x]), "Please select a numeric x variable"))
-            p <- sourceable(ggplot(plotdata, aes_string(x=input$x)))
+          p <- sourceable(ggplot(plotdata, aes_string(x=input$x)))
           if (input$colorin != 'None')
             p <- p + aes_string(color=input$colorin)
           if (input$fillin != 'None')
@@ -2245,8 +2247,8 @@ function(input, output, session) {
             p <- p + aes_string(group=input$groupin)
           
           #if (input$groupin == 'None' & !is.numeric(plotdata[,input$x]) 
-           #   & input$colorin == 'None')
-           # p <- p + aes(group=1)
+          #   & input$colorin == 'None')
+          # p <- p + aes(group=1)
           
           if ( input$barplotaddition&!input$barplotpercent){
             p <- p+ 
@@ -2263,7 +2265,7 @@ function(input, output, session) {
             if ( input$barplotflip){
               p <- p +
                 coord_flip()
-          }
+            }
           }
           if ( input$barplotaddition&input$barplotpercent){
             p <- p+  
@@ -2274,26 +2276,26 @@ function(input, output, session) {
               {
                 p <- p+   geom_text(aes(y = ((..count..)/tapply(..count..,..PANEL..,sum)[..PANEL..]),
                                         label = scales::percent(
-                                            ((..count..)/tapply(..count..,..PANEL..,sum)[..PANEL..]))),
+                                          ((..count..)/tapply(..count..,..PANEL..,sum)[..PANEL..]))),
                                     stat = "count", vjust = 0.5,size=5,
                                     position = eval(parse(text=input$positionbar)))    
               }
-
-            }
- 
               
-              p <- p+   scale_y_continuous(labels = percent) +
+            }
+            
+            
+            p <- p+   scale_y_continuous(labels = percent) +
               ylab("Percentage")
-                     if ( input$barplotflip){
+            if ( input$barplotflip){
               p <- p +
                 coord_flip()
             }
           }
           
         }
-
         
-       
+        
+        
         
         
       }
@@ -2346,9 +2348,9 @@ function(input, output, session) {
       
       
       
-       if (input$yaxisscale=="logy"&& is.numeric(plotdata[,"yvalues"])&& input$yaxisformat=="logyformat")
-         p <- p + scale_y_log10(breaks = trans_breaks("log10", function(x) 10^x),
-                                labels = trans_format("log10", math_format(10^.x)))
+      if (input$yaxisscale=="logy"&& is.numeric(plotdata[,"yvalues"])&& input$yaxisformat=="logyformat")
+        p <- p + scale_y_log10(breaks = trans_breaks("log10", function(x) 10^x),
+                               labels = trans_format("log10", math_format(10^.x)))
       if (input$yaxisscale=="logy"&& is.numeric(plotdata[,"yvalues"])&&input$yaxisformat!="logyformat")
         p <- p + scale_y_log10()
       
@@ -2357,11 +2359,11 @@ function(input, output, session) {
                                labels = trans_format("log10", math_format(10^.x)))
       if (input$xaxisscale=="logx"&& is.numeric(plotdata[,input$x])&&input$xaxisformat!="logxformat")
         p <- p + scale_x_log10()
- 
-       
-       if (input$yaxisscale=="lineary" && is.numeric(plotdata[,"yvalues"]) && input$yaxisformat=="scientificy")
-         p <- p  + 
-         scale_y_continuous(labels=comma )
+      
+      
+      if (input$yaxisscale=="lineary" && is.numeric(plotdata[,"yvalues"]) && input$yaxisformat=="scientificy")
+        p <- p  + 
+        scale_y_continuous(labels=comma )
       if (input$xaxisscale=="linearx" && is.numeric(plotdata[,input$x]) && input$xaxisformat=="scientificx")
         p <- p  + 
         scale_x_continuous(labels=comma )
@@ -2372,16 +2374,16 @@ function(input, output, session) {
         p <- p  + 
         scale_x_continuous(labels=percent )
       
-       
+      
       if (input$xaxisscale=="linearx" && input$customxticks) {
-         p <- p  + 
-           scale_x_continuous(breaks=as.numeric(unique(unlist (strsplit(input$xaxisbreaks, ","))) ),
+        p <- p  + 
+          scale_x_continuous(breaks=as.numeric(unique(unlist (strsplit(input$xaxisbreaks, ","))) ),
                              minor_breaks = as.numeric(unique(unlist (strsplit(input$xaxisminorbreaks, ","))) ) ) 
-       }
+      }
       if (input$xaxisscale=="logx" && input$customxticks) {
         p <- p  + 
           scale_x_log10(breaks=as.numeric(unique(unlist (strsplit(input$xaxisbreaks, ","))) ),
-                             minor_breaks = as.numeric(unique(unlist (strsplit(input$xaxisminorbreaks, ","))) ) ) 
+                        minor_breaks = as.numeric(unique(unlist (strsplit(input$xaxisminorbreaks, ","))) ) ) 
       }
       
       
@@ -2534,76 +2536,82 @@ function(input, output, session) {
                                            vjust = input$yticksvjust) )                              
       }    
       
-      
-      
-      
-      if (!is.null(input$xaxiszoomin[1])&
-          is.numeric(plotdata[,input$x] )&
-          input$facetscalesin!="free_x"&
-          input$facetscalesin!="free"
+      p <-  p+
+        theme(panel.grid.major = element_line(colour = input$gridlinescol),
+              panel.grid.minor = element_line(colour = input$gridlinescol) )
+
+      if (all(
+         input$yaxiszoom=='noyzoom'&&
+        !is.null(input$xaxiszoomin[1])&&
+          is.numeric(plotdata[,input$x] )&&
+          input$facetscalesin!="free_x"&&
+          input$facetscalesin!="free")
       ){
-        if(input$userxzoom){
+        if(input$xaxiszoom=="userxzoom"){
           p <- p +
             coord_cartesian(xlim= c(input$lowerxin,input$upperxin))
         }
-        if(!input$userxzoom){
+        if(input$xaxiszoom=="automaticxzoom"){
           p <- p +
             coord_cartesian(xlim= c(input$xaxiszoomin[1],input$xaxiszoomin[2])  )
         }
-        
+
       }
-      
-      if (!is.null(input$yaxiszoomin[1])&
-          is.numeric(plotdata[,"yvalues"] )&
-          input$facetscalesin!="free_y"&
-          input$facetscalesin!="free"
+
+      if (all(
+        input$xaxiszoom=='noxzoom'&&
+        !is.null(input$yaxiszoomin[1])&&
+          is.numeric(plotdata[,"yvalues"] )&&
+          input$facetscalesin!="free_y"&&
+          input$facetscalesin!="free")
       ){
-        if(input$useryzoom){
+        if(input$yaxiszoom=="useryzoom" ){
           p <- p +
             coord_cartesian(ylim= c(input$loweryin,input$upperyin) )
         }
-        if(!input$useryzoom){
+        if(input$yaxiszoom=="automaticyzoom"){
           p <- p +
             coord_cartesian(
               ylim= c(input$yaxiszoomin[1],input$yaxiszoomin[2]))
         }
-        
+
       }
-      
-      
-      if (!is.null(input$xaxiszoomin[1])&!is.null(input$yaxiszoomin[1])&
-          is.numeric(plotdata[,input$x] )&is.numeric(plotdata[,"yvalues"] )&
-          input$facetscalesin!="free_x"&input$facetscalesin!="free_y"&
-          input$facetscalesin!="free"
+
+
+      if (all(!is.null(input$xaxiszoomin[1])&&!is.null(input$yaxiszoomin[1])&&
+          is.numeric(plotdata[,input$x] )&&is.numeric(plotdata[,"yvalues"] )&&
+          input$facetscalesin!="free_x"&&input$facetscalesin!="free_y"&&
+          input$facetscalesin!="free")
       ){
-        
-        if (input$userxzoom&input$useryzoom){
+
+        if (input$xaxiszoom=="userxzoom"&& input$yaxiszoom=="useryzoom"){
           p <- p +
             coord_cartesian(xlim= c(input$lowerxin,input$upperxin),
                             ylim= c(input$loweryin,input$upperyin)  )
         }
-        if (input$userxzoom&!input$useryzoom){
+        if (input$xaxiszoom=="userxzoom"&&input$yaxiszoom=="automaticyzoom"){
           p <- p +
             coord_cartesian(xlim= c(input$lowerxin,input$upperxin),
                             ylim= c(input$yaxiszoomin[1],input$yaxiszoomin[2])  )
         }
-        if (!input$userxzoom&input$useryzoom){
+        if (input$xaxiszoom=="automaticxzoom"&&input$yaxiszoom=="useryzoom"){
           p <- p +
             coord_cartesian(xlim= c(input$xaxiszoomin[1],input$xaxiszoomin[2]),
                             ylim= c(input$loweryin,input$upperyin)  )
         }
-        if (!input$userxzoom&!input$useryzoom){
+        if (input$xaxiszoom=="automaticxzoom"&&input$yaxiszoom=="automaticyzoom"){
           p <- p +
             coord_cartesian(xlim= c(input$xaxiszoomin[1],input$xaxiszoomin[2]),
                             ylim= c(input$yaxiszoomin[1],input$yaxiszoomin[2])  )
         }
       }
+
       if (input$showtargettext){
         p <- p +
           annotate("text", x=input$lowerxin*1.1, y=input$lowerytarget,
-                   label=input$targettext, col="blue", hjust=0, vjust=1,size=3)
+                   label=input$targettext, col=input$targettextcol, hjust=0, vjust=1,size=input$targettextsize)
       }
-      
+
       
       #p <- ggplotly(p)
       
@@ -2646,7 +2654,7 @@ function(input, output, session) {
   output$plot_clickedpoints <- renderTable({
     df<- finalplotdata()  
     if (is.null(df)) return(NULL)
-    res <- nearPoints(finalplotdata(), input$plot_click, input$x, "yvalues")
+    res <- nearPoints(df, input$plot_click, input$x, "yvalues")
     if (nrow(res) == 0|is.null(res))
       return(NULL)
     res
@@ -2654,7 +2662,7 @@ function(input, output, session) {
   output$plot_brushedpoints <- renderTable({
     df<- finalplotdata()  
     if (is.null(df)) return(NULL)
-    res <- brushedPoints(finalplotdata(), input$plot_brush, input$x,"yvalues")
+    res <- brushedPoints(df, input$plot_brush, input$x,"yvalues")
     if (nrow(res) == 0|is.null(res))
       return(NULL)
     res
@@ -2728,9 +2736,9 @@ function(input, output, session) {
   
   # for testing purposes
   #values$maindata <- read.csv("data/sample_data.csv", na.strings = c("NA","."))
-
+  
   # ----- Descriptive Stats tab ------
-
+  
   dstatsTableDataStacked <- reactive({
     validate(
       need(!is.null(finalplotdata()), "Please select a data set") 
@@ -2739,7 +2747,7 @@ function(input, output, session) {
     stacked <- finalplotdata()
     lvl <- unique(as.character(stacked[,"yvars"]))
     validate(need(!(lvl=="None" && all(is.na(stacked[,"yvalues"]))), 
-        "No y variable(s) selected"))
+                  "No y variable(s) selected"))
     if (input$dstatscolextrain != ".") {
       stacked <- stacked[, c(input$x, input$dstatscolextrain, "yvars", "yvalues")]
     } else {
@@ -2748,7 +2756,7 @@ function(input, output, session) {
     stacked$.id <- 1:(nrow(stacked)/length(unique(stacked$yvars)))
     stacked
   })
-
+  
   dstatsTableData <- reactive({
     stacked <- dstatsTableDataStacked()
     vars <- unique(as.character(stacked$yvars))
@@ -2772,55 +2780,55 @@ function(input, output, session) {
     attr(df, "vars") <- vars
     df
   })
-
+  
   stats.apply.rounding <- function(x, digits=3, digits.pct=1, round.median.min.max=F) {
-      r <- lapply(x, signif_pad, digits=digits)
-      r[x == 0] <- prettyNum(0, nsmall=digits-1)  # Fix for special case 0
-      nr <- c("N", "FREQ")
-      if (!round.median.min.max) {
-          nr <- c(nr, "MEDIAN", "MIN", "MAX")
-      }
-      nr <- nr[nr %in% names(x)]
-      r[nr] <- x[nr]
-      if (!is.null(x$PCT)) {
-          r$PCT <- round(x$PCT, digits.pct)
-      }
-      r
+    r <- lapply(x, signif_pad, digits=digits)
+    r[x == 0] <- prettyNum(0, nsmall=digits-1)  # Fix for special case 0
+    nr <- c("N", "FREQ")
+    if (!round.median.min.max) {
+      nr <- c(nr, "MEDIAN", "MIN", "MAX")
+    }
+    nr <- nr[nr %in% names(x)]
+    r[nr] <- x[nr]
+    if (!is.null(x$PCT)) {
+      r$PCT <- round(x$PCT, digits.pct)
+    }
+    r
   }
-
+  
   dstatsRenderCont <- reactive({
-      all <- input$dstats_cont_list
-      all <- all[all %in% allstats]
-      all <- c("None", all)
-
-      stats.fun <- list(
-        "None"                 = function(x) "",
-        "N"                    = function(x) x$N,
-        "Mean"                 = function(x) x$MEAN,
-        "SD"                   = function(x) x$SD,
-        "CV%"                  = function(x) x$CV,
-        "Median"               = function(x) x$MEDIAN,
-        "Min"                  = function(x) x$MIN,
-        "Max"                  = function(x) x$MAX,
-        "IQR"                  = function(x) x$IQR,
-        "Geo. Mean"            = function(x) x$GMEAN,
-        "Geo. CV%"             = function(x) x$GCV,
-        "Mean (SD)"            = function(x) sprintf("%s (%s)", x$MEAN, x$SD),
-        "Mean (CV%)"           = function(x) sprintf("%s (%s)", x$MEAN, x$CV),
-        "Mean (SD) (CV%)"      = function(x) sprintf("%s (%s) (%s)", x$MEAN, x$SD, x$CV),
-        "Mean (Median)"        = function(x) sprintf("%s (%s)", x$MEAN, x$MEDIAN),
-        "[Min, Max]"           = function(x) sprintf("[%s, %s]", x$MIN, x$MAX),
-        "Median [Min, Max]"    = function(x) sprintf("%s [%s, %s]", x$MEDIAN, x$MIN, x$MAX),
-        "Median [IQR]"         = function(x) sprintf("%s [%s]", x$MEDIAN, x$IQR),
-        "Geo. Mean (Geo. CV%)" = function(x) sprintf("%s (%s)", x$GMEAN, x$GCV))
-
-      function(x) {
-          s <- stats.apply.rounding(stats.default(x), digits=input$dstats_sigfig,
-              round.median.min.max=input$round_median_min_max)
-          sapply(all, function(l) stats.fun[[l]](s))
-      }
+    all <- input$dstats_cont_list
+    all <- all[all %in% allstats]
+    all <- c("None", all)
+    
+    stats.fun <- list(
+      "None"                 = function(x) "",
+      "N"                    = function(x) x$N,
+      "Mean"                 = function(x) x$MEAN,
+      "SD"                   = function(x) x$SD,
+      "CV%"                  = function(x) x$CV,
+      "Median"               = function(x) x$MEDIAN,
+      "Min"                  = function(x) x$MIN,
+      "Max"                  = function(x) x$MAX,
+      "IQR"                  = function(x) x$IQR,
+      "Geo. Mean"            = function(x) x$GMEAN,
+      "Geo. CV%"             = function(x) x$GCV,
+      "Mean (SD)"            = function(x) sprintf("%s (%s)", x$MEAN, x$SD),
+      "Mean (CV%)"           = function(x) sprintf("%s (%s)", x$MEAN, x$CV),
+      "Mean (SD) (CV%)"      = function(x) sprintf("%s (%s) (%s)", x$MEAN, x$SD, x$CV),
+      "Mean (Median)"        = function(x) sprintf("%s (%s)", x$MEAN, x$MEDIAN),
+      "[Min, Max]"           = function(x) sprintf("[%s, %s]", x$MIN, x$MAX),
+      "Median [Min, Max]"    = function(x) sprintf("%s [%s, %s]", x$MEDIAN, x$MIN, x$MAX),
+      "Median [IQR]"         = function(x) sprintf("%s [%s]", x$MEDIAN, x$IQR),
+      "Geo. Mean (Geo. CV%)" = function(x) sprintf("%s (%s)", x$GMEAN, x$GCV))
+    
+    function(x) {
+      s <- stats.apply.rounding(stats.default(x), digits=input$dstats_sigfig,
+                                round.median.min.max=input$round_median_min_max)
+      sapply(all, function(l) stats.fun[[l]](s))
+    }
   })
-
+  
   # Note: copy of output$facet_col_extra yvars and yvalues and xvar remved
   output$dstats_col_extra <- renderUI({
     df <-values$maindata
@@ -2844,7 +2852,7 @@ function(input, output, session) {
       checkboxInput('flipthelevelsin', 'Flip the Order of the Columns', value = FALSE)
     }
   })  
-
+  
   dstatsTable <- reactive({
     # Don't generate a new table if the user wants to refresh manually
     if (!input$auto_update_table) {
@@ -2859,7 +2867,7 @@ function(input, output, session) {
     )
     
     df <- dstatsTableData() 
-
+    
     if(!is.null(df)) {
       vars <- attr(df, "vars")
       names(vars) <- vars
@@ -2871,7 +2879,7 @@ function(input, output, session) {
           }
         }
       }
-
+      
       LHS <- paste(vars, collapse=" + ")
       RHS <- input$x
       if (!is.null(df[[input$dstatscolextrain]])) {
@@ -2883,7 +2891,7 @@ function(input, output, session) {
         }
       }
       formula <- as.formula(paste("~", paste(c(LHS, RHS), collapse=" | ")))
-
+      
       
       overall <- if (input$table_incl_overall) "Overall" else FALSE
       t <- capture.output(table1(formula, data=df, overall=overall,
@@ -2898,7 +2906,7 @@ function(input, output, session) {
   output$dstats <- renderUI({
     HTML(dstatsTable())
   })
-
+  
   #observe({
   #  df <- values$maindata
   #  if (is.null(df)) return(NULL)
@@ -2909,14 +2917,14 @@ function(input, output, session) {
   observeEvent(values$maindata, {
     relabels <- character(0)
   })
-
-
+  
+  
   observe({
     yvars <- input$y
     nyvars <- length(yvars)
-
+    
     for (i in seq_len(quickRelabel$numTotal)) {
-        shinyjs::hide(paste0("quick_relabel_", i))
+      shinyjs::hide(paste0("quick_relabel_", i))
     }
     for (i in seq_len(nyvars)) {
       lab <- as.character(yvars[i])
@@ -2926,27 +2934,27 @@ function(input, output, session) {
         relabels[lab] <- lab
       }
       if (i <= quickRelabel$numTotal) {
-          updateTextInput(session, 
-                  inputId=paste0("quick_relabel_", i),
-                  label=if (i==1) "Quick HTML Labels" else NULL,
-                  value=lab)
+        updateTextInput(session, 
+                        inputId=paste0("quick_relabel_", i),
+                        label=if (i==1) "Quick HTML Labels" else NULL,
+                        value=lab)
       } else {
-          insertUI(
-            selector = "#quick_relabel_placeholder", where = "beforeEnd",
-            immediate = TRUE,
-            div(class = "quick_relabel",
-                textInput(
-                  inputId=paste0("quick_relabel_", i),
-                  label=if (i==1) "Quick HTML Labels" else NULL,
-                  value=lab)
-            )
+        insertUI(
+          selector = "#quick_relabel_placeholder", where = "beforeEnd",
+          immediate = TRUE,
+          div(class = "quick_relabel",
+              textInput(
+                inputId=paste0("quick_relabel_", i),
+                label=if (i==1) "Quick HTML Labels" else NULL,
+                value=lab)
           )
-          quickRelabel$numTotal <- quickRelabel$numTotal + 1
+        )
+        quickRelabel$numTotal <- quickRelabel$numTotal + 1
       }
       shinyjs::show(paste0("quick_relabel_", i))
     }
   })
-
+  
   observe({
     yvars <- input$y
     nyvars <- length(yvars)
@@ -2958,7 +2966,7 @@ function(input, output, session) {
       relabels[as.character(yvars[i])] <- newlab
     }
   })
-
+  
   # Don't show the table options when there is no table
   observe({
     shinyjs::toggle("table_options_area", condition = !is.null(values$maindata))
@@ -2972,4 +2980,4 @@ function(input, output, session) {
     values$updateTable <- TRUE
   })
   
-}
+  }

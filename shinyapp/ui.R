@@ -163,16 +163,39 @@ fluidPage(
             tabPanel(
               "Graph Size/Zoom",
               sliderInput("height", "Plot Height", min=1080/4, max=1080, value=480, animate = FALSE),
-              h6("X Axis Zoom only works if facet x scales are not set to be free. The slider has limits between your x variable min/max otherwise select manual x values zoom to input your own."),
-              uiOutput("xaxiszoom"),
-              checkboxInput('userxzoom', 'Manual x values zoom', value = FALSE),
-              conditionalPanel(condition = "input.userxzoom" ,uiOutput("lowerx"),uiOutput("upperx")),
-              h6("Y Axis Zoom only works if you have one y variable and facet y scales are not set to be free. The slider has limits between your y variable min/max otherwise select manual yvalues zoom to input your own."),
-              uiOutput("yaxiszoom"),
-              checkboxInput('useryzoom', 'Manual y values zoom', value = FALSE),
-              conditionalPanel(condition = "input.useryzoom" ,uiOutput("lowery"),uiOutput("uppery"))
-              
-            ),
+              h6("X Axis Zoom only works if facet x scales are not set to be free. The automatic setting generate a slider has limits between your x variable min/max otherwise select User Defined to input your own."),
+              fluidRow(
+                column(12,
+                       radioButtons("xaxiszoom", "X Axis Zoom:",
+                                    c("None" = "noxzoom",
+                                      "Automatic" = "automaticxzoom",
+                                      "User" = "userxzoom"),inline=TRUE )
+                       ,
+                conditionalPanel(condition = "input.xaxiszoom=='automaticxzoom'",
+                                 uiOutput("xaxiszoom") ) ),
+                column(6,
+                conditionalPanel(condition = "input.xaxiszoom=='userxzoom' ",uiOutput("lowerx")) ),
+                column(6,
+                conditionalPanel(condition = "input.xaxiszoom=='userxzoom' ",uiOutput("upperx")) )
+              ),# fluidrow
+  
+              h6("Y Axis Zoom only works if you have one y variable and facet y scales are not set to be free. The automatic setting generate a slider has limits between your y variable min/max otherwise select User Defined to input your own."),
+              fluidRow(
+                column(12,
+                       radioButtons("yaxiszoom", "Y Axis Zoom:",
+                                    c("None" = "noyzoom",
+                                      "Automatic" = "automaticyzoom",
+                                      "User" = "useryzoom"),inline=TRUE )
+                       ,
+                conditionalPanel(condition = "input.yaxiszoom=='automaticyzoom'",
+                                 uiOutput("yaxiszoom") ) ),
+                column(6,
+                conditionalPanel(condition = "input.yaxiszoom=='useryzoom' ",uiOutput("lowery")) ),
+                column(6,
+                conditionalPanel(condition = "input.yaxiszoom=='useryzoom' ",uiOutput("uppery")) )
+              ) # fluidrow
+
+            ),#tabpanel zoom
             
             tabPanel(
               "Background Color and Legend(s)",
@@ -278,19 +301,20 @@ fluidPage(
                                numericInput("hline2",label = "",value = 1) ),
               checkboxInput('showtarget', 'Add Target Window', value = FALSE) ,
               conditionalPanel(condition = "input.showtarget" , 
+                               numericInput("uppertarget",label = "Upper Target Value",
+                                            value = 1,min=NA,max=NA,width='50%'),
                                numericInput("lowerytarget",label = "Lower Target Value",
                                             value = 1,min=NA,max=NA,width='50%'),
-                               numericInput("uppertarget",label = "Upper Target Value",
-                                            value = 1,min=NA,max=NA,width='50%'),                 
-                               
-                               sliderInput("targetopacity", label = "Target Opacity:",
+                               colourInput("targetcol", "Target  Color:", "gray",showColour = "both"),
+                               sliderInput("targetopacity", label = "Target Opacity:",,
                                            min = 0, max = 1, value = 0.7, step = 0.05)
               ),
               checkboxInput('showtargettext', 'Add Target Text', value = FALSE),
               conditionalPanel(condition = "input.showtargettext" ,
-                               textInput('targettext', 'Target Text', value = "Target: XX-XXX"))
-              
-              
+                               textInput('targettext', 'Target Text', value = "Target: XX-XXX µg/mL"),
+                               sliderInput("targettextsize", "Target Text Size:", min=1, max=10, value=c(5),step=0.5),
+                               colourInput("targettextcol", "Target Text Color:", "blue",showColour = "both")
+                               )
               
             ),
             tabPanel(
@@ -299,7 +323,8 @@ fluidPage(
               checkboxInput('themetableau', 'Use Tableau Colors and Fills ? (maximum of 10 colours are provided)',value=TRUE),
               conditionalPanel(condition = "input.themetableau" ,
                                h6("If you have more than 10 color groups the plot will not work and you get /Error: Insufficient values in manual scale. ## needed but only 10 provided./  Uncheck Use Tableau Colors and Fills to use default ggplot2 colors.")),
-              checkboxInput('colorblind', 'Use Colour Blind Safe Colors ? (maximum of 10 colours are provided)',value=TRUE) , 
+              conditionalPanel(condition = "!input.themetableau" ,
+              checkboxInput('colorblind', 'Use Colour Blind Safe Colors ? (maximum of 10 colours are provided)',value=TRUE)) , 
               conditionalPanel(condition = "input.colorblind" ,
                                h6("This will override the Tableau colors
                                   if checed and If you have more than 8 color groups the plot will not work
@@ -308,7 +333,10 @@ fluidPage(
               checkboxInput('themecolordrop', 'Keep All levels of Colors and Fills ?',value=TRUE) , 
               
               
-              checkboxInput('themebw', 'Use Black and White Theme ?',value=TRUE), 
+              checkboxInput('themebw', 'Use Black and White Theme ?',value=TRUE),
+              div(id = "divgridlinescol",
+              colourInput("gridlinescol", "Grid Lines Color:", "grey90",showColour = "both")),
+              div( actionButton("gridlinescolreset", "Reset Grid Lines Color"), style="text-align: right"),
               checkboxInput('themeaspect', 'Use custom aspect ratio ?')   ,  
               conditionalPanel(condition = "input.themeaspect" , 
                                numericInput("aspectratio",label = "Y/X ratio",
