@@ -37,7 +37,7 @@ Make sure to have all required packages installed
 shiny, shinyjs, ggplot2, ggrepel, scales, DT, tidyr, dplyr, Hmisc, quantreg, markdown, ggkm abd table1.
 The app will try to install ggkm and table1 (if not found) using the commands below:
 ```
-install.packages(c("shiny","shinyjs","ggplot2","scales","DT","tidyr","dplyr","Hmisc","quantreg","markdown"))
+install.packages(c("shiny","shinyjs","ggplot2","scales","DT","tidyr","dplyr","Hmisc","quantreg","markdown","devtools"))
 devtools::install_github("sachsmc/ggkm")
 devtools::install_github("benjaminrich/table1")
 ```

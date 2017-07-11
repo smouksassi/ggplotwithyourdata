@@ -2608,7 +2608,7 @@ function(input, output, session) {
 
       if (input$showtargettext){
         p <- p +
-          annotate("text", x=input$lowerxin*1.1, y=input$lowerytarget,
+          annotate("text", x=input$lowerxin, y=input$lowerytarget,
                    label=input$targettext, col=input$targettextcol, hjust=0, vjust=1,size=input$targettextsize)
       }
 

@@ -121,7 +121,7 @@ $(document).ready(function () {
 
 <div id="ggplotwithyourdata" class="section level1">
 <h1>ggplotwithyourdata</h1>
-<p>R Shiny app as a handy inteface to ggplot2. It enables you to quickly explore your data to detect trends on the fly. You can do scatter plots, dotplots, boxplots, histograms and densities. For a quick overview head to this <a href="https://www.youtube.com/watch?v=1rBBmJUIZhs" target="_blank"> youtube Tutorial </a>.</p>
+<p>R Shiny app as a handy inteface to ggplot2. It enables you to quickly explore your data to detect trends on the fly. You can do scatter plots, dotplots, boxplots, barplots, histograms and densities. For a quick overview head to this <a href="https://www.youtube.com/watch?v=1rBBmJUIZhs" target="_blank"> Youtube Tutorial </a>.</p>
 <p><strong>NEW!!</strong> <strong>Export Plots</strong> and <strong>Plot Code</strong> tabs contributed by <a href="https://github.com/daattali" target="_blank">Dean Attali</a>. Once a plot is saved in the <strong>X/Y Plot</strong> tab by providing a name and hitting the <strong>Save plot</strong> star button it will become available for exporting. You can export in portrait, landscape and multiple plots per page.<br />
 <strong>Plot Code</strong> will let you look at the source code that generated the plot with the various options.</p>
 <p><strong>NEW!!</strong> Initial support for quick summary statistics tables using <a href="https://github.com/benjaminrich" target="_blank">Benjamin Rich </a> table1 package. More on this soon.</p>
@@ -150,6 +150,7 @@ $(document).ready(function () {
 <li>Mean Confidence Intervals</li>
 <li>Median Prediction Intervals</li>
 <li>Kaplan-Meier</li>
+<li>Correlation Coefficients</li>
 </ul>
 </div>
 <div id="ggplot2-built-in-functionality" class="section level3">
@@ -159,7 +160,7 @@ $(document).ready(function () {
 <div id="running-information" class="section level3">
 <h3>Running Information</h3>
 <p>Make sure to have all required packages installed shiny, shinyjs, ggplot2, ggrepel, scales, DT, tidyr, dplyr, Hmisc, quantreg, markdown, ggkm abd table1. The app will try to install ggkm and table1 (if not found) using the commands below:</p>
-<pre><code>install.packages(c(&quot;shiny&quot;,&quot;shinyjs&quot;,&quot;ggplot2&quot;,&quot;scales&quot;,&quot;DT&quot;,&quot;tidyr&quot;,&quot;dplyr&quot;,&quot;Hmisc&quot;,&quot;quantreg&quot;,&quot;markdown&quot;))
+<pre><code>install.packages(c(&quot;shiny&quot;,&quot;shinyjs&quot;,&quot;ggplot2&quot;,&quot;scales&quot;,&quot;DT&quot;,&quot;tidyr&quot;,&quot;dplyr&quot;,&quot;Hmisc&quot;,&quot;quantreg&quot;,&quot;markdown&quot;,&quot;devtools&quot;))
 devtools::install_github(&quot;sachsmc/ggkm&quot;)
 devtools::install_github(&quot;benjaminrich/table1&quot;)</code></pre>
 <p>Make sure that you are using this version of ggrepel</p>
