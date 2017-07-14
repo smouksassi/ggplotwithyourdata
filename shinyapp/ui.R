@@ -62,10 +62,21 @@ fluidPage(
               uiOutput("fslider3")
             ),
             tabPanel(
+              "One Row by ID(s)",
+              checkboxInput('filtertoonerowbyid', 'Filter to One Row by ID(s)?', value = FALSE),
+              conditionalPanel(
+                condition = "input.filtertoonerowbyid" ,
+                uiOutput("onerowidgroup")
+              )
+              
+            ),
+            
+            tabPanel(
               "Simple Rounding",
               uiOutput("roundvar"),
               numericInput("rounddigits",label = "N Digits",value = 0,min=0,max=10) 
             ),
+            
             tabPanel(
               "Reorder Variables", 
               uiOutput("reordervar"),
@@ -88,15 +99,6 @@ fluidPage(
               uiOutput("catvar5"),
               textOutput("labeltext5"),
               uiOutput("nlabels5")
-            ),
-            tabPanel(
-              "One Row by ID(s)",
-              checkboxInput('filtertoonerowbyid', 'Filter to One Row by ID(s)?', value = FALSE),
-              conditionalPanel(
-                condition = "input.filtertoonerowbyid" ,
-                uiOutput("onerowidgroup")
-              )
-              
             )
           ),
           hr()
@@ -861,7 +863,7 @@ fluidPage(
                        column(3,
                          div(id="quick_relabel_placeholder"),
                          uiOutput("dstats_col_extra"),
-                         uiOutput("filpthelevels")
+                         uiOutput("flipthelevels")
                        ),
                        column(3,
                               div(id="quick_reorder_placeholder")
