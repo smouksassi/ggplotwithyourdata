@@ -288,7 +288,7 @@ fluidPage(
             tabPanel(
               "Reference Lines/Target",
               checkboxInput('identityline', 'Identity Line')    ,   
-              checkboxInput('horizontalzero', 'Horizontol Zero Line'),
+              checkboxInput('horizontalzero', 'Horizontal Zero Line'),
               checkboxInput('customvline1', 'Vertical Line 1'),
               conditionalPanel(condition = "input.customvline1" , 
                                numericInput("vline1",label = "",value = 1) ),
