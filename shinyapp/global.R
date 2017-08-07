@@ -3,7 +3,7 @@ suppressMessages ({
   library(shinyjs)
   library(colourpicker)
   library(ggplot2)
-  library(ggrepel)
+  #library(ggrepel)
   library(scales)
   library(DT)
   library(tidyr)
@@ -17,12 +17,13 @@ suppressMessages ({
     devtools::install_github("sachsmc/ggkm")
     library(ggkm)
   }
-  
   if (!suppressWarnings(require(table1, quietly=TRUE))) {
       devtools::install_github("benjaminrich/table1")
       library(table1)
   }
-
+   # devtools::install_github("slowkow/ggrepel@0.6.6")
+    library(ggrepel)
+  
 })
 
 source("sourceable.R")

@@ -322,16 +322,24 @@ fluidPage(
             tabPanel(
               "Additional Themes Options",
               sliderInput("themebasesize", "Theme Size (affects all text elements in the plot):", min=1, max=100, value=c(16),step=1),
-              checkboxInput('themetableau', 'Use Tableau Colors and Fills ? (maximum of 10 colours are provided)',value=TRUE),
-              conditionalPanel(condition = "input.themetableau" ,
-                               h6("If you have more than 10 color groups the plot will not work and you get /Error: Insufficient values in manual scale. ## needed but only 10 provided./  Uncheck Use Tableau Colors and Fills to use default ggplot2 colors.")),
-              conditionalPanel(condition = "!input.themetableau" ,
-              checkboxInput('colorblind', 'Use Colour Blind Safe Colors ? (maximum of 10 colours are provided)',value=TRUE)) , 
-              conditionalPanel(condition = "input.colorblind" ,
-                               h6("This will override the Tableau colors
-                                  if checed and If you have more than 8 color groups the plot will not work
-                                  and you get /Error: Insufficient values in manual scale. ## needed but only 8 provided./  Uncheck to use default ggplot2 colors.")),
+              radioButtons("themecolorswitcher", "Discrete Color and Fill Themes:",
+                           c("Tableau 10"  = "themetableau10",
+                             "Tableau 20"  = "themetableau20",
+                             "Color Blind" = "themecolorblind",
+                             "Color Blind 2" = "themecolorblind2",
+                             "ggplot default" = "themeggplot")
+                           ,inline=TRUE),
+              radioButtons("themecontcolorswitcher", "Continuous Color and Fill Themes:",
+                           c("Red White Blue"  = "RedWhiteBlue",
+                             "Red White Green"  = "RedWhiteGreen",
+                             "ggplot default" = "themeggplot")
+                           ,inline=TRUE),
               
+h6("If you get /Error: Insufficient values in manual scale. ## needed but only 10 provided.
+  Try to use Tableau 20 or ggplot default. Color Blind and Color Blind 2 Themes support up to 8 colors.
+   Contact me if you want to add your own set of colors."),
+
+
               checkboxInput('themecolordrop', 'Keep All levels of Colors and Fills ?',value=TRUE) , 
               
               

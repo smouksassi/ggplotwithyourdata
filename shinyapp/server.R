@@ -1232,21 +1232,42 @@ function(input, output, session) {
     
     if(!is.null(plotdata)) {
       
-      
-      if (input$themetableau){
+      if (input$themecontcolorswitcher=="RedWhiteBlue"){
+        scale_colour_continuous<- function(...) 
+          scale_colour_gradient2(..., low = muted("red"), mid = "white",
+                                 high = muted("blue"), midpoint = 0, space = "Lab",
+                                 na.value = "grey50", guide = "colourbar")
+      }
+      if (input$themecontcolorswitcher=="RedWhiteGreen"){
+        scale_colour_continuous<- function(...) 
+          scale_colour_gradient2(..., low = muted("red"), mid = "white",
+                                 high = muted("darkgreen"), midpoint = 0, space = "Lab",
+                                 na.value = "grey50", guide = "colourbar")
+      }
+      if (input$themecolorswitcher=="themetableau10"){
         scale_colour_discrete <- function(...) 
           scale_colour_manual(..., values = tableau10,drop=!input$themecolordrop)
         scale_fill_discrete <- function(...) 
           scale_fill_manual(..., values = tableau10,drop=!input$themecolordrop)
       }
-      
-      if (input$colorblind&!input$themetableau){
+      if (input$themecolorswitcher=="themetableau20"){
+        scale_colour_discrete <- function(...) 
+          scale_colour_manual(..., values = tableau20,drop=!input$themecolordrop)
+        scale_fill_discrete <- function(...) 
+          scale_fill_manual(..., values = tableau20,drop=!input$themecolordrop)
+      }
+      if (input$themecolorswitcher=="themecolorblind"){
+        scale_colour_discrete <- function(...) 
+          scale_colour_manual(..., values = cbPalette,drop=!input$themecolordrop)
+        scale_fill_discrete <- function(...) 
+          scale_fill_manual(..., values = cbPalette,drop=!input$themecolordrop)
+      }
+      if (input$themecolorswitcher=="themecolorblind2"){
         scale_colour_discrete <- function(...) 
           scale_colour_manual(..., values = cbbPalette,drop=!input$themecolordrop)
         scale_fill_discrete <- function(...) 
           scale_fill_manual(..., values = cbbPalette,drop=!input$themecolordrop)
       }
-      
       
       if (!is.null(input$y) ){
         
@@ -2475,7 +2496,8 @@ function(input, output, session) {
       if (input$themeaspect)
         p <-    p+
         theme(aspect.ratio=input$aspectratio)
-      if (!input$colorblind&!input$themetableau){
+      
+      if (input$themecolorswitcher=="themeggplot"){
         p <-  p +
           scale_colour_hue(drop=!input$themecolordrop)+
           scale_fill_hue(drop=!input$themecolordrop)
