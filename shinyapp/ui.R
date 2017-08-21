@@ -39,6 +39,15 @@ fluidPage(
                 actionButton("factor_lvl_change_add", "Add another variable", icon("plus"))
               ))
             ),
+            tabPanel(
+              "Reorder Factors",
+              shinyjs::hidden(div(
+                id = "factor_lvl_change_section",
+                tags$h4("Change the categories order of a factor variable"),
+                div(id = "factor_lvl_reorder_placeholder"),
+                actionButton("factor_lvl_reorder_add", "Reorder another variable", icon("plus"))
+              ))
+            ),
             
             tabPanel("Combine Two Variables",
                      h6("Combined variables can be used for colour, fill, group, size and facets. They cannot be used as X or Y variables."),
@@ -63,12 +72,8 @@ fluidPage(
             ),
             tabPanel(
               "One Row by ID(s)",
-              checkboxInput('filtertoonerowbyid', 'Filter to One Row by ID(s)?', value = FALSE),
-              conditionalPanel(
-                condition = "input.filtertoonerowbyid" ,
                 uiOutput("onerowidgroup")
-              )
-              
+ 
             ),
             
             tabPanel(
@@ -78,7 +83,7 @@ fluidPage(
             ),
             
             tabPanel(
-              "Reorder Variables", 
+              "Reorder Facets by a Stat", 
               uiOutput("reordervar"),
               conditionalPanel(
                 condition = "input.reordervarin!='' " ,

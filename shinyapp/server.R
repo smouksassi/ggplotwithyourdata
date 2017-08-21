@@ -662,60 +662,24 @@ function(input, output, session) {
   filterdata7  <- reactive({
     df <- filterdata6()
     validate(       need(!is.null(df), "Please select a data set"))
-    if(input$filtertoonerowbyid && !is.null(input$onerowidgroupin) && length(input$onerowidgroupin) >0 ){
-      
-      #dots <- lapply(c(as.vector(input$onerowidgroupin),"yvars" ), as.symbol)
-      #group_by_at(.vars = vars)
+    if( !is.null(input$onerowidgroupin) && length(input$onerowidgroupin) >0 ){
       vars<- c(as.vector(input$onerowidgroupin) )
       df <-   df %>%
         group_by(!!!syms(vars))
       df<- df %>% filter(row_number()==1 ) %>%
         ungroup()
     }
-    if(!input$filtertoonerowbyid || is.null(input$onerowidgroupin) || length(input$onerowidgroupin) <1 ){
+    if(is.null(input$onerowidgroupin) || length(input$onerowidgroupin) <1 ){
       df <-   df
     }
-    df
+    as.data.frame(df)
   })
   
   
-  
-  stackdata <- reactive({
-    
-    df <- filterdata7() 
-    validate(       need(!is.null(df), "Please select a data set"))
-    if (!is.null(df)){
-      validate(  need(!is.element(input$x,input$y) ,
-                      "Please select a different x variable or remove the x variable from the list of y variable(s)"))
-      
-      tidydata <- NULL
-      if(!is.null(input$y) ){
-        
-        validate(need(all(input$y %in% names(df)), "Invalid y value(s)"))
-        if(       all( sapply(df[,as.vector(input$y)], is.numeric)) )
-        {
-          tidydata <- df %>%
-            gather_( "yvars", "yvalues", gather_cols=as.vector(input$y) ) #%>%
-          # mutate(combinedvariable="Choose two variables to combine first")
-        } else {
-          tidydata <- df %>%
-            gather_( "yvars", "yvalues", gather_cols=as.vector(input$y) ) %>%
-            mutate(yvalues=as.factor(as.character(yvalues) ))#%>%
-          # mutate(combinedvariable="Choose two variables to combine first")
-        }
-      } else {
-        tidydata <- df
-        tidydata$yvars <- "None"
-        tidydata$yvalues <- NA
-      }
-      
-      tidydata
-    }
-  })
   
   
   output$roundvar <- renderUI({
-    df <- stackdata()
+    df <- filterdata7()
     validate(       need(!is.null(df), "Please select a data set"))
     if (!is.null(df)){
       items=names(df)
@@ -730,9 +694,10 @@ function(input, output, session) {
       )
     }
   }) 
+  outputOptions(output, "roundvar", suspendWhenHidden=FALSE)
   
   rounddata <- reactive({
-    df <- stackdata()
+    df <- filterdata7()
     validate(       need(!is.null(df), "Please select a data set"))
     if(!is.null(input$roundvarin)&length(input$roundvarin ) >=1) {
       for (i in 1:length(input$roundvarin ) ) {
@@ -744,8 +709,47 @@ function(input, output, session) {
   })  
   
   
+  tabledata <- reactive({
+    df <- rounddata() 
+    df
+  })
+  
+  stackdata <- reactive({
+    
+    df <- rounddata() 
+    validate(       need(!is.null(df), "Please select a data set"))
+    if (!is.null(df)){
+      validate(  need(!is.element(input$x,input$y) ,
+                      "Please select a different x variable or remove the x variable from the list of y variable(s)"))
+      
+      tidydata <- NULL
+      if(!is.null(input$y) ){
+        
+        validate(need(all(input$y %in% names(df)), "Invalid y value(s)"))
+        if(       all( sapply(df[,as.vector(input$y)], is.numeric)) )
+        {
+          tidydata <- df %>%
+            gather_( "yvars", "yvalues", gather_cols=as.vector(input$y) ,factor_key = TRUE ) 
+        } else {
+          tidydata <- df %>%
+            gather_( "yvars", "yvalues", gather_cols=as.vector(input$y) ,factor_key = TRUE) %>%
+            mutate(yvalues=as.factor(as.character(yvalues) ))
+        }
+
+        } else {
+        tidydata <- df
+        tidydata$yvars <- "None"
+        tidydata$yvalues <- NA
+      }
+      
+      tidydata
+    }
+  })
+
+  
+  
   output$reordervar <- renderUI({
-    df <- rounddata()
+    df <- stackdata()
     validate(       need(!is.null(df), "Please select a data set"))
     items=names(df)
     names(items)=items
@@ -762,7 +766,7 @@ function(input, output, session) {
   
   
   output$variabletoorderby <- renderUI({
-    df <-rounddata()
+    df <-stackdata()
     validate(       need(!is.null(df), "Please select a data set"))
     if (is.null(input$reordervarin)) return()
     if (length(input$reordervarin ) <1)  return(NULL)
@@ -778,20 +782,19 @@ function(input, output, session) {
   
   
   
-  outputOptions(output, "roundvar", suspendWhenHidden=FALSE)
   outputOptions(output, "reordervar", suspendWhenHidden=FALSE)
   outputOptions(output, "variabletoorderby", suspendWhenHidden=FALSE)
   
   
   
   reorderdata <- reactive({
-    df <- rounddata()
+    df <- stackdata()
     validate(       need(!is.null(df), "Please select a data set"))
     if (is.null(input$reordervarin)) {
       return(df)
     }
-    if(length(input$reordervarin ) >=1 &
-       length(input$varreorderin ) >=1 & input$reordervarin!=""  ) {
+    if(length(input$reordervarin ) >=1 &&
+       length(input$varreorderin ) >=1 && input$reordervarin!=""  ) {
       varname<- input$reordervarin[1]
       if(input$functionordervariable=="Median" )  {
         df[,varname]   <- reorder( df[,varname],df[,input$varreorderin], FUN=function(x) median(x[!is.na(x)]))
@@ -819,8 +822,8 @@ function(input, output, session) {
     NAMESTOKEEP<- names(df)  [ !MODEDF ]
     if(!is.null(input$reordervarin)&length(input$reordervarin ) >=1  ){
       NAMESTOKEEP<- NAMESTOKEEP  [ NAMESTOKEEP!=input$reordervarin ]
-      
     }
+    NAMESTOKEEP<- NAMESTOKEEP[ NAMESTOKEEP!="yvars" ]
     selectInput("reordervar2in" , "Custom Reorder this variable:",c('None',NAMESTOKEEP ) )
   })
   
@@ -833,7 +836,7 @@ function(input, output, session) {
                   label ='No reorder variable specified', 
                   choices = list(""),multiple=TRUE, selectize=FALSE)   
     }
-    if(input$reordervar2in!="None"&!is.null(input$reordervar2in) )  {
+    if(input$reordervar2in!="None"&&!is.null(input$reordervar2in) )  {
       choices <- levels(as.factor(as.character(df[,input$reordervar2in])))
       selectizeInput('reordervar2valuesnotnull',
                      label = paste("Drag/Drop to reorder",input$reordervar2in, "values"),
@@ -867,7 +870,7 @@ function(input, output, session) {
   
   
   output$catvar5 <- renderUI({
-    df <-reorderdata2()
+    df <-stackdata()
     validate(       need(!is.null(df), "Please select a data set"))
     items=names(df)
     names(items)=items
@@ -2729,47 +2732,56 @@ function(input, output, session) {
   
   # ----- Descriptive Stats tab ------
   
-  dstatsTableDataStacked <- reactive({
-    validate(
-      need(!is.null(finalplotdata()), "Please select a data set") 
-    )
-    
-    stacked <- finalplotdata()
-    lvl <- unique(as.character(stacked[,"yvars"]))
-    validate(need(!(lvl=="None" && all(is.na(stacked[,"yvalues"]))), 
-                  "No y variable(s) selected"))
-    if (input$dstatscolextrain != ".") {
-      stacked <- stacked[, c(input$x, input$dstatscolextrain, "yvars", "yvalues")]
-    } else {
-      stacked <- stacked[, c(input$x, "yvars", "yvalues")]
+  
+  output$dstats_col_extra <- renderUI({
+    df <-tabledata()
+    validate(       need(!is.null(df), "Please select a data set"))
+    items=names(df)
+    names(items)=items
+    items= items
+    items= items[!is.element(items,input$x)]
+    items =c(None='.',items)
+    if (!is.null(input$pastevarin)&length(input$pastevarin) >1 ){
+      nameofcombinedvariables<- paste(as.character(input$pastevarin),collapse="_",sep="") 
+      items= c(items,nameofcombinedvariables)
     }
-    stacked$.id <- 1:(nrow(stacked)/length(unique(stacked$yvars)))
-    stacked
+    selectInput("dstatscolextrain", "Extra Column Split:",items)
   })
   
-  dstatsTableData <- reactive({
-    stacked <- dstatsTableDataStacked()
-    vars <- unique(as.character(stacked$yvars))
-    df <- spread_(stacked, "yvars", "yvalues", convert=TRUE)
-    df[sapply(df, is.character)] <- lapply(df[sapply(df, is.character)], 
-                                           as.factor)
-    
-    if(!is.null(input$catvar2in) ){
-      CATVARS<-  input$catvar2in[is.element(input$catvar2in,vars)] 
-      if(length(CATVARS ) >=1) {
-        for (i in 1:length(CATVARS ) ) {
-          varname<- CATVARS[i]
-          if( !is.null(df[,varname])  ) {
-            df[,varname]   <- as.factor( df[,varname])
-          }
-        }
-      }  
+  output$flipthelevels <- renderUI({
+    df <-tabledata()
+    validate(       need(!is.null(df), "Please select a data set"))
+    if(!is.null(df) && input$dstatscolextrain!="."){
+      checkboxInput('flipthelevelsin', 'Flip the Order of the Columns', value = FALSE)
     }
-    # Check with smouksassi:
-    #df[,input$x]  <- as.factor(as.character( df[,input$x]))
-    attr(df, "vars") <- vars
-    df
-  })
+  })  
+  
+  dstatsTableData <- reactive({
+    df <-tabledata()
+    validate(
+      need(!is.null(df), "Please select a data set") 
+    )
+    validate(need(!is.null(input$y), 
+                  "No y variable(s) selected"))
+    
+    tabledata <- df
+    if (input$dstatscolextrain != ".") {
+      tabledata <- tabledata[, c(input$x, input$dstatscolextrain, input$y)]
+    } else {
+      tabledata <- tabledata[, c(input$x, input$y)]
+    }
+    tabledata$.id <- 1:(nrow(tabledata) )
+   
+
+    vars <- unique(as.character(input$y))
+    tabledata[sapply(tabledata, is.character)] <- lapply(tabledata[sapply(tabledata, is.character)], as.factor)
+    tabledata
+
+    
+      })
+
+    
+ 
   
   stats.apply.rounding <- function(x, digits=3, digits.pct=1, round.median.min.max=F) {
     r <- lapply(x, signif_pad, digits=digits)
@@ -2819,29 +2831,7 @@ function(input, output, session) {
     }
   })
   
-  # Note: copy of output$facet_col_extra yvars and yvalues and xvar remved
-  output$dstats_col_extra <- renderUI({
-    df <-values$maindata
-    validate(       need(!is.null(df), "Please select a data set"))
-    items=names(df)
-    names(items)=items
-    items= items
-    items= items[!is.element(items,input$x)]
-    items =c(None='.',items)
-    if (!is.null(input$pastevarin)&length(input$pastevarin) >1 ){
-      nameofcombinedvariables<- paste(as.character(input$pastevarin),collapse="_",sep="") 
-      items= c(items,nameofcombinedvariables)
-    }
-    selectInput("dstatscolextrain", "Extra Column Split:",items)
-  })
-  
-  output$flipthelevels <- renderUI({
-    df <-values$maindata
-    validate(       need(!is.null(df), "Please select a data set"))
-    if(!is.null(df) && input$dstatscolextrain!="."){
-      checkboxInput('flipthelevelsin', 'Flip the Order of the Columns', value = FALSE)
-    }
-  })  
+
   
   dstatsTable <- reactive({
     # Don't generate a new table if the user wants to refresh manually
@@ -2859,7 +2849,7 @@ function(input, output, session) {
     df <- dstatsTableData() 
     
     if(!is.null(df)) {
-      vars <- attr(df, "vars")
+      vars <- input$y
       names(vars) <- vars
       for (i in seq_along(vars)) {
         if (i <= quickRelabel$numTotal) {
@@ -2869,7 +2859,6 @@ function(input, output, session) {
           }
         }
       }
-      
       LHS <- paste(vars, collapse=" + ")
       RHS <- input$x
       if (!is.null(df[[input$dstatscolextrain]])) {
@@ -2881,8 +2870,6 @@ function(input, output, session) {
         }
       }
       formula <- as.formula(paste("~", paste(c(LHS, RHS), collapse=" | ")))
-      
-      
       overall <- if (input$table_incl_overall) "Overall" else FALSE
       t <- capture.output(table1(formula, data=df, overall=overall,
                                  topclass=paste("Rtable1", input$table_style),
