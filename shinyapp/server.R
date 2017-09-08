@@ -184,13 +184,11 @@ function(input, output, session) {
     selectInput('catvarin',label = 'Recode into Binned Categories:',choices=NAMESTOKEEP2,multiple=TRUE)
   })
   
-  
-  output$ncuts <- renderUI({
-    if (is.null(input$catvarin))  return(NULL)
-    if (!is.null(input$catvarin) && length(input$catvarin ) <1)  return(NULL)
-    sliderInput('ncutsin',label = 'N of Cut Breaks:', min=2, max=10, value=c(2),step=1)
+  # Show/hide the "N of cut breaks" input
+  observe({
+    shinyjs::toggle("ncuts", condition = !is.null(input$catvarin) && length(input$catvarin) >= 1)
   })
-  
+
   output$catvar2 <- renderUI({
     df <-values$maindata
     validate(       need(!is.null(df), "Please select a data set"))
@@ -257,7 +255,6 @@ function(input, output, session) {
   
   
   outputOptions(output, "catvar", suspendWhenHidden=FALSE)
-  outputOptions(output, "ncuts", suspendWhenHidden=FALSE)
   outputOptions(output, "catvar2", suspendWhenHidden=FALSE)
   outputOptions(output, "catvar3", suspendWhenHidden=FALSE)
   outputOptions(output, "ncuts2", suspendWhenHidden=FALSE)
@@ -272,7 +269,7 @@ function(input, output, session) {
     if(!is.null(input$catvarin)&length(input$catvarin ) >=1) {
       for (i in 1:length(input$catvarin ) ) {
         varname<- input$catvarin[i]
-        df[,varname] <- cut(df[,varname],input$ncutsin , include.lowest = TRUE, right = FALSE, ordered_result = TRUE)
+        df[,varname] <- cut(df[,varname],input$ncuts , include.lowest = TRUE, right = FALSE, ordered_result = TRUE)
         df[,varname]   <- as.factor( df[,varname])
       }
     }
@@ -2948,5 +2945,8 @@ function(input, output, session) {
   observeEvent(input$update_table_btn, {
     values$updateTable <- TRUE
   })
-  
-  }
+
+if(exists("TESTING") && TESTING) {
+values$maindata <- read.csv("data/sample_data.csv", na.strings = c("NA","."))
+}
+}

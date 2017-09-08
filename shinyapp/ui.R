@@ -26,7 +26,8 @@ fluidPage(
             tabPanel(
               "Categorize/Recode", 
               uiOutput("catvar"),
-              uiOutput("ncuts"),
+              sliderInput('ncuts',label = 'N of Cut Breaks:',
+                          min=2, max=10, value=c(2),step=1),
               uiOutput("catvar2"),
               uiOutput("catvar3"),
               uiOutput("ncuts2"),
