@@ -114,7 +114,7 @@ function(input, output, session) {
     add_factor_lvl_change_box()
   })
   
-  # add another "change factor levels box
+  # add another "change factor levels" box
   observeEvent(input$factor_lvl_change_add, {
     add_factor_lvl_change_box()
   })
@@ -335,7 +335,9 @@ function(input, output, session) {
       if (is.null(labels) || labels == "") next
       labels <- gsub("\\\\n", "\\\n", labels)
       df[, variable_name] <- as.factor(df[, variable_name])
-      levels(df[, variable_name]) <- unlist(strsplit(labels, ","))
+      new_labels <- unlist(strsplit(labels, ","))[1:nlevels(df[, variable_name])]
+      new_labels[is.na(new_labels)] <- ""
+      levels(df[, variable_name]) <- new_labels
     }
     df
   })
