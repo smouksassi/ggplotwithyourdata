@@ -370,9 +370,9 @@ function(input, output, session) {
     df <- df[!names(df)%in%"custombins"]
     if( !is.null(input$pastevarin)   ) {
       if (length(input$pastevarin) > 1) {
-        df <- df %>%
-          unite_(paste(as.character(input$pastevarin),collapse="_",sep="") ,
-                 c(input$pastevarin[1], input$pastevarin[2] ),remove=FALSE)
+        newcol_name <- paste(as.character(input$pastevarin),collapse="_",sep="")
+        df <- unite(df, !!newcol_name,
+                    c(input$pastevarin[1], input$pastevarin[2] ), remove=FALSE)
         
       }
     }
@@ -726,17 +726,15 @@ function(input, output, session) {
       if(!is.null(input$y) ){
         
         validate(need(all(input$y %in% names(df)), "Invalid y value(s)"))
-        if(       all( sapply(df[,as.vector(input$y)], is.numeric)) )
-        {
-          tidydata <- df %>%
-            gather_( "yvars", "yvalues", gather_cols=as.vector(input$y) ,factor_key = TRUE ) 
-        } else {
-          tidydata <- df %>%
-            gather_( "yvars", "yvalues", gather_cols=as.vector(input$y) ,factor_key = TRUE) %>%
+
+        tidydata <- df %>%
+          gather( "yvars", "yvalues", gather_cols=as.vector(input$y) ,factor_key = TRUE) 
+        if (!all( sapply(df[,as.vector(input$y)], is.numeric)) ) {
+          tidydata <- tidydata %>%
             mutate(yvalues=as.factor(as.character(yvalues) ))
         }
 
-        } else {
+      } else {
         tidydata <- df
         tidydata$yvars <- "None"
         tidydata$yvalues <- NA
@@ -1296,18 +1294,12 @@ function(input, output, session) {
             if (length(listvarcor)<=1){
               cors <-  plotdata %>%
                 group_by(!!!syms("yvars")) %>%
-                dplyr::summarize_(corcoeff=lazyeval::interp(~round(cor(var1,var2,use="complete.obs"),2),
-                                                            var1= as.name(input$x) ,
-                                                            var2=as.name("yvalues"))
-                )
+                dplyr::summarize(corcoeff = round(cor(!!as.name(input$x),!!as.name("yvalues"),use="complete.obs"),2))
             }
             if (length(listvarcor)>=2){
-              cors <-  plotdata %>%
+              cors <- plotdata %>%
                 group_by_at(.vars= listvarcor ) %>%
-                dplyr::summarize_(corcoeff=lazyeval::interp(~round(cor(var1,var2,use="complete.obs"),2),
-                                                            var1= as.name(input$x) ,
-                                                            var2=as.name("yvalues"))
-                )
+                dplyr::summarize(corcoeff = round(cor(!!as.name(input$x),!!as.name("yvalues"),use="complete.obs"),2))
             }
             cors<-as.data.frame(cors)
             
