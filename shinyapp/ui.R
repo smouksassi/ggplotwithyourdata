@@ -26,8 +26,9 @@ fluidPage(
             tabPanel(
               "Categorize/Recode", 
               uiOutput("catvar"),
-              sliderInput('ncuts',label = 'N of Cut Breaks:',
-                          min=2, max=10, value=c(2),step=1),
+              shinyjs::hidden(
+                sliderInput('ncuts',label = 'N of Cut Breaks:', min=2, max=10, value=c(2),step=1)
+              ),
               uiOutput("catvar2"),
               uiOutput("catvar3"),
               uiOutput("ncuts2"),
@@ -102,9 +103,15 @@ fluidPage(
               uiOutput("reordervar2values"),
               
               h6("Changing the levels of yvars will break the summary stats table make sure to use the table quick labels instead"),
-              uiOutput("catvar5"),
-              textOutput("labeltext5"),
-              uiOutput("nlabels5")
+              selectizeInput("change_labels_stat_var", "Change levels of this variable:",
+                               choices = list(), multiple = FALSE,
+                               options = list(placeholder = 'Please select a variable')
+              ),
+              conditionalPanel(
+                "input.change_labels_stat_var != ''",
+                "Old labels", textOutput("change_labels_stat_old", inline = TRUE),
+                textInput("change_labels_stat_levels", label = "")
+              )
             )
           ),
           hr()

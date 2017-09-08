@@ -185,7 +185,7 @@ function(input, output, session) {
   })
   
   # Show/hide the "N of cut breaks" input
-  observe({
+  observeEvent(input$catvarin, ignoreNULL = FALSE, {
     shinyjs::toggle("ncuts", condition = !is.null(input$catvarin) && length(input$catvarin) >= 1)
   })
 
@@ -862,65 +862,45 @@ function(input, output, session) {
   
   
   
-  
-  
-  output$catvar5 <- renderUI({
-    df <-stackdata()
-    validate(       need(!is.null(df), "Please select a data set"))
-    items=names(df)
-    names(items)=items
+  # Populate the "Change levels of this variable:" list
+  observeEvent(stackdata(), {
+    df <- stackdata()
+    items <- names(df)
+    names(items) <- items
     MODEDF <- sapply(df, function(x) is.numeric(x))
-    NAMESTOKEEP2<- names(df)  [! MODEDF ]
-    
-    selectizeInput(  "catvar5in", 'Change levels of this variable:',
-                     choices =NAMESTOKEEP2 ,multiple=FALSE,
-                     options = list(    placeholder = 'Please select a variable',
-                                        onInitialize = I('function() { this.setValue(""); }')
-                     )
-    )
+    NAMESTOKEEP2 <- names(df)[!MODEDF]
+    updateSelectizeInput(session, "change_labels_stat_var", selected = "",
+                         choices = NAMESTOKEEP2)
   })
   
-  output$labeltext5 <- renderText({
+  output$change_labels_stat_old <- renderText({
     df <- reorderdata2()
-    validate(       need(!is.null(df), "Please select a data set"))
-    if (is.null(input$catvar5in)) return("")
-    labeltext5out <- ""
-    if(input$catvar5in!="") {
-      varname<- input$catvar5in
-      labeltext5out <- c("Old labels",levels(as.factor(df[,varname]) ))
-    }
-    labeltext5out   
+    req(df, input$change_labels_stat_var != "")
+    paste(levels(as.factor(df[, input$change_labels_stat_var])), collapse = " ")
   })   
   
-  output$nlabels5 <- renderUI({
-    df <-reorderdata2()
-    validate(       need(!is.null(df), "Please select a data set"))
-    if (is.null(input$catvar5in)) return()
-    if (length(input$catvar5in ) <1)  return(NULL)
-    if ( input$catvar5in!=""){
-      nlevels <- length( unique( levels(as.factor( df[,input$catvar5in] ))))
-      levelsvalues <- levels(as.factor( df[,input$catvar5in] ))
-      textInput("customvarlabels5", label =  paste(input$catvar5in,"requires",nlevels,"new labels,
-                                                   type in a comma separated list below"),
-                value =   paste(as.character(levelsvalues),collapse=", ",sep="")
-      )
+  # Show the input of the labels the user wants to change for a stat variable
+  observe({
+    df <- reorderdata2()
+    if (is.null(df) || is.null(input$change_labels_stat_var) || length(input$change_labels_stat_var) < 1 || input$change_labels_stat_var == "") {
+      return()
     }
-    
+    nlevels <- length( unique( levels(as.factor( df[,input$change_labels_stat_var] ))))
+    levelsvalues <- levels(as.factor( df[,input$change_labels_stat_var] ))
+    label <- paste(input$change_labels_stat_var, "requires", nlevels, "new labels, type in a comma separated list below")
+    value <- paste(as.character(levelsvalues), collapse=", ", sep="")
+    updateTextInput(session, "change_labels_stat_levels", label = label, value = value) 
   })
-  
-  outputOptions(output, "catvar5", suspendWhenHidden=FALSE)
-  outputOptions(output, "nlabels5", suspendWhenHidden=FALSE)
-  outputOptions(output, "labeltext5", suspendWhenHidden=FALSE)
   
   recodedata5  <- reactive({
     df <- reorderdata2()
     validate(       need(!is.null(df), "Please select a data set"))
-    if (is.null(input$catvar5in)) {
+    if (is.null(input$change_labels_stat_var)) {
       return(df)
     }
-    if(input$catvar5in!="") {
-      varname<- input$catvar5in
-      xlabels <- input$customvarlabels5 
+    if(input$change_labels_stat_var!="" && input$change_labels_stat_levels != "") {
+      varname <- input$change_labels_stat_var
+      xlabels <- input$change_labels_stat_levels 
       xlabels <- gsub("\\\\n", "\\\n", xlabels)
       df[,varname] <- as.factor(df[,varname])
       levels(df[,varname])  <-  unlist (strsplit(xlabels, ",") )
