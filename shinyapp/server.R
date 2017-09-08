@@ -67,6 +67,7 @@ function(input, output, session) {
         df <- recodedata3()
         selected_var <- input[[paste0("factor_lvl_change_select_", num1)]]
         if (is.null(selected_var) || selected_var == "") return(NULL)
+        if (!selected_var %in% names(df)) return(NULL)
         labeltextout <- c("Old labels", levels(df[, selected_var]))
         labeltextout   
       })
@@ -74,7 +75,7 @@ function(input, output, session) {
       observeEvent(input[[paste0("factor_lvl_change_select_", num1)]], {
         selected_var <- input[[paste0("factor_lvl_change_select_", num1)]]
         if (selected_var == "") return()
-        
+
         df <- recodedata3()
         shinyjs::show(paste0("factor_lvl_change_labels_", num1))
         
@@ -334,6 +335,7 @@ function(input, output, session) {
       labels <- input[[paste0("factor_lvl_change_labels_", i)]]
       if (is.null(labels) || labels == "") next
       labels <- gsub("\\\\n", "\\\n", labels)
+      if (!variable_name %in% names(df)) next
       df[, variable_name] <- as.factor(df[, variable_name])
       new_labels <- unlist(strsplit(labels, ","))[1:nlevels(df[, variable_name])]
       new_labels[is.na(new_labels)] <- ""
