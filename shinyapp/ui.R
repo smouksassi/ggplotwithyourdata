@@ -38,7 +38,8 @@ fluidPage(
                 id = "factor_lvl_change_section",
                 tags$h4("Change the labels of a variable"),
                 div(id = "factor_lvl_change_placeholder"),
-                actionButton("factor_lvl_change_add", "Add another variable", icon("plus"))
+                (actionButton("factor_lvl_change_add", "Add another variable", icon("plus"))),
+                (actionButton("factor_lvl_change_remove", "Remove last", icon("trash")))
               ))
             ),
             tabPanel(

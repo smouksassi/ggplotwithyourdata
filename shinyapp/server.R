@@ -36,10 +36,16 @@ function(input, output, session) {
     items <- names(df)
     names(items) <- items
     MODEDF <- sapply(df, is.numeric)
-    NAMESTOKEEP2 <- names(df)[!MODEDF]
-    NAMESTOKEEP2 <- NAMESTOKEEP2[!NAMESTOKEEP2=="custombins"]
+    ALLNAMES <- names(df)[!MODEDF]
+    ALLNAMES <- ALLNAMES[!ALLNAMES=="custombins"]
+    names_used <- lapply(seq_len(changeLblsVals$numCurrent - 1),
+                         function(i) {
+                           input[[paste0("factor_lvl_change_select_", i)]]
+                         }) %>% unlist()
+    NAMESTOKEEP2 <- setdiff(ALLNAMES, names_used)
     NAMESTOKEEP2["Please select a variable"] = ""
-    
+    shinyjs::disable("factor_lvl_change_add")
+
     insertUI(
       selector = "#factor_lvl_change_placeholder", where = "beforeEnd",
       immediate = TRUE,
@@ -75,7 +81,15 @@ function(input, output, session) {
       observeEvent(input[[paste0("factor_lvl_change_select_", num1)]], {
         selected_var <- input[[paste0("factor_lvl_change_select_", num1)]]
         if (selected_var == "") return()
+        shinyjs::disable(paste0("factor_lvl_change_select_", num1))
 
+        df <- recodedata3()
+        MODEDF <- sapply(df, is.numeric)
+        ALLNAMES <- names(df)[!MODEDF]
+        ALLNAMES <- ALLNAMES[!ALLNAMES=="custombins"]
+        if (changeLblsVals$numCurrent < length(ALLNAMES)) {
+          shinyjs::enable("factor_lvl_change_add")
+        }
         df <- recodedata3()
         shinyjs::show(paste0("factor_lvl_change_labels_", num1))
         
@@ -90,6 +104,17 @@ function(input, output, session) {
     }
   }
   
+  remove_last_fator_lvl_change_box <- function() {
+    selector <- paste0("#factor_lvl_change_placeholder .factor_lvl_change_box:nth-child(", changeLblsVals$numCurrent, ")")
+    removeUI(selector, multiple = FALSE, immediate = TRUE)
+    changeLblsVals$numCurrent <- changeLblsVals$numCurrent - 1
+    shinyjs::enable("factor_lvl_change_add")
+  }
+  
+  # Decide if to enable/disable the remove variable labels button
+  observeEvent(changeLblsVals$numCurrent, {
+    shinyjs::toggleState("factor_lvl_change_remove", condition = changeLblsVals$numCurrent > 0)
+  })
   
   # Load user data
   observeEvent(input$datafile, {
@@ -118,6 +143,10 @@ function(input, output, session) {
   # add another "change factor levels" box
   observeEvent(input$factor_lvl_change_add, {
     add_factor_lvl_change_box()
+  })
+  # remove the last "change factor levels" box
+  observeEvent(input$factor_lvl_change_remove, {
+    remove_last_fator_lvl_change_box()
   })
   
   observeEvent(input$gridlinescolreset, {
