@@ -38,20 +38,10 @@ fluidPage(
                 id = "factor_lvl_change_section",
                 tags$h4("Change the labels of a variable"),
                 div(id = "factor_lvl_change_placeholder"),
-                (actionButton("factor_lvl_change_add", "Add another variable", icon("plus"))),
-                (actionButton("factor_lvl_change_remove", "Remove last", icon("trash")))
+                actionButton("factor_lvl_change_add", "Add another variable", icon("plus")),
+                actionButton("factor_lvl_change_remove", "Remove last", icon("trash"))
               ))
             ),
-            tabPanel(
-              "Reorder Factors",
-              shinyjs::hidden(div(
-                id = "factor_lvl_change_section",
-                tags$h4("Change the categories order of a factor variable"),
-                div(id = "factor_lvl_reorder_placeholder"),
-                actionButton("factor_lvl_reorder_add", "Reorder another variable", icon("plus"))
-              ))
-            ),
-            
             tabPanel("Combine Two Variables",
                      h6("Combined variables can be used for colour, fill, group, size and facets. They cannot be used as X or Y variables."),
                      

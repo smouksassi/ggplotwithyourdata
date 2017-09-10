@@ -57,8 +57,17 @@ function(input, output, session) {
           ),
           textOutput(paste0("factor_lvl_change_labeltext_",
                             changeLblsVals$numCurrent)),
-          shinyjs::hidden(textInput(
-            paste0("factor_lvl_change_labels_", changeLblsVals$numCurrent), "", ""))
+          div(
+            class = "blind-dropdown",
+            shinyjs::hidden(
+              selectizeInput(
+                inputId = paste0("factor_lvl_change_labels_", changeLblsVals$numCurrent),
+                label = "",
+                choices = c(),
+                multiple = TRUE
+              )
+            )
+          )
       )
     )
     
@@ -85,6 +94,7 @@ function(input, output, session) {
 
         df <- recodedata3()
         MODEDF <- sapply(df, is.numeric)
+        
         ALLNAMES <- names(df)[!MODEDF]
         ALLNAMES <- ALLNAMES[!ALLNAMES=="custombins"]
         if (changeLblsVals$numCurrent < length(ALLNAMES)) {
@@ -96,9 +106,17 @@ function(input, output, session) {
         selected_var_factor <- as.factor( df[, selected_var] )
         nlevels <- nlevels(selected_var_factor)
         levelsvalues <- levels(selected_var_factor)
-        updateTextInput(session, paste0("factor_lvl_change_labels_", num1),
-                        label = paste(selected_var, "requires", nlevels, "new labels, type in a comma separated list below"),
-                        value = paste0(as.character(levelsvalues), collapse = ", ")
+
+        updateSelectizeInput(
+          session, paste0("factor_lvl_change_labels_", num1),
+          label = paste(selected_var, "requires", nlevels, "new labels, type in a comma separated list below"),
+          choices = levelsvalues,
+          selected = levelsvalues,
+          options = list(
+            create = TRUE, createOnBlur = TRUE,
+            plugins = list('drag_drop', 'restore_on_backspace'),
+            maxItems = nlevels
+          )
         )
       })
     }

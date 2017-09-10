@@ -20,3 +20,7 @@
   display: inline-block;
   width: 100px;
 }
+
+.blind-dropdown .selectize-dropdown {
+  display: none !important;
+}
