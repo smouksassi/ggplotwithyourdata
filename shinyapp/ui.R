@@ -24,7 +24,7 @@ fluidPage(
             id = "filtercategorize",
             type = "pills",
             tabPanel(
-              "Categorize/Recode", 
+              "Categorize/Cut", 
               uiOutput("catvar"),
               shinyjs::hidden(
                 sliderInput('ncuts',label = 'N of Cut Breaks:', min=2, max=10, value=c(2),step=1)
@@ -33,15 +33,18 @@ fluidPage(
               uiOutput("catvar3"),
               uiOutput("ncuts2"),
               uiOutput("asnumeric"),
-              textOutput("bintext"),
+              textOutput("bintext")
+
+            ),
+            tabPanel(
+              "Recode/Reorder Categories",
               shinyjs::hidden(div(
                 id = "factor_lvl_change_section",
-                tags$h4("Change the labels of a variable"),
                 div(id = "factor_lvl_change_placeholder"),
                 actionButton("factor_lvl_change_add", "Add another variable", icon("plus")),
                 actionButton("factor_lvl_change_remove", "Remove last", icon("trash"))
               ))
-            ),
+              ),
             tabPanel("Combine Two Variables",
                      h6("Combined variables can be used for colour, fill, group, size and facets. They cannot be used as X or Y variables."),
                      
@@ -76,7 +79,8 @@ fluidPage(
             ),
             
             tabPanel(
-              "Reorder Facets by a Stat", 
+              "Reorder Facets or axis Levels",
+              h6("Operations in this tab will only take effect on the plot and not the table."),
               uiOutput("reordervar"),
               conditionalPanel(
                 condition = "input.reordervarin!='' " ,
@@ -92,8 +96,6 @@ fluidPage(
               
               uiOutput("reordervar2"),
               uiOutput("reordervar2values"),
-              
-              h6("Changing the levels of yvars will break the summary stats table make sure to use the table quick labels instead"),
               selectizeInput("change_labels_stat_var", "Change levels of this variable:",
                                choices = list(), multiple = FALSE,
                                options = list(placeholder = 'Please select a variable')
