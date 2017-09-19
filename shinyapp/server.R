@@ -2206,16 +2206,18 @@ function(input, output, session) {
         p <- p + xlab(input$x)
         if (input$KM=="KM/CI") {
           p <- p +
-            geom_kmband(alpha=input$KMCItransparency,conf.int = input$KMCI,trans=input$KMtrans)                 }
+            geom_kmband(alpha=input$KMCItransparency,conf.int = input$KMCI,trans=input$KMtrans)
+          }
         
         
         if (input$KM!="None") {
           p  <- p +
             geom_smooth(stat="km",trans=input$KMtrans)
-        }
+        
         if (input$censoringticks) {
           p  <- p +
             geom_kmticks(trans=input$KMtrans)
+        }
         }
         ###### KM SECTION END
       } 
