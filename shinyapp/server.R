@@ -785,8 +785,10 @@ function(input, output, session) {
 
       } else {
         tidydata <- df
-        tidydata$yvars <- "None"
-        tidydata$yvalues <- NA
+        if (nrow(tidydata) > 0) {
+          tidydata$yvars <- "None"
+          tidydata$yvalues <- NA
+        }
       }
       
       tidydata
@@ -974,11 +976,12 @@ function(input, output, session) {
             input$facetscalesin!="free_x"&&
             input$facetscalesin!="free")){
       xvalues <- df[,input$x][!is.na( df[,input$x])]
-      xmin <- min(xvalues)
-      xmax <- max(xvalues)
-      xstep <- (xmax -xmin)/100
-      sliderInput('xaxiszoomin',label = 'Zoom to X variable range:', min=xmin, max=xmax, value=c(xmin,xmax),step=xstep)
-      
+      if (length(xvalues) > 0) {
+        xmin <- min(xvalues)
+        xmax <- max(xvalues)
+        xstep <- (xmax -xmin)/100
+        sliderInput('xaxiszoomin',label = 'Zoom to X variable range:', min=xmin, max=xmax, value=c(xmin,xmax),step=xstep)
+      }
     }
     
     
@@ -992,8 +995,10 @@ function(input, output, session) {
             input$facetscalesin!="free_x"&&
             input$facetscalesin!="free")){
       xvalues <- df[,input$x][!is.na( df[,input$x])]
-      xmin <- min(xvalues)
-      numericInput("lowerxin",label = "Lower X Limit",value = xmin,min=NA,max=NA,width='100%')
+      if (length(xvalues) > 0) {
+        xmin <- min(xvalues)
+        numericInput("lowerxin",label = "Lower X Limit",value = xmin,min=NA,max=NA,width='100%')
+      }
     }
   })
   output$upperx <- renderUI({
@@ -1003,8 +1008,10 @@ function(input, output, session) {
             input$facetscalesin!="free_x"&&
             input$facetscalesin!="free")){
       xvalues <- df[,input$x][!is.na( df[,input$x])]
-      xmax <- max(xvalues)
-      numericInput("upperxin",label = "Upper X Limit",value = xmax,min=NA,max=NA,width='100%')
+      if (length(xvalues) > 0) {
+        xmax <- max(xvalues)
+        numericInput("upperxin",label = "Upper X Limit",value = xmax,min=NA,max=NA,width='100%')
+      }
     }
   }) 
   outputOptions(output, "lowerx", suspendWhenHidden=FALSE)
@@ -1035,7 +1042,7 @@ function(input, output, session) {
   
   output$lowery <- renderUI({
     df <-finalplotdata()
-    if (is.null(df)| !is.numeric(df[,"yvalues"] ) | (length(input$y) > 1 ) ) return(NULL)
+    if (is.null(df) || is.null(df$yvalues) || !is.numeric(df[,"yvalues"] ) || (length(input$y) > 1 ) ) return(NULL)
     if (all(is.numeric(df[,"yvalues"]) &&  (length(input$y) < 2 ) &&
             input$facetscalesin!="free_y"&&
             input$facetscalesin!="free")){
@@ -1046,7 +1053,7 @@ function(input, output, session) {
   })
   output$uppery <- renderUI({
     df <-finalplotdata()
-    if (is.null(df)| !is.numeric(df[,"yvalues"] ) | (length(input$y) > 1 ) ) return(NULL)
+    if (is.null(df) || is.null(df$yvalues) || !is.numeric(df[,"yvalues"] ) || (length(input$y) > 1 ) ) return(NULL)
     if (all(is.numeric(df[,"yvalues"]) &&  (length(input$y) < 2 ) &&
             input$facetscalesin!="free_y"&&
             input$facetscalesin!="free")){
@@ -2374,13 +2381,13 @@ function(input, output, session) {
         p <- p + scale_x_log10()
       
       
-      if (input$yaxisscale=="lineary" && is.numeric(plotdata[,"yvalues"]) && input$yaxisformat=="scientificy")
+      if (input$yaxisscale=="lineary" && !is.null(plotdata$yvalues) && is.numeric(plotdata[,"yvalues"]) && input$yaxisformat=="scientificy")
         p <- p  + 
         scale_y_continuous(labels=comma )
       if (input$xaxisscale=="linearx" && is.numeric(plotdata[,input$x]) && input$xaxisformat=="scientificx")
         p <- p  + 
         scale_x_continuous(labels=comma )
-      if (input$yaxisscale=="lineary" && is.numeric(plotdata[,"yvalues"]) && input$yaxisformat=="percenty")
+      if (input$yaxisscale=="lineary" && !is.null(plotdata$yvalues) && is.numeric(plotdata[,"yvalues"]) && input$yaxisformat=="percenty")
         p <- p  + 
         scale_y_continuous(labels=percent )
       if (input$xaxisscale=="linearx" && is.numeric(plotdata[,input$x]) && input$xaxisformat=="percentx")
@@ -2573,10 +2580,11 @@ function(input, output, session) {
       }
 
       if (all(
-        input$xaxiszoom=='noxzoom'&&
-        !is.null(input$yaxiszoomin[1])&&
-          is.numeric(plotdata[,"yvalues"] )&&
-          input$facetscalesin!="free_y"&&
+        input$xaxiszoom=='noxzoom' &&
+        !is.null(input$yaxiszoomin[1]) &&
+          !is.null(plotdata$yvalues) &&
+          is.numeric(plotdata[,"yvalues"] ) &&
+          input$facetscalesin!="free_y" &&
           input$facetscalesin!="free")
       ){
         if(input$yaxiszoom=="useryzoom" ){
@@ -2593,7 +2601,8 @@ function(input, output, session) {
 
 
       if (all(!is.null(input$xaxiszoomin[1])&&!is.null(input$yaxiszoomin[1])&&
-          is.numeric(plotdata[,input$x] )&&is.numeric(plotdata[,"yvalues"] )&&
+          is.numeric(plotdata[,input$x] ) && !is.null(plotdata$yvalues) &&
+          is.numeric(plotdata[,"yvalues"]) &&
           input$facetscalesin!="free_x"&&input$facetscalesin!="free_y"&&
           input$facetscalesin!="free")
       ){
