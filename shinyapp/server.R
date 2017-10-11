@@ -1021,7 +1021,7 @@ function(input, output, session) {
     df <-finalplotdata()
     if ( is.null(input$y)  ) return(NULL)
     if ( !is.null(input$y)  ){
-      if (is.null(df)| !is.numeric(df[,"yvalues"] ) | (length(input$y) > 1 ) ) return(NULL)
+      if (is.null(df)|| !is.numeric(df[,"yvalues"] ) || (length(input$y) > 1 ) ) return(NULL)
       if (all(is.numeric(df[,"yvalues"]) &&  (length(input$y) < 2 ) &&
               input$facetscalesin!="free_y"&&
               input$facetscalesin!="free")){
@@ -2202,7 +2202,15 @@ function(input, output, session) {
         ###### KM SECTION START
         
         if (input$KM!="None") {
-          p <- sourceable(ggplot(plotdata, aes_string(time=input$x, status="yvalues")))
+          
+          if (input$reversecenstoevent){
+            plotdata[,"status"]<- ifelse(plotdata[,"yvalues"]==1,0,1)
+          }
+          if (!input$reversecenstoevent){
+            plotdata[,"status"]<- plotdata[,"yvalues"]
+          }
+          
+          p <- sourceable(ggplot(plotdata, aes_string(time=input$x, status="status")))
           if (input$colorin != 'None')
             p <- p + aes_string(color=input$colorin)
           if (input$fillin != 'None')
@@ -2637,9 +2645,6 @@ function(input, output, session) {
                    label=input$targettext, col=input$targettextcol, hjust=0, vjust=1,size=input$targettextsize)
       }
 
-      
-      #p <- ggplotly(p)
-      
       # You should attach any variables (dependencies) that are used in the
       # source code
       # p <- attach_source_dep(p, c("var1", "var2", "var3"))
@@ -2654,12 +2659,14 @@ function(input, output, session) {
     plotObject()
   })
   
+  output$plotly <- renderPlotly({ggplotly(plotObject())})
+  output$ui_plotly <-  renderUI({plotlyOutput('plotly')})
   
   output$ui_plot <-  renderUI({                 
-    plotOutput('plot',  width = "100%" ,height = input$height,
-               click = "plot_click",
-               hover = hoverOpts(id = "plot_hover", delayType = "throttle"),
-               brush = brushOpts(id = "plot_brush"))
+     plotOutput('plot',  width = "100%" ,height = input$height,
+                click = "plot_click",
+                hover = hoverOpts(id = "plot_hover", delayType = "throttle"),
+                brush = brushOpts(id = "plot_brush"))
   })
   
   

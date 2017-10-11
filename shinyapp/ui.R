@@ -187,7 +187,7 @@ fluidPage(
                 conditionalPanel(condition = "input.xaxiszoom=='userxzoom' ",uiOutput("upperx")) )
               ),# fluidrow
   
-              h6("Y Axis Zoom only works if you have one y variable and facet y scales are not set to be free. The automatic setting generate a slider has limits between your y variable min/max otherwise select User Defined to input your own."),
+              h6("Y Axis Zoom only works if you have exactly one y variable and facet y scales are not set to be free. The automatic setting generate a slider has limits between your y variable min/max otherwise select User Defined to input your own."),
               fluidRow(
                 column(12,
                        radioButtons("yaxiszoom", "Y Axis Zoom:",
@@ -747,7 +747,7 @@ h6("If you get /Error: Insufficient values in manual scale. ## needed but only 1
                 
                 fluidRow(
                   column(12,hr()),
-                  column (12, h6("KM curves support is currently experimental some features might not work. When a KM curve is added nothing else will be plotted (e.g. points, lines etc.).Color/Fill/Group/Facets are expected to work." )),
+                  column (12, h6("KM curves support is limited. When a KM curve is added nothing else will be plotted (e.g. points, lines etc.).Color/Fill/Group/Facets are expected to work." )),
                   column (
                     3,
                     radioButtons("KM", "KM:",
@@ -773,6 +773,13 @@ h6("If you get /Error: Insufficient values in manual scale. ## needed but only 1
                                             "cumhaz"="cumhaz","cloglog"="cloglog"),
                                   multiple=FALSE, selectize=TRUE,selected="identity"),
                       checkboxInput('censoringticks', 'Show Censoring Ticks?') 
+                    )
+                  ),
+                  column (
+                    3,
+                    conditionalPanel(
+                      " input.KM!= 'None' ",
+                      checkboxInput('reversecenstoevent', 'Status is Censoring Flag ?') 
                     )
                   )
                 )#fluidrow
@@ -862,6 +869,9 @@ h6("If you get /Error: Insufficient values in manual scale. ## needed but only 1
           )
         ),
         
+        tabPanel("Experimental Plotly",
+                 p("Note: This is experimental and does not work all the time due to ploty::ggploty limitations."),
+                 uiOutput('ui_plotly')),
         tabPanel("Descriptive Stats",
                  p("Note: use y for variables of interest (rows) and x for stratification (columns). Drag and Drop the y variable(s) list on the left to the order of your liking"),
                  htmlOutput("dstats"),

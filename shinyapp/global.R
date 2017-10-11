@@ -25,7 +25,7 @@ suppressMessages ({
     library(ggrepel)
   
 })
-
+library(plotly)
 source("sourceable.R")
 
 options(shiny.maxRequestSize=250*1024^2) 
