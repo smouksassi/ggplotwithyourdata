@@ -41,9 +41,9 @@ install.packages(c("shiny","shinyjs","ggplot2","scales","DT","tidyr","dplyr","Hm
 devtools::install_github("sachsmc/ggkm")
 devtools::install_github("benjaminrich/table1")
 ```
-Make sure that you are using this version of ggrepel
+Make sure that you are using the this version of ggrepel 0.70 or later.
 ```
-devtools::install_github("slowkow/ggrepel@0.6.6")
+devtools::install_github("slowkow/ggrepel")
 
 ```
 

@@ -3,7 +3,6 @@ suppressMessages ({
   library(shinyjs)
   library(colourpicker)
   library(ggplot2)
-  #library(ggrepel)
   library(scales)
   library(DT)
   library(tidyr)
