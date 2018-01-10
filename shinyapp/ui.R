@@ -120,6 +120,9 @@ fluidPage(
               hr(),
               textInput('ylab', 'Y axis label', value = "") ,
               textInput('xlab', 'X axis label', value = "") ,
+              textInput('title', 'Plot Title', value = "") ,
+              textInput('subtitle', 'Plot Subtitle', value = "") ,
+              textInput('caption', 'Plot Caption', value = "") ,
               hr(),
               
               fluidRow(
@@ -313,8 +316,8 @@ fluidPage(
                                             value = 1,min=NA,max=NA,width='50%'),
                                numericInput("lowerytarget",label = "Lower Target Value",
                                             value = 1,min=NA,max=NA,width='50%'),
-                               colourInput("targetcol", "Target  Color:", "gray",showColour = "both"),
-                               sliderInput("targetopacity", label = "Target Opacity:",,
+                               colourpicker::colourInput("targetcol", "Target  Color:", "gray",showColour = "both"),
+                               sliderInput("targetopacity", label = "Target Opacity:",
                                            min = 0, max = 1, value = 0.7, step = 0.05)
               ),
               checkboxInput('showtargettext', 'Add Target Text', value = FALSE),
@@ -350,8 +353,7 @@ h6("If you get /Error: Insufficient values in manual scale. ## needed but only 1
               
               
               checkboxInput('themebw', 'Use Black and White Theme ?',value=TRUE),
-              div(id = "divgridlinescol",
-              colourInput("gridlinescol", "Grid Lines Color:", "grey90",showColour = "both")),
+              colourpicker::colourInput("gridlinescol", "Grid Lines Color:", value="#E5E5E5",showColour = "both",allowTransparent=TRUE),
               div( actionButton("gridlinescolreset", "Reset Grid Lines Color"), style="text-align: right"),
               checkboxInput('themeaspect', 'Use custom aspect ratio ?')   ,  
               conditionalPanel(condition = "input.themeaspect" , 

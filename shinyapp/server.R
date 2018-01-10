@@ -169,7 +169,7 @@ function(input, output, session) {
   })
   
   observeEvent(input$gridlinescolreset, {
-      shinyjs::reset("divgridlinescol")
+      shinyjs::reset("gridlinescol")
     })   
   
   output$ycol <- renderUI({
@@ -2425,8 +2425,9 @@ function(input, output, session) {
       }
       xlablinebreak <- gsub("\\\\n", "\\\n", input$xlab)
       ylablinebreak <- gsub("\\\\n", "\\\n", input$ylab)
-      
-      
+      titlelinebreak <- gsub("\\\\n", "\\\n", input$title)
+      subtitlelinebreak <- gsub("\\\\n", "\\\n", input$subtitle)
+      captionlinebreak <- gsub("\\\\n", "\\\n", input$caption)
       
       if (input$xlab!="") {
         p <- p + xlab(xlablinebreak)
@@ -2644,6 +2645,21 @@ function(input, output, session) {
           annotate("text", x=input$lowerxin, y=input$lowerytarget,
                    label=input$targettext, col=input$targettextcol, hjust=0, vjust=1,size=input$targettextsize)
       }
+      
+      
+      if (input$title!="") {
+        p <- p + labs(title=titlelinebreak)
+        p <- attach_source_dep(p, "titlelinebreak")
+      }
+      if (input$subtitle!="") {
+        p <- p + labs(subtitle=subtitlelinebreak)
+        p <- attach_source_dep(p, "subtitlelinebreak")
+      }
+      if (input$caption!="") {
+        p <- p + labs(caption=captionlinebreak)
+        p <- attach_source_dep(p, "captionlinebreak")
+      }
+      
 
       # You should attach any variables (dependencies) that are used in the
       # source code
