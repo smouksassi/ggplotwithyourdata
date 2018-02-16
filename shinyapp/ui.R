@@ -169,7 +169,20 @@ fluidPage(
                                            6,18
                                            ,sep=",") )
                                )
+                               ),
+              checkboxInput('customyticks', 'Custom Y axis Ticks ?', value = FALSE),
+              conditionalPanel(condition = "input.customyticks" , 
+                               textInput("yaxisbreaks",label ="Y axis major Breaks",
+                                         value = as.character(paste(
+                                           0,1,2
+                                           ,sep=",") )
+                               ),
+                               textInput("yaxisminorbreaks",label ="Y axis minor Breaks",
+                                         value = as.character(paste(
+                                           0.5,1.5
+                                           ,sep=",") )
                                )
+              )
             ),
             tabPanel(
               "Graph Size/Zoom",
@@ -438,7 +451,22 @@ h6("If you get /Error: Insufficient values in manual scale. ## needed but only 1
                         selectInput('colpoint', label ='Points Color', choices=colors(),
                                     multiple=FALSE, selectize=TRUE, selected="black") 
                       )
+                    ),
+                    conditionalPanel(
+                      " input.Points== 'Jitter' ",
+                      radioButtons("jitterdirection", "Jitter Direction:",
+                                   c("Vertical"  = "Vertical",
+                                     "Horizontal"  = "Horizontal",
+                                     "Both" = "Both",
+                                     "Custom" = "Custom"),selected="Both"
+                                   ,inline=TRUE),
+                      conditionalPanel(
+                        " input.jitterdirection== 'Custom' ",
+                        numericInput("jittervertical",label = "Vertical Jitter Height",value =0.1,min=0) ,
+                        numericInput("jitterhorizontal",label = "Horizontal Jitter Width",value =0.1,min=0) 
+                      )
                     )
+               
                   ),
                   column(
                     3,

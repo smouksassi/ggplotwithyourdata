@@ -869,7 +869,7 @@ function(input, output, session) {
     validate(       need(!is.null(df), "Please select a data set"))
     MODEDF <- sapply(df, function(x) is.numeric(x))
     NAMESTOKEEP<- names(df)  [ !MODEDF ]
-    if(!is.null(input$reordervarin)&length(input$reordervarin ) >=1  ){
+    if(!is.null(input$reordervarin)&&length(input$reordervarin ) >=1  ){
       NAMESTOKEEP<- NAMESTOKEEP  [ NAMESTOKEEP!=input$reordervarin ]
     }
     NAMESTOKEEP<- NAMESTOKEEP[ NAMESTOKEEP!="yvars" ]
@@ -1376,10 +1376,25 @@ function(input, output, session) {
         if (input$Points=="Points"&input$pointsizein != 'None'&!input$pointignorecol)
           p <- p + geom_point(,alpha=input$pointstransparency,shape=input$pointtypes)
         
+        if (input$jitterdirection=="Vertical"){
+          positionj<- position_jitter(width=0)
+        }
+        if (input$jitterdirection=="Horizontal"){
+          positionj<-  position_jitter(height=0)
+        }
+        
+        if (input$jitterdirection=="Both"){
+          positionj<-  position_jitter()
+        }
+        if (input$jitterdirection=="Custom"){
+          positionj<-  position_jitter(height=input$jittervertical,width=input$jitterhorizontal)
+        }
         if (input$Points=="Jitter"&input$pointsizein == 'None'&!input$pointignorecol)
-          p <- p + geom_jitter(,alpha=input$pointstransparency,shape=input$pointtypes,size=input$pointsizes)
+          p <- p + geom_jitter(,alpha=input$pointstransparency,shape=input$pointtypes,size=input$pointsizes,
+                               position=positionj)
         if (input$Points=="Jitter"&input$pointsizein != 'None'&!input$pointignorecol)
-          p <- p + geom_jitter(,alpha=input$pointstransparency,shape=input$pointtypes)
+          p <- p + geom_jitter(,alpha=input$pointstransparency,shape=input$pointtypes,position=positionj)
+        
         
         
         if (input$Points=="Points"&input$pointsizein == 'None'&input$pointignorecol)
@@ -2416,6 +2431,16 @@ function(input, output, session) {
                         minor_breaks = as.numeric(unique(unlist (strsplit(input$xaxisminorbreaks, ","))) ) ) 
       }
       
+      if (input$yaxisscale=="lineary" && input$customyticks) {
+        p <- p  + 
+          scale_y_continuous(breaks=as.numeric(unique(unlist (strsplit(input$yaxisbreaks, ","))) ),
+                             minor_breaks = as.numeric(unique(unlist (strsplit(input$yaxisminorbreaks, ","))) ) ) 
+      }
+      if (input$yaxisscale=="logy" && input$customyticks) {
+        p <- p  + 
+          scale_y_log10(breaks=as.numeric(unique(unlist (strsplit(input$yaxisbreaks, ","))) ),
+                        minor_breaks = as.numeric(unique(unlist (strsplit(input$yaxisminorbreaks, ","))) ) ) 
+      }
       
       if (!is.null(input$y) & length(input$y) >= 2 & input$ylab=="" ){
         p <- p + ylab("Y variable(s)")
