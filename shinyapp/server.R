@@ -123,7 +123,7 @@ function(input, output, session) {
     }
   }
   
-  remove_last_fator_lvl_change_box <- function() {
+  remove_last_factor_lvl_change_box <- function() {
     selector <- paste0("#factor_lvl_change_placeholder .factor_lvl_change_box:nth-child(", changeLblsVals$numCurrent, ")")
     removeUI(selector, multiple = FALSE, immediate = TRUE)
     changeLblsVals$numCurrent <- changeLblsVals$numCurrent - 1
@@ -165,7 +165,7 @@ function(input, output, session) {
   })
   # remove the last "change factor levels" box
   observeEvent(input$factor_lvl_change_remove, {
-    remove_last_fator_lvl_change_box()
+    remove_last_factor_lvl_change_box()
   })
   
   observeEvent(input$gridlinescolreset, {
