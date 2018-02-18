@@ -26,7 +26,11 @@ function(input, output, session) {
     numTotal = 0     # Max # of boxes at the same time, to prevent memory leaks
   )
   relabels <- character(0)
-  
+
+  # This object will track the order of values even through being renamed by
+  # factor_lvl_change_select_* widgets
+  factor_lvl_diff_tracker <- reactiveValues()
+    
   # Add UI and corresponding outputs+observers for a "change factor levels"
   # section
   add_factor_lvl_change_box <- function() {
@@ -107,6 +111,20 @@ function(input, output, session) {
         nlevels <- nlevels(selected_var_factor)
         levelsvalues <- levels(selected_var_factor)
 
+        # Start tracking Recoding/Reordering in this variable
+        # This object contains snapshots of the factor levels
+        # including their recoded values. The elements represent the
+        # newly named recoded level, while its name refers to the value
+        # found in the data. Order is also retained for values present.
+        # The dictionary keeps track of known recodings so that you can add
+        # a level back using its new name (not resticted to only its true level)
+        factor_lvl_diff_tracker[[ as.character(num1) ]] <- list(
+          var = selected_var,
+          last_value = setNames(levelsvalues, levelsvalues),
+          second_last_value = setNames(levelsvalues, levelsvalues),
+          dictionary_of_edits = setNames(levelsvalues, levelsvalues)
+        )
+        
         updateSelectizeInput(
           session, paste0("factor_lvl_change_labels_", num1),
           label = paste(selected_var, "requires", nlevels, "new labels,
@@ -120,10 +138,103 @@ function(input, output, session) {
           )
         )
       })
+      
+      observeEvent(input[[ paste0("factor_lvl_change_labels_", num1) ]], {
+        
+        value_on_arrival <- input[[ paste0("factor_lvl_change_labels_", num1) ]]
+        names(value_on_arrival) <- value_on_arrival
+        
+        diff_tracker <- factor_lvl_diff_tracker[[ as.character(num1) ]]
+        previous_value <- diff_tracker[[ "last_value" ]]
+        second_last_value <- diff_tracker[[ "second_last_value" ]]
+        
+        if ( identical(value_on_arrival, previous_value)) return()
+        
+        # The condition below handles label-adding events,
+        # including addition of previously deleted levels.
+        # These show up as a delete followed by an addition with a different name/value.
+        # Hence, need to track the last 2 values and compare the newest with
+        # the value twice preceding it
+        #       EG.       Renaming Susan to Sue looks like this:
+        #             1. c('Alfred', 'Betty', 'Susan')  <-- compare this
+        #             2. c('Alfred', 'Betty')
+        #             3. c('Alfred', 'Betty', 'Sue')   <-- against this
+        #
+        if (length(previous_value[ !is.na(previous_value)]) < length(value_on_arrival) ) {
+          
+          lvl_dict <-  diff_tracker[[ "dictionary_of_edits" ]]
+          new_value <- setdiff(value_on_arrival, previous_value)
+          
+          already_in_dict <- new_value %in% lvl_dict
+          
+          if ( !isTRUE(already_in_dict)) { # If label has never been seen, add it to the dictionary
+            
+            value_before_edit <- setdiff(second_last_value[ !is.na(second_last_value)], value_on_arrival)
+            lvl_in_data <- names(lvl_dict[ match(value_before_edit, lvl_dict)])
+            
+            new_value_tmp <- new_value
+            names(new_value_tmp) <- lvl_in_data
+            
+            updated_lvl_dict <- c(lvl_dict, new_value_tmp)
+            updated_lvl_dict <- updated_lvl_dict[ !duplicated(updated_lvl_dict)]
+            updated_lvl_dict <- updated_lvl_dict[ !is.na(names(updated_lvl_dict))]
+            
+            factor_lvl_diff_tracker[[ as.character(num1) ]][[ "dictionary_of_edits" ]] <-
+              updated_lvl_dict
+          }
+          
+        }
+        
+        # This line should read directly from the most up-to-date value
+        # (not the object `difftracker`)
+        refreshed_lvl_dict <-  factor_lvl_diff_tracker[[ as.character(num1) ]][[ "dictionary_of_edits" ]]
+        
+        # If a level was removed, determine which level was removed by looking
+        # at the levels before the change, and impute it with NA, while keeping
+        # a place for it.
+        #       EG.       Removing bat looks like this:
+        #             1. c(ant = 'ant',  bat = 'bat', cat = 'cat')
+        #             ... becomes...
+        #             2. c(ant = 'ant',  bat = NA,    cat = 'cat')
+        if( length(value_on_arrival) < length(previous_value) ){
+          
+          imputed_missing_current_value <- previous_value
+          true_values <- names(refreshed_lvl_dict)[ match(value_on_arrival, refreshed_lvl_dict)]
+          imputed_missing_current_value[ !names(imputed_missing_current_value) %in% true_values] <- NA_character_
+          imputed_missing_current_value[ names(imputed_missing_current_value) %in% true_values] <- value_on_arrival
+          value_on_arrival <- imputed_missing_current_value
+          
+        }
+        
+        # Next we change the *names* of the levels (after recoding) to match the
+        # values taken in the data.
+        # This is accomplished using the dictionary_of_edits that has been tracking
+        # all recoding/relabelling events.
+        #       EG.  Given a vector like this..
+        #               c(ant = 'ant',  bat = 'bat', cat = 'MrChestington')
+        #             .. and a dictionary like this...
+        #               c(ant = 'ant', bat = 'bat', cat = 'cat', ant = 'MrAnt',
+        #                 bat = 'batface', cat = 'MrChestington')
+        #
+        #             ... becomes...
+        #             2. c(ant = 'ant',  bat = NA,    cat = 'cat')
+        
+        
+        # names(value_on_arrival)[ !is.na(value_on_arrival)] <- names(refreshed_lvl_dict)[match(value_on_arrival[ !is.na(value_on_arrival)], refreshed_lvl_dict)]
+        
+        
+        names(value_on_arrival)[ !is.na(value_on_arrival)] <-
+          names(refreshed_lvl_dict)[ match(value_on_arrival[ !is.na(value_on_arrival)], refreshed_lvl_dict) ]
+        
+        factor_lvl_diff_tracker[[ as.character(num1) ]][[ "last_value" ]] <- value_on_arrival
+        factor_lvl_diff_tracker[[ as.character(num1) ]][[ "second_last_value" ]] <- previous_value
+        
+      })
     }
   }
   
   remove_last_factor_lvl_change_box <- function() {
+    factor_lvl_diff_tracker[[ as.character(changeLblsVals$numCurrent) ]] <- NULL
     selector <- paste0("#factor_lvl_change_placeholder .factor_lvl_change_box:nth-child(", changeLblsVals$numCurrent, ")")
     removeUI(selector, multiple = FALSE, immediate = TRUE)
     changeLblsVals$numCurrent <- changeLblsVals$numCurrent - 1
@@ -384,7 +495,16 @@ function(input, output, session) {
       if (is.null(labels) || labels == "") next
       labels <- gsub("\\\\n", "\\\n", labels)
       if (!variable_name %in% names(df)) next
-      df[, variable_name] <- as.factor(df[, variable_name])
+
+      ordered_lvls <- factor_lvl_diff_tracker[[ as.character(i) ]][[ "last_value" ]]
+      ordered_lvls <- ordered_lvls[ order(is.na(ordered_lvls))]
+      
+      if (!is.null(ordered_lvls)) {
+        ordered_lvls[ is.na(ordered_lvls)] <- ""
+        df[, variable_name] <- factor(df[, variable_name],
+                                      levels = names(ordered_lvls))
+      }
+      
       new_labels <- unlist(strsplit(labels, ","))[1:nlevels(df[, variable_name])]
       new_labels[is.na(new_labels)] <- ""
       levels(df[, variable_name]) <- new_labels
