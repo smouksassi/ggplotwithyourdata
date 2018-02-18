@@ -7,6 +7,11 @@ function(input, output, session) {
     updateTable = FALSE  # whether to manually update the dstats table
   )
   
+  # If this app was launched from a function that explicitly set an initial dataset
+  if (exists("ggplotwithyourdata_init_data")) {
+    values$maindata <- get("ggplotwithyourdata_init_data")
+  }
+  
   # Variables to help with maintaining the dynamic number of "change the labels
   # of a variable" boxes
   changeLblsVals <- reactiveValues(
