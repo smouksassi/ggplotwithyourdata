@@ -2941,7 +2941,12 @@ function(input, output, session) {
   output$dstats_col_extra <- renderUI({
     df <-tabledata()
     validate(       need(!is.null(df), "Please select a data set"))
-    items=names(df)
+    selectInput("dstatscolextrain", "Extra Column Split:", c("None" = "."))
+  })
+  
+  observe({
+    req(tabledata())
+    items=names(tabledata())
     names(items)=items
     items= items
     items= items[!is.element(items,input$x)]
@@ -2950,7 +2955,16 @@ function(input, output, session) {
       nameofcombinedvariables<- paste(as.character(input$pastevarin),collapse="_",sep="") 
       items= c(items,nameofcombinedvariables)
     }
-    selectInput("dstatscolextrain", "Extra Column Split:",items)
+
+    # Keep the current value selected unless it's not in the new items list
+    current_value <- input$dstatscolextrain
+    if (!is.null(current_value) && current_value %in% items) {
+      new_value <- current_value
+    } else {
+      new_value <- items[1]
+    }
+    updateSelectInput(session, "dstatscolextrain",
+                      choices = items, selected = new_value)
   })
   
   output$flipthelevels <- renderUI({
