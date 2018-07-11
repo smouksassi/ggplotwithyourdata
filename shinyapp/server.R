@@ -8,9 +8,12 @@ function(input, output, session) {
   )
   
   # If this app was launched from a function that explicitly set an initial dataset
-  if (exists("ggplotwithyourdata_init_data")) {
-    values$maindata <- get("ggplotwithyourdata_init_data")
+  if (exists("ggquickeda_initdata")) {
+    values$maindata <- get("ggquickeda_initdata")
   }
+  
+  # Kill the application/R session when a single shiny session is closed
+  session$onSessionEnded(stopApp)
   
   # Variables to help with maintaining the dynamic number of "change the labels
   # of a variable" boxes
@@ -286,8 +289,22 @@ function(input, output, session) {
   
   observeEvent(input$gridlinescolreset, {
       shinyjs::reset("gridlinescol")
-    })   
-  
+    })
+  observeEvent(input$stripbackfillreset, {
+    shinyjs::reset("stripbackgroundfill")
+  })
+  observeEvent(input$vlinecol1reset, {
+    shinyjs::reset("vlinecol1")
+  })
+  observeEvent(input$vlinecol2reset, {
+    shinyjs::reset("vlinecol2")
+  })
+  observeEvent(input$hlinecol1reset, {
+    shinyjs::reset("hlinecol1")
+  })
+  observeEvent(input$hlinecol2reset, {
+    shinyjs::reset("hlinecol2")
+  })
   output$ycol <- renderUI({
     df <- values$maindata
     validate(       need(!is.null(df), "Please select a data set"))
@@ -321,7 +338,8 @@ function(input, output, session) {
     }
     if (input$yaxisscale!="lineary") {
       updateRadioButtons(session, "yaxisformat", choices = c("default" = "default",
-                                                             "Log 10^x Format" = "logyformat"))
+                                                             "Log 10^x Format" = "logyformat",
+                                                             "Pretty Y" ="logyformat2"))
     }
   })
   observe({
@@ -332,7 +350,8 @@ function(input, output, session) {
     }
     if (input$xaxisscale!="linearx") {
       updateRadioButtons(session, "xaxisformat", choices = c("default" = "default",
-                                                             "Log 10^x Format" = "logxformat"))
+                                                             "Log 10^x Format" = "logxformat",
+                                                             "Pretty X" ="logxformat2"))
     }
   })
   
@@ -353,7 +372,38 @@ function(input, output, session) {
   observeEvent(input$catvarin, ignoreNULL = FALSE, {
     shinyjs::toggle("ncuts", condition = !is.null(input$catvarin) && length(input$catvarin) >= 1)
   })
+  
+  output$catvarquant <- renderUI({
+    df <-values$maindata
+    validate(       need(!is.null(df), "Please select a data set"))
+    items=names(df)
+    names(items)=items
+    MODEDF <- sapply(df, function(x) is.numeric(x))
+    NAMESTOKEEP2<- names(df)  [ MODEDF ]
+    if (!is.null(input$catvarin)) {
+      if (length(input$catvarin ) >=1) {
+        NAMESTOKEEP2<-NAMESTOKEEP2 [ !is.element(NAMESTOKEEP2,input$catvarin) ]
+      }  
+    }
+    selectInput('catvarquantin',
+                label = 'Recode into Quantile Categories:',
+                choices=NAMESTOKEEP2,multiple=TRUE)
+  })
 
+  # Show/hide the "N of cut quantiles" input
+  observeEvent(input$catvarquantin, ignoreNULL = FALSE, {
+    shinyjs::toggle("ncutsquant",
+condition = !is.null(input$catvarquantin) && length(input$catvarquantin) >= 1)
+  })
+  observeEvent(input$catvarquantin, ignoreNULL = FALSE, {
+  shinyjs::toggle("zeroplacebo",
+                  condition = !is.null(input$catvarquantin) && length(input$catvarquantin) >= 1)
+})
+  observeEvent(input$catvarquantin, ignoreNULL = FALSE, {
+    shinyjs::toggle("missingcategory",
+                    condition = !is.null(input$catvarquantin) && length(input$catvarquantin) >= 1)
+  })
+  
   output$catvar2 <- renderUI({
     df <-values$maindata
     validate(       need(!is.null(df), "Please select a data set"))
@@ -361,6 +411,11 @@ function(input, output, session) {
     names(items)=items
     MODEDF <- sapply(df, function(x) is.numeric(x))
     NAMESTOKEEP2<- names(df)  [ MODEDF ]
+    if (!is.null(input$catvarquantin)) {
+      if (length(input$catvarquantin ) >=1) {
+        NAMESTOKEEP2<-NAMESTOKEEP2 [ !is.element(NAMESTOKEEP2,input$catvarquantin) ]
+      }  
+    }
     if (!is.null(input$catvarin)) {
       if (length(input$catvarin ) >=1) {
         NAMESTOKEEP2<-NAMESTOKEEP2 [ !is.element(NAMESTOKEEP2,input$catvarin) ]
@@ -379,6 +434,9 @@ function(input, output, session) {
     NAMESTOKEEP2<- names(df)  [ MODEDF ]
     if (!is.null(input$catvarin)&length(input$catvarin ) >=1) {
       NAMESTOKEEP2<-NAMESTOKEEP2 [ !is.element(NAMESTOKEEP2,input$catvarin) ]
+    }
+    if (!is.null(input$catvarquantin)&length(input$catvarquantin ) >=1) {
+      NAMESTOKEEP2<-NAMESTOKEEP2 [ !is.element(NAMESTOKEEP2,input$catvarquantin) ]
     }
     if (!is.null(input$catvar2in)&length(input$catvar2in ) >=1) {
       NAMESTOKEEP2<-NAMESTOKEEP2 [ !is.element(NAMESTOKEEP2,input$catvar2in) ]
@@ -424,9 +482,7 @@ function(input, output, session) {
   outputOptions(output, "catvar3", suspendWhenHidden=FALSE)
   outputOptions(output, "ncuts2", suspendWhenHidden=FALSE)
   outputOptions(output, "asnumeric", suspendWhenHidden=FALSE)
-  
-  
-  
+  outputOptions(output, "catvarquant", suspendWhenHidden=FALSE)
   
   recodedata1  <- reactive({
     df <- values$maindata 
@@ -441,9 +497,50 @@ function(input, output, session) {
     df
   })
   
-  
+  recodedataquant  <- reactive({
+    df <- recodedata1() 
+    validate(       need(!is.null(df), "Please select a data set"))
+    ngroups<- input$ncutsquant
+    zeroplacebo<- input$zeroplacebo
+    missingcategory <- input$missingcategory
+    if(!is.null(input$catvarquantin)&length(input$catvarquantin ) >=1) {
+      for (i in 1:length(input$catvarquantin ) ) {
+        varname<- input$catvarquantin[i]
+        x2<- unlist(df[,varname])
+        if(zeroplacebo&&missingcategory){
+          df[,varname]   <- eqcut(x2, ngroups,
+                                  varname,
+                                  withhold=list(
+                                    Placebo=(x2==0),
+                                    Missing=(is.na(x2))))
+        }
+        if(zeroplacebo&&!missingcategory){
+          df[,varname]   <- eqcut(x2, ngroups,
+                                  varname,
+                                  withhold=list(
+                                    Placebo=(x2==0)))
+        }
+        if(!zeroplacebo&&missingcategory){
+          df[,varname]   <- eqcut(x2, ngroups,
+                                  varname,
+                                  withhold=list(
+                                    Missing=(is.na(x2))))
+        }
+        if(!zeroplacebo&&!missingcategory){
+          withhold<- NULL
+          df[,varname]   <- eqcut(x2, ngroups,
+                                  varname,
+                                  withhold=NULL)
+        }
+
+      }
+    }
+    df
+  })
+        
+        
   recodedata2  <- reactive({
-    df <- recodedata1()
+    df <- recodedataquant()
     validate(       need(!is.null(df), "Please select a data set"))
     if(!is.null(input$catvar2in) ){
       if(length(input$catvar2in ) >=1) {
@@ -982,6 +1079,9 @@ function(input, output, session) {
       if(input$functionordervariable=="Maximum" )  {
         df[,varname]   <- reorder( df[,varname],df[,input$varreorderin],  FUN=function(x) max(x[!is.na(x)]))
       }
+      if(input$functionordervariable=="N" )  {
+        df[,varname]   <- reorder( df[,varname],df[,input$varreorderin],  FUN=function(x) length(x[!is.na(x)]))
+      }
       if(input$reverseorder )  {
         df[,varname] <- factor( df[,varname], levels=rev(levels( df[,varname])))
         
@@ -1455,12 +1555,18 @@ function(input, output, session) {
             if (length(listvarcor)<=1){
               cors <-  plotdata %>%
                 group_by(!!!syms("yvars")) %>%
-                dplyr::summarize(corcoeff = round(cor(!!as.name(input$x),!!as.name("yvalues"),use="complete.obs"),2))
+                dplyr::summarize(corcoeff = round(cor(!!as.name(input$x),
+                                                      !!as.name("yvalues"),
+                                                      use="complete.obs",
+                                                      method =input$corrtype),2))
             }
             if (length(listvarcor)>=2){
               cors <- plotdata %>%
                 group_by_at(.vars= listvarcor ) %>%
-                dplyr::summarize(corcoeff = round(cor(!!as.name(input$x),!!as.name("yvalues"),use="complete.obs"),2))
+                dplyr::summarize(corcoeff = round(cor(!!as.name(input$x),
+                                                      !!as.name("yvalues"),
+                                                      use="complete.obs",
+                                                      method =input$corrtype),2))
             }
             cors<-as.data.frame(cors)
             
@@ -1550,39 +1656,51 @@ function(input, output, session) {
         
         #### Boxplot Section START
         
-        if (input$boxplotaddition){
-          if (input$groupin != 'None'& !input$boxplotignoregroup ){
-            if (!input$boxplotignorecol){
-              p <- p + aes_string(group=input$groupin)
-              p <- p + geom_boxplot(varwidth = input$boxplotvarwidh,notch = input$boxplotnotch,show.legend=input$boxplotshowlegend,alpha=input$boxplotalpha)
-              
-            }
-            if (input$boxplotignorecol){
-              p <- p + aes_string(group=input$groupin)
-              p <- p + geom_boxplot(varwidth = input$boxplotvarwidh,notch = input$boxplotnotch,show.legend=input$boxplotshowlegend,col=input$boxcolline,alpha=input$boxplotalpha)
-              
-            }
-          }
-          if (input$groupin == 'None'){
-            if (!input$boxplotignorecol){
-              p <- p + geom_boxplot(aes(group=NULL),varwidth = input$boxplotvarwidh,notch = input$boxplotnotch,show.legend=input$boxplotshowlegend,alpha=input$boxplotalpha)
-            }
-            if (input$boxplotignorecol){
-              p <- p + geom_boxplot(aes(group=NULL),varwidth = input$boxplotvarwidh,notch = input$boxplotnotch,show.legend=input$boxplotshowlegend,col=input$boxcolline,alpha=input$boxplotalpha)
-            } 
-          }
-          
-          
-          if (input$boxplotignoregroup ){
-            if (!input$boxplotignorecol){
-              p <- p + geom_boxplot(aes(group=NULL),varwidth = input$boxplotvarwidh,notch = input$boxplotnotch,show.legend=input$boxplotshowlegend,alpha=input$boxplotalpha)
-            }
-            if (input$boxplotignorecol){
-              p <- p + geom_boxplot(aes(group=NULL),varwidth = input$boxplotvarwidh,notch = input$boxplotnotch,show.legend=input$boxplotshowlegend,col=input$boxcolline,alpha=input$boxplotalpha)
+        if (input$boxplotaddition) {
+          if (input$groupin != 'None') {
+            if (!input$boxplotignoregroup) {
+              if (!input$boxplotignorecol) {
+                p <- p + geom_boxplot(
+                  aes_string(group = input$groupin),
+                  varwidth = input$boxplotvarwidh,
+                  notch = input$boxplotnotch,
+                  show.legend = input$boxplotshowlegend,
+                  alpha = input$boxplotalpha
+                )
+              }
+              if (input$boxplotignorecol) {
+                p <- p + geom_boxplot(
+                  aes_string(group = input$groupin),
+                  col = input$boxcolline,
+                  varwidth = input$boxplotvarwidh,
+                  notch = input$boxplotnotch,
+                  show.legend = input$boxplotshowlegend,
+                  alpha = input$boxplotalpha
+                )
+              }
             }
           }
-          
-          
+          if (input$groupin == 'None' || input$boxplotignoregroup) {
+            if (!input$boxplotignorecol) {
+              p <- p + geom_boxplot(
+                aes(group = NULL),
+                varwidth = input$boxplotvarwidh,
+                notch = input$boxplotnotch,
+                show.legend = input$boxplotshowlegend,
+                alpha = input$boxplotalpha
+              )
+            }
+            if (input$boxplotignorecol) {
+              p <- p + geom_boxplot(
+                aes(group = NULL),
+                varwidth = input$boxplotvarwidh,
+                notch = input$boxplotnotch,
+                show.legend = input$boxplotshowlegend,
+                col = input$boxcolline,
+                alpha = input$boxplotalpha
+              )
+            }
+          }
         }
         #### Boxplot Section END
         
@@ -1742,7 +1860,7 @@ function(input, output, session) {
           }
           
           spanplot <- input$loessens
-          
+          levelsmooth<- input$smoothselevel
           if ( input$ignoregroup) {
             if (!input$ignorecol) {
               if (input$Smooth=="Smooth")
@@ -1751,7 +1869,7 @@ function(input, output, session) {
                                      size=1.5,se=F,span=spanplot,aes(group=NULL))
               
               if (input$Smooth=="Smooth and SE")
-                p <- p + geom_smooth(method=input$smoothmethod,
+                p <- p + geom_smooth(method=input$smoothmethod,level=levelsmooth,
                                      method.args = methodsargument,
                                      size=1.5,se=T,span=spanplot,aes(group=NULL))
               
@@ -1762,7 +1880,7 @@ function(input, output, session) {
                   aes_string(weight=input$weightin)
               
               if (input$Smooth=="Smooth and SE"& input$weightin != 'None')
-                p <- p + geom_smooth(method=input$smoothmethod,
+                p <- p + geom_smooth(method=input$smoothmethod,level=levelsmooth,
                                      method.args = methodsargument,
                                      size=1.5,se=T,span=spanplot,aes(group=NULL))+  
                   aes_string(weight=input$weightin)
@@ -1775,7 +1893,7 @@ function(input, output, session) {
                                      size=1.5,se=F,span=spanplot,col=colsmooth,aes(group=NULL))
               
               if (input$Smooth=="Smooth and SE")
-                p <- p + geom_smooth(method=input$smoothmethod,
+                p <- p + geom_smooth(method=input$smoothmethod,level=levelsmooth,
                                      method.args = methodsargument,
                                      size=1.5,se=T,span=spanplot,col=colsmooth,aes(group=NULL))
               
@@ -1786,7 +1904,7 @@ function(input, output, session) {
                   aes_string(weight=input$weightin)
               
               if (input$Smooth=="Smooth and SE"& input$weightin != 'None')
-                p <- p + geom_smooth(method=input$smoothmethod,
+                p <- p + geom_smooth(method=input$smoothmethod,level=levelsmooth,
                                      method.args = methodsargument,
                                      size=1.5,se=T,span=spanplot,col=colsmooth,aes(group=NULL))+  
                   aes_string(weight=input$weightin)
@@ -1802,7 +1920,7 @@ function(input, output, session) {
                                      size=1.5,se=F,span=spanplot)
               
               if (input$Smooth=="Smooth and SE")
-                p <- p + geom_smooth(method=input$smoothmethod,
+                p <- p + geom_smooth(method=input$smoothmethod,level=levelsmooth,
                                      method.args = methodsargument,
                                      size=1.5,se=T,span=spanplot)
               
@@ -1813,7 +1931,7 @@ function(input, output, session) {
                   aes_string(weight=input$weightin)
               
               if (input$Smooth=="Smooth and SE"& input$weightin != 'None')
-                p <- p + geom_smooth(method=input$smoothmethod,
+                p <- p + geom_smooth(method=input$smoothmethod,level=levelsmooth,
                                      method.args = methodsargument,
                                      size=1.5,se=T,span=spanplot)+  
                   aes_string(weight=input$weightin)
@@ -1826,7 +1944,7 @@ function(input, output, session) {
                                      size=1.5,se=F,span=spanplot,col=colsmooth)
               
               if (input$Smooth=="Smooth and SE")
-                p <- p + geom_smooth(method=input$smoothmethod,
+                p <- p + geom_smooth(method=input$smoothmethod,level=levelsmooth,
                                      method.args = methodsargument,
                                      size=1.5,se=T,span=spanplot,col=colsmooth)
               
@@ -1837,13 +1955,23 @@ function(input, output, session) {
                   aes_string(weight=input$weightin)
               
               if (input$Smooth=="Smooth and SE"& input$weightin != 'None')
-                p <- p + geom_smooth(method=input$smoothmethod,
+                p <- p + geom_smooth(method=input$smoothmethod,level=levelsmooth,
                                      method.args = methodsargument,
                                      size=1.5,se=T,span=spanplot,col=colsmooth)+  
                   aes_string(weight=input$weightin)
             }
             
           }
+          if (input$smoothmethod=="lm"&&input$showslopepvalue){
+            p <- p+
+                ggpmisc::stat_fit_glance(method = "lm", 
+                                method.args = list(formula = y ~ x),
+                                geom = "text",
+                                aes(label = paste("P-value = ",
+                                signif(..p.value.., digits = 4), sep = "")),
+            show.legend = FALSE)
+          }
+          
           
           ###### smooth Section END
         }
@@ -2393,19 +2521,55 @@ function(input, output, session) {
               & input$colorin == 'None')
             p <- p + aes(group=1)
           
-          if ( input$histogramaddition){
-            p <- p+ aes(y=..density..)+
-              geom_histogram(alpha=0.2)
+          if ( input$histogramaddition=="Counts"){
+            p <- p+ 
+              geom_histogram(aes(y=..count..),
+                             alpha=0.2,bins = input$histobinwidth)+
+              ylab("Counts")
           }
-          if ( input$densityaddition){
+          if ( input$histogramaddition=="Density"){
             p <- p+
-              geom_density(alpha=0.1)
+              geom_histogram(aes(y=..density..),
+                             alpha=0.2,bins = input$histobinwidth)+
+              ylab("Density")
+          }
+          
+          
+          if ( input$densityaddition=="Density"){
+            p <- p+
+              geom_density(aes(y=..density..),alpha=0.1)+
+              ylab("Density")
             
           }
+          if ( input$densityaddition=="Scaled Density"){
+            p <- p+
+              geom_density(aes(y=..scaled..),alpha=0.1)+
+              ylab("Scaled Density")
+            
+          }
+          if ( input$densityaddition=="Counts"){
+            p <- p+
+              geom_density(aes(y=..count..),alpha=0.1)+
+              ylab("Counts")
+            
+          }
+          
         }
         
         if(!is.numeric(plotdata[,input$x]) ){
+          if(input$barplotorder=="frequency"){
+            plotdata[,input$x]<- factor(as.factor(plotdata[,input$x]),
+                                        levels=names(sort(table(plotdata[,input$x]), 
+                                                          decreasing=FALSE)))
+          }
+          if(input$barplotorder=="revfrequency"){
+            plotdata[,input$x]<- factor(as.factor(plotdata[,input$x]),
+                                        levels=names(sort(table(plotdata[,input$x]), 
+                                                          decreasing=TRUE)))           
+          }
           p <- sourceable(ggplot(plotdata, aes_string(x=input$x)))
+          
+
           
           if (input$colorin != 'None')
             p <- p + aes_string(color=input$colorin)
@@ -2517,55 +2681,124 @@ function(input, output, session) {
       }
       
       
-      
+      if (input$yaxisscale=="logy"&& is.numeric(plotdata[,"yvalues"])&&input$yaxisformat=="default")
+        p <- p + scale_y_log10()
       if (input$yaxisscale=="logy"&& is.numeric(plotdata[,"yvalues"])&& input$yaxisformat=="logyformat")
         p <- p + scale_y_log10(breaks = trans_breaks("log10", function(x) 10^x),
                                labels = trans_format("log10", math_format(10^.x)))
-      if (input$yaxisscale=="logy"&& is.numeric(plotdata[,"yvalues"])&&input$yaxisformat!="logyformat")
-        p <- p + scale_y_log10()
+      if (input$yaxisscale=="logy"&& is.numeric(plotdata[,"yvalues"])&&input$yaxisformat=="logyformat2")
+        p <- p + scale_y_log10(labels=prettyNum)
+
+      if (input$yaxisscale=="logy" && input$customyticks&&input$yaxisformat=="default") {
+        p <- p  + 
+          scale_y_log10(breaks=as.numeric(unique(unlist (strsplit(input$yaxisbreaks, ","))) ),
+                        minor_breaks = as.numeric(unique(unlist (strsplit(input$yaxisminorbreaks, ","))) ) ) 
+      }
       
-      if (input$xaxisscale=="logx"&& is.numeric(plotdata[,input$x])&& input$xaxisformat=="logxformat")
-        p <- p + scale_x_log10(breaks = trans_breaks("log10", function(x) 10^x),
-                               labels = trans_format("log10", math_format(10^.x)))
-      if (input$xaxisscale=="logx"&& is.numeric(plotdata[,input$x])&&input$xaxisformat!="logxformat")
-        p <- p + scale_x_log10()
+      if (input$yaxisscale=="logy" && input$customyticks && input$yaxisformat=="logyformat") {
+        p <- p  + 
+          scale_y_log10(labels = trans_format("log10", math_format(10^.x)),
+            breaks=as.numeric(unique(unlist (strsplit(input$yaxisbreaks, ","))) ),
+                        minor_breaks = as.numeric(unique(unlist (strsplit(input$yaxisminorbreaks, ","))) ) ) 
+      }
+      if (input$yaxisscale=="logy" && input$customyticks && input$yaxisformat=="logyformat2") {
+        p <- p  + 
+          scale_y_log10(labels = prettyNum,
+                        breaks=as.numeric(unique(unlist (strsplit(input$yaxisbreaks, ","))) ),
+                        minor_breaks = as.numeric(unique(unlist (strsplit(input$yaxisminorbreaks, ","))) ) ) 
+      }
+      
       
       
       if (input$yaxisscale=="lineary" && !is.null(plotdata$yvalues) && is.numeric(plotdata[,"yvalues"]) && input$yaxisformat=="scientificy")
         p <- p  + 
         scale_y_continuous(labels=comma )
-      if (input$xaxisscale=="linearx" && is.numeric(plotdata[,input$x]) && input$xaxisformat=="scientificx")
-        p <- p  + 
-        scale_x_continuous(labels=comma )
       if (input$yaxisscale=="lineary" && !is.null(plotdata$yvalues) && is.numeric(plotdata[,"yvalues"]) && input$yaxisformat=="percenty")
         p <- p  + 
         scale_y_continuous(labels=percent )
-      if (input$xaxisscale=="linearx" && is.numeric(plotdata[,input$x]) && input$xaxisformat=="percentx")
-        p <- p  + 
-        scale_x_continuous(labels=percent )
       
       
-      if (input$xaxisscale=="linearx" && input$customxticks) {
+      if (input$yaxisscale=="lineary" && input$customyticks && input$yaxisformat=="default") {
         p <- p  + 
-          scale_x_continuous(breaks=as.numeric(unique(unlist (strsplit(input$xaxisbreaks, ","))) ),
-                             minor_breaks = as.numeric(unique(unlist (strsplit(input$xaxisminorbreaks, ","))) ) ) 
+          scale_y_continuous(breaks=as.numeric(unique(unlist (strsplit(input$yaxisbreaks, ","))) ),
+                             minor_breaks = as.numeric(unique(unlist (strsplit(input$yaxisminorbreaks, ","))) ) ) 
       }
-      if (input$xaxisscale=="logx" && input$customxticks) {
+      
+      if (input$yaxisscale=="lineary" && input$customyticks && input$yaxisformat=="scientificy") {
+        p <- p  + 
+          scale_y_continuous(labels=comma,
+                             breaks=as.numeric(unique(unlist (strsplit(input$yaxisbreaks, ","))) ),
+                             minor_breaks = as.numeric(unique(unlist (strsplit(input$yaxisminorbreaks, ","))) ) ) 
+      }
+      
+      if (input$yaxisscale=="lineary" && input$customyticks && input$yaxisformat=="percenty") {
+        p <- p  + 
+          scale_y_continuous(labels=percent,
+                             breaks=as.numeric(unique(unlist (strsplit(input$yaxisbreaks, ","))) ),
+                             minor_breaks = as.numeric(unique(unlist (strsplit(input$yaxisminorbreaks, ","))) ) ) 
+      }
+
+      
+      if (input$xaxisscale=="logx"&& is.numeric(plotdata[,input$x])&&input$xaxisformat=="default")
+        p <- p + scale_x_log10()
+      if (input$xaxisscale=="logx"&& is.numeric(plotdata[,input$x])&& input$xaxisformat=="logxformat")
+        p <- p + scale_x_log10(breaks = trans_breaks("log10", function(x) 10^x),
+                               labels = trans_format("log10", math_format(10^.x)))
+      if (input$xaxisscale=="logx"&& is.numeric(plotdata[,input$x])&& input$xaxisformat=="logxformat2")
+        p <- p + scale_x_log10(labels = prettyNum)
+      
+      
+      
+      
+      if (input$xaxisscale=="logx" && input$customxticks && input$xaxisformat=="default") {
         p <- p  + 
           scale_x_log10(breaks=as.numeric(unique(unlist (strsplit(input$xaxisbreaks, ","))) ),
                         minor_breaks = as.numeric(unique(unlist (strsplit(input$xaxisminorbreaks, ","))) ) ) 
       }
       
-      if (input$yaxisscale=="lineary" && input$customyticks) {
+      if (input$xaxisscale=="logx" && input$customxticks && input$xaxisformat=="logxformat") {
         p <- p  + 
-          scale_y_continuous(breaks=as.numeric(unique(unlist (strsplit(input$yaxisbreaks, ","))) ),
-                             minor_breaks = as.numeric(unique(unlist (strsplit(input$yaxisminorbreaks, ","))) ) ) 
+          scale_x_log10(labels = trans_format("log10", math_format(10^.x)),
+                        breaks=as.numeric(unique(unlist (strsplit(input$xaxisbreaks, ","))) ),
+                        minor_breaks = as.numeric(unique(unlist (strsplit(input$xaxisminorbreaks, ","))) ) ) 
       }
-      if (input$yaxisscale=="logy" && input$customyticks) {
+      if (input$xaxisscale=="logx" && input$customxticks &&input$xaxisformat=="logxformat2" ) {
         p <- p  + 
-          scale_y_log10(breaks=as.numeric(unique(unlist (strsplit(input$yaxisbreaks, ","))) ),
-                        minor_breaks = as.numeric(unique(unlist (strsplit(input$yaxisminorbreaks, ","))) ) ) 
+          scale_x_log10(labels = prettyNum,
+                        breaks=as.numeric(unique(unlist (strsplit(input$xaxisbreaks, ","))) ),
+                        minor_breaks = as.numeric(unique(unlist (strsplit(input$xaxisminorbreaks, ","))) ) ) 
       }
+      
+      
+      if (input$xaxisscale=="linearx" && is.numeric(plotdata[,input$x]) && input$xaxisformat=="scientificx")
+        p <- p  + 
+        scale_x_continuous(labels=comma )
+      
+      if (input$xaxisscale=="linearx" && is.numeric(plotdata[,input$x]) && input$xaxisformat=="percentx")
+        p <- p  + 
+        scale_x_continuous(labels=percent )
+      
+      if (input$xaxisscale=="linearx" && input$customxticks && input$xaxisformat=="default") {
+        p <- p  + 
+          scale_x_continuous(
+                             breaks=as.numeric(unique(unlist (strsplit(input$xaxisbreaks, ","))) ),
+                             minor_breaks = as.numeric(unique(unlist (strsplit(input$xaxisminorbreaks, ","))) ) ) 
+      }
+      if (input$xaxisscale=="linearx" && input$customxticks && input$xaxisformat=="scientificx") {
+        p <- p  + 
+          scale_x_continuous(labels=comma,
+                             breaks=as.numeric(unique(unlist (strsplit(input$xaxisbreaks, ","))) ),
+                             minor_breaks = as.numeric(unique(unlist (strsplit(input$xaxisminorbreaks, ","))) ) ) 
+      }
+      if (input$xaxisscale=="linearx" && input$customxticks && input$xaxisformat=="percentx") {
+        p <- p  + 
+          scale_x_continuous(labels=percent,
+                             breaks=as.numeric(unique(unlist (strsplit(input$xaxisbreaks, ","))) ),
+                             minor_breaks = as.numeric(unique(unlist (strsplit(input$xaxisminorbreaks, ","))) ) ) 
+      }
+      
+
+
       
       if (!is.null(input$y) & length(input$y) >= 2 & input$ylab=="" ){
         p <- p + ylab("Y variable(s)")
@@ -2595,18 +2828,18 @@ function(input, output, session) {
       
       if (input$customvline1)
         p <-    p+
-        geom_vline(xintercept=input$vline1)
+        geom_vline(xintercept=input$vline1,color=input$vlinecol1,linetype=input$vlinetype1,size=input$vlinesize1)
       if (input$customvline2)
         p <-    p+
-        geom_vline(xintercept=input$vline2)      
+        geom_vline(xintercept=input$vline2,color=input$vlinecol2,linetype=input$vlinetype2,size=input$vlinesize2)      
       
       if (input$customhline1)
         p <-    p+
-        geom_hline(yintercept=input$hline1)
-      
+        geom_hline(yintercept=input$hline1,color=input$hlinecol1,linetype=input$hlinetype1,size=input$hlinesize1)
+
       if (input$customhline2)
         p <-    p+
-        geom_hline(yintercept=input$hline2)     
+        geom_hline(yintercept=input$hline2,color=input$hlinecol2,linetype=input$hlinetype2,size=input$hlinesize2)     
       
       if (input$identityline)
         p <-    p+ geom_abline(intercept = 0, slope = 1)
@@ -2720,7 +2953,14 @@ function(input, output, session) {
       
       p <-  p+
         theme(panel.grid.major = element_line(colour = input$gridlinescol),
-              panel.grid.minor = element_line(colour = input$gridlinescol) )
+              panel.grid.minor = element_line(colour = input$gridlinescol),
+              strip.background = element_rect(fill=input$stripbackgroundfill),
+              strip.placement  = input$stripplacement,
+              strip.text = NULL,
+              panel.spacing.x = unit(input$panelspacingx, "lines"),
+              panel.spacing.y = unit(input$panelspacingy, "lines")
+              
+              )
 
       if (all(
          input$yaxiszoom=='noyzoom'&&
@@ -2791,9 +3031,10 @@ function(input, output, session) {
       }
 
       if (input$showtargettext){
+        targettext <-  gsub("\\\\n", "\\\n", input$targettext)
         p <- p +
-          annotate("text", x=input$lowerxin, y=input$lowerytarget,
-                   label=input$targettext, col=input$targettextcol, hjust=0, vjust=1,size=input$targettextsize)
+          annotate("text", x=input$targettextxpos, y=input$targettextypos,
+                   label=targettext, col=input$targettextcol, hjust=input$targettexthjust, vjust=input$targettextvjust,size=input$targettextsize)
       }
       
       
@@ -3029,9 +3270,25 @@ function(input, output, session) {
       "SD"                   = function(x) x$SD,
       "CV%"                  = function(x) x$CV,
       "Median"               = function(x) x$MEDIAN,
+      "q01"                  = function(x) sprintf("%s", x$q01),
+      "q02.5"                = function(x) sprintf("%s", x$q02.5),
+      "q05"                  = function(x) sprintf("%s", x$q05),
+      "q10"                  = function(x) sprintf("%s", x$q10),
+      "q25"                  = function(x) sprintf("%s", x$q25),
+      "q50"                  = function(x) sprintf("%s", x$q50),
+      "q75"                  = function(x) sprintf("%s", x$q75),
+      "q90"                  = function(x) sprintf("%s", x$q90),
+      "q95"                  = function(x) sprintf("%s", x$q95),
+      "q97.5"                = function(x) sprintf("%s", x$q97.5),
+      "q99"                  = function(x) sprintf("%s", x$q99),
       "Min"                  = function(x) x$MIN,
       "Max"                  = function(x) x$MAX,
       "IQR"                  = function(x) x$IQR,
+      "Q1"                  = function(x) x$Q1,      
+      "Q2"                  = function(x) x$Q2,
+      "Q3"                  = function(x) x$Q3,
+      "T1"                  = function(x) x$T1,
+      "T2"                  = function(x) x$T2,
       "Geo. Mean"            = function(x) x$GMEAN,
       "Geo. CV%"             = function(x) x$GCV,
       "Mean (SD)"            = function(x) sprintf("%s (%s)", x$MEAN, x$SD),
@@ -3040,6 +3297,7 @@ function(input, output, session) {
       "Mean (Median)"        = function(x) sprintf("%s (%s)", x$MEAN, x$MEDIAN),
       "[Min, Max]"           = function(x) sprintf("[%s, %s]", x$MIN, x$MAX),
       "Median [Min, Max]"    = function(x) sprintf("%s [%s, %s]", x$MEDIAN, x$MIN, x$MAX),
+      "Median [Q1, Q3]"      = function(x) sprintf("%s [%s, %s]", x$MEDIAN, x$Q1, x$Q3),
       "Median [IQR]"         = function(x) sprintf("%s [%s]", x$MEDIAN, x$IQR),
       "Geo. Mean (Geo. CV%)" = function(x) sprintf("%s (%s)", x$GMEAN, x$GCV))
     
@@ -3090,10 +3348,11 @@ function(input, output, session) {
       }
       formula <- as.formula(paste("~", paste(c(LHS, RHS), collapse=" | ")))
       overall <- if (input$table_incl_overall) "Overall" else FALSE
-      t <- capture.output(table1(formula, data=df, overall=overall,
+      t <- (table1(formula, data=df, overall=overall,
                                  topclass=paste("Rtable1", input$table_style),
-                                 render.continuous=dstatsRenderCont(),
-                                 standalone=FALSE))
+                                 render.continuous=dstatsRenderCont()))
+      
+      
       values$prevTable <- t
       t
     }

@@ -1,12 +1,8 @@
-inline_ui <- function(tag) {
-  div(style = "display: inline-block", tag)
-}
-
 fluidPage(
   useShinyjs(),
-  includeCSS("www/app.css"),
-  includeCSS("www/table1-style.css"),
-  titlePanel("Hello ggploteR/Table1R!"),
+  tags$link(rel = "stylesheet", href = "app.css"),
+  tags$link(rel = "stylesheet", href = "table1-style.css"),
+  titlePanel("Welcome to ggquickeda!"),
   sidebarLayout(
     sidebarPanel(
       tabsetPanel(
@@ -29,6 +25,14 @@ fluidPage(
               shinyjs::hidden(
                 sliderInput('ncuts',label = 'N of Cut Breaks:', min=2, max=10, value=c(2),step=1)
               ),
+              uiOutput("catvarquant"),
+              shinyjs::hidden(
+                sliderInput('ncutsquant',label = 'N of Quantiles:', min=2, max=10, value=c(2),step=1),
+                checkboxInput('zeroplacebo', 'Zero as Placebo ?', value = FALSE),
+                checkboxInput('missingcategory', 'Missing as a Category ?', value = FALSE)
+                
+              ),
+              
               uiOutput("catvar2"),
               uiOutput("catvar3"),
               uiOutput("ncuts2"),
@@ -86,7 +90,7 @@ fluidPage(
                 condition = "input.reordervarin!='' " ,
                 selectizeInput(
                   "functionordervariable", 'By the:',
-                  choices =c("Median","Mean","Minimum","Maximum") ,multiple=FALSE)
+                  choices =c("Median","Mean","Minimum","Maximum","N") ,multiple=FALSE)
               ),
               uiOutput("variabletoorderby"),
               conditionalPanel(
@@ -265,12 +269,9 @@ fluidPage(
             ),
             tabPanel(
               "Facets Options",
-              
               uiOutput("facetscales"),
               selectInput('facetspace' ,'Facet Spaces:',c("fixed","free_x","free_y","free")),
-              
-              
-              selectInput('facetordering' ,'Facet Ordering:',c(
+               selectInput('facetordering' ,'Facet Ordering:',c(
                 "Top to Bottom, Left to Right Ordering like a Table" ="table",
                 "Bottom to Top, Left to Right Ordering like a Plot" ="plot"),
                 selected="table"),
@@ -304,7 +305,20 @@ fluidPage(
                    The default empty values will use ggplot automatic algorithm."),        
                 numericInput("wrapncol",label = "N columns",value =NA,min=1,max =10) ,
                 numericInput("wrapnrow",label = "N rows",value = NA,min=1,max=10) 
-                )
+                ),
+              colourpicker::colourInput("stripbackgroundfill",
+                                        "Strip Background Fill:",
+                                        value="#E5E5E5",
+                                        showColour = "both",allowTransparent=TRUE),
+              div( actionButton("stripbackfillreset", "Reset Strip Background Fill"), style="text-align: right"),
+              selectizeInput(  "stripplacement", "Strip Placement:",
+                               choices = c("inside","outside"),
+                               options = list(  maxItems = 1 )  ),
+              
+              sliderInput("panelspacingx", label = "Facets X Spacing:",
+                          min = 0, max = 2, value = 0.25, step = 0.05),
+              sliderInput("panelspacingy", label = "Facets Y Spacing:",
+                          min = 0, max = 2, value = 0.25, step = 0.05)
               ) ,
             
             tabPanel(
@@ -313,16 +327,36 @@ fluidPage(
               checkboxInput('horizontalzero', 'Horizontal Zero Line'),
               checkboxInput('customvline1', 'Vertical Line 1'),
               conditionalPanel(condition = "input.customvline1" , 
-                               numericInput("vline1",label = "",value = 1) ),
+                               numericInput("vline1",label = "",value = 1),
+                               colourpicker::colourInput("vlinecol1", "Line Color:", "gray",showColour = "both",allowTransparent=TRUE),
+                               div( actionButton("vlinecol1reset", "Reset Line Color"), style="text-align: right"),
+                               selectInput('vlinetype1','Line Type:',c("solid","dotted","dashed")),
+                               sliderInput("vlinesize1", "Line Size:", min=0, max=4, value=c(1),step=0.1)
+                               ),
               checkboxInput('customvline2', 'Vertical Line 2'),
               conditionalPanel(condition = "input.customvline2" , 
-                               numericInput("vline2",label = "",value = 1) ),
+                               numericInput("vline2",label = "",value = 1) ,
+                               colourpicker::colourInput("vlinecol2", "Line Color:", "gray",showColour = "both",allowTransparent=TRUE),
+                               div( actionButton("vlinecol2reset", "Reset Line Color"), style="text-align: right"),
+                               selectInput('vlinetype2','Line Type:',c("solid","dotted","dashed")),
+                               sliderInput("vlinesize2", "Line Size:", min=0, max=4, value=c(1),step=0.1) 
+                               ),
               checkboxInput('customhline1', 'Horizontal Line 1'),
               conditionalPanel(condition = "input.customhline1" , 
-                               numericInput("hline1",label = "",value = 1) ),
+                               numericInput("hline1",label = "",value = 1),
+                               colourpicker::colourInput("hlinecol1", "Line Color:", "gray",showColour = "both",allowTransparent=TRUE),
+                               div( actionButton("hlinecol1reset", "Reset Line Color"), style="text-align: right"),
+                               selectInput('hlinetype1','Line Type:',c("solid","dotted","dashed")),
+                               sliderInput("hlinesize1", "Line Size:", min=0, max=4, value=c(1),step=0.1)
+                               
+                               ),
               checkboxInput('customhline2', 'Horizontal Line 2'),
               conditionalPanel(condition = "input.customhline2" , 
-                               numericInput("hline2",label = "",value = 1) ),
+                               numericInput("hline2",label = "",value = 1),
+                               colourpicker::colourInput("hlinecol2", "Line Color:", "gray",showColour = "both",allowTransparent=TRUE),
+                               div( actionButton("hlinecol2reset", "Reset Line Color"), style="text-align: right"),
+                               selectInput('hlinetype2','Line Type:',c("solid","dotted","dashed")),
+                               sliderInput("hlinesize2", "Line Size:", min=0, max=4, value=c(1),step=0.1) ),
               checkboxInput('showtarget', 'Add Target Window', value = FALSE) ,
               conditionalPanel(condition = "input.showtarget" , 
                                numericInput("uppertarget",label = "Upper Target Value",
@@ -337,7 +371,13 @@ fluidPage(
               conditionalPanel(condition = "input.showtargettext" ,
                                textInput('targettext', 'Target Text', value = "Target: XX-XXX µg/mL"),
                                sliderInput("targettextsize", "Target Text Size:", min=1, max=10, value=c(5),step=0.5),
-                               colourInput("targettextcol", "Target Text Color:", "blue",showColour = "both")
+                               colourInput("targettextcol", "Target Text Color:", "blue",showColour = "both"),
+                               sliderInput("targettextvjust", "Target Text Vertical Justification:", min=0, max=1, value=c(1),step=0.1),
+                               sliderInput("targettexthjust", "Target Text Horizontal Justification:", min=0, max=1, value=c(0),step=0.1),
+                               numericInput("targettextxpos",label = "Target Text X Position",
+                                            value = 1,min=NA,max=NA,width='50%'),
+                               numericInput("targettextypos",label = "Target Text Y Position",
+                                            value = 1,min=NA,max=NA,width='50%')
                                )
               
             ),
@@ -553,11 +593,27 @@ h6("If you get /Error: Insufficient values in manual scale. ## needed but only 1
                   
                   column (
                     3,
-                    checkboxInput('histogramaddition', 'Add a Histogram ?',value = FALSE)
+                    radioButtons("histogramaddition", "Add a Histogram ?",
+                                 c("Counts" = "Counts",
+                                   "Density" = "Density",
+                                   "None" = "None") ,
+                                 selected="None") ,
+                    numericInput("histobinwidth",
+                                 "N Bins",
+                                 value = 30,
+                                 min = 0, step = 0.5)
+                  
+                    
+                    
                     ),
                   column (
                     3,
-                    checkboxInput('densityaddition', 'Add a Density Curve ?',value = TRUE)
+                    radioButtons("densityaddition", "Add a Density Curve ?",
+                                 c("Density" = "Density",
+                                   "Scaled Density" = "Scaled Density",
+                                   "Counts" = "Counts",
+                                   "None" = "None") ,
+                                 selected="Density") 
                   ),
                   
                   column (
@@ -568,11 +624,18 @@ h6("If you get /Error: Insufficient values in manual scale. ## needed but only 1
                                             "Side By Side"="position_dodge(width = 0.9)",
                                             "Sum to 100%"="position_fill(vjust = 0.5)"),
                                 selected = "position_stack(vjust = 0.5)"),
-                    checkboxInput('barplotpercent', 'Show Percentage instead of Counts ?',value = FALSE),
-                    checkboxInput('barplotlabel', 'Show Labels ?',value = FALSE),
-                    checkboxInput('barplotflip', 'Flip the Barplot ?',value = FALSE)
-                    
-                  )
+                    checkboxInput('barplotpercent', 'Show Percentages instead of Counts ?',value = FALSE),
+                    checkboxInput('barplotlabel', 'Show Labels ?',value = FALSE)
+                 
+                  ),
+                  column (3,
+                          radioButtons("barplotorder", "Bar Ordering:",
+                                                       c("Default" = "default",
+                                                         "By Frequency" = "frequency",
+                                                         "By Reverse Frequency" = "revfrequency"),inline=TRUE ) ,
+                          checkboxInput('barplotflip', 'Flip the Barplot ?',value = FALSE)
+                          )
+                  
                   )
               ),
               
@@ -640,13 +703,16 @@ h6("If you get /Error: Insufficient values in manual scale. ## needed but only 1
                       selectInput('smoothmethod', label ='Smoothing Method',
                                   choices=c("Loess" ="loess","Linear Fit"="lm","Logistic"="glm"),
                                   multiple=FALSE, selectize=TRUE,selected="loess"),
-                      
+                      conditionalPanel(" input.smoothmethod== 'lm' ",
+                      checkboxInput('showslopepvalue', 'Slope p-value ?',value = FALSE)
+                                       ),
+                      conditionalPanel(" input.smoothmethod== 'loess' ",
                       sliderInput("loessens", "Loess Span:", min=0, max=1, value=c(0.75),step=0.05),
                       selectInput('loessfamily', label ='Loess Family:',
                                   choices=c("Gaussian" ="gaussian","Symmetric"="symmetric"),
                                   multiple=FALSE, selectize=TRUE,selected="gaussian"),
                       sliderInput("loessdegree", "Loess Degree:", min=0, max=2, value=c(1),step=1)
-                      
+                      )
                     ) 
                   ),
                   
@@ -665,6 +731,11 @@ h6("If you get /Error: Insufficient values in manual scale. ## needed but only 1
                       " input.Smooth!= 'None' ",
                       checkboxInput('ignoregroup', 'Ignore Mapped Group',value = TRUE)
                     ) ,
+                    conditionalPanel(
+                      " input.Smooth== 'Smooth and SE' ",
+                      sliderInput("smoothselevel", "Confidence Level:", min=0.5, max=0.99, value=c(0.95),step=0.01)
+                    ) ,
+                    
                     uiOutput("weight"))
                   
                 )#fluidrow
@@ -818,10 +889,24 @@ h6("If you get /Error: Insufficient values in manual scale. ## needed but only 1
               tabPanel(
                 "Correlation Coefficient (?)",
                 fluidRow(
-                  column(12,hr()),
-                  checkboxInput('addcorrcoeff',"Add Correlation Coefficient to the plot ?"),
-                  checkboxInput('addcorrcoeffignoregroup',"Ignore Mapped Group ?", value=TRUE)
+                  column(4,hr(),
+                  checkboxInput('addcorrcoeff',
+                      "Add Correlation Coefficient to the plot ?")
+                  ),
+                  column(4,hr(),
+                  conditionalPanel(
+                    " input.addcorrcoeff ",
+                  selectInput("corrtype", label = "Correlation Method:",
+                              choices = c("pearson"="pearson",
+                                          "kendall"= "kendall",
+                                          "spearman"= "spearman"
+                                          ) ,
+                              selected = "pearson"))
+                  ),
+                  column(4,hr(),
                   
+                  checkboxInput('addcorrcoeffignoregroup',"Ignore Mapped Group ?", value=TRUE)
+                  )
                   
               )#fluidrow
               )##tabpanel corr
