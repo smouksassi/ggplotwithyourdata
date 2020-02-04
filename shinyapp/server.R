@@ -999,7 +999,7 @@ condition = !is.null(input$catvarquantin) && length(input$catvarquantin) >= 1)
         validate(need(all(input$y %in% names(df)), "Invalid y value(s)"))
 
         tidydata <- df %>%
-          gather( "yvars", "yvalues", gather_cols=as.vector(input$y) ,factor_key = TRUE) 
+          gather( "yvars", "yvalues", !!!input$y ,factor_key = TRUE) 
         if (!all( sapply(df[,as.vector(input$y)], is.numeric)) ) {
           tidydata <- tidydata %>%
             mutate(yvalues=as.factor(as.character(yvalues) ))
